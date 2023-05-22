@@ -1,0 +1,89 @@
+Mono path[0] = 'C:/Program Files (x86)/Steam/steamapps/common/UnderMine/UnderMine_Data/Managed'
+Mono config path = 'C:/Program Files (x86)/Steam/steamapps/common/UnderMine/MonoBleedingEdge/etc'
+Initialize engine version: 2019.4.17f1 (667c8606c536)
+[Subsystems] Discovering subsystems at path C:/Program Files (x86)/Steam/steamapps/common/UnderMine/UnderMine_Data/UnitySubsystems
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Radeon RX 580 Series (ID=0x67df)
+    Vendor:   
+    VRAM:     8170 MB
+    Driver:   31.0.12027.9001
+Begin MonoManager ReloadAssembly
+- Completed reload, in  3.364 seconds
+D3D11 device created for Microsoft Media Foundation video decoding.
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.742500 ms
+[FMOD] Please add an 'FMOD Studio Listener' component to your a camera in the scene for correct 3D positioning of sounds. 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug/Debug.bindings.h Line: 35)
+
+██╗   ██╗███╗   ██╗██████╗ ███████╗██████╗ ███╗   ███╗██╗███╗   ██╗███████╗
+██║   ██║████╗  ██║██╔══██╗██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔════╝
+██║   ██║██╔██╗ ██║██║  ██║█████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║█████╗
+██║   ██║██║╚██╗██║██║  ██║██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══╝
+╚██████╔╝██║ ╚████║██████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║███████╗
+ ╚═════╝ ╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝
+Sunday, 21 May 2023 20:56:33
+Version [1.2.1.14]
+
+OS [Windows 10  (10.0.0) 64bit/B42E9944F47F/False]
+
+Install path [C:\Program Files (x86)\Steam\steamapps\common\UnderMine]
+
+ComputeShader [True]
+
+DeviceType [Direct3D11]
+
+DeviceVersion [Direct3D 11.0 [level 11.1]]
+
+ShaderLevel [50]
+
+Resolution [2560 x 1080 @ 60Hz (2560x1080)]
+
+Initializing Steam
+Initializing Data
+Initializing LocStrings
+Successfully loaded 3453 English LocIDs into the LocDB
+Initializing Achievements
+Initializing Leaderboards
+Initializing Chat
+Initializing Stats
+Initializing Encounters
+Initializing Popups
+Initializing HUD
+Initializing Simulation
+Initializing FX
+Initializing Stages
+Initializing Rooms
+Initializing GameOver
+Initializing Decorators
+Initializing Resources
+Initializing Audio
+Initializing Materials
+Initializing Settings
+Initializing Behaviors
+Initializing Pool
+Done!
+Loading Crash Reporter
+Startup took 11.10459 seconds
+Unloading 12 Unused Serialized files (Serialized files now loaded: 0)
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 541092.
+Total: 726.914000 ms (FindLiveObjects: 58.948500 ms CreateObjectMapping: 14.048900 ms MarkObjects: 653.335000 ms  DeleteObjects: 0.581400 ms)
+
+Loading Zone Title with seed 43385201
+Loading took 0.2302399s
+Unloading 9 Unused Serialized files (Serialized files now loaded: 0)
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 543540.
+Total: 645.139600 ms (FindLiveObjects: 39.630600 ms CreateObjectMapping: 11.802400 ms MarkObjects: 592.766200 ms  DeleteObjects: 0.940200 ms)
+
+Loading Zone Mine1-4 with seed 85064322
+Skipping room [treasure_encounters]: Chance failed
+Skipping room [secret]: Chance failed
+Skipping room [secret]: Chance failed
+Skipping room [secret]: Chance failed
+Skipping room [relic_altar]: Chance failed
+Loading took 2.185322s
