@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms.VisualStyles;
 
 namespace Map_Generator
 {
@@ -88,6 +89,7 @@ namespace Map_Generator
             int num = elements.Aggregate(0, (current, element) => current + element.Weight);
 
             int num2 = RangeInclusive(1, num);
+            // Console.WriteLine(num);
             foreach (var element2 in elements)
             {
                 num2 -= element2.Weight;

@@ -10,7 +10,7 @@ public class JsonDecoder
     private static readonly string LocalLowPath =
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
 
-    private static readonly string UnderminePath =
+    public static readonly string UnderminePath =
         LocalLowPath + @"\Thorium Entertainment\UnderMine\";
 
     private static readonly string MapsData = File.ReadAllText(UnderminePath + "maps.json");

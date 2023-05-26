@@ -2190,4 +2190,4 @@ const zoneData = [
     ],
 ];
 const json = JSON.stringify(zoneData);
-console.log(json);
+console.log(json.toLocaleLowerCase());

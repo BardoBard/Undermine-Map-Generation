@@ -10539,7 +10539,6 @@ function getRooms(floor, seed, loops) {
                         if (recursionCount < 1) {
                             roomOut.secluded = true;
                         }
-                        ;
                         roomOut.direction = room.direction;
                         roomOut.enemies = determineEnemies(withDefault);
                         if (roomOut.enemies) {
