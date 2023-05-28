@@ -9,12 +9,9 @@ namespace Map_Generator
     {
         private static List<uint> seeds = new();
         private static Stack<List<uint>> seedsStack = new Stack<List<uint>>();
-
-        public static int Count { get; set; }
-
+        
         public static uint NextUInt()
         {
-            ++Count;
             uint x = seeds[0];
             x ^= x << 11;
             x ^= x >> 8;
@@ -86,11 +83,11 @@ namespace Map_Generator
 
         public static bool GetWeightedElement<T>(List<T> elements, out T result) where T : IWeigh
         {
-            int num = elements.Aggregate(0, (current, element) => current + element.Weight);
+            var elems = elements.Where(element => !element.Skip);
+            int num = elems.Aggregate(0, (current, element) => current + element.Weight);
 
             int num2 = RangeInclusive(1, num);
-            // Console.WriteLine(num);
-            foreach (var element2 in elements)
+            foreach (var element2 in elems)
             {
                 num2 -= element2.Weight;
                 if (num2 <= 0)

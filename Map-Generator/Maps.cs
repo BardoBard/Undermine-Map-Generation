@@ -14,6 +14,8 @@ namespace Map_Generator
         [JsonProperty("roomtype")] public string RoomTypeTag { get; set; }
         [JsonProperty("chance")] public float Chance { get; set; } = 1;
         [JsonProperty("tags")] public string? Tags { get; set; }
+        // [JsonProperty("children")] public bool Children { get; set; } = false;
+        // [JsonProperty("extra")] public bool Extra { get; set; } = false;
         [JsonProperty("branchweight")] public int BranchWeight { get; set; } = 0;
         [JsonProperty("doorcost")] public string? DoorCost { get; set; }
         [JsonProperty("requirement")] public string? Requirement { get; set; }
@@ -78,10 +80,12 @@ namespace Map_Generator
         public class WeightDoor : IWeigh
         {
             [JsonProperty("weight")] public int Weight { get; set; }
+            public bool Skip { get; set; }
             [JsonProperty("door")] public int Door { get; set; }
         }
 
         [JsonProperty("weight")] public int Weight { get; set; }
+        public bool Skip { get; set; }
         [JsonProperty("tag")] public string? Tag;
         [JsonProperty("Name")] public string? Name;
         [JsonProperty("weighteddoor")] public List<WeightDoor>? WeightDoors { get; set; }
@@ -184,5 +188,7 @@ namespace Map_Generator
     public interface IWeigh
     {
         [JsonProperty("weight")] public int Weight { get; set; }
+        [JsonIgnore] public bool Skip { get; set; }
+
     }
 }
