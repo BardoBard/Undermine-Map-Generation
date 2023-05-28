@@ -9,7 +9,7 @@ namespace Map_Generator
     {
         private static List<uint> seeds = new();
         private static Stack<List<uint>> seedsStack = new Stack<List<uint>>();
-        
+
         public static uint NextUInt()
         {
             uint x = seeds[0];
@@ -25,6 +25,7 @@ namespace Map_Generator
 
             return y;
         }
+
         public static float RangeFloat(uint min = 0, uint max = 1)
         {
             float range = max - min;
@@ -48,8 +49,10 @@ namespace Map_Generator
                     // Console.WriteLine(v);
                     return chance > v;
                 }
+
                 return false;
             }
+
             return true;
             // return chance == 1.0f || (chance != 0.0f && chance > Value());
         }
@@ -58,6 +61,7 @@ namespace Map_Generator
         {
             return Range((uint)min, max + 1);
         }
+
         public static int RangeInclusive(int min, int max)
         {
             return Range(min, max + 1);
@@ -67,6 +71,7 @@ namespace Map_Generator
         {
             return (int)(NextUInt() % (max - min) + min);
         }
+
         public static int Range(int min, int max)
         {
             return (int)(NextUInt() % (max - min) + min);
@@ -93,12 +98,15 @@ namespace Map_Generator
                 if (num2 <= 0)
                 {
                     result = element2;
+                    element2.Skip = true;
                     return true;
                 }
             }
+
             result = default;
             return false;
         }
+
         public static IDisposable CreateScope()
         {
             var clonedSeeds = new List<uint>(seeds);
@@ -107,6 +115,7 @@ namespace Map_Generator
 
             return new ScopeDisposable();
         }
+
         private class ScopeDisposable : IDisposable
         {
             private bool disposed = false;
