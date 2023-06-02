@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Map_Generator.Undermine;
 
@@ -7,6 +8,7 @@ public static class ListExtensions
     public static void Shuffle<T>(this IList<T> list)
     {
         int count = list.Count;
+        Console.WriteLine("count: " + count);
         while (count > 1)
         {
             int index = Random.Range(0, count--);

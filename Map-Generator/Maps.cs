@@ -11,6 +11,8 @@ namespace Map_Generator
 {
     public class RoomType
     {
+        public RoomType Clone() => (RoomType)this.MemberwiseClone();
+
         [JsonProperty("stage")] public List<string> Stages { get; set; }
         [JsonProperty("roomtype")] public string RoomTypeTag { get; set; }
         [JsonProperty("chance")] public float Chance { get; set; } = 1;
@@ -18,12 +20,13 @@ namespace Map_Generator
         [JsonProperty("children")] public bool Children { get; set; } = false;
         [JsonProperty("extra")] public bool Extra { get; set; } = false;
         [JsonProperty("branchweight")] public int BranchWeight { get; set; } = 0;
-        [JsonProperty("doorcost")] public string? DoorCost { get; set; }
+        [JsonProperty("doorcost")] public int? DoorCost { get; set; }
         [JsonProperty("requirement")] public string? Requirement { get; set; }
         [JsonProperty("direction")] public int? Direction { get; set; }
         [JsonIgnore] public Encounter Encounter { get; set; }
         [JsonIgnore] public RoomType PreviousRoom { get; set; }
         [JsonIgnore] public bool CanReload { get; set; }
+        [JsonIgnore] public bool Secluded { get; set; }
     }
 
     public class Maps
@@ -48,7 +51,7 @@ namespace Map_Generator
 
         public int GetDifficulty()
         {
-            return Save.storyMode ? Difficulty : RougeDifficulty; //TODO: check if this is correct
+            return Save.storymode ? Difficulty : RougeDifficulty; //TODO: check if this is correct
         }
     }
 
@@ -90,14 +93,15 @@ namespace Map_Generator
         [JsonProperty("tag")] public string? Tag;
         [JsonProperty("Name")] public string? Name;
         [JsonProperty("weighteddoor")] public List<WeightDoor>? WeightDoors { get; set; }
-        [JsonProperty("requirement")] public string? Requirement { get; set; }
+        [JsonProperty("requirements")] public string? Requirement { get; set; }
         [JsonProperty("enemies")] public List<Enemy>? Enemies { get; set; }
         [JsonProperty("prohibitedenemies")] public List<string>? ProhibitedEnemies { get; set; }
         [JsonProperty("difficulty")] public float[]? Difficulty { get; set; }
 
         [JsonProperty("direction, noexit")] public Direction NoExit { get; set; }
-
-        // [JsonProperty("noexit")] public Direction NoExit { get; set; }
+        [JsonIgnore] public int SubFloor { get; set; }
+        [JsonProperty("recursion")] public int SequenceRecursionCount { get; set; } = -1;
+        [JsonProperty("sequence")] public List<string> Sequence { get; set; } = new List<string>();
         [JsonIgnore] public bool Seen { get; set; }
         [JsonIgnore] public int Door { get; set; }
 
@@ -125,6 +129,7 @@ namespace Map_Generator
     public class Default
     {
         public float[] Difficulty { get; set; }
+        public List<string> Sequence { get; set; } = new();
 
         public Default()
         {

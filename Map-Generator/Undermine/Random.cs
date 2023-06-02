@@ -88,8 +88,22 @@ namespace Map_Generator
 
         public static bool GetWeightedElement<T>(List<T> elements, out T result) where T : IWeigh
         {
+            if (elements == null || elements.Count == 0)
+            {
+                NextUInt();
+                result = default;
+                return false;
+            }
+
             var elems = elements.Where(element => !element.Skip);
             int num = elems.Aggregate(0, (current, element) => current + element.Weight);
+
+            if (num == 0)
+            {
+                NextUInt();
+                result = default;
+                return false;
+            }
 
             int num2 = RangeInclusive(1, num);
             foreach (var element2 in elems)
