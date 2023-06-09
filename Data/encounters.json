@@ -27,7 +27,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoodietop"
+                        "hoodyentrance"
                     ],
                     "autospawn": 23
                 },
@@ -321,7 +321,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -901,7 +901,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -1158,7 +1158,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoodietop"
+                        "hoodyentrance"
                     ],
                     "autospawn": 23
                 },
@@ -1588,7 +1588,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -2429,7 +2429,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -2818,7 +2818,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoodietop"
+                        "hoodyentrance"
                     ],
                     "autospawn": 23
                 },
@@ -3195,7 +3195,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -3943,7 +3943,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -4244,7 +4244,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoodietop"
+                        "hoodyentrance"
                     ],
                     "autospawn": 23
                 },
@@ -4566,7 +4566,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -5163,7 +5163,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -5353,7 +5353,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoodietop"
+                        "hoodyentrance"
                     ],
                     "autospawn": 23
                 },
@@ -5670,7 +5670,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -6332,7 +6332,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -6536,7 +6536,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoodietop"
+                        "hoodyentrance"
                     ],
                     "autospawn": 23
                 },
@@ -6827,7 +6827,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],
@@ -7490,7 +7490,7 @@
                 "default": {
                     "icon": 7,
                     "door": 6,
-                    "reqursion": 1,
+                    "recursion": 1,
                     "sequence": [
                         "circinus"
                     ],

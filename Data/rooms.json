@@ -61,7 +61,7 @@
       "small"
     ],
     "roomtype": "relic",
-    "doorcost": "2 keys"
+    "doorcost": 2
   },
   "altar": {
     "stage": [
@@ -125,7 +125,7 @@
     ],
     "roomtype": "secret",
     "chance": 0.5,
-    "requirements": "relichat"
+    "requirements": "adventurers_hat"
   },
   "circinus": {
     "stage": [
@@ -235,6 +235,7 @@
     "stage": [
       "small"
     ],
+    "extra": true,
     "roomtype": "special",
     "tags": "down_boss",
     "branchweight": 1
@@ -258,6 +259,7 @@
     "stage": [
       "small"
     ],
+    "extra": true,
     "roomtype": "special",
     "tags": "next_entrance",
     "direction": 1
@@ -305,7 +307,7 @@
     ],
     "roomtype": "shop",
     "branchweight": 1,
-    "doorcost": "2 keys"
+    "doorcost": 2
   },
   "marketbaby": {
     "stage": [
