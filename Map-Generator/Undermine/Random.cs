@@ -86,9 +86,10 @@ namespace Map_Generator
             seeds.Add(seeds[2] * 1812433253 + 1);
         }
 
-        public static bool GetWeightedElement<T>(List<T> elements, out T result) where T : IWeigh
+        public static bool GetWeightedElement<T>(ICollection<T?>? elements, out T result) where T : class, IWeigh
         {
-            if (elements == null || elements.Count == 0)
+            //TODO: refactor this entire method
+            if (elements == null || !elements.Any())
             {
                 NextUInt();
                 result = default;
@@ -96,7 +97,8 @@ namespace Map_Generator
             }
 
             var elems = elements.Where(element => !element.Skip);
-            int num = elems.Aggregate(0, (current, element) => current + element.Weight);
+            var weights = elems as T[] ?? elems.ToArray();
+            int num = weights.Aggregate(0, (current, element) => current + element.Weight);
 
             if (num == 0)
             {
@@ -106,7 +108,7 @@ namespace Map_Generator
             }
 
             int num2 = RangeInclusive(1, num);
-            foreach (var element2 in elems)
+            foreach (var element2 in weights)
             {
                 num2 -= element2.Weight;
                 if (num2 <= 0)

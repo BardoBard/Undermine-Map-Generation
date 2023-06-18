@@ -23,8 +23,8 @@ namespace Map_Generator
         [JsonProperty("doorcost")] public int? DoorCost { get; set; }
         [JsonProperty("requirement")] public string? Requirement { get; set; }
         [JsonProperty("direction")] public int? Direction { get; set; }
-        [JsonIgnore] public Encounter Encounter { get; set; }
-        [JsonIgnore] public RoomType PreviousRoom { get; set; }
+        [JsonIgnore] public Encounter? Encounter { get; set; }
+        [JsonIgnore] public RoomType? PreviousRoom { get; set; }
         [JsonIgnore] public bool CanReload { get; set; }
         [JsonIgnore] public bool Secluded { get; set; }
     }
@@ -92,37 +92,32 @@ namespace Map_Generator
         public bool Skip { get; set; }
         [JsonProperty("tag")] public string? Tag;
         [JsonProperty("Name")] public string? Name;
-        [JsonProperty("weighteddoor")] public List<WeightDoor>? WeightDoors { get; set; }
+        [JsonProperty("weighteddoor")] public List<WeightDoor> WeightDoors { get; set; }
         [JsonProperty("requirements")] public string? Requirement { get; set; }
         [JsonProperty("enemies")] public List<Enemy>? Enemies { get; set; }
         [JsonProperty("prohibitedenemies")] public List<string>? ProhibitedEnemies { get; set; }
         [JsonProperty("difficulty")] public float[]? Difficulty { get; set; }
 
-        [JsonProperty("direction, noexit")] public Direction NoExit { get; set; }
+        // [JsonProperty("direction, noexit")] public int NoExit { get; set; }
+        [JsonProperty("noexit")] public int NoExit { get; set; } = 0;
         [JsonIgnore] public int SubFloor { get; set; }
         [JsonProperty("recursion")] public int SequenceRecursionCount { get; set; } = -1;
-        [JsonProperty("sequence")] public List<string> Sequence { get; set; } = new List<string>();
-        [JsonIgnore] public bool Seen { get; set; }
-        [JsonIgnore] public int Door { get; set; }
+        [JsonProperty("sequence")] public List<string> Sequence { get; set; } = new();
+        [JsonIgnore] public bool Seen { get; set; } = false;
+        [JsonIgnore] public int Door { get; set; } = 1;
 
-        public bool AllowNeighbor(Encounter neighbor)
+        public bool AllowNeighbor(Encounter? neighbor)
         {
-            if (((NoExit & Direction.North) == 0 && (neighbor.NoExit & Direction.South) == 0) ||
-                ((NoExit & Direction.South) == 0 && (neighbor.NoExit & Direction.North) == 0) ||
-                ((NoExit & Direction.East) == 0 && (neighbor.NoExit & Direction.West) == 0)) return true;
-
-            if ((NoExit & Direction.West) == 0)
-                return (neighbor.NoExit & Direction.East) == 0;
-
+            //TODO: null?
+            if (((NoExit & (int)Direction.North) == 0 && (neighbor.NoExit & (int)Direction.South) == 0) ||
+                ((NoExit & (int)Direction.South) == 0 && (neighbor.NoExit & (int)Direction.North) == 0) ||
+                ((NoExit & (int)Direction.East) == 0 && (neighbor.NoExit & (int)Direction.West) == 0)) return true;
+            if ((NoExit & (int)Direction.West) == 0)
+            {
+                return (neighbor.NoExit & (int)Direction.East) == 0;
+            }
 
             return false;
-        }
-
-        public Encounter()
-        {
-            // Enemies = new List<Enemy>();
-            Difficulty = null;
-            Seen = false;
         }
     }
 
@@ -137,15 +132,12 @@ namespace Map_Generator
         }
     }
 
-    public class Encounters
+    public class Encounters : ICloneable
     {
-        public Encounters()
-        {
-            Default = new Default();
-        }
+        public object Clone() => (Encounters)this.MemberwiseClone(); //TODO: change this?
 
-        public Default Default { get; set; }
-        public List<Encounter> Rooms { get; set; }
+        public Default Default { get; set; } = new();
+        public List<Encounter?> Rooms { get; set; }
 
         public bool HasWeight()
         {
@@ -155,27 +147,28 @@ namespace Map_Generator
 
     public class Override
     {
-        public float Difficulty { get; set; }
+        [JsonProperty("difficulty")] public float? Difficulty { get; set; }
+        [JsonProperty("enemytypeweight")] public int[]? EnemyTypeWeight { get; set; }
     }
 
     public class Floor
     {
-        public Override Override { get; set; }
-        public List<Enemy> Enemies { get; set; }
+        [JsonProperty("override")] public Override? Override { get; set; }
+        [JsonProperty("enemies")] public List<Enemy> Enemies { get; set; }
     }
 
     public class ZoneData
     {
-        public ZoneData()
+        public ZoneData() //TODO: check if this is correct
         {
             EnemyTypeWeight = new[] { 0, 1, 1, 1 };
         }
 
-        public void Initialize()
+        public void Initialize() //TODO: check if this is correct
         {
             while (EnemyTypeWeight.Length < 4)
             {
-                EnemyTypeWeight = EnemyTypeWeight.Append(1).ToArray();
+                EnemyTypeWeight = EnemyTypeWeight.Append(0).ToArray();
             }
         }
 
@@ -195,6 +188,5 @@ namespace Map_Generator
     {
         [JsonProperty("weight")] public int Weight { get; set; }
         [JsonIgnore] public bool Skip { get; set; }
-
     }
 }

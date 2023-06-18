@@ -13,7 +13,7 @@ namespace Map_Generator
 {
     static class Program
     {
-        public static List<RoomType> Rooms = new();
+        public static List<RoomType?> Rooms = new();
 
         public static int GetFloorPosition(string floor, string name, string name2)
         {
@@ -32,7 +32,7 @@ namespace Map_Generator
             return count;
         }
 
-        public static void GetEncounter(string floor, string name2, RoomType mainRoom)
+        public static void GetEncounter(string floor, string name2, RoomType? mainRoom)
         {
             using (Random.CreateScope())
             {
@@ -42,8 +42,8 @@ namespace Map_Generator
                 // for (int i = 0; i < res; i++)
                 //     Random.NextUInt();
 
-                var encounters = JsonDecoder.Encounter[floor][name2][mainRoom.RoomTypeTag].Rooms;
-                encounters.RemoveAll(encounter1 => !CheckEncounter(encounter1, mainRoom));
+                var encounters = JsonDecoder.Encounter[floor][name2][mainRoom?.RoomTypeTag].Rooms
+                    .Where(encounter1 => CheckEncounter(encounter1, mainRoom)).ToList();
                 if (encounters.Count == 0)
                 {
                     Console.WriteLine("error?");
@@ -52,12 +52,18 @@ namespace Map_Generator
                 if (JsonDecoder.Encounter[floor][name2][mainRoom.RoomTypeTag].HasWeight())
                 {
                     var mainRoomEncounter = mainRoom.Encounter;
+                    // foreach (Encounter? enemy in encounters)
+                    // {
+                    //     Console.WriteLine("encounter name: {0}", enemy.Name);
+                    // }
 
+                    Console.WriteLine("");
                     if (Random.GetWeightedElement(encounters, out mainRoomEncounter))
                         mainRoom.Encounter = mainRoomEncounter;
                 }
                 else
-                    mainRoom.Encounter = encounters.Find(x => x.Tag == mainRoom.Tags && Save.Check(x.Requirement));
+                    mainRoom.Encounter = encounters.Find(x =>
+                        x?.Requirement != null && x.Tag == mainRoom.Tags && Save.Check(x.Requirement));
 
                 mainRoom.CanReload = mainRoom.Encounter is { SubFloor: 0 };
 
@@ -68,9 +74,9 @@ namespace Map_Generator
 
         public static int GetEnemyTypeCount(int[] zoneData)
         {
-            int num = zoneData.Sum();
+            int sum = zoneData.Sum();
 
-            int num2 = Random.RangeInclusive(1, num);
+            int num2 = Random.RangeInclusive(1, sum);
             for (int i = 0; i < zoneData.Length; i++)
             {
                 num2 -= zoneData[i];
@@ -88,7 +94,7 @@ namespace Map_Generator
             Urgent = 4
         }
 
-        public static void DetermineEnemies(Encounter encounter, int floorNumber)
+        public static void DetermineEnemies(Encounter? encounter, ZoneData data, int floorNumber)
         {
             if (!Random.Chance(encounter.Difficulty[0]))
             {
@@ -96,8 +102,12 @@ namespace Map_Generator
                 return;
             }
 
-            var data = JsonDecoder.ZoneData[0][0];
-            data.Initialize();
+            data.Initialize(); //TODO: check, maybe earlier or not needed
+            Override? floorOverride = data.Floors[floorNumber].Override;
+            float floorDifficulty =
+                floorOverride?.Difficulty ??
+                (data.BaseDifficulty + data.DifficultyStep * floorNumber); //TODO: difficulty int?
+            int[] enemyTypeWeight = floorOverride?.EnemyTypeWeight ?? data.EnemyTypeWeight;
             List<Enemy> enemies = new List<Enemy>(encounter.Enemies ?? data.Floors[floorNumber].Enemies);
             encounter.Enemies ??= new List<Enemy>();
 
@@ -117,17 +127,16 @@ namespace Map_Generator
             //I think this is the amount of enemies in the room
             enemies.RemoveAll(enemy => (enemy.Type & enemyCombo) == 0);
 
-            int num = System.Math.Min(enemies.Count, GetEnemyTypeCount(data.EnemyTypeWeight));
+            int num = System.Math.Min(enemies.Count, GetEnemyTypeCount(enemyTypeWeight));
             if (num <= 0)
                 return;
 
             enemies.Shuffle();
-            List<Enemy> list2 = new List<Enemy>();
 
+            List<Enemy> list2 = new List<Enemy>();
+            // var items = enemies.Where(enemy => (num != 1 || enemy.CanBeSolo));
             //get enemies and remove enemies that don't belong
-            foreach (var enemy in enemies.Where(
-                         enemy => (num != 1 ||
-                                   enemy.CanBeSolo) /* && GameData.Instance.CheckSpawnCondition(item)     */))
+            foreach (var enemy in enemies.Where(enemy => num != 1 || enemy.CanBeSolo))
             {
                 if ((enemy.Type & enemyCombo) != 0 || enemyCombo == 0)
                 {
@@ -136,16 +145,13 @@ namespace Map_Generator
                 }
 
                 if (list2.Count == num)
-                {
                     break;
-                }
+                
             }
 
             if (list2.Count > 0)
             {
-                float num2 =
-                    (data.Floors[floorNumber].Override != null ? data.Floors[floorNumber].Override.Difficulty : 0) +
-                    encounter.Difficulty[1];
+                float num2 = floorDifficulty + encounter.Difficulty[1]; //TODO: null?
                 int[] array = new int[list2.Count];
                 for (int i = 0; i < list2.Count; i++)
                 {
@@ -155,9 +161,6 @@ namespace Map_Generator
                     num2 -= difficulty;
                     array[i]++;
                 }
-
-                Console.WriteLine("list2 count: " + list2.Count);
-                Console.WriteLine("num2: " + num2);
 
                 while (num2 > 0f && list2.Count > 0)
                 {
@@ -180,7 +183,7 @@ namespace Map_Generator
             list2.Clear();
         }
 
-        public static bool CheckEncounter(Encounter encounter, RoomType room)
+        public static bool CheckEncounter(Encounter? encounter, RoomType? room)
         {
             if (encounter == null)
             {
@@ -192,10 +195,16 @@ namespace Map_Generator
             // {
             //     return false;
             // }
-            if (room.PreviousRoom != null && !room.PreviousRoom.Encounter.AllowNeighbor(encounter))
+            if (room?.PreviousRoom?.Encounter != null)
             {
-                Console.WriteLine("not allowed neighbor");
-                return false;
+                if (!room.PreviousRoom.Encounter.AllowNeighbor(encounter))
+                {
+                    Console.WriteLine("not allowed encounter: {0}, noexit: {1}", encounter.Name, encounter.NoExit);
+                    Console.WriteLine("not allowed neighbor: {0}, noexit: {1}", room.PreviousRoom.Encounter.Name,
+                        room.PreviousRoom.Encounter.NoExit);
+                    Console.WriteLine("");
+                    return false;
+                }
             }
 
             // if (room.Stage != encounter.Stage) //TODO: two rooms should be ignored
@@ -210,15 +219,18 @@ namespace Map_Generator
 
             if (encounter.Seen) //&& !encounter.Repeatable <- TODO: repeatable only for a few rooms, which in a normal run can be ignored
             {
-                Console.WriteLine("seen");
+                Console.WriteLine("seen: {0}", encounter.Name);
                 return false;
             }
 
             return true;
         }
 
-        public static string MapName { get; set; } = "mineearly";
-        public static string MapNameEncounter { get; set; } = "mine";
+        // public static string MapName { get; set; } = "mineearly";
+        public static string MapName { get; set; } = "dungeon";
+
+        // public static string MapNameEncounter { get; set; } = "mine";
+        public static string MapNameEncounter { get; set; } = "dungeon";
 
         public static void GetRooms(RoomType[][] batches)
         {
@@ -229,7 +241,7 @@ namespace Map_Generator
             }
         }
 
-        private static void LoadRoomNames(RoomType[] roomNames, RoomType previousRoom, bool sequence,
+        private static void LoadRoomNames(RoomType[] roomNames, RoomType? previousRoom, bool sequence,
             int sequenceRecursionCount)
         {
             foreach (RoomType roomName in roomNames)
@@ -248,12 +260,12 @@ namespace Map_Generator
                     return;
                 }
 
-                Console.WriteLine(Random.Value());
-                // Random.Count = 0;
                 string name2 = roomName.Stages[Random.Range(0, (uint)roomName.Stages.Count)];
-                // Console.WriteLine(Random.Value());
-                // Console.WriteLine("begin: " + Random.Count);
-                var room = roomName.Clone();
+
+                Console.WriteLine(Random.Value());
+
+                RoomType room = roomName.Clone();
+                room.PreviousRoom = previousRoom;
                 if (room.Encounter == null)
                     GetEncounter(MapNameEncounter, name2, room); //scoped randomness
 
@@ -267,7 +279,6 @@ namespace Map_Generator
                 // Console.WriteLine("end: " + Random.Count);
                 // }
 
-                Console.WriteLine(Random.Value());
 
                 if (room.Encounter?.Enemies != null)
                 {
@@ -317,15 +328,30 @@ namespace Map_Generator
             }
         }
 
-        public static void Initialize(RoomType room, string name2)
+        public static void Initialize(RoomType? room, string name2)
         {
-            if (Random.GetWeightedElement(room.Encounter.WeightDoors, out var door))
+            if (Random.GetWeightedElement(room?.Encounter?.WeightDoors, out var door))
                 room.Encounter.Door = door.Door;
 
 
             room.Encounter.Difficulty ??=
                 JsonDecoder.Encounter[MapNameEncounter][name2][room.RoomTypeTag].Default.Difficulty;
-            DetermineEnemies(room.Encounter, Save.floor_number - 1); //not scoped randomness
+
+            ZoneData data = new ZoneData();
+
+            //loop through data and check if requirement fits
+            // foreach (ZoneData? zoneData in
+            //          JsonDecoder.ZoneData[1]
+            //              .Where(zoneData =>
+            //                  Save.Check(zoneData.Requirements))) //TODO: change zonedata[0] to generic value
+            // {
+            //     data = zoneData;
+            //     Console.WriteLine("found zonedata: {0}", data.Name);
+            //     break;
+            // }
+            data = JsonDecoder.ZoneData[1][0];
+
+            DetermineEnemies(room.Encounter, data, Save.FloorNumber - 1); //not scoped randomness
             room.Encounter.Seen = true;
         }
 
@@ -337,9 +363,9 @@ namespace Map_Generator
         static void Main()
         {
             Save.Initialize("Save2.json");
-            Random.Initialize((uint)(85064318 + Save.floor_number));
+            Random.Initialize((uint)(Save.Seed + Save.floor_number));
 
-            var level = JsonDecoder.Maps[MapName].Levels[Save.floor_number - 1];
+            var level = JsonDecoder.Maps[MapName].Levels[Save.FloorNumber - 1];
 
             RoomType[][] batches = level.Rooms.Select(room => room.Select(x => JsonDecoder.Rooms[x]).ToArray())
                 .ToArray()

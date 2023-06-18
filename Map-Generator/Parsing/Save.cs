@@ -29,12 +29,27 @@ public static class Save
     private static bool relicAdventurersWhip { get; set; }
 
     //game data
-    public static bool storymode { get; set; } = true; //TODO: Check if this is the correct name
+    public static bool storymode { get; set; } = true;
+    
+    public static int Seed { get; set; }
+    public static Guid Zone { get; set; }
     public static bool rougeMode { get; set; } //TODO: Check if this is the correct name
     public static bool bard_met { get; set; }
     public static bool altar_encountered { get; set; }
     public static bool tribute_fountain_encountered { get; set; } //TODO: Check if this is the correct name
     public static int floor_number { get; set; }
+
+    public static int FloorNumber
+    {
+        get
+        {
+            int result = floor_number % 5;
+            if (result == 0)
+                throw new Exception("number cannot be a multiple of 5");
+            return result;
+        }
+    }
+
 
     public static bool whip_enabled { get; set; }
     public static int zone_index { get; set; }
@@ -123,140 +138,142 @@ public static class Save
     private static int woodpigeon_met { get; set; }
 
     //rooms
-    public static bool adventurers_hat =>  adventurersHat;
-    public static bool relicadventurerswhip =>  relicAdventurersWhip;
+    public static bool adventurers_hat => adventurersHat;
+    public static bool relicadventurerswhip => relicAdventurersWhip;
 
-    public static bool reliccircinus =>  relicCircinus;
+    public static bool reliccircinus => relicCircinus;
 
     //rooms and encounters
-    public static bool relicguacamole =>  discoveredGuacamole;
+    public static bool relicguacamole => discoveredGuacamole;
 
     //encounters
-    public static bool waylandshop =>  ((!discovered_wayland_boots || !(blacksmith_rescued > 0)) && !whip_enabled);
-    public static bool mushroomblue =>  (!mushroom_blue && apprentice_met > 0 && !whip_enabled && storymode);
-    public static bool mushroompurple =>  (!mushroom_purple && apprentice_met > 0 && !whip_enabled && storymode);
-    public static bool mushroomgreen =>  (!mushroom_green && apprentice_met > 0 && !whip_enabled && storymode);
-    public static bool blackrabbitfirst =>  (!black_rabbit_met && !whip_enabled && storymode);
-    public static bool hoodieminel =>  (rockmimic_defeated && !hoodie_met_mine && (floor_number == 1) && storymode);
-    public static bool hoodiemineu =>  (rockmimic_defeated && hoodie_met_mine && (floor_number == 1) && storymode);
-    public static bool hoodiedungeonl =>  (!hoodie_met_dungeon && (floor_number == 5) && storymode);
-    public static bool hoodiedungeonu =>  (!hoodie_met_dungeon && (floor_number == 5) && storymode);
-    public static bool hoodiehalll =>  (!hoodie_met_hall && (floor_number == 11) && storymode);
-    public static bool hoodiehallu =>  (!hoodie_met_hall && (floor_number == 11) && storymode);
-    public static bool hoodiecavernl =>  (!hoodie_met_cavern && (floor_number == 16) && storymode);
-    public static bool hoodiecanveru =>  (!hoodie_met_cavern && (floor_number == 16) && storymode);
-    public static bool nofountain =>  (storymode && !tribute_fountain_encountered && bog_unlocked);
-    public static bool nohexdesolation =>  (!hexDesolation);
-    public static bool dogshadow =>  !dog_shadow_found && (delve_count > 5) && !whip_enabled;
-    public static bool dogengine =>  !dog_engine_found && (delve_count > 6) && !whip_enabled;
-    public static bool dogdillion =>  !dog_dillon_found && (delve_count > 7) && !whip_enabled;
-    public static bool notbardmet =>  !bard_met;
-    public static bool secretfountain =>  storymode && bog_unlocked;
-    public static bool treasurehunt =>  (!secret_treasure_note && !whip_enabled);
-    public static bool ratfriendship =>  (!discoveredRatBond && !whip_enabled);
-    public static bool priestessrescued =>  priestess_met > 2;
-    public static bool relicguacamolebug =>  discoveredGuacamole; //TODO: check this
-    public static bool rockmimic =>  !prisoner_key && !whip_enabled && storymode;
+    public static bool waylandshop => ((!discovered_wayland_boots || !(blacksmith_rescued > 0)) && !whip_enabled);
+    public static bool mushroomblue => (!mushroom_blue && apprentice_met > 0 && !whip_enabled && storymode);
+    public static bool mushroompurple => (!mushroom_purple && apprentice_met > 0 && !whip_enabled && storymode);
+    public static bool mushroomgreen => (!mushroom_green && apprentice_met > 0 && !whip_enabled && storymode);
+    public static bool blackrabbitfirst => (!black_rabbit_met && !whip_enabled && storymode);
+    public static bool hoodieminel => (rockmimic_defeated && !hoodie_met_mine && (FloorNumber == 1) && storymode);
+    public static bool hoodiemineu => (rockmimic_defeated && hoodie_met_mine && (FloorNumber == 1) && storymode);
+    public static bool hoodiedungeonl => (!hoodie_met_dungeon && (FloorNumber == 5) && storymode);
+    public static bool hoodiedungeonu => (!hoodie_met_dungeon && (FloorNumber == 5) && storymode);
+    public static bool hoodiehalll => (!hoodie_met_hall && (FloorNumber == 11) && storymode);
+    public static bool hoodiehallu => (!hoodie_met_hall && (FloorNumber == 11) && storymode);
+    public static bool hoodiecavernl => (!hoodie_met_cavern && (FloorNumber == 16) && storymode);
+    public static bool hoodiecavernu => (!hoodie_met_cavern && (FloorNumber == 16) && storymode);
+    public static bool nofountain => (storymode && !tribute_fountain_encountered && bog_unlocked);
+    public static bool nohexdesolation => (!hexDesolation);
+    public static bool dogshadow => !dog_shadow_found && (delve_count > 5) && !whip_enabled;
+    public static bool dogengine => !dog_engine_found && (delve_count > 6) && !whip_enabled;
+    public static bool dogdillion => !dog_dillon_found && (delve_count > 7) && !whip_enabled;
+    public static bool notbardmet => !bard_met;
+    public static bool secretfountain => storymode && bog_unlocked;
+    public static bool treasurehunt => (!secret_treasure_note && !whip_enabled);
+    public static bool ratfriendship => (!discoveredRatBond && !whip_enabled);
+    public static bool priestessrescued => priestess_met > 2;
+    public static bool relicguacamolebug => discoveredGuacamole; //TODO: check this
+    public static bool rockmimic => !prisoner_key && !whip_enabled && storymode;
 
-    public static bool alchemistapprentice0 => 
+    public static bool alchemistapprentice0 =>
         !(apprentice_met > 0) && (blacksmith_rescued > 0) && !whip_enabled && storymode;
 
-    public static bool alchemistapprentice3 => 
+    public static bool alchemistapprentice3 =>
         ((apprentice_met == 4) && blacksmith_rescued > 0 && !whip_enabled && storymode);
 
-    public static bool relicaltar =>  !altar_encountered && !whip_enabled;
-    public static bool blackrabbitmet =>  black_rabbit_met;
-    public static bool dangeroustogo =>  delve_count > 8;
-    public static bool secretshop =>  peasant2_unlocked && (dibble_upgrade_count < 4) && storymode;
-    public static bool dibblesstoreroom =>  (!peasant2_unlocked && !whip_enabled && storymode);
-    public static bool dungeonlibrary =>  (!(collector_book > 0) && !whip_enabled && storymode);
-    public static bool priestessentrance =>  (!(priestess_met > 0) && !whip_enabled && storymode);
-    public static bool kurtz =>  (storymode && (!discoveredHungrySpirit || !peasant4_unlocked));
-    public static bool storynotwhip =>  (!whip_enabled && storymode);
-    public static bool masterskey =>  priestess_met > 0 && !masters_key && !whip_enabled && storymode;
-    public static bool notwhip =>  !whip_enabled; //TODO: check this
-    public static bool rougemode =>  !rougeMode; //TODO: check this
-    public static bool partypopcornroom =>  (foundPartyPopcornPotion && !whip_enabled); //TODO: check this
-    public static bool halllibrarycombat =>  (!(collector_book > 0) && !whip_enabled && storymode);
-    public static bool dodsonnotrescued =>  (!peasant1_unlocked && !whip_enabled && storymode);
+    public static bool relicaltar => !altar_encountered && !whip_enabled;
+    public static bool blackrabbitmet => black_rabbit_met;
+    public static bool dangeroustogo => delve_count > 8;
+    public static bool secretshop => peasant2_unlocked && (dibble_upgrade_count < 4) && storymode;
+    public static bool dibblesstoreroom => (!peasant2_unlocked && !whip_enabled && storymode);
+    public static bool dungeonlibrary => (!(collector_book > 0) && !whip_enabled && storymode);
+    public static bool priestessentrance => (!(priestess_met > 0) && !whip_enabled && storymode);
+    public static bool kurtz => (storymode && (!discoveredHungrySpirit || !peasant4_unlocked));
+    public static bool storynotwhip => (!whip_enabled && storymode);
+    public static bool masterskey => priestess_met > 0 && !masters_key && !whip_enabled && storymode;
+    public static bool notwhip => !whip_enabled; //TODO: check this
+    public static bool rougemode => !rougeMode; //TODO: check this
+    public static bool partypopcornroom => (foundPartyPopcornPotion && !whip_enabled); //TODO: check this
+    public static bool halllibrarycombat => (!(collector_book > 0) && !whip_enabled && storymode);
+    public static bool dodsonnotrescued => (!peasant1_unlocked && !whip_enabled && storymode);
 
     //zondata:
-    public static bool tutorialincomplete =>  !tutorial_complete;
+    public static bool tutorialincomplete => !tutorial_complete;
 
-    public static bool tutorialcomplete =>  (!rockmimic_defeated &&
-                                              !(sandworm_defeated > 0) &&
-                                              !(stonelord_defeated > 0) &&
-                                              !(shadowlord_defeated > 0));
+    public static bool tutorialcomplete => !rockmimic_defeated &&
+                                           !(sandworm_defeated > 0) &&
+                                           !(stonelord_defeated > 0) &&
+                                           !(shadowlord_defeated > 0);
 
-    public static bool mimickilled =>  (rockmimic_defeated &&
-                                         !(sandworm_defeated > 0) &&
+    public static bool mimickilled => (rockmimic_defeated &&
+                                       !(sandworm_defeated > 0) &&
+                                       !(stonelord_defeated > 0) &&
+                                       !(shadowlord_defeated > 0));
+
+    public static bool minesandwormkilled => (sandworm_defeated > 0) &&
+                                             !(stonelord_defeated > 0) &&
+                                             !(shadowlord_defeated > 0);
+
+    public static bool minestonelordkilled => stonelord_defeated > 0 &&
+                                              !(shadowlord_defeated > 0);
+
+    public static bool mineshadowlordkilled => shadowlord_defeated > 0;
+
+    public static bool allbossesalive => !(sandworm_defeated > 0) &&
                                          !(stonelord_defeated > 0) &&
-                                         !(shadowlord_defeated > 0));
+                                         !(shadowlord_defeated > 0) &&
+                                         !(crystallord_defeated > 0);
 
-    public static bool minesandwormkilled =>  (sandworm_defeated > 0) &&
-                                               !(stonelord_defeated > 0) &&
-                                               !(shadowlord_defeated > 0);
+    public static bool sandwormkilled => (sandworm_defeated > 0) &&
+                                         !(stonelord_defeated > 0) &&
+                                         !(shadowlord_defeated > 0) &&
+                                         !(crystallord_defeated > 0);
 
-    public static bool minestonelordkilled =>  stonelord_defeated > 0 &&
-                                                !(shadowlord_defeated > 0);
-
-    public static bool mineshadowlordkilled =>  shadowlord_defeated > 0;
-
-    public static bool allbossesalive =>  !(sandworm_defeated > 0) &&
-                                           !(stonelord_defeated > 0) &&
+    public static bool stonelordkilled => (stonelord_defeated > 0 &&
                                            !(shadowlord_defeated > 0) &&
-                                           !(crystallord_defeated > 0);
+                                           !(crystallord_defeated > 0));
 
-    public static bool sandwormkilled =>  (sandworm_defeated > 0) &&
-                                           !(stonelord_defeated > 0) &&
-                                           !(shadowlord_defeated > 0) &&
-                                           !(crystallord_defeated > 0);
+    public static bool crystallordkilled => (crystallord_defeated > 0);
 
-    public static bool stonelordkilled =>  (stonelord_defeated > 0 &&
-                                             !(shadowlord_defeated > 0) &&
-                                             !(crystallord_defeated > 0));
-
-    public static bool crystallordkilled =>  (crystallord_defeated > 0);
-
-    public static bool stonelordnotkilled =>  (!(stonelord_defeated > 0) &&
-                                                !(shadowlord_defeated > 0) &&
-                                                !(crystallord_defeated > 0));
-
-    public static bool shadowlordkilled =>  (shadowlord_defeated > 0 &&
+    public static bool stonelordnotkilled => (!(stonelord_defeated > 0) &&
+                                              !(shadowlord_defeated > 0) &&
                                               !(crystallord_defeated > 0));
 
-    public static bool shadowlordnotkilled =>  (!(shadowlord_defeated > 0) &&
-                                                 !(crystallord_defeated > 0));
+    public static bool shadowlordkilled => (shadowlord_defeated > 0 &&
+                                            !(crystallord_defeated > 0));
 
-    public static bool crystallordnotkilled =>  (!(crystallord_defeated > 0) &&
-                                                  !(firelord_defeated > 0));
+    public static bool shadowlordnotkilled => (!(shadowlord_defeated > 0) &&
+                                               !(crystallord_defeated > 0));
 
-    public static bool firelordkilled =>  (firelord_defeated > 0 &&
-                                            !bog_unlocked); //TODO: check this bog (enterBog)
+    public static bool crystallordnotkilled => (!(crystallord_defeated > 0) &&
+                                                !(firelord_defeated > 0));
 
-    public static bool enterbog =>  bog_unlocked; //TODO: check this bog (enterBog)
+    public static bool firelordkilled => (firelord_defeated > 0 &&
+                                          !bog_unlocked); //TODO: check this bog (enterBog)
 
-    public static bool crystallordkillednotfire =>  (crystallord_defeated > 0 &&
-                                                      !(firelord_defeated > 0) &&
-                                                      !bog_unlocked); //TODO: check this bog (enterBog)
+    public static bool enterbog => bog_unlocked; //TODO: check this bog (enterBog)
 
-    public static void Initialize(String saveString)
+    public static bool crystallordkillednotfire => (crystallord_defeated > 0 &&
+                                                    !(firelord_defeated > 0) &&
+                                                    !bog_unlocked); //TODO: check this bog (enterBog)
+
+    public static void Initialize(string saveString)
     {
         var path = JsonDecoder.UnderminePath + @"\Saves\" + saveString;
         var json = File.ReadAllText(path);
         var jsonObject = JObject.Parse(json);
-        ParseUpgradeString((string)jsonObject["upgradeString"]);
+        ParseUpgradeString((string)jsonObject["upgradeString"]! ?? throw new Exception("upgradeString not found"));
+        ParseAutoSaveData(jsonObject["autoSaveData"]);
     }
 
     public static bool Check(string requirement)
     {
         var info = typeof(Save).GetProperties();
-        return (bool)typeof(Save).GetProperty(requirement).GetValue(typeof(Save), null);
+        return (bool)(typeof(Save).GetProperty(requirement)?.GetValue(typeof(Save), null) ??
+                      throw new InvalidOperationException());
     }
 
-    public static int IncrementFloorNumber(int n)
+    public static void IncrementFloorNumber()
     {
-        return n + (n - 1) / 5;
+        floor_number += FloorNumber == 4 ? 2 : 1;
     }
 
     private static bool ParseUpgradeString(string input)
@@ -284,5 +301,11 @@ public static class Save
         }
 
         return true;
+    }
+
+    private static void ParseAutoSaveData(JToken? input)
+    {
+        Seed = (int)(input?["seed"] ?? throw new Exception("Seed not found"));
+        Zone = Guid.Parse((string)input["zone"]! ?? throw new Exception("Zone not found"));
     }
 }
