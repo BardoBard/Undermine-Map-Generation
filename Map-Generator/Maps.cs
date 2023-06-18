@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using Map_Generator.Parsing;
 using Newtonsoft.Json;
 
 namespace Map_Generator
@@ -14,6 +15,8 @@ namespace Map_Generator
         [JsonProperty("roomtype")] public string RoomTypeTag { get; set; }
         [JsonProperty("chance")] public float Chance { get; set; } = 1;
         [JsonProperty("tags")] public string? Tags { get; set; }
+        [JsonProperty("children")] public bool Children { get; set; } = false;
+        [JsonProperty("extra")] public bool Extra { get; set; } = false;
         [JsonProperty("branchweight")] public int BranchWeight { get; set; } = 0;
         [JsonProperty("doorcost")] public string? DoorCost { get; set; }
         [JsonProperty("requirement")] public string? Requirement { get; set; }
@@ -43,9 +46,9 @@ namespace Map_Generator
         [JsonProperty("max")] public int Max { get; set; }
         [JsonProperty("type")] public int Type { get; set; }
 
-        public int GetDifficulty(int gameMode)
+        public int GetDifficulty()
         {
-            return gameMode == 0 ? Difficulty : RougeDifficulty;
+            return Save.storyMode ? Difficulty : RougeDifficulty; //TODO: check if this is correct
         }
     }
 
@@ -78,10 +81,12 @@ namespace Map_Generator
         public class WeightDoor : IWeigh
         {
             [JsonProperty("weight")] public int Weight { get; set; }
+            public bool Skip { get; set; }
             [JsonProperty("door")] public int Door { get; set; }
         }
 
         [JsonProperty("weight")] public int Weight { get; set; }
+        public bool Skip { get; set; }
         [JsonProperty("tag")] public string? Tag;
         [JsonProperty("Name")] public string? Name;
         [JsonProperty("weighteddoor")] public List<WeightDoor>? WeightDoors { get; set; }
@@ -184,5 +189,7 @@ namespace Map_Generator
     public interface IWeigh
     {
         [JsonProperty("weight")] public int Weight { get; set; }
+        [JsonIgnore] public bool Skip { get; set; }
+
     }
 }

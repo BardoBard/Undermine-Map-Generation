@@ -29,7 +29,7 @@ public static class Save
     private static bool relicAdventurersWhip { get; set; }
 
     //game data
-    public static bool storyMode { get; set; } //TODO: Check if this is the correct name
+    public static bool storyMode { get; set; } = true; //TODO: Check if this is the correct name
     public static bool rougeMode { get; set; } //TODO: Check if this is the correct name
     public static bool bard_met { get; set; }
     public static bool altar_encountered { get; set; }

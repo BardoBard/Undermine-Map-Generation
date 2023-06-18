@@ -10,11 +10,8 @@ namespace Map_Generator
         private static List<uint> seeds = new();
         private static Stack<List<uint>> seedsStack = new Stack<List<uint>>();
 
-        public static int Count { get; set; }
-
         public static uint NextUInt()
         {
-            ++Count;
             uint x = seeds[0];
             x ^= x << 11;
             x ^= x >> 8;
@@ -28,6 +25,7 @@ namespace Map_Generator
 
             return y;
         }
+
         public static float RangeFloat(uint min = 0, uint max = 1)
         {
             float range = max - min;
@@ -51,8 +49,10 @@ namespace Map_Generator
                     // Console.WriteLine(v);
                     return chance > v;
                 }
+
                 return false;
             }
+
             return true;
             // return chance == 1.0f || (chance != 0.0f && chance > Value());
         }
@@ -61,6 +61,7 @@ namespace Map_Generator
         {
             return Range((uint)min, max + 1);
         }
+
         public static int RangeInclusive(int min, int max)
         {
             return Range(min, max + 1);
@@ -70,6 +71,7 @@ namespace Map_Generator
         {
             return (int)(NextUInt() % (max - min) + min);
         }
+
         public static int Range(int min, int max)
         {
             return (int)(NextUInt() % (max - min) + min);
@@ -86,22 +88,25 @@ namespace Map_Generator
 
         public static bool GetWeightedElement<T>(List<T> elements, out T result) where T : IWeigh
         {
-            int num = elements.Aggregate(0, (current, element) => current + element.Weight);
+            var elems = elements.Where(element => !element.Skip);
+            int num = elems.Aggregate(0, (current, element) => current + element.Weight);
 
             int num2 = RangeInclusive(1, num);
-            // Console.WriteLine(num);
-            foreach (var element2 in elements)
+            foreach (var element2 in elems)
             {
                 num2 -= element2.Weight;
                 if (num2 <= 0)
                 {
                     result = element2;
+                    element2.Skip = true;
                     return true;
                 }
             }
+
             result = default;
             return false;
         }
+
         public static IDisposable CreateScope()
         {
             var clonedSeeds = new List<uint>(seeds);
@@ -110,6 +115,7 @@ namespace Map_Generator
 
             return new ScopeDisposable();
         }
+
         private class ScopeDisposable : IDisposable
         {
             private bool disposed = false;
