@@ -9,14 +9,18 @@ namespace Map_Generator
     {
         private static List<uint> seeds = new();
         private static Stack<List<uint>> seedsStack = new Stack<List<uint>>();
+        private static uint prevX = 0;
+        private static uint prevY = 0;
 
         public static uint NextUInt()
         {
             uint x = seeds[0];
+            prevX = x;
             x ^= x << 11;
             x ^= x >> 8;
 
             uint y = seeds[3];
+            prevY = seeds[1];
             y ^= y >> 19;
             y = x ^ y;
 
@@ -24,6 +28,13 @@ namespace Map_Generator
             seeds.Add(y);
 
             return y;
+        }
+        public static void PreviousUInt()
+        {
+            seeds.RemoveAt(3);
+            seeds[0] = prevX;
+            seeds.Insert(1, prevY);
+
         }
 
         public static float RangeFloat(uint min = 0, uint max = 1)

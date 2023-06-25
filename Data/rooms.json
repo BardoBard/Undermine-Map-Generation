@@ -433,7 +433,7 @@
       "small"
     ],
     "roomtype": "special",
-    "tags": "dodsoncageencounter,normal",
+    "tags": "dodsoncageencounter",
     "branchweight": 4
   },
   "mimicfight": {
@@ -441,7 +441,7 @@
       "large"
     ],
     "roomtype": "special",
-    "tags": "rockmimicencounter,normal"
+    "tags": "rockmimicencounter"
   },
   "waylandshophallway": {
     "stage": [

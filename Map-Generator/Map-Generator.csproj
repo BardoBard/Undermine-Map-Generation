@@ -66,6 +66,9 @@
         <Compile Include="BardLog.cs" />
         <Compile Include="Maps.cs" />
         <Compile Include="Math\Vector2.cs" />
+        <Compile Include="Parsing\Json\JsonClasses\Encounters.cs" />
+        <Compile Include="Parsing\Json\JsonClasses\Enemy.cs" />
+        <Compile Include="Parsing\Json\JsonClasses\RoomType.cs" />
         <Compile Include="Parsing\Json\JsonDecoder.cs" />
         <Compile Include="Parsing\Save.cs" />
         <Compile Include="Program.cs" />

@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
-using System.Windows.Forms;
 using Map_Generator.Json;
 using Newtonsoft.Json.Linq;
 
@@ -30,7 +28,7 @@ public static class Save
 
     //game data
     public static bool storymode { get; set; } = true;
-    
+
     public static int Seed { get; set; }
     public static Guid Zone { get; set; }
     public static bool rougeMode { get; set; } //TODO: Check if this is the correct name
@@ -260,25 +258,23 @@ public static class Save
         var path = JsonDecoder.UnderminePath + @"\Saves\" + saveString;
         var json = File.ReadAllText(path);
         var jsonObject = JObject.Parse(json);
-        ParseUpgradeString((string)jsonObject["upgradeString"]! ?? throw new Exception("upgradeString not found"));
+        ParseUpgradeString(jsonObject["upgradeString"]);
         ParseAutoSaveData(jsonObject["autoSaveData"]);
     }
 
     public static bool Check(string requirement)
     {
-        var info = typeof(Save).GetProperties();
         return (bool)(typeof(Save).GetProperty(requirement)?.GetValue(typeof(Save), null) ??
-                      throw new InvalidOperationException());
+                      throw new InvalidOperationException($"couldn't get value of {requirement}"));
     }
 
-    public static void IncrementFloorNumber()
-    {
-        floor_number += FloorNumber == 4 ? 2 : 1;
-    }
+    public static void IncrementFloorNumber() => floor_number += FloorNumber == 4 ? 2 : 1;
 
-    private static bool ParseUpgradeString(string input)
+    private static bool ParseUpgradeString(JToken? upgradeToken)
     {
-        string[] keyValuePairs = input.Split(',');
+        string upgradeString = (string)upgradeToken! ?? throw new Exception("upgradeString not found");
+        
+        string[] keyValuePairs = upgradeString.Split(',');
 
         foreach (string pair in keyValuePairs)
         {
@@ -291,12 +287,12 @@ public static class Save
             //if key is in class set its value
             foreach (var property in typeof(Save).GetProperties())
             {
-                if (property.Name == key)
-                {
-                    typeof(Save).GetProperty(key)?.SetValue(typeof(Save),
-                        Convert.ChangeType(int.Parse(value), property.PropertyType));
-                    break;
-                }
+                if (property.Name != key) continue;
+                
+                typeof(Save).GetProperty(key)?.SetValue(typeof(Save),
+                    Convert.ChangeType(int.Parse(value), property.PropertyType));
+                
+                break;
             }
         }
 

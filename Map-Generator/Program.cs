@@ -6,6 +6,7 @@ using System.Security.Policy;
 using System.Windows.Forms;
 using Map_Generator.Json;
 using Map_Generator.Parsing;
+using Map_Generator.Parsing.Json.JsonClasses;
 using Map_Generator.Undermine;
 using static Map_Generator.Json.JsonDecoder;
 
@@ -13,57 +14,38 @@ namespace Map_Generator
 {
     static class Program
     {
+        /// <summary>
+        /// list of room with result of algorithm
+        /// </summary>
         public static List<RoomType?> Rooms = new();
 
-        public static int GetFloorPosition(string floor, string name, string name2)
+        /// <summary>
+        /// gets the encounter for the room
+        /// </summary>
+        /// <param name="zone">zone name -> e.g mine</param>
+        /// <param name="roomSize">room size -> e.g small/large</param>
+        /// <param name="mainRoom">main room refernce, this object will get the encounter</param>
+        public static void GetEncounter(string zone, string roomSize, RoomType? mainRoom)
         {
-            // Encounter.Keys.ToList().IndexOf(floor);
-            int count = 0;
-            foreach (var enc in JsonDecoder.Encounter)
-            {
-                foreach (var stages in enc.Value.Where(stages => stages.Value.Any(roomType => roomType.Key == name)))
-                {
-                    if (enc.Key == floor && stages.Key == name2)
-                        return count;
-                    ++count;
-                }
-            }
-
-            return count;
-        }
-
-        public static void GetEncounter(string floor, string name2, RoomType? mainRoom)
-        {
+            //using scope to make sure the random is not affected by other randoms
             using (Random.CreateScope())
             {
-                // var res = GetFloorPosition(floor, mainRoom.RoomTypeTag, name2);
-
-                // Console.WriteLine("res: " + res);
-                // for (int i = 0; i < res; i++)
-                //     Random.NextUInt();
-
-                var encounters = JsonDecoder.Encounter[floor][name2][mainRoom?.RoomTypeTag].Rooms
-                    .Where(encounter1 => CheckEncounter(encounter1, mainRoom)).ToList();
+                //filter encounters and put it into a list
+                var encounters = JsonDecoder.Encounter[zone][roomSize][mainRoom?.RoomTypeTag].Rooms
+                    .Where(mainRoom.CheckEncounter).ToList();
                 if (encounters.Count == 0)
-                {
                     Console.WriteLine("error?");
-                }
 
-                if (JsonDecoder.Encounter[floor][name2][mainRoom.RoomTypeTag].HasWeight())
+                //if the encounter has a weight, get a random encounter based on the weight
+                if (JsonDecoder.Encounter[zone][roomSize][mainRoom.RoomTypeTag].HasWeight())
                 {
-                    var mainRoomEncounter = mainRoom.Encounter;
-                    // foreach (Encounter? enemy in encounters)
-                    // {
-                    //     Console.WriteLine("encounter name: {0}", enemy.Name);
-                    // }
-
-                    Console.WriteLine("");
-                    if (Random.GetWeightedElement(encounters, out mainRoomEncounter))
+                    if (Random.GetWeightedElement(encounters, out var mainRoomEncounter))
                         mainRoom.Encounter = mainRoomEncounter;
                 }
+                //else search for the encounter with the same tag as the room
                 else
                     mainRoom.Encounter = encounters.Find(x =>
-                        x?.Requirement != null && x.Tag == mainRoom.Tags && Save.Check(x.Requirement));
+                        x?.Tag == mainRoom.Tags && (x?.Requirement == null || Save.Check(x?.Requirement!)));
 
                 mainRoom.CanReload = mainRoom.Encounter is { SubFloor: 0 };
 
@@ -72,14 +54,21 @@ namespace Map_Generator
             }
         }
 
-        public static int GetEnemyTypeCount(int[] zoneData)
+        /// <summary>
+        /// returns a random index based on the sum of weights and the individual weights,
+        /// the higher the weight the higher the chance of getting that index
+        /// </summary>
+        /// <param name="enemyTypeWeight">array of weights</param>
+        /// <returns>random index</returns>
+        public static int GetEnemyTypeCount(int[] enemyTypeWeight)
         {
-            int sum = zoneData.Sum();
+            int sum = enemyTypeWeight.Sum();
 
             int num2 = Random.RangeInclusive(1, sum);
-            for (int i = 0; i < zoneData.Length; i++)
+
+            for (int i = 0; i < enemyTypeWeight.Length; i++)
             {
-                num2 -= zoneData[i];
+                num2 -= enemyTypeWeight[i];
                 if (num2 <= 0)
                     return i;
             }
@@ -94,26 +83,34 @@ namespace Map_Generator
             Urgent = 4
         }
 
-        public static void DetermineEnemies(Encounter? encounter, ZoneData data, int floorNumber)
+        /// <summary>
+        /// determines the enemies for the encounter
+        /// </summary>
+        /// <param name="encounter">encounter</param>
+        /// <param name="data">zonedata</param>
+        public static void DetermineEnemies(Encounter? encounter, ZoneData data)
         {
-            if (!Random.Chance(encounter.Difficulty[0]))
+            if (!Random.Chance(encounter.Difficulty[0])) //TODO: check if we have to check encounter
             {
                 Console.WriteLine("skipping room");
                 return;
             }
+
+            int floorNumber = Save.FloorNumber - 1;
 
             data.Initialize(); //TODO: check, maybe earlier or not needed
             Override? floorOverride = data.Floors[floorNumber].Override;
             float floorDifficulty =
                 floorOverride?.Difficulty ??
                 (data.BaseDifficulty + data.DifficultyStep * floorNumber); //TODO: difficulty int?
+            
             int[] enemyTypeWeight = floorOverride?.EnemyTypeWeight ?? data.EnemyTypeWeight;
             List<Enemy> enemies = new List<Enemy>(encounter.Enemies ?? data.Floors[floorNumber].Enemies);
             encounter.Enemies ??= new List<Enemy>();
 
             if (encounter.ProhibitedEnemies != null)
                 enemies.RemoveAll(enemy => encounter.ProhibitedEnemies.Contains(enemy.Name));
-            // enemies.RemoveAll(( element) => element.Data.IsDeprecated);
+            
             if (enemies.Count <= 0)
             {
                 Console.WriteLine("no enemies");
@@ -134,7 +131,7 @@ namespace Map_Generator
             enemies.Shuffle();
 
             List<Enemy> list2 = new List<Enemy>();
-            // var items = enemies.Where(enemy => (num != 1 || enemy.CanBeSolo));
+            
             //get enemies and remove enemies that don't belong
             foreach (var enemy in enemies.Where(enemy => num != 1 || enemy.CanBeSolo))
             {
@@ -146,7 +143,6 @@ namespace Map_Generator
 
                 if (list2.Count == num)
                     break;
-                
             }
 
             if (list2.Count > 0)
@@ -183,54 +179,11 @@ namespace Map_Generator
             list2.Clear();
         }
 
-        public static bool CheckEncounter(Encounter? encounter, RoomType? room)
-        {
-            if (encounter == null)
-            {
-                Console.WriteLine("null...");
-                return false;
-            }
-
-            // if (encounter.IsDeprecated)
-            // {
-            //     return false;
-            // }
-            if (room?.PreviousRoom?.Encounter != null)
-            {
-                if (!room.PreviousRoom.Encounter.AllowNeighbor(encounter))
-                {
-                    Console.WriteLine("not allowed encounter: {0}, noexit: {1}", encounter.Name, encounter.NoExit);
-                    Console.WriteLine("not allowed neighbor: {0}, noexit: {1}", room.PreviousRoom.Encounter.Name,
-                        room.PreviousRoom.Encounter.NoExit);
-                    Console.WriteLine("");
-                    return false;
-                }
-            }
-
-            // if (room.Stage != encounter.Stage) //TODO: two rooms should be ignored
-            // {
-            // return false;
-            // }
-            if (encounter.Requirement != null && !Save.Check(encounter.Requirement))
-            {
-                Console.WriteLine("requirement failed");
-                return false;
-            }
-
-            if (encounter.Seen) //&& !encounter.Repeatable <- TODO: repeatable only for a few rooms, which in a normal run can be ignored
-            {
-                Console.WriteLine("seen: {0}", encounter.Name);
-                return false;
-            }
-
-            return true;
-        }
-
         // public static string MapName { get; set; } = "mineearly";
-        public static string MapName { get; set; } = "dungeon";
+        public static string MapName { get; set; } = "mineearly";
 
         // public static string MapNameEncounter { get; set; } = "mine";
-        public static string MapNameEncounter { get; set; } = "dungeon";
+        public static string MapNameEncounter { get; set; } = "mine";
 
         public static void GetRooms(RoomType[][] batches)
         {
@@ -238,6 +191,7 @@ namespace Map_Generator
             foreach (RoomType[] roomNames in batches)
             {
                 LoadRoomNames(roomNames, null, false, -1);
+                // Random.PreviousUInt();
             }
         }
 
@@ -266,19 +220,12 @@ namespace Map_Generator
 
                 RoomType room = roomName.Clone();
                 room.PreviousRoom = previousRoom;
+                
                 if (room.Encounter == null)
                     GetEncounter(MapNameEncounter, name2, room); //scoped randomness
-
-                // if (roomName.Children)
-                // Random.NextUInt();
-                // else
-                // if (!roomName.Children)
-                // {
+                
                 if (room.Encounter != null)
                     Initialize(room, name2);
-                // Console.WriteLine("end: " + Random.Count);
-                // }
-
 
                 if (room.Encounter?.Enemies != null)
                 {
@@ -312,7 +259,7 @@ namespace Map_Generator
                 if (sequenceRecursionCount != 0 && room.Encounter.Sequence.Count > 0)
                 {
                     RoomType[] batch =
-                        room.Encounter.Sequence.Select(room => JsonDecoder.Rooms[room]).ToArray();
+                        room.Encounter.Sequence.Select(room1 => JsonDecoder.Rooms[room1]).ToArray();
 
                     LoadRoomNames(batch, room, sequence: true, --room.Encounter.SequenceRecursionCount);
                 }
@@ -323,6 +270,7 @@ namespace Map_Generator
                 }
 
                 previousRoom = room;
+                Console.WriteLine(Random.Value());
                 Console.WriteLine("");
                 // Rooms.Add(room);
             }
@@ -349,9 +297,8 @@ namespace Map_Generator
             //     Console.WriteLine("found zonedata: {0}", data.Name);
             //     break;
             // }
-            data = JsonDecoder.ZoneData[1][0];
-
-            DetermineEnemies(room.Encounter, data, Save.FloorNumber - 1); //not scoped randomness
+            data = JsonDecoder.ZoneData[0][1];
+            DetermineEnemies(room.Encounter, data); //not scoped randomness
             room.Encounter.Seen = true;
         }
 
