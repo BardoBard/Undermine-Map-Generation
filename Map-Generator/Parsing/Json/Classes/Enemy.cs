@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Map_Generator.Parsing.Json.JsonClasses
+namespace Map_Generator.Parsing.Json.Classes
 {
     public class Enemy
     {

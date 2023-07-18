@@ -11,7 +11,7 @@ public static class ListExtensions
         int count = list.Count;
         while (count > 1)
         {
-            int index = Random.Range(0, count--);
+            int index = Rand.Range(0, count--);
             (list[index], list[count]) = (list[count], list[index]);
         }
     }

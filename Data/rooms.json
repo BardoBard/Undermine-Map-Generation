@@ -110,7 +110,7 @@
       "extra"
     ],
     "roomtype": "special",
-    "tag": "hoody"
+    "tags": "hoody"
   },
   "secret": {
     "stage": [

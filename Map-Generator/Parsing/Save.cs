@@ -7,10 +7,12 @@ namespace Map_Generator.Parsing;
 
 public static class Save
 {
+    //TODO: make a lot of stuff private instead of public
     //????
     private static bool secret_treasure_note { get; set; }
 
     //guid
+    private static readonly Guid TitleScreenGuid = new("219d813ae07049b39d1bf35f1863c2b1");
     private static Guid discovered_wayland_boots_guid = new("1981b4af04434077afafc78691056387");
     private static bool discovered_wayland_boots { get; set; }
     private static Guid discoveredRatBond_guid = new("3776afb876a74e50911b6d3080f0388d");
@@ -36,104 +38,103 @@ public static class Save
     public static bool altar_encountered { get; set; }
     public static bool tribute_fountain_encountered { get; set; } //TODO: Check if this is the correct name
     public static int floor_number { get; set; }
+    public static int zone_index { get; set; }
 
     public static int FloorNumber
     {
-        get
-        {
-            int result = floor_number % 5;
-            if (result == 0)
-                throw new Exception("number cannot be a multiple of 5");
-            return result;
-        }
+        get { return zone_index + 1; }
+    }
+
+    public static int ZoneIndex
+    {
+        get { return floor_number / 4; }
     }
 
 
     public static bool whip_enabled { get; set; }
-    public static int zone_index { get; set; }
 
     //upgrade string
-    private static bool adventurersHat { get; set; }
-    private static int apprentice_met { get; set; }
-    private static int arkanos_defeated { get; set; }
-    private static int arkanos_talk_count { get; set; }
-    private static bool black_rabbit_met { get; set; }
-    private static int blacksmith_rescued { get; set; }
-    private static bool bog_unlocked { get; set; }
-    private static int cavern_entered { get; set; }
-    private static int cavern_key { get; set; }
-    private static int collector_book { get; set; }
-    private static int core_key { get; set; }
-    private static int core_opened { get; set; }
-    private static int crone_unlocked { get; set; }
-    private static int crystallord_defeated { get; set; }
-    private static int crystallord_revived { get; set; }
-    private static int debt { get; set; }
-    private static int delve_count { get; set; }
-    private static int dibble_discount { get; set; }
-    private static int dibble_extra_item { get; set; }
-    private static int dibble_relic { get; set; }
-    private static int dibble_upgrade_count { get; set; }
-    private static int dog_count { get; set; }
-    private static bool dog_dillon_found { get; set; }
-    private static bool dog_engine_found { get; set; }
-    private static bool dog_shadow_found { get; set; }
-    private static int dungeon_key { get; set; }
-    private static int dungeon_opened { get; set; }
-    private static int final_gate_opened { get; set; }
-    private static int firelord_defeated { get; set; }
-    private static int firelord_revived { get; set; }
-    private static int game_over { get; set; }
-    private static int geckos_foot { get; set; }
-    private static bool gold_keep_percent { get; set; }
-    private static int guards_defeated { get; set; }
-    private static int halls_key { get; set; }
-    private static bool halls_opened { get; set; }
-    private static bool hoodie_met { get; set; }
-    private static bool hoodie_met_cavern { get; set; }
-    private static bool hoodie_met_dungeon { get; set; }
-    private static bool hoodie_met_hall { get; set; }
-    private static bool hoodie_met_mine { get; set; }
-    private static int library_key { get; set; }
-    private static int lillyth_final_speech { get; set; }
-    private static int map_collected { get; set; }
-    private static bool masters_key { get; set; }
-    private static int meal_ticket_new { get; set; }
-    private static bool mushroom_blue { get; set; }
-    private static bool mushroom_green { get; set; }
-    private static bool mushroom_purple { get; set; }
-    private static int nether_collected { get; set; }
-    private static int othermine_unlocked { get; set; }
-    private static bool peasant1_unlocked { get; set; }
-    private static bool peasant2_unlocked { get; set; }
-    private static bool peasant4_unlocked { get; set; }
-    private static int peon_count { get; set; }
-    private static int play_count { get; set; }
-    private static int priestess_met { get; set; }
-    private static bool prisoner_key { get; set; }
-    private static int retaliation { get; set; }
-    private static bool rockmimic_defeated { get; set; }
-    private static int sandworm_defeated { get; set; }
-    private static int sandworm_revived { get; set; }
-    private static int shadowlord_defeated { get; set; }
-    private static int shadowlord_revived { get; set; }
-    private static int shaker { get; set; }
-    private static int shop_basic_item { get; set; }
-    private static int shop_food { get; set; }
-    private static int shop_loyalty_program { get; set; }
-    private static int shop_potion_relic { get; set; }
-    private static int shop_transmute_machine { get; set; }
-    private static int simple_chest_new { get; set; }
-    private static int start_blessing { get; set; }
-    private static int statue_defeated { get; set; }
-    private static int stonelord_defeated { get; set; }
-    private static int summon_count { get; set; }
-    private static int talking_gem_count { get; set; }
-    private static int tavern_key { get; set; }
-    private static int tavern_opened { get; set; }
-    private static int theft_blessing { get; set; }
-    private static bool tutorial_complete { get; set; }
-    private static int woodpigeon_met { get; set; }
+    public static bool adventurersHat { get; set; }
+    public static int apprentice_met { get; set; }
+    public static int arkanos_defeated { get; set; }
+    public static int arkanos_talk_count { get; set; }
+    public static bool black_rabbit_met { get; set; }
+    public static int blacksmith_rescued { get; set; }
+    public static bool bog_unlocked { get; set; }
+    public static int cavern_entered { get; set; }
+    public static int cavern_key { get; set; }
+    public static int collector_book { get; set; }
+    public static int core_key { get; set; }
+    public static int core_opened { get; set; }
+    public static int crone_unlocked { get; set; }
+    public static int crystallord_defeated { get; set; }
+    public static int crystallord_revived { get; set; }
+    public static int debt { get; set; }
+    public static int delve_count { get; set; }
+    public static int dibble_discount { get; set; }
+    public static int dibble_extra_item { get; set; }
+    public static int dibble_relic { get; set; }
+    public static int dibble_upgrade_count { get; set; }
+    public static int dog_count { get; set; }
+    public static bool dog_dillon_found { get; set; }
+    public static bool dog_engine_found { get; set; }
+    public static bool dog_shadow_found { get; set; }
+    public static int dungeon_key { get; set; }
+    public static int dungeon_opened { get; set; }
+    public static int final_gate_opened { get; set; }
+    public static int firelord_defeated { get; set; }
+    public static int firelord_revived { get; set; }
+    public static int game_over { get; set; }
+    public static int geckos_foot { get; set; }
+    public static bool gold_keep_percent { get; set; }
+    public static int guards_defeated { get; set; }
+    public static int halls_key { get; set; }
+    public static bool halls_opened { get; set; }
+    public static bool hoodie_met { get; set; }
+    public static bool hoodie_met_cavern { get; set; }
+    public static bool hoodie_met_dungeon { get; set; }
+    public static bool hoodie_met_hall { get; set; }
+    public static bool hoodie_met_mine { get; set; }
+    public static int library_key { get; set; }
+    public static int lillyth_final_speech { get; set; }
+    public static int map_collected { get; set; }
+    public static bool masters_key { get; set; }
+    public static int meal_ticket_new { get; set; }
+    public static bool mushroom_blue { get; set; }
+    public static bool mushroom_green { get; set; }
+    public static bool mushroom_purple { get; set; }
+    public static int nether_collected { get; set; }
+    public static int othermine_unlocked { get; set; }
+    public static bool peasant1_unlocked { get; set; }
+    public static bool peasant2_unlocked { get; set; }
+    public static bool peasant4_unlocked { get; set; }
+    public static int peon_count { get; set; }
+    public static int play_count { get; set; }
+    public static int priestess_met { get; set; }
+    public static bool prisoner_key { get; set; }
+    public static int retaliation { get; set; }
+    public static bool rockmimic_defeated { get; set; }
+    public static int sandworm_defeated { get; set; }
+    public static int sandworm_revived { get; set; }
+    public static int shadowlord_defeated { get; set; }
+    public static int shadowlord_revived { get; set; }
+    public static int shaker { get; set; }
+    public static int shop_basic_item { get; set; }
+    public static int shop_food { get; set; }
+    public static int shop_loyalty_program { get; set; }
+    public static int shop_potion_relic { get; set; }
+    public static int shop_transmute_machine { get; set; }
+    public static int simple_chest_new { get; set; }
+    public static int start_blessing { get; set; }
+    public static int statue_defeated { get; set; }
+    public static int stonelord_defeated { get; set; }
+    public static int summon_count { get; set; }
+    public static int talking_gem_count { get; set; }
+    public static int tavern_key { get; set; }
+    public static int tavern_opened { get; set; }
+    public static int theft_blessing { get; set; }
+    public static bool tutorial_complete { get; set; }
+    public static int woodpigeon_met { get; set; }
 
     //rooms
     public static bool adventurers_hat => adventurersHat;
@@ -264,8 +265,9 @@ public static class Save
 
     public static bool Check(string requirement)
     {
-        return (bool)(typeof(Save).GetProperty(requirement)?.GetValue(typeof(Save), null) ??
-                      throw new InvalidOperationException($"couldn't get value of {requirement}"));
+        bool result = (bool)(typeof(Save).GetProperty(requirement)?.GetValue(typeof(Save), null) ??
+                             throw new InvalidOperationException($"couldn't get value of {requirement}"));
+        return result;
     }
 
     public static void IncrementFloorNumber() => floor_number += FloorNumber == 4 ? 2 : 1;
@@ -273,7 +275,7 @@ public static class Save
     private static bool ParseUpgradeString(JToken? upgradeToken)
     {
         string upgradeString = (string)upgradeToken! ?? throw new Exception("upgradeString not found");
-        
+
         string[] keyValuePairs = upgradeString.Split(',');
 
         foreach (string pair in keyValuePairs)
@@ -288,10 +290,10 @@ public static class Save
             foreach (var property in typeof(Save).GetProperties())
             {
                 if (property.Name != key) continue;
-                
+
                 typeof(Save).GetProperty(key)?.SetValue(typeof(Save),
                     Convert.ChangeType(int.Parse(value), property.PropertyType));
-                
+
                 break;
             }
         }
@@ -302,6 +304,6 @@ public static class Save
     private static void ParseAutoSaveData(JToken? input)
     {
         Seed = (int)(input?["seed"] ?? throw new Exception("Seed not found"));
-        Zone = Guid.Parse((string)input["zone"]! ?? throw new Exception("Zone not found"));
+        Zone = Guid.TryParse((string)input["zone"], out var zoneGuid) ? zoneGuid : TitleScreenGuid;
     }
 }
