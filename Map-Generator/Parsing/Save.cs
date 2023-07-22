@@ -1,9 +1,23 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Map_Generator.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Map_Generator.Parsing;
+
+public class Discoverable
+{
+    public bool hasBeenDiscovered { get; set; }
+    public Guid guid { get; set; }
+
+    public Discoverable(bool hasBeenDiscovered, Guid guid)
+    {
+        this.hasBeenDiscovered = hasBeenDiscovered;
+        this.guid = guid;
+    }
+}
 
 public static class Save
 {
@@ -13,14 +27,16 @@ public static class Save
 
     //guid
     private static readonly Guid TitleScreenGuid = new("219d813ae07049b39d1bf35f1863c2b1");
-    private static Guid discovered_wayland_boots_guid = new("1981b4af04434077afafc78691056387");
-    private static bool discovered_wayland_boots { get; set; }
-    private static Guid discoveredRatBond_guid = new("3776afb876a74e50911b6d3080f0388d");
-    private static bool discoveredRatBond { get; set; }
-    private static Guid discoveredGuacamole_guid = new("80242154d4284cc6aab221292cb0ae93");
-    private static bool discoveredGuacamole { get; set; }
-    private static Guid discoveredHungrySpirit_guid = new("91f466ecbb87497b943eabd77f6e4681");
-    private static bool discoveredHungrySpirit { get; set; }
+
+    public static Discoverable discovered_wayland_boots { get; set; } =
+        new(false, new("1981b4af04434077afafc78691056387"));
+
+    public static Discoverable discoveredRatBond { get; set; } = new(false, new("3776afb876a74e50911b6d3080f0388d"));
+    public static Discoverable discoveredGuacamole { get; set; } = new(false, new("80242154d4284cc6aab221292cb0ae93"));
+
+    public static Discoverable discoveredHungrySpirit { get; set; } =
+        new(false, new("91f466ecbb87497b943eabd77f6e4681"));
+
     private static bool foundPartyPopcornPotion { get; set; } //TODO: guid check
 
     //status effects
@@ -37,7 +53,7 @@ public static class Save
     public static bool bard_met { get; set; }
     public static bool altar_encountered { get; set; }
     public static bool tribute_fountain_encountered { get; set; } //TODO: Check if this is the correct name
-    public static int floor_number { get; set; }
+    public static int floor_number { get; private set; }
     public static int zone_index { get; set; }
 
     public static int FloorNumber
@@ -45,21 +61,25 @@ public static class Save
         get { return zone_index + 1; }
     }
 
+    public static int FloorIndex
+    {
+        get { return zone_index; }
+    }
+
     public static int ZoneIndex
     {
-        get { return floor_number / 4; }
+        get { return floor_number / 5; }
     }
 
 
     public static bool whip_enabled { get; set; }
 
     //upgrade string
-    public static bool adventurersHat { get; set; }
     public static int apprentice_met { get; set; }
     public static int arkanos_defeated { get; set; }
     public static int arkanos_talk_count { get; set; }
     public static bool black_rabbit_met { get; set; }
-    public static int blacksmith_rescued { get; set; }
+    public static bool blacksmith_rescued { get; set; }
     public static bool bog_unlocked { get; set; }
     public static int cavern_entered { get; set; }
     public static int cavern_key { get; set; }
@@ -137,16 +157,18 @@ public static class Save
     public static int woodpigeon_met { get; set; }
 
     //rooms
-    public static bool adventurers_hat => adventurersHat;
+    public static bool adventurers_hat { get; set; }
     public static bool relicadventurerswhip => relicAdventurersWhip;
 
     public static bool reliccircinus => relicCircinus;
 
     //rooms and encounters
-    public static bool relicguacamole => discoveredGuacamole;
+    public static bool relicguacamole => discoveredGuacamole.hasBeenDiscovered;
 
     //encounters
-    public static bool waylandshop => ((!discovered_wayland_boots || !(blacksmith_rescued > 0)) && !whip_enabled);
+    public static bool waylandshop =>
+        ((!discovered_wayland_boots.hasBeenDiscovered || !blacksmith_rescued) && !whip_enabled);
+
     public static bool mushroomblue => (!mushroom_blue && apprentice_met > 0 && !whip_enabled && storymode);
     public static bool mushroompurple => (!mushroom_purple && apprentice_met > 0 && !whip_enabled && storymode);
     public static bool mushroomgreen => (!mushroom_green && apprentice_met > 0 && !whip_enabled && storymode);
@@ -167,16 +189,16 @@ public static class Save
     public static bool notbardmet => !bard_met;
     public static bool secretfountain => storymode && bog_unlocked;
     public static bool treasurehunt => (!secret_treasure_note && !whip_enabled);
-    public static bool ratfriendship => (!discoveredRatBond && !whip_enabled);
+    public static bool ratfriendship => (!discoveredRatBond.hasBeenDiscovered && !whip_enabled);
     public static bool priestessrescued => priestess_met > 2;
-    public static bool relicguacamolebug => discoveredGuacamole; //TODO: check this
+    public static bool relicguacamolebug => discoveredGuacamole.hasBeenDiscovered; //TODO: check this
     public static bool rockmimic => !prisoner_key && !whip_enabled && storymode;
 
     public static bool alchemistapprentice0 =>
-        !(apprentice_met > 0) && (blacksmith_rescued > 0) && !whip_enabled && storymode;
+        !(apprentice_met > 0) && blacksmith_rescued && !whip_enabled && storymode;
 
     public static bool alchemistapprentice3 =>
-        ((apprentice_met == 4) && blacksmith_rescued > 0 && !whip_enabled && storymode);
+        ((apprentice_met == 4) && blacksmith_rescued && !whip_enabled && storymode);
 
     public static bool relicaltar => !altar_encountered && !whip_enabled;
     public static bool blackrabbitmet => black_rabbit_met;
@@ -185,7 +207,7 @@ public static class Save
     public static bool dibblesstoreroom => (!peasant2_unlocked && !whip_enabled && storymode);
     public static bool dungeonlibrary => (!(collector_book > 0) && !whip_enabled && storymode);
     public static bool priestessentrance => (!(priestess_met > 0) && !whip_enabled && storymode);
-    public static bool kurtz => (storymode && (!discoveredHungrySpirit || !peasant4_unlocked));
+    public static bool kurtz => (storymode && (!discoveredHungrySpirit.hasBeenDiscovered || !peasant4_unlocked));
     public static bool storynotwhip => (!whip_enabled && storymode);
     public static bool masterskey => priestess_met > 0 && !masters_key && !whip_enabled && storymode;
     public static bool notwhip => !whip_enabled; //TODO: check this
@@ -196,6 +218,7 @@ public static class Save
 
     //zondata:
     public static bool tutorialincomplete => !tutorial_complete;
+    public static bool firstdelve => delve_count <= 1;
 
     public static bool tutorialcomplete => !rockmimic_defeated &&
                                            !(sandworm_defeated > 0) &&
@@ -261,6 +284,7 @@ public static class Save
         var jsonObject = JObject.Parse(json);
         ParseUpgradeString(jsonObject["upgradeString"]);
         ParseAutoSaveData(jsonObject["autoSaveData"]);
+        ParseDiscovered(jsonObject["discovered"]);
     }
 
     public static bool Check(string requirement)
@@ -305,5 +329,25 @@ public static class Save
     {
         Seed = (int)(input?["seed"] ?? throw new Exception("Seed not found"));
         Zone = Guid.TryParse((string)input["zone"], out var zoneGuid) ? zoneGuid : TitleScreenGuid;
+    }
+
+    private static void ParseDiscovered(JToken? input)
+    {
+        List<string?> guidStrings = (input ?? throw new ArgumentNullException(nameof(input)))
+            .Select(token => token.Value<string>()).ToList();
+        foreach (string? guidString in guidStrings)
+        {
+            foreach (var property in typeof(Save).GetProperties())
+            {
+                if (property.PropertyType != typeof(Discoverable)) continue;
+
+                if (typeof(Save).GetProperty(property.Name)?.GetValue(typeof(Discoverable)) is not Discoverable
+                        discoverable || discoverable.guid != Guid.Parse(guidString ??
+                                                                        throw new InvalidOperationException(
+                                                                            "something went wrong while parsing discovered")))
+                    continue;
+                discoverable.hasBeenDiscovered = true;
+            }
+        }
     }
 }

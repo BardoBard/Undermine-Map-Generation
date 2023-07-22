@@ -13,7 +13,7 @@
                 1,
                 2
             ],
-            "requirements": "tutorialincomplete",
+            "requirements": "firstdelve",
             "extras": [
                 {
                     "min": 10,

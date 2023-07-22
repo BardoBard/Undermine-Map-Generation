@@ -17,10 +17,10 @@ namespace Map_Generator
         private static readonly List<RoomType?> Rooms = new();
 
         // public static string MapName { get; set; } = "mineearly";
-        public static string MapName { get; set; } = "dungeon";
+        public static string MapName { get; set; } = "mine";
 
         // public static string MapNameEncounter { get; set; } = "mine";
-        public static string MapNameEncounter { get; set; } = "dungeon";
+        public static string MapNameEncounter { get; set; } = "mine";
 
         public static void GetRooms(RoomType[][] batches)
         {
@@ -42,26 +42,25 @@ namespace Map_Generator
             {
                 if (!Rand.Chance(roomName.Chance))
                 {
-                    Console.WriteLine("Skipping room [" + roomName.Stages.First() + "]: Chance failed");
+                    Console.WriteLine("Skipping room [" + roomName.RoomTypeTag + "]: Chance failed");
                     Console.WriteLine("");
-                    return;
+                    break; //TODO: break or continue?
                 }
 
-                if (roomName.Requirement != null && Save.Check(roomName.Requirement))
+                if (roomName.Requirement != null && !Save.Check(roomName.Requirement))
                 {
-                    Console.WriteLine("skipping: " + roomName.Requirement);
+                    Console.WriteLine("skipping: [" + roomName.RoomTypeTag + "]" + " due to: " + roomName.Requirement);
                     Console.WriteLine("");
-                    return;
+                    break; //TODO: break or continue?
                 }
 
                 string name2 = roomName.Stages[Rand.Range(0, (uint)roomName.Stages.Count)];
-
-                Console.WriteLine(Rand.Value());
-
+                
                 RoomType room = roomName.Clone();
                 room.PreviousRoom = previousRoom;
-                Console.WriteLine(Rand.Value());
 
+                if (room.HasExtraEncounter)
+                    Rand.NextUInt();
                 if (room.Encounter == null) 
                     room.GetEncounter(MapNameEncounter, name2); //scoped randomness
 
@@ -77,12 +76,10 @@ namespace Map_Generator
 
                 if (room.Encounter != null)
                     Console.WriteLine(room.Encounter.Name);
-                Console.WriteLine(Rand.Value());
-
 
                 if (room.Encounter == null)
                 {
-                    Console.WriteLine("skipping: " + roomName.Stages.First() + " no encounter");
+                    Console.WriteLine("skipping: [" + roomName.RoomTypeTag + "]" + " due to: " + "Encounter is null");
                     return;
                 }
 
@@ -110,10 +107,10 @@ namespace Map_Generator
                     // previousRoom.Branches[roomName.Direction] = room;
                 }
 
-                previousRoom = room;
                 Console.WriteLine(Rand.Value());
+                previousRoom = room;
                 Console.WriteLine("");
-                // Rooms.Add(room);
+                Rooms.Add(room);
             }
         }
 
@@ -123,36 +120,10 @@ namespace Map_Generator
         [STAThread]
         static void Main()
         {
-            Rand.Initialize(123456);
-            using (new Rand.Scope(Rand.StateType.Layout))
-            {
-                for (int i = 0; i < 5; i++)
-                    Console.WriteLine(Rand.Value());
-
-                Console.WriteLine("");
-                using (new Rand.Scope(Rand.StateType.Default))
-                {
-                    Console.WriteLine(Rand.Value());
-                    Console.WriteLine(Rand.Value());
-                    Console.WriteLine(Rand.Value());
-                }
-                Console.WriteLine("");
-                for (int i = 0; i < 5; i++)
-                    Console.WriteLine(Rand.Value());
-                    
-                Console.WriteLine("");
-                using (new Rand.Scope(Rand.StateType.Default))
-                {
-                    Console.WriteLine(Rand.Value());
-                    Console.WriteLine(Rand.Value());
-                    Console.WriteLine(Rand.Value());
-                }
-            }
-
             Save.Initialize("Save2.json");
             Rand.Initialize((uint)(Save.Seed + Save.floor_number));
 
-            var level = JsonDecoder.Maps[MapName].Levels[Save.FloorNumber - 1];
+            var level = JsonDecoder.Maps[MapName].Levels[Save.FloorIndex];
 
             RoomType[][] batches = level.Rooms.Select(room => room.Select(x => JsonDecoder.Rooms[x]).ToArray())
                 .ToArray()

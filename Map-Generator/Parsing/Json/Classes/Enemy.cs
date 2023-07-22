@@ -11,9 +11,6 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("max")] public int Max { get; set; }
         [JsonProperty("type")] public int Type { get; set; }
 
-        public int GetDifficulty()
-        {
-            return Save.storymode ? Difficulty : RougeDifficulty; //TODO: check if this is correct
-        }
+        public int GetDifficulty() => Save.storymode ? Difficulty : RougeDifficulty;
     }
 }

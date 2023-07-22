@@ -48,16 +48,15 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonIgnore] public bool Seen { get; set; } = false;
         [JsonIgnore] public int Door { get; set; } = 1;
 
-        public bool AllowNeighbor(Encounter? neighbor)
+        public bool AllowNeighbor(Encounter neighbor)
         {
-            //TODO: null?
             if (((NoExit & (int)Direction.North) == 0 && (neighbor.NoExit & (int)Direction.South) == 0) ||
                 ((NoExit & (int)Direction.South) == 0 && (neighbor.NoExit & (int)Direction.North) == 0) ||
                 ((NoExit & (int)Direction.East) == 0 && (neighbor.NoExit & (int)Direction.West) == 0)) return true;
+            
             if ((NoExit & (int)Direction.West) == 0)
-            {
                 return (neighbor.NoExit & (int)Direction.East) == 0;
-            }
+
 
             return false;
         }
@@ -70,11 +69,11 @@ namespace Map_Generator.Parsing.Json.Classes
         {
             if (!Rand.Chance(this.Difficulty[0])) //TODO: check if we have to check encounter
             {
-                Console.WriteLine("skipping room");
+                Console.WriteLine("skipping room {0}", this.Name);
                 return;
             }
 
-            int floorNumber = Save.FloorNumber - 1;
+            int floorNumber = Save.FloorIndex;
 
             data.Initialize(); //TODO: check, maybe earlier or not needed
             Override? floorOverride = data.Floors[floorNumber].Override;
@@ -108,53 +107,54 @@ namespace Map_Generator.Parsing.Json.Classes
 
             enemies.Shuffle();
 
-            List<Enemy> list2 = new List<Enemy>();
+            List<Enemy> enemies2 = new List<Enemy>();
 
             //get enemies and remove enemies that don't belong
             foreach (var enemy in enemies.Where(enemy => num != 1 || enemy.CanBeSolo))
             {
                 if ((enemy.Type & enemyCombo) != 0 || enemyCombo == 0)
                 {
-                    list2.Add(enemy);
+                    enemies2.Add(enemy);
                     enemyCombo ^= enemy.Type;
                 }
 
-                if (list2.Count == num)
+                if (enemies2.Count == num)
                     break;
             }
 
-            if (list2.Count > 0)
+            if (enemies2.Count > 0)
             {
-                float num2 = floorDifficulty + this.Difficulty[1];
-                int[] array = new int[list2.Count];
-                for (int i = 0; i < list2.Count; i++)
+                float totalDifficulty = floorDifficulty + this.Difficulty[1];
+                Console.WriteLine("total difficulty: {0}", totalDifficulty);
+                int[] array = new int[enemies2.Count];
+                for (int i = 0; i < enemies2.Count; i++)
                 {
-                    Enemy? enemy = list2[i];
+                    Enemy? enemy = enemies2[i];
                     float difficulty = enemy.GetDifficulty();
-                    this.Enemies.Add(list2[i]);
-                    num2 -= difficulty;
+                    this.Enemies.Add(enemies2[i]);
+                    totalDifficulty -= difficulty;
                     array[i]++;
                 }
 
-                while (num2 > 0f && list2.Count > 0)
+                while (totalDifficulty > 0f && enemies2.Count > 0)
                 {
-                    int num3 = Rand.Range(0, list2.Count);
+                    int randomNum = Rand.Range(0, enemies2.Count);
 
-                    var enemy = list2[num3];
-                    float difficulty2 = enemy.GetDifficulty(); //TODO: make gamemode generic
-                    if (difficulty2 > num2 || (enemy.Max > 0 && enemy.Max == array[num3]))
+                    var enemy = enemies2[randomNum];
+                    float enemyDifficulty = enemy.GetDifficulty();
+                    if (enemyDifficulty > totalDifficulty || (enemy.Max > 0 && enemy.Max == array[randomNum]))
                     {
-                        list2.RemoveAt(num3);
+                        enemies2.RemoveAt(randomNum);
                         continue;
                     }
 
-                    this.Enemies.Add(list2[num3]);
-                    num2 -= difficulty2;
-                    array[num3]++;
+                    this.Enemies.Add(enemies2[randomNum]);
+                    totalDifficulty -= enemyDifficulty;
+                    array[randomNum]++;
                 }
             }
 
-            list2.Clear();
+            enemies2.Clear();
         }
 
         /// <summary>
@@ -184,6 +184,7 @@ namespace Map_Generator.Parsing.Json.Classes
     {
         public float[] Difficulty { get; set; }
         public List<string> Sequence { get; set; } = new();
+        [JsonProperty("requirements")] public string? Requirement { get; set; }
 
         public Default()
         {

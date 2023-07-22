@@ -97,7 +97,7 @@
     "tags": "black_rabbit",
     "chance": 0.5
   },
-  "hoodyentrance": {
+  "hoodieentrance": {
     "stage": [
       "small"
     ],
@@ -236,7 +236,6 @@
     "stage": [
       "small"
     ],
-    "extra": true,
     "roomtype": "special",
     "tags": "down_boss",
     "branchweight": 1
@@ -246,7 +245,8 @@
       "extra"
     ],
     "roomtype": "special",
-    "tags": "bossroom"
+    "tags": "bossroom",
+    "encounter": true
   },
   "prechamber": {
     "stage": [
@@ -254,13 +254,13 @@
     ],
     "roomtype": "special",
     "tags": "pre_room",
-    "direction": 1
+    "direction": 1,
+    "encounter": true
   },
   "nextdown": {
     "stage": [
       "small"
     ],
-    "extra": true,
     "roomtype": "special",
     "tags": "next_entrance",
     "direction": 1
@@ -441,6 +441,7 @@
       "large"
     ],
     "roomtype": "special",
+    "extra" : "normallarge",
     "tags": "rockmimicencounter"
   },
   "waylandshophallway": {

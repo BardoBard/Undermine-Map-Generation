@@ -6,7 +6,7 @@ using Map_Generator.Parsing.Json.Interfaces;
 
 namespace Map_Generator.Undermine
 {
-    static class Rand
+    public static class Rand
     {
         public enum StateType
         {
@@ -112,20 +112,20 @@ namespace Map_Generator.Undermine
 
             var elems = elements.Where(element => !element.Skip);
             var weights = elems as T[] ?? elems.ToArray();
-            int num = weights.Aggregate(0, (current, element) => current + element.Weight);
+            int totalweight = weights.Aggregate(0, (current, element) => current + element.Weight);
 
-            if (num == 0)
+            if (totalweight == 0)
             {
                 NextUInt();
                 result = default;
                 return false;
             }
 
-            int num2 = RangeInclusive(1, num);
+            int randomNum = RangeInclusive(1, totalweight);
             foreach (var element2 in weights)
             {
-                num2 -= element2.Weight;
-                if (num2 <= 0)
+                randomNum -= element2.Weight;
+                if (randomNum <= 0)
                 {
                     result = element2;
                     element2.Skip = true;

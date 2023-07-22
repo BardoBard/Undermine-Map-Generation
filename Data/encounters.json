@@ -27,7 +27,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoody"
+                        "hoodieentrance"
                     ],
                     "autospawn": 23
                 },
@@ -1481,7 +1481,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoody"
+                        "hoodieentrance"
                     ],
                     "autospawn": 23
                 },
@@ -2040,7 +2040,7 @@
                         "recursion": 1
                     },
                     {
-                        "weight": 3,
+                        "weight": 4,
                         "name": "chest",
                         "noexit": 0,
                         "door": 6,
@@ -2976,7 +2976,7 @@
                         "name": "railislands",
                         "difficulty": [
                             1,
-                            0
+                            1
                         ],
                         "autospawn": 31,
                         "noexit": 0,
@@ -3565,7 +3565,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoody"
+                        "hoodieentrance"
                     ],
                     "autospawn": 23
                 },
@@ -5348,7 +5348,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoody"
+                        "hoodieentrance"
                     ],
                     "autospawn": 23
                 },
@@ -6748,7 +6748,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoody"
+                        "hoodieentrance"
                     ],
                     "autospawn": 23
                 },
@@ -8288,7 +8288,7 @@
                 "default": {
                     "icon": 1,
                     "sequence": [
-                        "hoody"
+                        "hoodieentrance"
                     ],
                     "autospawn": 23
                 },

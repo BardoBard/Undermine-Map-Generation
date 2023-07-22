@@ -13,13 +13,14 @@ namespace Map_Generator.Parsing.Json.Classes
 
         [JsonProperty("stage")] public List<string> Stages { get; set; } = null!;
         [JsonProperty("roomtype")] public string RoomTypeTag { get; set; } = null!;
-        [JsonProperty("chance")] public float Chance { get; set; } = 1;
+        [JsonProperty("chance")] public float Chance { get; set; } = 1f;
         [JsonProperty("tags")] public string? Tags { get; set; }
         [JsonProperty("children")] public bool Children { get; set; } = false;
-        [JsonProperty("extra")] public bool Extra { get; set; } = false;
+        [JsonProperty("encounter")] public bool HasExtraEncounter { get; set; } = false;
+        [JsonProperty("extra")] public string? Extra { get; set; } = null;
         [JsonProperty("branchweight")] public int BranchWeight { get; set; } = 0;
         [JsonProperty("doorcost")] public int? DoorCost { get; set; }
-        [JsonProperty("requirement")] public string? Requirement { get; set; }
+        [JsonProperty("requirements")] public string? Requirement { get; set; }
         [JsonProperty("direction")] public int? Direction { get; set; }
         [JsonIgnore] public Encounter? Encounter { get; set; }
         [JsonIgnore] public RoomType? PreviousRoom { get; set; }
@@ -36,8 +37,12 @@ namespace Map_Generator.Parsing.Json.Classes
             //using scope to make sure the random is not affected by other randoms
             using (new Rand.Scope(Rand.StateType.Default))
             {
+                var defaultRequirement = JsonDecoder.Encounter[zone][roomSize][this.RoomTypeTag].Default.Requirement;
+                if (defaultRequirement != null && !Save.Check(defaultRequirement))
+                    return;
+                
                 //filter encounters and put it into a list
-                var encounters = JsonDecoder.Encounter[zone][roomSize][this.RoomTypeTag].Rooms
+                List<Encounter?> encounters = JsonDecoder.Encounter[zone][roomSize][this.RoomTypeTag].Rooms
                     .Where(this.CheckEncounter).ToList();
                 if (encounters.Count == 0)
                     Console.WriteLine("error?");
@@ -45,7 +50,7 @@ namespace Map_Generator.Parsing.Json.Classes
                 //if the encounter has a weight, get a random encounter based on the weight
                 if (JsonDecoder.Encounter[zone][roomSize][this.RoomTypeTag].HasWeight())
                 {
-                    if (Rand.GetWeightedElement(encounters, out var mainRoomEncounter))
+                    if (Rand.GetWeightedElement(encounters, out Encounter mainRoomEncounter))
                         this.Encounter = mainRoomEncounter;
                 }
                 //else search for the encounter with the same tag as the room
@@ -59,7 +64,7 @@ namespace Map_Generator.Parsing.Json.Classes
                 this.CanReload = this.Encounter is { SubFloor: 0 };
 
                 if (this.Encounter == null)
-                    Console.WriteLine("encounter is null");
+                    Console.WriteLine("encounter is null"); //TODO: add multiple extra encounters
             }
         }
 
@@ -78,9 +83,8 @@ namespace Map_Generator.Parsing.Json.Classes
                                 .First(zoneData => Save.Check(zoneData.Requirements)) ??
                             throw new InvalidOperationException(
                                 "data is null"); //TODO: change zonedata[0] to generic value
-
-            Console.WriteLine("found zonedata: {0}", data.Name);
-            // data = JsonDecoder.ZoneData[0][1];
+            Console.WriteLine("found zonedata: {0}, with requirement: {1}", data.Name, data.Requirements);
+            
             this.Encounter.DetermineEnemies(data); //not scoped randomness
             this.Encounter.Seen = true;
         }
@@ -115,7 +119,7 @@ namespace Map_Generator.Parsing.Json.Classes
             // }
             if (encounter.Requirement != null && !Save.Check(encounter.Requirement))
             {
-                Console.WriteLine("requirement failed");
+                Console.WriteLine("requirement failed {0}", encounter.Name);
                 return false;
             }
 
