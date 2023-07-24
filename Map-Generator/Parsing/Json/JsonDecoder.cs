@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Map_Generator.Parsing.Json.Classes;
 using Newtonsoft.Json;
 
 namespace Map_Generator.Json;

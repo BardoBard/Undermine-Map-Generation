@@ -21,6 +21,7 @@
         ]
     },
     "mineearly": {
+        "requirements": "firstdelve",
         "default": {
             "zone": "mine"
         },
@@ -242,7 +243,8 @@
                 ],
                 "roomsmulti": [
                     "relic",
-                    "altar",
+                    "mushroomapprentice",
+                    "mushroom",
                     "treasure",
                     "treasurechance",
                     "shop",
