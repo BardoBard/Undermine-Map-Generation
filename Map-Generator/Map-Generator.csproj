@@ -64,16 +64,19 @@
         </Compile>
         <Compile Include="Grid.cs" />
         <Compile Include="BardLog.cs" />
-        <Compile Include="Maps.cs" />
         <Compile Include="Math\Vector2.cs" />
-        <Compile Include="Parsing\Json\JsonClasses\Encounters.cs" />
-        <Compile Include="Parsing\Json\JsonClasses\Enemy.cs" />
-        <Compile Include="Parsing\Json\JsonClasses\RoomType.cs" />
+        <Compile Include="Parsing\Json\Classes\Encounters.cs" />
+        <Compile Include="Parsing\Json\Classes\Enemy.cs" />
+        <Compile Include="Parsing\Json\Classes\Maps.cs" />
+        <Compile Include="Parsing\Json\Classes\RoomType.cs" />
+        <Compile Include="Parsing\Json\Classes\ZoneData.cs" />
+        <Compile Include="Parsing\Json\Enums\Direction.cs" />
+        <Compile Include="Parsing\Json\Interfaces\IWeight.cs" />
         <Compile Include="Parsing\Json\JsonDecoder.cs" />
         <Compile Include="Parsing\Save.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Undermine\ListExtensions.cs" />
-        <Compile Include="Undermine\Random.cs" />
+        <Compile Include="Undermine\Rand.cs" />
         <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
