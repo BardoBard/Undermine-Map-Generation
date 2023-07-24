@@ -13,7 +13,7 @@
                 1,
                 2
             ],
-            "requirements": "tutorialincomplete",
+            "requirements": "firstdelve",
             "extras": [
                 {
                     "min": 10,
@@ -618,7 +618,7 @@
             "connectivity": 0.15,
             "zonenumber": 1,
             "startfloor": 1,
-            "basedifficulty": 5,
+            "basedifficulty": 6,
             "difficultystep": 2,
             "enemytypeweight": [
                 0,
@@ -758,6 +758,7 @@
             "floors": [
                 {
                     "override": {
+                        "difficulty": 5,
                         "enemytypeweight": [
                             0,
                             1,
@@ -1365,6 +1366,9 @@
                     ]
                 },
                 {
+                    "override": {
+                        "difficulty": 12
+                    },
                     "enemies": [
                         {
                             "name": "ratlarge",

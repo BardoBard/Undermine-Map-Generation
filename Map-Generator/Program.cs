@@ -1,158 +1,176 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Management.Instrumentation;
-using System.Security.Policy;
 using System.Windows.Forms;
 using Map_Generator.Json;
+using Map_Generator.Parsing;
+using Map_Generator.Parsing.Json.Classes;
 using Map_Generator.Undermine;
-using static Map_Generator.Json.JsonDecoder;
+using Newtonsoft.Json;
 
 namespace Map_Generator
 {
     static class Program
     {
-        public static List<Room> Rooms = new List<Room>();
+        /// <summary>
+        /// list of room with result of algorithm
+        /// </summary>
+        private static readonly List<RoomType?> Rooms = new();
 
-        public static int GetFloorPosition(string floor, string name, string name2)
-        {
-            // Encounter.Keys.ToList().IndexOf(floor);
-            int count = 0;
-            foreach (var enc in Encounter)
-            {
-                foreach (var stages in enc.Value.Where(stages => stages.Value.Any(roomType => roomType.Key == name)))
-                {
-                    if (enc.Key == floor && stages.Key == name2)
-                        return count;
-                    ++count;
-                }
-            }
+        // public static string MapName { get; set; } = "mineearly";
+        public static string MapName { get; set; } = "mine";
 
-            return count;
-        }
-
-        public static void GetSpecificRoom(string floor, string type, string name2, string? tag, out Room room)
-        {
-            using (Random.CreateScope())
-            {
-                var res = GetFloorPosition(floor, type, name2);
-
-                for (int i = 0; i < res; i++)
-                    Random.NextUInt();
-
-                if (Encounter[floor][name2][type].HasWeight())
-                    Random.GetWeightedElement(Encounter[floor][name2][type].Rooms, out room);
-                else
-                    room = Encounter[floor][name2][type].Rooms
-                        .Find(x => x.Tag == tag);
-            }
-        }
-
-        public static int GetEnemyTypeCount(int[] zoneData)
-        {
-            int num = zoneData.Sum();
-
-            int num2 = Random.RangeInclusive(1, num);
-            for (int i = 0; i < zoneData.Length; i++)
-            {
-                num2 -= zoneData[i];
-                if (num2 <= 0)
-                    return i;
-            }
-
-            return 0;
-        }
-
-        public static void DetermineEnemies(Room room, int floorNumber)
-        {
-            var data = JsonDecoder.ZoneData[0][0];
-            var enemies = room.Enemies ?? data.Floors[floorNumber].Enemies;
-
-            if (room.ProhibitedEnemies != null)
-                enemies.RemoveAll(enemy => room.ProhibitedEnemies.Contains(enemy.Name));
-            // enemies.RemoveAll(( element) => element.Data.IsDeprecated);
-            if (enemies.Count <= 0)
-                return;
-            
-
-            enemies.Shuffle();
-            
-            int enemyCombo = 0;
-            // foreach (int enemyCombo2 in enemies)
-            // {
-            //     if (((list[0].Data as EnemyData).Type & enemyCombo2) != 0)
-            //     {
-            //         enemyCombo = enemyCombo2;
-            //         break;
-            //     }
-            // }
-            //I think this is the amount of enemies in the room
-            int num = System.Math.Min(enemies.Count, GetEnemyTypeCount(data.EnemyTypeWeight));
-            if (num <= 0)
-                return;
-            
-            enemies.Shuffle();
-            List<Enemy> list2 = new List<Enemy>();
-            
-            //get enemies and remove enemies that don't belong
-            foreach (var enemy in enemies)
-            {
-                if ((num != 1 || enemy.CanBeSolo)) // && GameData.Instance.CheckSpawnCondition(item))
-                {
-                    if ((enemy.Type & enemyCombo) != 0 || enemyCombo == 0)
-                    {
-                        list2.Add(enemy);
-                        enemyCombo ^= enemy.Type;
-                    }
-                    if (list2.Count == num)
-                        break;
-                }
-            }
-        }
+        // public static string MapNameEncounter { get; set; } = "mine";
+        public static string MapNameEncounter { get; set; } = "mine";
 
         public static void GetRooms(RoomType[][] batches)
         {
+            // for (int i = 0; i < 40; i++)
+            //     Console.WriteLine(Random.Value());
+
             Console.WriteLine("");
             foreach (RoomType[] roomNames in batches)
             {
-                foreach (RoomType roomName in roomNames)
+                LoadRoomNames(roomNames, null, false, -1);
+                // Random.PreviousUInt();
+            }
+        }
+
+        /// <summary>
+        /// gets the encounter for the room
+        /// </summary>
+        /// <param name="roomNames"></param>
+        /// <param name="zone">zone name -> e.g mine</param>
+        /// <param name="roomSize">room size -> e.g small/large</param>
+        /// <param name="room"></param>
+        /// <param name="previousRoom"></param>
+        public static RoomType GetEncounter(string roomNames, string zone, string roomSize, RoomType? previousRoom)
+        {
+            RoomType room = null!;
+            foreach (var roomName in roomNames.Split(','))
+            {
+                zone = roomName == "hidden" && Save.FloorNumber == 4 ? Save.NextZoneName() : zone;
+                room = JsonDecoder.Rooms[roomName];
+                //using scope to make sure the random is not affected by other randoms
+                using (new Rand.Scope(Rand.StateType.Default))
                 {
-                    Random.Count = 0;
-                    if (!Random.Chance(roomName.Chance))
-                    {
-                        Console.WriteLine("Skipping room [" + roomName.Tags + "]: Chance failed");
-                        Console.WriteLine("");
+                    var defaultRequirement =
+                        JsonDecoder.Encounter[zone][roomSize][room.RoomTypeTag].Default.Requirement;
+                    if (defaultRequirement != null && !Save.Check(defaultRequirement))
                         continue;
-                    }
 
-                    string name2 = roomName.Stages[Random.Range(0, (uint)roomName.Stages.Count)];
+                    //filter encounters and put it into a list
+                    List<Encounter?> encounters =
+                        JsonDecoder.Encounter[zone][room.Stages.Count > 1 ? roomSize : room.Stages.First()][
+                                room.RoomTypeTag].Rooms
+                            .Where(enc => room.CheckEncounter(enc, previousRoom)).ToList();
+                    if (encounters.Count == 0)
+                        Console.WriteLine("error?");
 
-                    GetSpecificRoom("mine", roomName.RoomTypeTag, name2, roomName.Tags, out var room);
-
-
-                    // room.Difficulty ??= Encounter["mine"][name2][roomName.RoomTypeTag].Default.Difficulty;
-                    room.Difficulty ??= Encounter["mine"][name2][roomName.RoomTypeTag].Default.Difficulty;
-                    Room.WeightDoor door;
-
-                    if (room.WeightDoors == null)
-                        Random.NextUInt();
-                    else
-                        Random.GetWeightedElement(room.WeightDoors, out door);
-
-                    if (!Random.Chance(room.Difficulty.First()))
+                    //if the encounter has a weight, get a random encounter based on the weight
+                    if (JsonDecoder.Encounter[zone][roomSize][room.RoomTypeTag].HasWeight())
                     {
-                        Console.WriteLine("skipping");
-                        // continue;
+                        if (Rand.GetWeightedElement(encounters, out Encounter mainRoomEncounter))
+                            room.Encounter = mainRoomEncounter;
+                    }
+                    //else search for the encounter with the same tag as the room
+                    else
+                    {
+                        room.Encounter = encounters.Find(encounter =>
+                            encounter?.Tag == room.Tags &&
+                            (encounter?.Requirement == null || Save.Check(encounter.Requirement)));
                     }
 
-                    // Random.NextUInt(); //for initialize (in undermine)
-                    Console.WriteLine(roomName.RoomTypeTag);
-                    Console.WriteLine(Random.Value());
+                    room.CanReload = room.Encounter is { SubFloor: 0 };
 
-                    // Console.WriteLine(room.Name);
-                    Console.WriteLine("");
-                    // Rooms.Add(room);
+                    if (room.Encounter != null)
+                        break;
+                    // Console.WriteLine("encounter is null"); //TODO: add multiple extra encounters
                 }
+            }
+
+
+            return room ?? throw new InvalidOperationException();
+        }
+
+        private static void LoadRoomNames(in RoomType[] roomNames, RoomType? previousRoom, bool sequence,
+            int sequenceRecursionCount)
+        {
+            Console.WriteLine("new roomnames");
+            foreach (RoomType roomName in roomNames)
+            {
+                Console.WriteLine("chance: {0}", roomName.Chance);
+                if (!Rand.Chance(roomName.Chance))
+                {
+                    Console.WriteLine("Skipping room [ {0} ]: Chance ( {1} ) failed", roomName.Name,
+                        roomName.Chance);
+                    Console.WriteLine("");
+                    break; //TODO: break or continue?
+                }
+
+                if (roomName.Requirement != null && !Save.Check(roomName.Requirement))
+                {
+                    Console.WriteLine("skipping: [{0}] due to: {1}, chance: {2}", roomName.RoomTypeTag,
+                        roomName.Requirement, roomName.Chance);
+                    Console.WriteLine("");
+                    break; //TODO: break or continue?
+                }
+
+                string name2 = roomName.Stages[Rand.Range(0, (uint)roomName.Stages.Count)];
+
+                if (roomName.HasExtraEncounter)
+                    Rand.NextUInt();
+
+                RoomType room = GetEncounter(roomName.Name, MapNameEncounter, name2, previousRoom); //scoped randomness
+
+                if (room.Encounter != null)
+                    room.Initialize(MapNameEncounter, name2);
+
+                if (room.Encounter?.Enemies != null)
+                {
+                    foreach (var enemy in room.Encounter?.Enemies)
+                        Console.WriteLine(enemy.Name);
+                }
+
+                if (room.Encounter == null)
+                {
+                    Console.WriteLine("skipping: [" + roomName.Name + "]" + " due to: " + "Encounter is null");
+                    return;
+                }
+
+                //TODO: doorcost
+                Rooms.Add(room);
+                if (sequence)
+                {
+                    room.Secluded = true;
+                    room.Encounter.SubFloor = previousRoom.Encounter.SubFloor;
+                }
+
+                room.Encounter.Sequence.AddRange(
+                    JsonDecoder.Encounter[MapNameEncounter][name2][room.RoomTypeTag].Default.Sequence);
+
+                if (sequenceRecursionCount != 0 && room.Encounter.Sequence.Count > 0)
+                {
+                    RoomType[] batch =
+                        room.Encounter.Sequence.Select(room_name => JsonDecoder.Rooms[room_name]).ToArray();
+                    Console.WriteLine("Reloading..");
+                    LoadRoomNames(batch, room, sequence: true, --room.Encounter.SequenceRecursionCount);
+                }
+
+                if (previousRoom != null)
+                {
+                    // previousRoom.Branches[roomName.Direction] = room;
+                }
+
+                Console.WriteLine(Rand.Value());
+
+                if (room.Encounter != null)
+                    Console.WriteLine("room: {0} encounter name: {1}_{2}_{3}, chance: {4}", room.Name, name2,
+                        room.RoomTypeTag,
+                        room.Encounter.Name, room.Chance);
+                previousRoom = room;
+                Console.WriteLine("");
+                Rooms.Add(room);
             }
         }
 
@@ -162,11 +180,10 @@ namespace Map_Generator
         [STAThread]
         static void Main()
         {
-            Random.Initialize(85064318 + 4);
+            Save.Initialize("Save2.json");
+            Rand.Initialize((uint)(Save.Seed + Save.floor_number));
 
-            var level = JsonDecoder.Maps["mine"].Levels[4 - 1];
-
-            var zone = JsonDecoder.ZoneData;
+            var level = JsonDecoder.Maps[MapName].Levels[Save.FloorIndex];
 
             RoomType[][] batches = level.Rooms.Select(room => room.Select(x => JsonDecoder.Rooms[x]).ToArray())
                 .ToArray()

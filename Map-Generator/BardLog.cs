@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace Map_Generator;
@@ -30,7 +31,25 @@ public class BardLog
 
         fs.WriteLine(str, args);
     }
+    public static void LogStackTrace(bool overrideIsLogging = false)
+    {
+        Log("");
+        var frames = new StackTrace().GetFrames();
+        for (var index = 1; index < frames.Length; index++)
+        {
+            var frame = frames[index];
+            var method = frame.GetMethod();
 
+            //full path
+            var fullPath = method?.DeclaringType != null
+                ? $"{method.DeclaringType.FullName}.{method.Name}"
+                : method?.Name;
+
+            Console.WriteLine(fullPath);
+        }
+
+        Console.WriteLine("");
+    }
     public static void Log<T>(T t) where T : IComparable
     {
         Log(t.ToString());
