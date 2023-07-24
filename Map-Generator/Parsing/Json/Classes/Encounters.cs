@@ -53,7 +53,7 @@ namespace Map_Generator.Parsing.Json.Classes
             if (((NoExit & (int)Direction.North) == 0 && (neighbor.NoExit & (int)Direction.South) == 0) ||
                 ((NoExit & (int)Direction.South) == 0 && (neighbor.NoExit & (int)Direction.North) == 0) ||
                 ((NoExit & (int)Direction.East) == 0 && (neighbor.NoExit & (int)Direction.West) == 0)) return true;
-            
+
             if ((NoExit & (int)Direction.West) == 0)
                 return (neighbor.NoExit & (int)Direction.East) == 0;
 
@@ -67,6 +67,7 @@ namespace Map_Generator.Parsing.Json.Classes
         /// <param name="data">zonedata</param>
         public void DetermineEnemies(ZoneData data)
         {
+            Console.WriteLine("enemySpawnChance: {0}", this.Difficulty[0]);
             if (!Rand.Chance(this.Difficulty[0])) //TODO: check if we have to check encounter
             {
                 Console.WriteLine("skipping room {0}", this.Name);
@@ -83,7 +84,8 @@ namespace Map_Generator.Parsing.Json.Classes
 
             int[] enemyTypeWeight = floorOverride?.EnemyTypeWeight ?? data.EnemyTypeWeight;
             List<Enemy> enemies = new List<Enemy>(this.Enemies ?? data.Floors[floorNumber].Enemies);
-            this.Enemies = new List<Enemy>(); //TODO: probably not override the current enemies instead return a new list
+            this.Enemies =
+                new List<Enemy>(); //TODO: probably not override the current enemies instead return a new list
 
             if (this.ProhibitedEnemies != null)
                 enemies.RemoveAll(enemy => this.ProhibitedEnemies.Contains(enemy.Name));
@@ -135,6 +137,8 @@ namespace Map_Generator.Parsing.Json.Classes
                     totalDifficulty -= difficulty;
                     array[i]++;
                 }
+
+                Console.WriteLine(Rand.Value());
 
                 while (totalDifficulty > 0f && enemies2.Count > 0)
                 {

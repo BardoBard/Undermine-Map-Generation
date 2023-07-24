@@ -21,6 +21,15 @@ public class Discoverable
 
 public static class Save
 {
+    public static List<string> ZoneNames =
+        new()
+        {
+            "mine",
+            "dungeon",
+            "hall",
+            "cavern",
+            "core"
+        };
     //TODO: make a lot of stuff private instead of public
     //????
     private static bool secret_treasure_note { get; set; }
@@ -87,7 +96,7 @@ public static class Save
     public static int core_key { get; set; }
     public static int core_opened { get; set; }
     public static int crone_unlocked { get; set; }
-    public static int crystallord_defeated { get; set; }
+    public static bool crystallord_defeated { get; set; }
     public static int crystallord_revived { get; set; }
     public static int debt { get; set; }
     public static int delve_count { get; set; }
@@ -112,7 +121,7 @@ public static class Save
     public static bool halls_opened { get; set; }
     public static bool hoodie_met { get; set; }
     public static bool hoodie_met_cavern { get; set; }
-    public static bool hoodie_met_dungeon { get; set; }
+    public static bool hoodie_met_dungeon { get; set; } = false;
     public static bool hoodie_met_hall { get; set; }
     public static bool hoodie_met_mine { get; set; }
     public static int library_key { get; set; }
@@ -134,9 +143,9 @@ public static class Save
     public static bool prisoner_key { get; set; }
     public static int retaliation { get; set; }
     public static bool rockmimic_defeated { get; set; }
-    public static int sandworm_defeated { get; set; }
+    public static bool sandworm_defeated { get; set; }
     public static int sandworm_revived { get; set; }
-    public static int shadowlord_defeated { get; set; }
+    public static bool shadowlord_defeated { get; set; }
     public static int shadowlord_revived { get; set; }
     public static int shaker { get; set; }
     public static int shop_basic_item { get; set; }
@@ -147,7 +156,7 @@ public static class Save
     public static int simple_chest_new { get; set; }
     public static int start_blessing { get; set; }
     public static int statue_defeated { get; set; }
-    public static int stonelord_defeated { get; set; }
+    public static bool stonelord_defeated { get; set; }
     public static int summon_count { get; set; }
     public static int talking_gem_count { get; set; }
     public static int tavern_key { get; set; }
@@ -173,14 +182,14 @@ public static class Save
     public static bool mushroompurple => (!mushroom_purple && apprentice_met > 0 && !whip_enabled && storymode);
     public static bool mushroomgreen => (!mushroom_green && apprentice_met > 0 && !whip_enabled && storymode);
     public static bool blackrabbitfirst => (!black_rabbit_met && !whip_enabled && storymode);
-    public static bool hoodieminel => (rockmimic_defeated && !hoodie_met_mine && (FloorNumber == 1) && storymode);
-    public static bool hoodiemineu => (rockmimic_defeated && hoodie_met_mine && (FloorNumber == 1) && storymode);
-    public static bool hoodiedungeonl => (!hoodie_met_dungeon && (FloorNumber == 5) && storymode);
-    public static bool hoodiedungeonu => (!hoodie_met_dungeon && (FloorNumber == 5) && storymode);
-    public static bool hoodiehalll => (!hoodie_met_hall && (FloorNumber == 11) && storymode);
-    public static bool hoodiehallu => (!hoodie_met_hall && (FloorNumber == 11) && storymode);
-    public static bool hoodiecavernl => (!hoodie_met_cavern && (FloorNumber == 16) && storymode);
-    public static bool hoodiecavernu => (!hoodie_met_cavern && (FloorNumber == 16) && storymode);
+    public static bool hoodieminel => (rockmimic_defeated && !hoodie_met_mine && (floor_number == 1) && storymode);
+    public static bool hoodiemineu => (rockmimic_defeated && hoodie_met_mine && (floor_number == 1) && storymode);
+    public static bool hoodiedungeonl => (!hoodie_met_dungeon && (floor_number == 6) && storymode);
+    public static bool hoodiedungeonu => (hoodie_met_dungeon && (floor_number == 6) && storymode);
+    public static bool hoodiehalll => (!hoodie_met_hall && (floor_number == 11) && storymode);
+    public static bool hoodiehallu => (!hoodie_met_hall && (floor_number == 11) && storymode);
+    public static bool hoodiecavernl => (!hoodie_met_cavern && (floor_number == 16) && storymode);
+    public static bool hoodiecavernu => (!hoodie_met_cavern && (floor_number == 16) && storymode);
     public static bool nofountain => (storymode && !tribute_fountain_encountered && bog_unlocked);
     public static bool nohexdesolation => (!hexDesolation);
     public static bool dogshadow => !dog_shadow_found && (delve_count > 5) && !whip_enabled;
@@ -221,51 +230,51 @@ public static class Save
     public static bool firstdelve => delve_count <= 1;
 
     public static bool tutorialcomplete => !rockmimic_defeated &&
-                                           !(sandworm_defeated > 0) &&
-                                           !(stonelord_defeated > 0) &&
-                                           !(shadowlord_defeated > 0);
+                                           !(sandworm_defeated) &&
+                                           !(stonelord_defeated) &&
+                                           !(shadowlord_defeated);
 
     public static bool mimickilled => (rockmimic_defeated &&
-                                       !(sandworm_defeated > 0) &&
-                                       !(stonelord_defeated > 0) &&
-                                       !(shadowlord_defeated > 0));
+                                       !(sandworm_defeated) &&
+                                       !(stonelord_defeated) &&
+                                       !(shadowlord_defeated));
 
-    public static bool minesandwormkilled => (sandworm_defeated > 0) &&
-                                             !(stonelord_defeated > 0) &&
-                                             !(shadowlord_defeated > 0);
+    public static bool minesandwormkilled => (sandworm_defeated) &&
+                                             !(stonelord_defeated) &&
+                                             !(shadowlord_defeated);
 
-    public static bool minestonelordkilled => stonelord_defeated > 0 &&
-                                              !(shadowlord_defeated > 0);
+    public static bool minestonelordkilled => stonelord_defeated &&
+                                              !(shadowlord_defeated);
 
-    public static bool mineshadowlordkilled => shadowlord_defeated > 0;
+    public static bool mineshadowlordkilled => shadowlord_defeated;
 
-    public static bool allbossesalive => !(sandworm_defeated > 0) &&
-                                         !(stonelord_defeated > 0) &&
-                                         !(shadowlord_defeated > 0) &&
-                                         !(crystallord_defeated > 0);
+    public static bool allbossesalive => !(sandworm_defeated) &&
+                                         !(stonelord_defeated) &&
+                                         !(shadowlord_defeated) &&
+                                         !(crystallord_defeated);
 
-    public static bool sandwormkilled => (sandworm_defeated > 0) &&
-                                         !(stonelord_defeated > 0) &&
-                                         !(shadowlord_defeated > 0) &&
-                                         !(crystallord_defeated > 0);
+    public static bool sandwormkilled => (sandworm_defeated) &&
+                                         !(stonelord_defeated) &&
+                                         !(shadowlord_defeated) &&
+                                         !(crystallord_defeated);
 
-    public static bool stonelordkilled => (stonelord_defeated > 0 &&
-                                           !(shadowlord_defeated > 0) &&
-                                           !(crystallord_defeated > 0));
+    public static bool stonelordkilled => (stonelord_defeated &&
+                                           !(shadowlord_defeated) &&
+                                           !(crystallord_defeated));
 
-    public static bool crystallordkilled => (crystallord_defeated > 0);
+    public static bool crystallordkilled => (crystallord_defeated);
 
-    public static bool stonelordnotkilled => (!(stonelord_defeated > 0) &&
-                                              !(shadowlord_defeated > 0) &&
-                                              !(crystallord_defeated > 0));
+    public static bool stonelordnotkilled => (!(stonelord_defeated) &&
+                                              !(shadowlord_defeated) &&
+                                              !(crystallord_defeated));
 
-    public static bool shadowlordkilled => (shadowlord_defeated > 0 &&
-                                            !(crystallord_defeated > 0));
+    public static bool shadowlordkilled => (shadowlord_defeated &&
+                                            !(crystallord_defeated));
 
-    public static bool shadowlordnotkilled => (!(shadowlord_defeated > 0) &&
-                                               !(crystallord_defeated > 0));
+    public static bool shadowlordnotkilled => (!(shadowlord_defeated) &&
+                                               !(crystallord_defeated));
 
-    public static bool crystallordnotkilled => (!(crystallord_defeated > 0) &&
+    public static bool crystallordnotkilled => (!(crystallord_defeated) &&
                                                 !(firelord_defeated > 0));
 
     public static bool firelordkilled => (firelord_defeated > 0 &&
@@ -273,7 +282,7 @@ public static class Save
 
     public static bool enterbog => bog_unlocked; //TODO: check this bog (enterBog)
 
-    public static bool crystallordkillednotfire => (crystallord_defeated > 0 &&
+    public static bool crystallordkillednotfire => (crystallord_defeated &&
                                                     !(firelord_defeated > 0) &&
                                                     !bog_unlocked); //TODO: check this bog (enterBog)
 
@@ -295,6 +304,8 @@ public static class Save
     }
 
     public static void IncrementFloorNumber() => floor_number += FloorNumber == 4 ? 2 : 1;
+    public static string NextZoneName() => ZoneNames[ZoneIndex + 1];
+
 
     private static bool ParseUpgradeString(JToken? upgradeToken)
     {

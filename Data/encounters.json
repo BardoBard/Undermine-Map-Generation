@@ -1444,6 +1444,43 @@
                     {
                         "tag": "bossroom",
                         "name": "sandroom"
+                    },
+                    {
+                        "tag": "hoody",
+                        "name": "sleepyhoodyroom",
+                        "door": 7
+                    }
+                ]
+            },
+            "blackrabbit": {
+                "rooms": [
+                    {
+                        "weight": 4,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbitshop",
+                        "weighteddoor": [
+                            {
+                                "weight": 1,
+                                "door": 1
+                            },
+                            {
+                                "weight": 1,
+                                "door": 5
+                            }
+                        ],
+                        "requirements": "blackrabbitmet"
+                    },
+                    {
+                        "weight": 1,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbittreasure",
+                        "requirements": "blackrabbitmet"
+                    },
+                    {
+                        "weight": 1,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbitlevergame",
+                        "requirements": "blackrabbitmet"
                     }
                 ]
             },
@@ -1463,15 +1500,6 @@
                             }
                         ],
                         "requirements": "storymode"
-                    }
-                ]
-            },
-            "hoody": {
-                "rooms": [
-                    {
-                        "weight": 1,
-                        "name": "sleepyhoodyroom",
-                        "door": 7
                     }
                 ]
             }
@@ -1742,7 +1770,11 @@
                         "name": "rockpath",
                         "autospawn": 15,
                         "noexit": 0,
-                        "door": 1
+                        "door": 1,
+                        "difficulty": [
+                            0,
+                            0
+                        ]
                     },
                     {
                         "weight": 3,
@@ -4229,7 +4261,7 @@
                         "door": 5
                     },
                     {
-                        "weight": 1,
+                        "weight": 2,
                         "name": "cursedrelic",
                         "noexit": 0,
                         "door": 5
@@ -5179,6 +5211,9 @@
                         "door": 1,
                         "subfloor": 1,
                         "autospawn": 7,
+                        "sequence": [
+                            "storeroom"
+                        ],
                         "noexit": 12
                     },
                     {
@@ -5187,6 +5222,9 @@
                         "noexit": 12,
                         "requirements": "storynotwhip",
                         "autospawn": 6,
+                        "sequence": [
+                            "priestesshall2"
+                        ],
                         "door": 1
                     },
                     {
@@ -5194,6 +5232,9 @@
                         "name": "priestesshall2",
                         "noexit": 12,
                         "requirements": "storynotwhip",
+                        "sequence": [
+                            "priestesshall3"
+                        ],
                         "autospawn": 6,
                         "door": 1
                     },
@@ -5202,6 +5243,9 @@
                         "name": "priestesshall3",
                         "noexit": 12,
                         "requirements": "storynotwhip",
+                        "sequence": [
+                            "priestessmain"
+                        ],
                         "autospawn": 6,
                         "door": 1
                     },

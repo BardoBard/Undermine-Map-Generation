@@ -113,6 +113,7 @@ namespace Map_Generator.Undermine
             var elems = elements.Where(element => !element.Skip);
             var weights = elems as T[] ?? elems.ToArray();
             int totalweight = weights.Aggregate(0, (current, element) => current + element.Weight);
+            Console.WriteLine("totalweight {0}", totalweight);
 
             if (totalweight == 0)
             {

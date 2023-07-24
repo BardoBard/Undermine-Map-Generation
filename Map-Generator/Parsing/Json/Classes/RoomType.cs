@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using Map_Generator.Json;
 using Map_Generator.Undermine;
 using Newtonsoft.Json;
@@ -13,11 +14,21 @@ namespace Map_Generator.Parsing.Json.Classes
 
         [JsonProperty("stage")] public List<string> Stages { get; set; } = null!;
         [JsonProperty("roomtype")] public string RoomTypeTag { get; set; } = null!;
-        [JsonProperty("chance")] public float Chance { get; set; } = 1f;
+        private float chance = 1f;
+
+        [JsonProperty("chance")]
+        public float Chance
+        {
+            get { return chance + StepChance * Save.floor_number + ZoneStepChance * Save.ZoneIndex; }
+            set { chance = value; }
+        }
+
+        [JsonProperty("stepchance")] public float StepChance { get; set; } = 0;
+        [JsonProperty("zonestepchance")] public float ZoneStepChance { get; set; } = 0;
         [JsonProperty("tags")] public string? Tags { get; set; }
         [JsonProperty("children")] public bool Children { get; set; } = false;
         [JsonProperty("encounter")] public bool HasExtraEncounter { get; set; } = false;
-        [JsonProperty("extra")] public string? Extra { get; set; } = null;
+        [JsonProperty("name")] public string Name { get; set; }
         [JsonProperty("branchweight")] public int BranchWeight { get; set; } = 0;
         [JsonProperty("doorcost")] public int? DoorCost { get; set; }
         [JsonProperty("requirements")] public string? Requirement { get; set; }
@@ -26,47 +37,6 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonIgnore] public RoomType? PreviousRoom { get; set; }
         [JsonIgnore] public bool CanReload { get; set; }
         [JsonIgnore] public bool Secluded { get; set; }
-
-        /// <summary>
-        /// gets the encounter for the room
-        /// </summary>
-        /// <param name="zone">zone name -> e.g mine</param>
-        /// <param name="roomSize">room size -> e.g small/large</param>
-        public void GetEncounter(string zone, string roomSize)
-        {
-            //using scope to make sure the random is not affected by other randoms
-            using (new Rand.Scope(Rand.StateType.Default))
-            {
-                var defaultRequirement = JsonDecoder.Encounter[zone][roomSize][this.RoomTypeTag].Default.Requirement;
-                if (defaultRequirement != null && !Save.Check(defaultRequirement))
-                    return;
-                
-                //filter encounters and put it into a list
-                List<Encounter?> encounters = JsonDecoder.Encounter[zone][roomSize][this.RoomTypeTag].Rooms
-                    .Where(this.CheckEncounter).ToList();
-                if (encounters.Count == 0)
-                    Console.WriteLine("error?");
-
-                //if the encounter has a weight, get a random encounter based on the weight
-                if (JsonDecoder.Encounter[zone][roomSize][this.RoomTypeTag].HasWeight())
-                {
-                    if (Rand.GetWeightedElement(encounters, out Encounter mainRoomEncounter))
-                        this.Encounter = mainRoomEncounter;
-                }
-                //else search for the encounter with the same tag as the room
-                else
-                {
-                    this.Encounter = encounters.Find(encounter =>
-                        encounter?.Tag == this.Tags &&
-                        (encounter?.Requirement == null || Save.Check(encounter.Requirement)));
-                }
-
-                this.CanReload = this.Encounter is { SubFloor: 0 };
-
-                if (this.Encounter == null)
-                    Console.WriteLine("encounter is null"); //TODO: add multiple extra encounters
-            }
-        }
 
         public void Initialize(string mapNameEncounter, string name2)
         {
@@ -84,12 +54,11 @@ namespace Map_Generator.Parsing.Json.Classes
                             throw new InvalidOperationException(
                                 "data is null"); //TODO: change zonedata[0] to generic value
             Console.WriteLine("found zonedata: {0}, with requirement: {1}", data.Name, data.Requirements);
-            
             this.Encounter.DetermineEnemies(data); //not scoped randomness
             this.Encounter.Seen = true;
         }
 
-        public bool CheckEncounter(Encounter? encounter)
+        public bool CheckEncounter(Encounter? encounter, RoomType previousRoom)
         {
             if (encounter == null)
             {
@@ -101,13 +70,13 @@ namespace Map_Generator.Parsing.Json.Classes
             // {
             //     return false;
             // }
-            if (this.PreviousRoom?.Encounter != null)
+            if (previousRoom?.Encounter != null)
             {
-                if (!this.PreviousRoom.Encounter.AllowNeighbor(encounter))
+                if (!previousRoom.Encounter.AllowNeighbor(encounter))
                 {
                     Console.WriteLine("not allowed encounter: {0}, noexit: {1}", encounter.Name, encounter.NoExit);
-                    Console.WriteLine("not allowed neighbor: {0}, noexit: {1}", this.PreviousRoom.Encounter.Name,
-                        this.PreviousRoom.Encounter.NoExit);
+                    Console.WriteLine("not allowed neighbor: {0}, noexit: {1}", previousRoom.Encounter.Name,
+                        previousRoom.Encounter.NoExit);
                     Console.WriteLine("");
                     return false;
                 }
@@ -119,7 +88,7 @@ namespace Map_Generator.Parsing.Json.Classes
             // }
             if (encounter.Requirement != null && !Save.Check(encounter.Requirement))
             {
-                Console.WriteLine("requirement failed {0}", encounter.Name);
+                Console.WriteLine("requirement failed for: {0}, req: {1} ", encounter.Name, encounter.Requirement);
                 return false;
             }
 
