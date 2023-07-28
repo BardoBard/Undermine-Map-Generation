@@ -64,6 +64,7 @@
         </Compile>
         <Compile Include="Grid.cs" />
         <Compile Include="BardLog.cs" />
+        <Compile Include="MapType.cs" />
         <Compile Include="Math\Vector2.cs" />
         <Compile Include="Parsing\Json\Classes\Encounters.cs" />
         <Compile Include="Parsing\Json\Classes\Enemy.cs" />

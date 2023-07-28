@@ -395,7 +395,7 @@
   },
   "fountain": {
     "stage": [
-      "large"
+      "small"
     ],
     "chance": 0,
     "stepchance": 0.0625,

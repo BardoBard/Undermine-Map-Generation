@@ -41,7 +41,9 @@ namespace Map_Generator.Parsing.Json.Classes
         public void Initialize(string mapNameEncounter, string name2)
         {
             // if (this.Encounter?.WeightDoors != null)
-            if (Rand.GetWeightedElement(this.Encounter.WeightDoors!, out var door))
+            if (Rand.GetWeightedElement(
+                    this.Encounter.WeightedDoors ?? JsonDecoder.Encounter[mapNameEncounter][name2][this.RoomTypeTag]
+                        .Default.WeightedDoors, out var door))
                 this.Encounter.Door = door.Door;
 
 

@@ -23,7 +23,7 @@ namespace Map_Generator.Parsing.Json.Classes
 
     public class Encounter : IWeight
     {
-        public class WeightDoor : IWeight
+        public class WeightedDoor : IWeight
         {
             [JsonProperty("weight")] public int Weight { get; set; }
             public bool Skip { get; set; }
@@ -34,7 +34,7 @@ namespace Map_Generator.Parsing.Json.Classes
         public bool Skip { get; set; }
         [JsonProperty("tag")] public string? Tag;
         [JsonProperty("Name")] public string? Name;
-        [JsonProperty("weighteddoor")] public List<WeightDoor> WeightDoors { get; set; }
+        [JsonProperty("weighteddoor")] public List<WeightedDoor>? WeightedDoors { get; set; }
         [JsonProperty("requirements")] public string? Requirement { get; set; }
         [JsonProperty("enemies")] public List<Enemy>? Enemies { get; set; }
         [JsonProperty("prohibitedenemies")] public List<string>? ProhibitedEnemies { get; set; }
@@ -138,8 +138,6 @@ namespace Map_Generator.Parsing.Json.Classes
                     array[i]++;
                 }
 
-                Console.WriteLine(Rand.Value());
-
                 while (totalDifficulty > 0f && enemies2.Count > 0)
                 {
                     int randomNum = Rand.Range(0, enemies2.Count);
@@ -189,6 +187,7 @@ namespace Map_Generator.Parsing.Json.Classes
         public float[] Difficulty { get; set; }
         public List<string> Sequence { get; set; } = new();
         [JsonProperty("requirements")] public string? Requirement { get; set; }
+        [JsonProperty("weighteddoor")] public List<Encounter.WeightedDoor> WeightedDoors { get; set; }
 
         public Default()
         {

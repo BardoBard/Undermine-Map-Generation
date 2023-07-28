@@ -15,8 +15,8 @@ public static class JsonDecoder
 
     private static readonly string MapsData = File.ReadAllText(UnderminePath + "maps.json");
 
-    public static readonly Dictionary<string, Maps> Maps =
-        JsonConvert.DeserializeObject<Dictionary<string, Maps>>(MapsData) ?? new Dictionary<string, Maps>();
+    public static readonly List<Maps> Maps =
+        JsonConvert.DeserializeObject<List<Maps>>(MapsData) ?? new List<Maps>();
 
     private static readonly string RoomData = File.ReadAllText(UnderminePath + "rooms.json");
 
@@ -32,5 +32,6 @@ public static class JsonDecoder
 
     public static readonly string ZoneDataData = File.ReadAllText(UnderminePath + "zonedata.json");
 
-    public static readonly List<List<ZoneData>> ZoneData = JsonConvert.DeserializeObject<List<List<ZoneData>>>(ZoneDataData) ?? new List<List<ZoneData>>();
+    public static readonly List<List<ZoneData>> ZoneData =
+        JsonConvert.DeserializeObject<List<List<ZoneData>>>(ZoneDataData) ?? new List<List<ZoneData>>();
 }

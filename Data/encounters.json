@@ -4375,12 +4375,9 @@
             "altar_guacamole": {
                 "default": {
                     "icon": 5,
-                    "sequence": [
-                        "guacamole"
-                    ],
                     "door": 5,
                     "autospawn": 7,
-                    "requirements": "priestessrescued"
+                    "requirements": "relicguacamole"
                 },
                 "rooms": [
                     {
@@ -5214,6 +5211,7 @@
                         "sequence": [
                             "storeroom"
                         ],
+                        "requirements": "dibblesstoreroom",
                         "noexit": 12
                     },
                     {
@@ -6785,6 +6783,9 @@
                         "name": "shop"
                     }
                 ]
+            },
+            "shop": {
+                "rooms": []
             }
         },
         "small": {

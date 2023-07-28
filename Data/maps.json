@@ -1,30 +1,7 @@
-{
-    "minetutorial": {
-        "default": {
-            "zone": "mine"
-        },
-        "levels": [
-            {
-                "rooms": [
-                    [
-                        "tubegin",
-                        "tujump",
-                        "tuattack",
-                        "tubomb",
-                        "tuthrow",
-                        "tupilfer",
-                        "turelic",
-                        "tuend"
-                    ]
-                ]
-            }
-        ]
-    },
-    "mineearly": {
+[
+    {
         "requirements": "firstdelve",
-        "default": {
-            "zone": "mine"
-        },
+        "name": "mine",
         "levels": [
             {
                 "rooms": [
@@ -133,10 +110,8 @@
             }
         ]
     },
-    "mine": {
-        "default": {
-            "zone": "mine"
-        },
+    {
+        "name": "mine",
         "levels": [
             {
                 "rooms": [
@@ -259,10 +234,8 @@
             }
         ]
     },
-    "dungeon": {
-        "default": {
-            "zone": "dungeon"
-        },
+    {
+        "name": "dungeon",
         "levels": [
             {
                 "rooms": [
@@ -381,10 +354,8 @@
             }
         ]
     },
-    "dungeonbug": {
-        "default": {
-            "zone": "dungeon"
-        },
+    {
+        "name": "dungeon",
         "levels": [
             {
                 "rooms": [
@@ -417,10 +388,8 @@
             }
         ]
     },
-    "hall": {
-        "default": {
-            "zone": "hall"
-        },
+    {
+        "name": "hall",
         "levels": [
             {
                 "rooms": [
@@ -530,10 +499,8 @@
             }
         ]
     },
-    "cavern": {
-        "default": {
-            "zone": "cavern"
-        },
+    {
+        "name": "cavern",
         "levels": [
             {
                 "rooms": [
@@ -646,10 +613,8 @@
             }
         ]
     },
-    "cavernbug": {
-        "default": {
-            "zone": "cavern"
-        },
+    {
+        "name": "cavern",
         "levels": [
             {
                 "rooms": [
@@ -686,10 +651,8 @@
             }
         ]
     },
-    "core": {
-        "default": {
-            "zone": "core"
-        },
+    {
+        "name": "core",
         "levels": [
             {
                 "rooms": [
@@ -789,10 +752,8 @@
             }
         ]
     },
-    "bog": {
-        "default": {
-            "zone": "bog"
-        },
+    {
+        "name": "bog",
         "levels": [
             {
                 "rooms": [
@@ -896,4 +857,4 @@
             }
         ]
     }
-}
+]
