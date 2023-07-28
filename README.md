@@ -6,12 +6,6 @@
 ╚██████╔╝██║ ╚████║██████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██████╗      ██║ ╚═╝ ██║ ██║  ██║ ██║
  ╚════╝  ╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═════╝      ╚═╝     ╚═╝ ╚═╝  ╚═╝ ╚═╝
 ```
-## Usage
-
-```
-Undermine Map Generator
-```
-
 ## Undermine Map Generator
 
 This is a map generator for the game Undermine. It is written in C# desktop application.

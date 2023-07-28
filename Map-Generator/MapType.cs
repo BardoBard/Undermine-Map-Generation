@@ -15,11 +15,10 @@ public static class MapType
         core = 5,
     }
 
-    private static MapName _mapName = MapName.mine;
+    private static MapName _mapName => (MapName)Save.ZoneIndex + 1;
     public static MapName GetMap() => _mapName;
     public static string GetMapName() => _mapName.ToString();
     
-    public static MapName GetNextMap() => (MapName)Save.ZoneIndex + 1;
-    public static string GetNextMapName() => ((MapName)Save.ZoneIndex + 1).ToString();
-    public static void NextMap() => _mapName = (MapName)Save.ZoneIndex + 1;
+    public static MapName GetNextMap() => (MapName)Save.ZoneIndex + 2;
+    public static string GetNextMapName() => ((MapName)Save.ZoneIndex + 2).ToString();
 }

@@ -19,14 +19,10 @@ namespace Map_Generator
 
         public static void GetRooms(RoomType[][] batches)
         {
-            // for (int i = 0; i < 40; i++)
-            //     Console.WriteLine(Random.Value());
-
             Console.WriteLine("");
             foreach (RoomType[] roomNames in batches)
             {
                 LoadRoomNames(roomNames, null, false, -1);
-                // Random.PreviousUInt();
             }
         }
 
