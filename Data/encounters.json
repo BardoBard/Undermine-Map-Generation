@@ -1,6 +1,62 @@
 {
     "hall": {
         "extra": {
+            "blackrabbit": {
+                "rooms": [
+                    {
+                        "weight": 4,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbitshop",
+                        "weighteddoor": [
+                            {
+                                "weight": 1,
+                                "door": 1
+                            },
+                            {
+                                "weight": 1,
+                                "door": 5
+                            }
+                        ],
+                        "requirements": "blackrabbitmet"
+                    },
+                    {
+                        "weight": 1,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbittreasure",
+                        "requirements": "blackrabbitmet"
+                    },
+                    {
+                        "weight": 1,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbitlevergame",
+                        "requirements": "blackrabbitmet"
+                    }
+                ]
+            },
+            "shop": {
+                "rooms": [
+                    {
+                        "weight": 1,
+                        "name": "shop",
+                        "requirements": "storymode",
+                        "weighteddoor": [
+                            {
+                                "weight": 10,
+                                "door": 1
+                            },
+                            {
+                                "weight": 7,
+                                "door": 5
+                            }
+                        ]
+                    },
+                    {
+                        "weight": 1,
+                        "name": "shopothermine",
+                        "requirements": "roguemode"
+                    }
+                ]
+            },
             "special": {
                 "rooms": [
                     {
@@ -16,7 +72,7 @@
                         "name": "shop"
                     },
                     {
-                        "tag": "boss",
+                        "tag": "bossroom",
                         "name": "shadowroom"
                     }
                 ]
@@ -193,7 +249,7 @@
                         "name": "crypt",
                         "difficulty": [
                             1,
-                            8
+                            -8
                         ],
                         "noexit": 0,
                         "door": 1
@@ -280,20 +336,17 @@
                     {
                         "weight": 1,
                         "name": "lanterns",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "statues",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "pillars",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     }
                 ]
             },
@@ -413,20 +466,17 @@
                     {
                         "weight": 3,
                         "name": "skeletons",
-                        "door": 5,
                         "noexit": 1
                     },
                     {
                         "weight": 3,
                         "name": "spikesacrifice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "altar",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 5,
@@ -445,8 +495,7 @@
                     {
                         "weight": 3,
                         "name": "chest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
@@ -532,8 +581,7 @@
                         "name": "bard",
                         "requirements": "notbardmet",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
@@ -929,6 +977,15 @@
                             0.8,
                             -8
                         ],
+                        "enemies": [
+                            {
+                                "name": "bat",
+                                "difficulty": 4,
+                                "rougedifficulty": 4,
+                                "canbesolo": true,
+                                "type": 1
+                            }
+                        ],
                         "noexit": 3,
                         "door": 1
                     },
@@ -1278,56 +1335,47 @@
                     {
                         "weight": 3,
                         "name": "spikejump",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "torchpuzzle",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "keys",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "potions",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "crypt",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "cursedrelics",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "blessingchoice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "chessboard",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "spikesacrifice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
@@ -1336,14 +1384,21 @@
                             1,
                             -10
                         ],
-                        "noexit": 0,
-                        "door": 5
+                        "enemies": [
+                            {
+                                "name": "spiderwolf",
+                                "difficulty": 3,
+                                "rougedifficulty": 2,
+                                "canbesolo": true,
+                                "type": 1
+                            }
+                        ],
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "gargoyleguards",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
@@ -1352,26 +1407,22 @@
                             1,
                             -10
                         ],
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "gap",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "diagonalspikes",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "insulated",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     }
                 ]
             },
@@ -1963,33 +2014,28 @@
                     {
                         "weight": 4,
                         "name": "pots",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 4,
                         "name": "torches",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 4,
                         "name": "hole",
-                        "noexit": 7,
-                        "door": 1
+                        "noexit": 7
                     },
                     {
                         "weight": 1,
                         "name": "torchpuzzle",
-                        "noexit": 1,
-                        "door": 1
+                        "noexit": 1
                     },
                     {
                         "weight": 4,
                         "name": "statues",
                         "autospawn": 7,
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     }
                 ]
             },
@@ -2081,8 +2127,7 @@
                     {
                         "weight": 3,
                         "name": "spikesacrifice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
@@ -2188,59 +2233,50 @@
                     {
                         "weight": 3,
                         "name": "waterchest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "carts",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "treasurehunt",
                         "noexit": 1,
                         "requirements": "treasurehunt",
-                        "autospawn": 0,
-                        "door": 5
+                        "autospawn": 0
                     },
                     {
                         "weight": 1,
                         "name": "altar",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "cursedtorch",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "cursedrelic",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "crystals",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "lab",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "chest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
@@ -2249,22 +2285,19 @@
                     {
                         "weight": 1,
                         "name": "blessing",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "blessing02",
                         "autospawn": 3,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "butchersroom",
                         "autospawn": 3,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
@@ -2272,22 +2305,19 @@
                         "tags": "mrrat",
                         "requirements": "ratfriendship",
                         "autospawn": 3,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "chest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "bard",
                         "requirements": "notbardmet",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     }
                 ]
             },
@@ -3230,91 +3260,77 @@
                     {
                         "weight": 2,
                         "name": "leverblocks",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "grasschests",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "torchpuzzle",
                         "autospawn": 1,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "keys",
                         "autospawn": 1,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "potions",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "blessing",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "blessing02",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "cursedrelics",
                         "autospawn": 31,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "altar",
-                        "noexit": 1,
-                        "door": 5
+                        "noexit": 1
                     },
                     {
                         "weight": 2,
                         "name": "pressuretrap",
-                        "noexit": 5,
-                        "door": 5
+                        "noexit": 5
                     },
                     {
                         "weight": 2,
                         "name": "chooseblessing",
                         "autospawn": 31,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "boboslair",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "cavein",
                         "autospawn": 31,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "gap",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     }
                 ]
             },
@@ -3566,9 +3582,41 @@
                         "name": "blackrabbit"
                     },
                     {
-                        "tag": "boss",
-                        "name": "sandroom",
+                        "tag": "bossroom",
+                        "name": "stonelordroom",
                         "autospawn": 1
+                    }
+                ]
+            },
+            "blackrabbit": {
+                "rooms": [
+                    {
+                        "weight": 4,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbitshop",
+                        "weighteddoor": [
+                            {
+                                "weight": 1,
+                                "door": 1
+                            },
+                            {
+                                "weight": 1,
+                                "door": 5
+                            }
+                        ],
+                        "requirements": "blackrabbitmet"
+                    },
+                    {
+                        "weight": 1,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbittreasure",
+                        "requirements": "blackrabbitmet"
+                    },
+                    {
+                        "weight": 1,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbitlevergame",
+                        "requirements": "blackrabbitmet"
                     }
                 ]
             },
@@ -3808,7 +3856,7 @@
                         "requirements": "priestessentrance",
                         "autospawn": 6,
                         "noexit": 0,
-                        "door": 5
+                        "door": 7
                     },
                     {
                         "tag": "hoodie_entrance",
@@ -3873,32 +3921,27 @@
                     {
                         "weight": 3,
                         "name": "statues",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "water",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "pillars",
-                        "noexit": 12,
-                        "door": 1
+                        "noexit": 12
                     },
                     {
                         "weight": 3,
                         "name": "windingbridge",
-                        "noexit": 1,
-                        "door": 1
+                        "noexit": 1
                     },
                     {
                         "weight": 3,
                         "name": "holes",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     }
                 ]
             },
@@ -4195,115 +4238,98 @@
                         "tag": "kurtz",
                         "noexit": 3,
                         "requirements": "kurtz",
-                        "autospawn": 5,
-                        "door": 5
+                        "autospawn": 5
                     },
                     {
                         "weight": 3,
                         "name": "doublechest",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "goldstatue",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "waterchest",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "spikesacrifice",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "cursedtorch",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "bombstorage",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "triplecursedchest",
                         "autospawn": 6,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "doubleblessing",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "lab",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "cursedrelic",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "pyrolair",
                         "autospawn": 3,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "statuechest",
                         "autospawn": 5,
-                        "noexit": 1,
-                        "door": 5
+                        "noexit": 1
                     },
                     {
                         "weight": 3,
                         "name": "costedlever",
-                        "noexit": 1,
-                        "door": 5
+                        "noexit": 1
                     },
                     {
                         "weight": 1,
                         "name": "cursedrelic",
                         "autospawn": 1,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "fourbigchests",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "bard",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     }
                 ]
             },
@@ -5105,98 +5131,82 @@
                     {
                         "weight": 1,
                         "name": "altarcell",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "waterchest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "altar",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "itemrocks",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "torchpuzzle",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "keys",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "potions",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "doublewall",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "blessingchoice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "cellchests",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "doublelevertrap",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "torchturretpuzzle",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "gap",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "jumptorchpuzzle",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "pressureplate",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "islands",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     }
                 ]
             },
@@ -5364,6 +5374,62 @@
     },
     "cavern": {
         "extra": {
+            "blackrabbit": {
+                "rooms": [
+                    {
+                        "weight": 4,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbitshop",
+                        "weighteddoor": [
+                            {
+                                "weight": 1,
+                                "door": 1
+                            },
+                            {
+                                "weight": 1,
+                                "door": 5
+                            }
+                        ],
+                        "requirements": "blackrabbitmet"
+                    },
+                    {
+                        "weight": 1,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbittreasure",
+                        "requirements": "blackrabbitmet"
+                    },
+                    {
+                        "weight": 1,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbitlevergame",
+                        "requirements": "blackrabbitmet"
+                    }
+                ]
+            },
+            "shop": {
+                "rooms": [
+                    {
+                        "weight": 1,
+                        "name": "shop",
+                        "requirements": "storymode",
+                        "weighteddoor": [
+                            {
+                                "weight": 10,
+                                "door": 1
+                            },
+                            {
+                                "weight": 7,
+                                "door": 5
+                            }
+                        ]
+                    },
+                    {
+                        "weight": 1,
+                        "name": "shopothermine",
+                        "requirements": "roguemode"
+                    }
+                ]
+            },
             "special": {
                 "rooms": [
                     {
@@ -5379,7 +5445,7 @@
                         "name": "shop"
                     },
                     {
-                        "tag": "boss",
+                        "tag": "bossroom",
                         "name": "crystalroom"
                     }
                 ]
@@ -5794,8 +5860,7 @@
                     {
                         "weight": 3,
                         "name": "chest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
@@ -5807,14 +5872,12 @@
                     {
                         "weight": 2,
                         "name": "spikesacrifice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "altar",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
@@ -5840,8 +5903,7 @@
                     {
                         "weight": 3,
                         "name": "bombs",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
@@ -5918,8 +5980,7 @@
                         "name": "bard",
                         "requirements": "notbardmet",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
@@ -6646,68 +6707,57 @@
                     {
                         "weight": 2,
                         "name": "spikejump",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "bulletchest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "potions",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "chests",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "spikesacrifice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "blessing",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "altar",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "doublebigchest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "small",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "gap",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "twoitems",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     }
                 ]
             },
@@ -6771,7 +6821,7 @@
             "special": {
                 "rooms": [
                     {
-                        "tag": "boss",
+                        "tag": "bossroom",
                         "name": "fireroom"
                     },
                     {
@@ -6784,17 +6834,62 @@
                     }
                 ]
             },
+            "blackrabbit": {
+                "rooms": [
+                    {
+                        "weight": 4,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbitshop",
+                        "weighteddoor": [
+                            {
+                                "weight": 1,
+                                "door": 1
+                            },
+                            {
+                                "weight": 1,
+                                "door": 5
+                            }
+                        ],
+                        "requirements": "blackrabbitmet"
+                    },
+                    {
+                        "weight": 1,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbittreasure",
+                        "requirements": "blackrabbitmet"
+                    },
+                    {
+                        "weight": 1,
+                        "tag": "black_rabbit",
+                        "name": "blackrabbitlevergame",
+                        "requirements": "blackrabbitmet"
+                    }
+                ]
+            },
             "shop": {
-                "rooms": []
+                "rooms": [
+                    {
+                        "weight": 1,
+                        "name": "shop",
+                        "weighteddoor": [
+                            {
+                                "weight": 10,
+                                "door": 1
+                            },
+                            {
+                                "weight": 7,
+                                "door": 5
+                            }
+                        ],
+                        "requirements": "storymode"
+                    }
+                ]
             }
         },
         "small": {
             "begin": {
                 "default": {
                     "icon": 1,
-                    "sequence": [
-                        "hoodieentrance"
-                    ],
                     "autospawn": 23
                 },
                 "rooms": [
@@ -7340,26 +7435,22 @@
                     {
                         "weight": 4,
                         "name": "chest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "cursedtorch",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "spikesacrifice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 4,
                         "name": "chest02",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
@@ -7367,58 +7458,49 @@
                         "sequence": [
                             "secretwest"
                         ],
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "keypillar",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "altar",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "blessing",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 4,
                         "name": "item",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "lab",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "skeletonrocks",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 4,
                         "name": "cookedfood",
-                        "noexit": 12,
-                        "door": 5
+                        "noexit": 12
                     },
                     {
                         "weight": 2,
                         "name": "bard",
                         "requirements": "notbardmet",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     }
                 ]
             },
@@ -7564,7 +7646,7 @@
                         "door": 1
                     },
                     {
-                        "weight": 4,
+                        "weight": 3,
                         "name": "centralpillar",
                         "difficulty": [
                             1,
@@ -8172,68 +8254,57 @@
                     {
                         "weight": 4,
                         "name": "goldfloweast",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 4,
                         "name": "goldflowwest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 4,
                         "name": "goldmoat",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "rockmaze",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "goldlake",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "tinyroom",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "rollerjumps",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "smallspikesacrifice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "rockedin",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "blessing",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "altar",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
@@ -8241,20 +8312,17 @@
                         "sequence": [
                             "maybesecreteast"
                         ],
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 4,
                         "name": "food",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 4,
                         "name": "doublechestitem",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     }
                 ]
             },
@@ -8314,7 +8382,7 @@
             "special": {
                 "rooms": [
                     {
-                        "tag": "boss",
+                        "tag": "bossroom",
                         "name": "plunderroom"
                     },
                     {
@@ -8800,94 +8868,79 @@
                     {
                         "weight": 3,
                         "name": "chest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "spikesacrifice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "doublechestlockedin",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "potion",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "tinyisland",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "ponditem",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "cursedtorch",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "altar",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "bombstash",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "keystash",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "cursedrelic",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "loottree",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "blessing",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "rockedinchests",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "bard",
                         "requirements": "notbardmet",
                         "autospawn": 5,
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     }
                 ]
             },
@@ -9640,56 +9693,47 @@
                     {
                         "weight": 1,
                         "name": "altar",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "blessing",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "doublelockedchest",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "cookedfood",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "oopsalltorches",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "goldtree",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "series",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 2,
                         "name": "spikesacrifice",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     },
                     {
                         "weight": 3,
                         "name": "spikeisland",
-                        "noexit": 0,
-                        "door": 5
+                        "noexit": 0
                     }
                 ]
             },
@@ -9821,7 +9865,7 @@
                         "subfloor": 1,
                         "icon": 0,
                         "door": 7,
-                        "requirements": "rougemode"
+                        "requirements": "roguemode"
                     }
                 ]
             }

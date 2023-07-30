@@ -25,7 +25,7 @@ public static class JsonDecoder
 
     private static readonly string EncounterData = File.ReadAllText(UnderminePath + "encounters.json");
 
-    public static readonly Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>> Encounter =
+    public static readonly Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>> Encounters =
         JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>>(
             EncounterData) ?? new Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>();
 

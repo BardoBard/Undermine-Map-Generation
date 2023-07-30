@@ -38,26 +38,26 @@ namespace Map_Generator
             RoomType room = null!;
             foreach (var roomName in roomNames.Split(','))
             {
-                zone = roomName == "hidden" && Save.FloorNumber == 4 ? MapType.GetNextMapName() : zone;
                 room = JsonDecoder.Rooms[roomName];
+                zone = Save.GetZoneName(room);
                 //using scope to make sure the random is not affected by other randoms
                 using (new Rand.Scope(Rand.StateType.Default))
                 {
                     var defaultRequirement =
-                        JsonDecoder.Encounter[zone][roomSize][room.RoomTypeTag].Default.Requirement;
+                        JsonDecoder.Encounters[zone][roomSize][room.RoomTypeTag].Default.Requirement;
                     if (defaultRequirement != null && !Save.Check(defaultRequirement))
                         continue;
 
                     //filter encounters and put it into a list
                     List<Encounter?> encounters =
-                        JsonDecoder.Encounter[zone][room.Stages.Count > 1 ? roomSize : room.Stages.First()][
+                        JsonDecoder.Encounters[zone][room.Stages.Count > 1 ? roomSize : room.Stages.First()][
                                 room.RoomTypeTag].Rooms
                             .Where(enc => room.CheckEncounter(enc, previousRoom)).ToList();
                     if (encounters.Count == 0)
                         Console.WriteLine("error?");
 
                     //if the encounter has a weight, get a random encounter based on the weight
-                    if (JsonDecoder.Encounter[zone][roomSize][room.RoomTypeTag].HasWeight())
+                    if (JsonDecoder.Encounters[zone][roomSize][room.RoomTypeTag].HasWeight())
                     {
                         if (Rand.GetWeightedElement(encounters, out Encounter mainRoomEncounter))
                             room.Encounter = mainRoomEncounter;
@@ -65,6 +65,10 @@ namespace Map_Generator
                     //else search for the encounter with the same tag as the room
                     else
                     {
+                        if (!JsonDecoder.Encounters[zone][room.Stages.Count > 1 ? roomSize : room.Stages.First()][
+                                room.RoomTypeTag].Rooms.Exists(encounter => encounter?.Tag == room.Tags))
+                            throw new InvalidOperationException("room has unable to find " + room.Tags); //TODO: remove this for production
+                        
                         room.Encounter = encounters.Find(encounter =>
                             encounter?.Tag == room.Tags &&
                             (encounter?.Requirement == null || Save.Check(encounter.Requirement)));
@@ -86,7 +90,6 @@ namespace Map_Generator
             int sequenceRecursionCount)
         {
             Console.WriteLine("new roomnames");
-            Console.WriteLine(Rand.Value());
             foreach (RoomType roomName in roomNames)
             {
                 Console.WriteLine("room: {0}, tag: {1}, chance: {2}", roomName.Name, roomName.RoomTypeTag,
@@ -109,9 +112,12 @@ namespace Map_Generator
 
                 string name2 = roomName.Stages[Rand.Range(0, (uint)roomName.Stages.Count)];
 
+                // for (int i = 0; i < roomName.ExtraEncounters; i++)
+                //     Rand.NextUInt(); //TODO: figure out when to use extra sprites?!?!?!?
+                
                 if (roomName.HasExtraEncounter)
                     Rand.NextUInt();
-
+                
                 RoomType room =
                     GetEncounter(roomName.Name, MapType.GetMapName(), name2, previousRoom); //scoped randomness
 
@@ -139,7 +145,7 @@ namespace Map_Generator
                 }
 
                 room.Encounter.Sequence.AddRange(
-                    JsonDecoder.Encounter[MapType.GetMapName()][name2][room.RoomTypeTag].Default.Sequence);
+                    JsonDecoder.Encounters[MapType.GetMapName()][name2][room.RoomTypeTag].Default.Sequence);
 
                 if (sequenceRecursionCount != 0 && room.Encounter.Sequence.Count > 0)
                 {
@@ -157,9 +163,11 @@ namespace Map_Generator
                 Console.WriteLine(Rand.Value());
 
                 if (room.Encounter != null)
-                    Console.WriteLine("room: {0} encounter name: {1}_{2}_{3}, chance: {4}", room.Name, name2,
+                    Console.WriteLine("room: {0} encounter name: {1}_{2}_{3} door: {4}, chance: {5}", room.Name, name2,
                         room.RoomTypeTag,
-                        room.Encounter.Name, room.Chance);
+                        room.Encounter.Name,
+                        room.Encounter.Door.ToString(),
+                        room.Chance);
                 previousRoom = room;
                 Console.WriteLine("");
                 Rooms.Add(room);
@@ -186,8 +194,10 @@ namespace Map_Generator
             GetRooms(batches);
             Console.WriteLine(Rand.Value());
             var x = Save.hoodie_met_dungeon;
-            var y = Save.stonelordkilled;
-            var z = Save.stonelord_defeated;
+            var y = Save.floor_number;
+            var z = MapType.GetMapName();
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

@@ -5,9 +5,15 @@ using System.Net.Mail;
 using Map_Generator.Json;
 using Map_Generator.Undermine;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Map_Generator.Parsing.Json.Classes
 {
+    public class ExtraInformation
+    {
+        [JsonProperty("sprites")] public int Sprites { get; set; } = 0;
+    }
+
     public class RoomType
     {
         public RoomType Clone() => (RoomType)this.MemberwiseClone();
@@ -28,7 +34,17 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("tags")] public string? Tags { get; set; }
         [JsonProperty("children")] public bool Children { get; set; } = false;
         [JsonProperty("encounter")] public bool HasExtraEncounter { get; set; } = false;
-        [JsonProperty("name")] public string Name { get; set; }
+        [JsonProperty("sprites")] public int Sprites { get; set; } = 0;
+
+        [JsonProperty("extrainformation")]
+        public Dictionary<string, ExtraInformation> ExtraInformations { get; set; } = new();
+
+        public int ExtraEncounters =>
+            (ExtraInformations.TryGetValue(Save.GetZoneName(this), out ExtraInformation ExtraInformation)
+                ? ExtraInformation.Sprites
+                : 0) + (HasExtraEncounter ? 1 : 0);
+
+        [JsonProperty("name")] public string Name { get; set; } = null!;
         [JsonProperty("branchweight")] public int BranchWeight { get; set; } = 0;
         [JsonProperty("doorcost")] public int? DoorCost { get; set; }
         [JsonProperty("requirements")] public string? Requirement { get; set; }
@@ -37,18 +53,19 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonIgnore] public RoomType? PreviousRoom { get; set; }
         [JsonIgnore] public bool CanReload { get; set; }
         [JsonIgnore] public bool Secluded { get; set; }
+        [JsonProperty("ishidden")] public bool IsHidden { get; set; } = false;
 
         public void Initialize(string mapNameEncounter, string name2)
         {
             // if (this.Encounter?.WeightDoors != null)
             if (Rand.GetWeightedElement(
-                    this.Encounter.WeightedDoors ?? JsonDecoder.Encounter[mapNameEncounter][name2][this.RoomTypeTag]
+                    this.Encounter.WeightedDoors ?? JsonDecoder.Encounters[mapNameEncounter][name2][this.RoomTypeTag]
                         .Default.WeightedDoors, out var door))
                 this.Encounter.Door = door.Door;
 
 
             this.Encounter.Difficulty ??=
-                JsonDecoder.Encounter[mapNameEncounter][name2][this.RoomTypeTag].Default.Difficulty;
+                JsonDecoder.Encounters[mapNameEncounter][name2][this.RoomTypeTag].Default.Difficulty;
 
             // loop through data and check if requirement fits
             ZoneData data = JsonDecoder.ZoneData[Save.ZoneIndex]

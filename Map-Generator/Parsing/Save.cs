@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Map_Generator.Json;
+using Map_Generator.Parsing.Json.Classes;
 using Newtonsoft.Json.Linq;
 
 namespace Map_Generator.Parsing;
@@ -36,14 +37,14 @@ public static class Save
     public static Discoverable discoveredHungrySpirit { get; set; } =
         new(false, new("91f466ecbb87497b943eabd77f6e4681"));
 
-    private static Discoverable foundPartyPopcornPotion { get; set; } =
+    public static Discoverable foundPartyPopcornPotion { get; set; } =
         new(false, new("0f00680feaf340518a0185d4cf9038e4"));
 
     //status effects
-    private static Discoverable hexDesolation { get; set; } = new(false, new("aaf06aa35fa4482cabfba81e687bfef4"));
-    private static Discoverable relicCircinus { get; set; } = new(false, new("633c1aeec47b4378a56f48ea7d965ea0"));
+    public static Discoverable hexDesolation { get; set; } = new(false, new("aaf06aa35fa4482cabfba81e687bfef4"));
+    public static Discoverable relicCircinus { get; set; } = new(false, new("633c1aeec47b4378a56f48ea7d965ea0"));
 
-    private static Discoverable relicAdventurersWhip { get; set; } =
+    public static Discoverable relicAdventurersWhip { get; set; } =
         new(false, new("0e7e31f44491456bb5f6268f2c2686c2"));
 
     public static Discoverable relicGuacamole { get; set; } = new(false, new("80242154d4284cc6aab221292cb0ae93"));
@@ -54,7 +55,7 @@ public static class Save
 
     public static int Seed { get; set; }
     public static Guid Zone { get; set; }
-    public static bool rougeMode { get; set; } //TODO: Check if this is the correct name
+    public static bool roguemode { get; set; } //TODO: Check if this is the correct name
     public static bool bard_met { get; set; }
     public static bool altar_encountered { get; set; }
     public static bool tribute_fountain_encountered { get; set; } //TODO: Check if this is the correct name
@@ -216,8 +217,11 @@ public static class Save
     public static bool storynotwhip => (!whip_enabled && storymode);
     public static bool masterskey => priestess_met > 0 && !masters_key && !whip_enabled && storymode;
     public static bool notwhip => !whip_enabled; //TODO: check this
-    public static bool rougemode => !rougeMode; //TODO: check this
-    public static bool partypopcornroom => (foundPartyPopcornPotion.hasBeenDiscovered && !whip_enabled); //TODO: check this
+    public static bool rougemode => !roguemode; //TODO: check this
+
+    public static bool partypopcornroom =>
+        (foundPartyPopcornPotion.hasBeenDiscovered && !whip_enabled); //TODO: check this
+
     public static bool halllibrarycombat => (!(collector_book > 0) && !whip_enabled && storymode);
     public static bool dodsonnotrescued => (!peasant1_unlocked && !whip_enabled && storymode);
 
@@ -252,7 +256,7 @@ public static class Save
     public static bool sandwormkilled => (sandworm_defeated) &&
                                          !(stonelord_defeated) &&
                                          !(shadowlord_defeated);
-                                         // && !(crystallord_defeated);
+    // && !(crystallord_defeated);
 
     public static bool stonelordkilled => stonelord_defeated && !(shadowlord_defeated);
     // && !(crystallord_defeated);
@@ -279,6 +283,9 @@ public static class Save
 
     public static bool crystallordkillednotfire => crystallord_defeated &&
                                                    !(firelord_defeated);
+
+    public static string GetZoneName(RoomType room) =>
+        room.IsHidden && Save.FloorNumber == 4 ? MapType.GetNextMapName() : MapType.GetMapName();
     // && !bog_unlocked; //TODO: check this bog (enterBog)
 
     public static void Initialize(string saveString)

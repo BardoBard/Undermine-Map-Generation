@@ -29,3 +29,13 @@ Used for the Undermine speedrunning community.
 
 - core shop add rooms and default
 - bog unlocked check
+- extra shop rooms market baby door (-1?) halls
+- extra shop rooms market baby sequence halls
+- halls 4 assassin check max (for all assassins tbh)
+- look at all the doors from encounters, they might not all be correct
+- add enemies in json, not sure what I was thinking
+- no need to do some dumb shit with floornumber == 4 && ishidden, just rename the maps
+
+
+
+- **figure out when sprites are being used?!?!?!?**

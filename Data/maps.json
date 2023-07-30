@@ -309,6 +309,7 @@
                     "treasure",
                     "treasurechance",
                     "shop",
+                    "altar",
                     "blackrabbit",
                     "masterskey",
                     "secret",
@@ -492,7 +493,7 @@
                     "secret",
                     "secretchance",
                     "bossroom",
-                    "hidden",
+                    "hallsspritehidden",
                     "relicaltar",
                     "fountain"
                 ]
@@ -569,7 +570,7 @@
                     "treasurechance",
                     "shop",
                     "altar",
-                    "blackreddit",
+                    "blackrabbit",
                     "secret",
                     "secret",
                     "secretchance",

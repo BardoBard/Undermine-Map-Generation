@@ -199,6 +199,21 @@
       "small",
       "large"
     ],
+    "ishidden": true,
+    "roomtype": "hidden",
+    "name": "hidden"
+  },
+  "hallshidden": {
+    "stage": [
+      "small",
+      "large"
+    ],
+    "ishidden": true,
+    "extrainformation": {
+      "hall": {
+        "sprites": 4
+      }
+    },
     "roomtype": "hidden",
     "name": "hidden"
   },
@@ -282,7 +297,12 @@
     "roomtype": "special",
     "tags": "bossroom",
     "encounter": true,
-    "name": "bossroom"
+    "name": "bossroom",
+    "extrainformation": {
+      "cavern": {
+        "sprites": 14
+      }
+    }
   },
   "prechamber": {
     "stage": [
@@ -292,7 +312,18 @@
     "tags": "pre_room",
     "direction": 1,
     "encounter": true,
-    "name": "prechamber"
+    "name": "prechamber",
+    "extrainformation": {
+      "dungeon": {
+        "sprites": 26
+      },
+      "hall": {
+        "sprites": 24
+      },
+      "cavern": {
+        "sprites": 8
+      }
+    }
   },
   "nextdown": {
     "stage": [
@@ -301,7 +332,12 @@
     "roomtype": "special",
     "tags": "next_entrance",
     "direction": 1,
-    "name": "nextdown"
+    "name": "nextdown",
+    "extrainformation": {
+      "hall": {
+        "sprites": 24
+      }
+    }
   },
   "bogprechamber": {
     "stage": [
@@ -310,7 +346,8 @@
     "roomtype": "special",
     "tags": "pre_bog",
     "direction": 1,
-    "name": "bogprechamber"
+    "name": "bogprechamber",
+    "encounter": true
   },
   "bogdown": {
     "stage": [
@@ -386,7 +423,7 @@
     "stage": [
       "large"
     ],
-    "chance": 0.25,
+    "chance": -0.25,
     "stepchance": 0.0625,
     "zonestepchance": -0.0625,
     "roomtype": "special",
@@ -671,6 +708,7 @@
     "roomtype": "special",
     "tags": "hidden_hallway",
     "direction": 1,
+    "ishidden": true,
     "name": "hiddenhallway"
   },
   "hiddencampsite": {

@@ -15,7 +15,7 @@ namespace Map_Generator.Parsing.Json.Classes
         public Default Default { get; set; } = new();
         public List<Encounter?> Rooms { get; set; }
 
-        public bool HasWeight() //TODO: change this to a property
+        public bool HasWeight() //TODO: change this to a variable
         {
             return !Rooms.Exists(encounter => encounter.Weight == 0);
         }
@@ -27,7 +27,7 @@ namespace Map_Generator.Parsing.Json.Classes
         {
             [JsonProperty("weight")] public int Weight { get; set; }
             public bool Skip { get; set; }
-            [JsonProperty("door")] public int Door { get; set; }
+            [JsonProperty("door")] public Door Door { get; set; }
         }
 
         [JsonProperty("weight")] public int Weight { get; set; }
@@ -46,7 +46,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("recursion")] public int SequenceRecursionCount { get; set; } = -1;
         [JsonProperty("sequence")] public List<string> Sequence { get; set; } = new();
         [JsonIgnore] public bool Seen { get; set; } = false;
-        [JsonIgnore] public int Door { get; set; } = 1;
+        [JsonIgnore] public Door Door { get; set; } = (Door)1;
 
         public bool AllowNeighbor(Encounter neighbor)
         {
@@ -100,7 +100,6 @@ namespace Map_Generator.Parsing.Json.Classes
 
             int enemyCombo = new[] { 3, 5, 6 }.FirstOrDefault(type => (enemies[0].Type & type) != 0);
 
-            //I think this is the amount of enemies in the room
             enemies.RemoveAll(enemy => (enemy.Type & enemyCombo) == 0);
 
             int num = System.Math.Min(enemies.Count, GetEnemyTypeCount(enemyTypeWeight));
@@ -137,7 +136,7 @@ namespace Map_Generator.Parsing.Json.Classes
                     totalDifficulty -= difficulty;
                     array[i]++;
                 }
-
+                Console.WriteLine("total difficulty after: {0}", totalDifficulty);
                 while (totalDifficulty > 0f && enemies2.Count > 0)
                 {
                     int randomNum = Rand.Range(0, enemies2.Count);
@@ -155,7 +154,7 @@ namespace Map_Generator.Parsing.Json.Classes
                     array[randomNum]++;
                 }
             }
-
+            
             enemies2.Clear();
         }
 
@@ -188,6 +187,7 @@ namespace Map_Generator.Parsing.Json.Classes
         public List<string> Sequence { get; set; } = new();
         [JsonProperty("requirements")] public string? Requirement { get; set; }
         [JsonProperty("weighteddoor")] public List<Encounter.WeightedDoor> WeightedDoors { get; set; }
+        [JsonProperty("door")] public Door Door { get; set; }
 
         public Default()
         {
