@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Map_Generator.Json;
+using Map_Generator.Math;
 using Map_Generator.Parsing;
 using Map_Generator.Parsing.Json.Classes;
+using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Undermine;
-using Newtonsoft.Json;
 
 namespace Map_Generator
 {
@@ -15,7 +16,7 @@ namespace Map_Generator
         /// <summary>
         /// list of room with result of algorithm
         /// </summary>
-        private static readonly List<RoomType?> Rooms = new();
+        private static readonly List<RoomType> Rooms = new();
 
         public static void GetRooms(RoomType[][] batches)
         {
@@ -38,7 +39,7 @@ namespace Map_Generator
             RoomType room = null!;
             foreach (var roomName in roomNames.Split(','))
             {
-                room = JsonDecoder.Rooms[roomName];
+                room = JsonDecoder.Rooms[roomName].DeepClone();
                 zone = Save.GetZoneName(room);
                 //using scope to make sure the random is not affected by other randoms
                 using (new Rand.Scope(Rand.StateType.Default))
@@ -53,6 +54,7 @@ namespace Map_Generator
                         JsonDecoder.Encounters[zone][room.Stages.Count > 1 ? roomSize : room.Stages.First()][
                                 room.RoomTypeTag].Rooms
                             .Where(enc => room.CheckEncounter(enc, previousRoom)).ToList();
+
                     if (encounters.Count == 0)
                         Console.WriteLine("error?");
 
@@ -66,11 +68,12 @@ namespace Map_Generator
                     else
                     {
                         if (!JsonDecoder.Encounters[zone][room.Stages.Count > 1 ? roomSize : room.Stages.First()][
-                                room.RoomTypeTag].Rooms.Exists(encounter => encounter?.Tag == room.Tags))
-                            throw new InvalidOperationException("room has unable to find " + room.Tags); //TODO: remove this for production
-                        
+                                room.RoomTypeTag].Rooms.Exists(encounter => encounter?.Tag == room.Tag))
+                            throw new InvalidOperationException("room has unable to find " +
+                                                                room.Tag); //TODO: remove this for production
+
                         room.Encounter = encounters.Find(encounter =>
-                            encounter?.Tag == room.Tags &&
+                            encounter?.Tag == room.Tag &&
                             (encounter?.Requirement == null || Save.Check(encounter.Requirement)));
                     }
 
@@ -114,15 +117,16 @@ namespace Map_Generator
 
                 // for (int i = 0; i < roomName.ExtraEncounters; i++)
                 //     Rand.NextUInt(); //TODO: figure out when to use extra sprites?!?!?!?
-                
+
                 if (roomName.HasExtraEncounter)
                     Rand.NextUInt();
-                
+
                 RoomType room =
                     GetEncounter(roomName.Name, MapType.GetMapName(), name2, previousRoom); //scoped randomness
 
-                if (room.Encounter != null)
-                    room.Initialize(MapType.GetMapName(), name2);
+                room.PreviousRoom = previousRoom;
+
+                room.Initialize(MapType.GetMapName(), name2);
 
                 if (room.Encounter?.Enemies != null)
                 {
@@ -136,8 +140,8 @@ namespace Map_Generator
                     return;
                 }
 
-                //TODO: doorcost
                 Rooms.Add(room);
+
                 if (sequence)
                 {
                     room.Secluded = true;
@@ -156,9 +160,8 @@ namespace Map_Generator
                 }
 
                 if (previousRoom != null)
-                {
-                    // previousRoom.Branches[roomName.Direction] = room;
-                }
+                    previousRoom.Branches[roomName.Direction] = room;
+                
 
                 Console.WriteLine(Rand.Value());
 
@@ -170,7 +173,6 @@ namespace Map_Generator
                         room.Chance);
                 previousRoom = room;
                 Console.WriteLine("");
-                Rooms.Add(room);
             }
         }
 
@@ -179,6 +181,15 @@ namespace Map_Generator
         /// </summary>
         [STAThread]
         static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+        }
+
+        public static List<RoomType> PositionedRooms = new(20);
+
+        public static void Start()
         {
             Save.Initialize("Save2.json");
             Rand.Initialize((uint)(Save.Seed + Save.floor_number));
@@ -191,16 +202,244 @@ namespace Map_Generator
                 .ToArray()
                 .Concat(level.RoomsMulti.Select(x => new[] { JsonDecoder.Rooms[x] })).ToArray();
 
+            foreach (var encounter in from encountersValue in JsonDecoder.Encounters.Values
+                     from encounters in encountersValue.Values
+                     from encounter in encounters
+                     select encounter)
+                encounter.Value.Initialize();
+
             GetRooms(batches);
             Console.WriteLine(Rand.Value());
-            var x = Save.hoodie_met_dungeon;
-            var y = Save.floor_number;
-            var z = MapType.GetMapName();
+            Console.WriteLine("starting get room mapping");
+            GetRoomMapping();
+        }
 
+        private static void GetRoomMapping()
+        {
+            RoomType startingRoom = Rooms[0] ?? throw new InvalidOperationException("starting room is null");
+            foreach (var room in Rooms)
+            {
+                Console.WriteLine("room name: {0}, direction: {1}, door: {2}, ", room.Encounter?.Name, room.Direction,
+                    room.Encounter.Door);
+            }
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            int i = 0;
+            while (i < 10)
+            {
+                foreach (RoomType room in Rooms)
+                {
+                    room.Neighbors.Clear();
+                }
+
+                PositionedRooms.Clear();
+                PositionedRooms.Add(startingRoom);
+                for (int j = 1; j < Rooms.Count && SetRoomPosition(Rooms[j]); j++)
+                {
+                    Console.WriteLine(Rand.Value());
+                    PositionedRooms.Add(Rooms[j]);
+                }
+
+                foreach (var mPositionedRoom in PositionedRooms)
+                {
+                    Console.WriteLine("room name: {0} ({2},{3}), door: {1}, ", mPositionedRoom.Encounter.Name,
+                        mPositionedRoom.Encounter.Door, mPositionedRoom.Position.x, mPositionedRoom.Position.y);
+                }
+
+                Console.WriteLine(Rand.Value());
+                if (PositionedRooms.Count == Rooms.Count)
+                {
+                    break;
+                }
+                break;
+                Console.WriteLine("Layout failed, trying again!");
+                foreach (RoomType room2 in Rooms)
+                {
+                    // room2.ReloadEncounter();
+                    throw new Exception("reload encounter");
+                    room2.Position = Vector2Int.Zero;
+                }
+
+                int num = i + 1;
+                i = num;
+            }
+
+            Console.WriteLine("");
+        }
+
+        private static bool SetRoomPosition(RoomType room)
+        {
+            List<Direction> list = new List<Direction>(DirectionExtensions.CardinalDirections);
+            Direction direction = Direction.None;
+            if (room.PreviousRoom != null)
+            {
+                Console.WriteLine("previous room");
+
+                room.Position = room.PreviousRoom.Position;
+                direction = room.Direction;
+
+                Console.WriteLine("room {0} ({1},{2}), encounter: {3}, door {4}, direction: {5}", room.Name,
+                    room.Position.x,
+                    room.Position.y,
+                    room.Encounter.Name,
+                    room.Encounter.Door,
+                    direction.ToString());
+
+                if (direction != Direction.None)
+                {
+                    if (CanMove(room, direction, room.Position))
+                    {
+                        room.Move(direction);
+                    }
+                    else
+                    {
+                        direction = Direction.None;
+                    }
+                }
+                else //direction is none
+                {
+                    list.Shuffle();
+                    foreach (var direction1 in list)
+                    {
+                        Console.WriteLine("direction: {0}", direction1.ToString());
+                    }
+
+                    foreach (var item in list.Where(item => CanMove(room, item, room.Position)))
+                    {
+                        direction = item;
+                        room.Move(direction);
+                        break;
+                    }
+                }
+
+                Console.WriteLine("");
+            }
+            else //previous room is null
+            {
+                List<RoomType> list2 = new List<RoomType>(PositionedRooms);
+
+                if (room.Encounter is { Door: Door.None or Door.Hidden })
+                {
+                    list2.Shuffle();
+                    foreach (var room3 in list2)
+                    {
+                        Console.WriteLine("name: {0}, weight: {1}", room3.Encounter.Name, room3.Weight);
+                    }
+
+                    foreach (RoomType item2 in list2)
+                    {
+                        room.Position = item2.Position;
+                        list.Shuffle();
+
+                        Console.WriteLine("room name: {0} ({2},{3}), door: {1}, ", room.Encounter.Name,
+                            room.Encounter.Door, room.Position.x, room.Position.y);
+                        foreach (var item3 in list.Where(item3 => CanMove(room, item3, room.Position)))
+                        {
+                            direction = item3;
+                            room.Move(direction);
+                            break;
+                        }
+
+                        if (direction != 0)
+                            break;
+                    }
+                }
+                else //door is not none or hidden
+                {
+                    list2.RemoveAll(roomType =>
+                        (roomType.Encounter.Branchweight ?? roomType.Weight) == 0); //TODO: check
+                    while (direction == Direction.None && list2.Count > 0)
+                    {
+                        if (!Rand.GetWeightedElement(list2!, out RoomType result, false))
+                            continue;
+
+                        room.Position = result.Position;
+                        list.Shuffle();
+                        foreach (Direction item4 in list.Where(item4 =>
+                                     result.IsValidNeighbor(room, item4) && CanMove(room, item4, room.Position)))
+                        {
+                            direction = item4;
+                            room.Move(direction);
+                            break;
+                        }
+
+                        list2.Remove(result);
+                    }
+                }
+            }
+
+            if (direction == Direction.None) return false;
+            if (room.Encounter is { Door: Door.None or Door.Hidden }) return true;
+
+            Direction direction2 = direction.Opposite();
+            RoomType? room2 = GetRoom(GetRoomPosition(room.Position, direction2));
+
+            if (room2 == null) return true;
+
+            room2.Neighbors[direction] = room;
+            room.Neighbors[direction2] = room2;
+
+            return true;
+        }
+
+        public static bool CanMove(RoomType room, Direction direction, Vector2Int position)
+        {
+            Console.WriteLine("({0},{1}), direction: {2}", position.x, position.y, direction.ToString());
+            if (room.PreviousRoom != null && !room.PreviousRoom.IsValidNeighbor(room, direction))
+            {
+                Console.WriteLine("not a valid neighbor");
+                return false;
+            }
+
+            position = GetRoomPosition(position, direction);
+            RoomType? room2 = GetRoom(position);
+            if (room2 != null)
+            {
+                Console.WriteLine("room already exists");
+                return false;
+            }
+
+            int num = 0;
+            foreach (KeyValuePair<Direction, RoomType> branch in room.Branches)
+            {
+                if (branch.Key != Direction.None)
+                {
+                    if (CanMove(branch.Value, branch.Key, position))
+                    {
+                        num++;
+                    }
+
+                    continue;
+                }
+
+                if (DirectionExtensions.CardinalDirections.Any(kCardinalDirection =>
+                        CanMove(branch.Value, kCardinalDirection, position)))
+                    num++;
+            }
+
+            return num == room.Branches.Count;
+        }
+
+        private static RoomType? GetRoom(Vector2Int position)
+        {
+            var x = Rooms.FirstOrDefault(room => room.Position == position);
+            return x;
+        }
+
+        public static Vector2Int GetRoomPosition(Vector2Int position, Direction direction)
+        {
+            return position + DirectionToVector(direction);
+        }
+        
+        public static Vector2Int DirectionToVector(Direction direction)
+        {
+            return direction switch
+            {
+                Direction.North => Vector2Int.Up,
+                Direction.South => Vector2Int.Down,
+                Direction.East => Vector2Int.Right,
+                Direction.West => Vector2Int.Left,
+                _ => Vector2Int.Zero,
+            };
         }
     }
 }

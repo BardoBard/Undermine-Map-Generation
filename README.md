@@ -20,22 +20,15 @@ Used for the Undermine speedrunning community.
 
 ## todo list
 
-- check blackrabbit rooms in general (mine is good), I changed the json
 - sandworm encounter check, when does it spawn?
 
+- dynamically update floor number and zone number (also requirements)
 
-- add requirements for maps
-- dynamically update map, floor number and zone number (also requirements)
-
-- core shop add rooms and default
-- bog unlocked check
-- extra shop rooms market baby door (-1?) halls
-- extra shop rooms market baby sequence halls
 - halls 4 assassin check max (for all assassins tbh)
 - look at all the doors from encounters, they might not all be correct
 - add enemies in json, not sure what I was thinking
 - no need to do some dumb shit with floornumber == 4 && ishidden, just rename the maps
+- noexit check
 
-
-
+- **figure out when rooms bug rooms happen, dungeon 1 hoody is one example**
 - **figure out when sprites are being used?!?!?!?**

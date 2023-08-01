@@ -80,7 +80,7 @@
             {
                 "rooms": [
                     [
-                        "begin"
+                        "beginend"
                     ],
                     [
                         "normal",
@@ -202,7 +202,7 @@
             {
                 "rooms": [
                     [
-                        "begin"
+                        "beginend"
                     ],
                     [
                         "normal",
@@ -278,7 +278,7 @@
                     ]
                 ],
                 "roomsmulti": [
-                    "relic",
+                    "relicchance",
                     "treasure",
                     "treasurechance",
                     "shop",
@@ -305,7 +305,7 @@
                     ]
                 ],
                 "roomsmulti": [
-                    "relic",
+                    "relicchance",
                     "treasure",
                     "treasurechance",
                     "shop",
@@ -324,7 +324,7 @@
             {
                 "rooms": [
                     [
-                        "begin",
+                        "beginend",
                         "normallarge",
                         "normal",
                         "normallarge",
@@ -337,7 +337,7 @@
                     ]
                 ],
                 "roomsmulti": [
-                    "relic",
+                    "relicchance",
                     "treasure",
                     "treasurechance",
                     "shop",
@@ -405,7 +405,7 @@
                 ],
                 "roomsmulti": [
                     "librarycombat",
-                    "relic",
+                    "relicchance",
                     "treasure",
                     "treasurechance",
                     "shop",

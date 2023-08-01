@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using Map_Generator.Json;
+using Map_Generator.Math;
+using Map_Generator.Parsing.Json.Enums;
+using Map_Generator.Parsing.Json.Interfaces;
 using Map_Generator.Undermine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -14,9 +17,16 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("sprites")] public int Sprites { get; set; } = 0;
     }
 
-    public class RoomType
+    public class RoomType : IWeight
     {
-        public RoomType Clone() => (RoomType)this.MemberwiseClone();
+        public RoomType Clone() => (RoomType)MemberwiseClone();
+
+        public RoomType DeepClone()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<RoomType>(serializedObject) ??
+                   throw new InvalidOperationException("failed to do a deep copy");
+        }
 
         [JsonProperty("stage")] public List<string> Stages { get; set; } = null!;
         [JsonProperty("roomtype")] public string RoomTypeTag { get; set; } = null!;
@@ -31,7 +41,7 @@ namespace Map_Generator.Parsing.Json.Classes
 
         [JsonProperty("stepchance")] public float StepChance { get; set; } = 0;
         [JsonProperty("zonestepchance")] public float ZoneStepChance { get; set; } = 0;
-        [JsonProperty("tags")] public string? Tags { get; set; }
+        [JsonProperty("tags")] public string? Tag { get; set; }
         [JsonProperty("children")] public bool Children { get; set; } = false;
         [JsonProperty("encounter")] public bool HasExtraEncounter { get; set; } = false;
         [JsonProperty("sprites")] public int Sprites { get; set; } = 0;
@@ -45,19 +55,29 @@ namespace Map_Generator.Parsing.Json.Classes
                 : 0) + (HasExtraEncounter ? 1 : 0);
 
         [JsonProperty("name")] public string Name { get; set; } = null!;
-        [JsonProperty("branchweight")] public int BranchWeight { get; set; } = 0;
+        [JsonProperty("branchweight")] public int Weight { get; set; } = 0;
         [JsonProperty("doorcost")] public int? DoorCost { get; set; }
         [JsonProperty("requirements")] public string? Requirement { get; set; }
-        [JsonProperty("direction")] public int? Direction { get; set; }
+
+        [JsonProperty("direction", NullValueHandling = NullValueHandling.Ignore)]
+        public Direction Direction { get; set; }
+
         [JsonIgnore] public Encounter? Encounter { get; set; }
         [JsonIgnore] public RoomType? PreviousRoom { get; set; }
         [JsonIgnore] public bool CanReload { get; set; }
         [JsonIgnore] public bool Secluded { get; set; }
+        [JsonIgnore] public Vector2Int Position { get; set; } = Vector2Int.Zero;
+
+        [JsonIgnore] public Dictionary<Direction, RoomType> Neighbors { get; } = new();
+        [JsonIgnore] public Dictionary<Direction, RoomType> Branches { get; set; } = new();
+
         [JsonProperty("ishidden")] public bool IsHidden { get; set; } = false;
 
         public void Initialize(string mapNameEncounter, string name2)
         {
-            // if (this.Encounter?.WeightDoors != null)
+            if (this.Encounter == null)
+                return;
+
             if (Rand.GetWeightedElement(
                     this.Encounter.WeightedDoors ?? JsonDecoder.Encounters[mapNameEncounter][name2][this.RoomTypeTag]
                         .Default.WeightedDoors, out var door))
@@ -77,7 +97,7 @@ namespace Map_Generator.Parsing.Json.Classes
             this.Encounter.Seen = true;
         }
 
-        public bool CheckEncounter(Encounter? encounter, RoomType previousRoom)
+        public bool CheckEncounter(Encounter? encounter, RoomType? previousRoom)
         {
             if (encounter == null)
             {
@@ -119,5 +139,33 @@ namespace Map_Generator.Parsing.Json.Classes
 
             return true;
         }
+
+        public bool IsValidNeighbor(RoomType neighbor, Direction direction)
+        {
+            if (Encounter == null)
+                Console.WriteLine("Unable to validate neighbor for Room [{0}] without an Encounter!", this.Name);
+            if (neighbor.Encounter == null)
+                Console.WriteLine("Unable to validate neighbor for Room [{0}] without an Encounter!", neighbor.Name);
+
+            if (direction == Enums.Direction.None)
+                return Encounter.AllowNeighbor(neighbor.Encounter);
+
+
+            return Encounter.AllowNeighbor(direction) && neighbor.Encounter.AllowNeighbor(direction.Opposite());
+        }
+
+        public void Move(Direction direction)
+        {
+            Position += direction switch
+            {
+                Direction.North => Vector2Int.Up,
+                Direction.South => Vector2Int.Down,
+                Direction.East => Vector2Int.Right,
+                Direction.West => Vector2Int.Left,
+                _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, "Invalid direction")
+            };
+        }
+
+        [JsonIgnore] public bool Skip { get; set; }
     }
 }

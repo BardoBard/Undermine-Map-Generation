@@ -100,7 +100,8 @@ namespace Map_Generator.Undermine
             }
         }
 
-        public static bool GetWeightedElement<T>(ICollection<T?>? elements, out T result) where T : class, IWeight
+        public static bool GetWeightedElement<T>(ICollection<T?>? elements, out T result, bool skip = true)
+            where T : class, IWeight
         {
             //TODO: refactor this entire method
             if (elements == null || !elements.Any())
@@ -129,7 +130,7 @@ namespace Map_Generator.Undermine
                 if (randomNum <= 0)
                 {
                     result = element2;
-                    element2.Skip = true;
+                    if (skip) element2.Skip = true;
                     return true;
                 }
             }

@@ -7,6 +7,14 @@
     "branchweight": 1,
     "name": "begin"
   },
+  "beginend": {
+    "stage": [
+      "small"
+    ],
+    "roomtype": "begin",
+    "branchweight": 4,
+    "name": "beginend"
+  },
   "end": {
     "stage": [
       "small"
@@ -55,6 +63,14 @@
     ],
     "roomtype": "relic",
     "name": "relic"
+  },
+  "relicchance": {
+    "stage": [
+      "small",
+      "large"
+    ],
+    "roomtype": "relic",
+    "name": "relicchance"
   },
   "relicunlocked": {
     "stage": [
@@ -287,7 +303,6 @@
     ],
     "roomtype": "special",
     "tags": "down_boss",
-    "branchweight": 1,
     "name": "endbosssmall"
   },
   "bossroom": {
@@ -310,9 +325,9 @@
     ],
     "roomtype": "special",
     "tags": "pre_room",
-    "direction": 1,
     "encounter": true,
     "name": "prechamber",
+    "branchweight": 1,
     "extrainformation": {
       "dungeon": {
         "sprites": 26
@@ -627,6 +642,7 @@
     ],
     "roomtype": "special",
     "tags": "priestess",
+    "branchweight": 0,
     "name": "priestess"
   },
   "priestesshall1": {
@@ -636,6 +652,7 @@
     "roomtype": "special",
     "tags": "priestesshall1",
     "direction": 1,
+    "branchweight": 1,
     "name": "priestesshall1"
   },
   "priestesshall2": {
@@ -663,6 +680,7 @@
     "roomtype": "special",
     "tags": "priestess_main",
     "direction": 1,
+    "branchweight": 1,
     "name": "priestessmain"
   },
   "librarycombat": {

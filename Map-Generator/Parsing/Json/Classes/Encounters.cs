@@ -19,6 +19,15 @@ namespace Map_Generator.Parsing.Json.Classes
         {
             return !Rooms.Exists(encounter => encounter.Weight == 0);
         }
+
+        public void Initialize()
+        {
+            foreach (var encounter in Rooms)
+            {
+                if (encounter == null) continue;
+                encounter.Door = (encounter.Door == Door.None ? Default.Door : encounter.Door);
+            }
+        }
     }
 
     public class Encounter : IWeight
@@ -31,6 +40,7 @@ namespace Map_Generator.Parsing.Json.Classes
         }
 
         [JsonProperty("weight")] public int Weight { get; set; }
+        [JsonProperty("branchweight")] public int? Branchweight { get; set; }
         public bool Skip { get; set; }
         [JsonProperty("tag")] public string? Tag;
         [JsonProperty("Name")] public string? Name;
@@ -41,24 +51,29 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("difficulty")] public float[]? Difficulty { get; set; }
 
         // [JsonProperty("direction, noexit")] public int NoExit { get; set; }
-        [JsonProperty("noexit")] public int NoExit { get; set; } = 0;
+        [JsonProperty("noexit")] public Direction NoExit { get; set; } = 0;
         [JsonIgnore] public int SubFloor { get; set; }
         [JsonProperty("recursion")] public int SequenceRecursionCount { get; set; } = -1;
         [JsonProperty("sequence")] public List<string> Sequence { get; set; } = new();
         [JsonIgnore] public bool Seen { get; set; } = false;
-        [JsonIgnore] public Door Door { get; set; } = (Door)1;
+        [JsonProperty("door")] public Door Door { get; set; } = Door.None;
 
         public bool AllowNeighbor(Encounter neighbor)
         {
-            if (((NoExit & (int)Direction.North) == 0 && (neighbor.NoExit & (int)Direction.South) == 0) ||
-                ((NoExit & (int)Direction.South) == 0 && (neighbor.NoExit & (int)Direction.North) == 0) ||
-                ((NoExit & (int)Direction.East) == 0 && (neighbor.NoExit & (int)Direction.West) == 0)) return true;
+            if (((NoExit & Direction.North) == 0 && (neighbor.NoExit & Direction.South) == 0) ||
+                ((NoExit & Direction.South) == 0 && (neighbor.NoExit & Direction.North) == 0) ||
+                ((NoExit & Direction.East) == 0 && (neighbor.NoExit & Direction.West) == 0)) return true;
 
-            if ((NoExit & (int)Direction.West) == 0)
-                return (neighbor.NoExit & (int)Direction.East) == 0;
+            if ((NoExit & Direction.West) == 0)
+                return (neighbor.NoExit & Direction.East) == 0;
 
 
             return false;
+        }
+
+        public bool AllowNeighbor(Direction direction)
+        {
+            return (direction & NoExit) == 0;
         }
 
         /// <summary>
@@ -136,6 +151,7 @@ namespace Map_Generator.Parsing.Json.Classes
                     totalDifficulty -= difficulty;
                     array[i]++;
                 }
+
                 Console.WriteLine("total difficulty after: {0}", totalDifficulty);
                 while (totalDifficulty > 0f && enemies2.Count > 0)
                 {
@@ -154,7 +170,7 @@ namespace Map_Generator.Parsing.Json.Classes
                     array[randomNum]++;
                 }
             }
-            
+
             enemies2.Clear();
         }
 

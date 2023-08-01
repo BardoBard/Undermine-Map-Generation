@@ -1,5 +1,8 @@
-﻿namespace Map_Generator.Parsing.Json.Enums
+﻿using System;
+
+namespace Map_Generator.Parsing.Json.Enums
 {
+    [Flags]
     public enum Direction
     {
         None = 0,

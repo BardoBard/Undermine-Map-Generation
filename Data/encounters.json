@@ -61,7 +61,8 @@
                 "rooms": [
                     {
                         "tag": "hoody",
-                        "name": "sleepyhoodyroom"
+                        "name": "sleepyhoodyroom",
+                        "door": 7
                     },
                     {
                         "tag": "black_rabbit",
@@ -315,7 +316,7 @@
                     },
                     {
                         "tag": "end",
-                        "name": "normal",
+                        "name": "end",
                         "icon": 3
                     },
                     {
@@ -354,7 +355,8 @@
                 "default": {
                     "icon": 4,
                     "requirements": "nohexdesolation",
-                    "autospawn": 1
+                    "autospawn": 1,
+                    "door": 1
                 },
                 "rooms": [
                     {
@@ -1562,7 +1564,8 @@
                     "sequence": [
                         "hoodieentrance"
                     ],
-                    "autospawn": 23
+                    "autospawn": 23,
+                    "door": 1
                 },
                 "rooms": [
                     {
@@ -1924,6 +1927,7 @@
                         "tag": "hoodie_entrance",
                         "name": "hoodie_locked",
                         "door": 8,
+                        "direction": 1,
                         "requirements": "hoodieminel",
                         "autospawn": 5,
                         "noexit": 0
@@ -1979,13 +1983,15 @@
                     },
                     {
                         "tag": "end",
-                        "name": "normal",
+                        "name": "end",
                         "icon": 3,
+                        "door": 1,
                         "autospawn": 23
                     },
                     {
                         "tag": "down_boss",
                         "name": "boss",
+                        "door": 1,
                         "icon": 2,
                         "autospawn": 5
                     },
@@ -2043,7 +2049,8 @@
                 "default": {
                     "icon": 4,
                     "requirements": "nohexdesolation",
-                    "autospawn": 1
+                    "autospawn": 1,
+                    "door": 1
                 },
                 "rooms": [
                     {
@@ -2896,6 +2903,7 @@
                     {
                         "weight": 2,
                         "name": "hazardheavy",
+                        "branchweight": 0,
                         "noexit": 0,
                         "door": 1
                     },
@@ -3116,7 +3124,7 @@
                         "tag": "pre_room",
                         "name": "beforedungeonentrance",
                         "icon": 3,
-                        "door": 2,
+                        "door": 1,
                         "requirements": "storymode"
                     }
                 ]
@@ -3575,7 +3583,8 @@
                 "rooms": [
                     {
                         "tag": "hoody",
-                        "name": "sleepyhoodyroom"
+                        "name": "sleepyhoodyroom",
+                        "door": 7
                     },
                     {
                         "tag": "black_rabbit",
@@ -3644,6 +3653,7 @@
             "begin": {
                 "default": {
                     "icon": 1,
+                    "door": 1,
                     "sequence": [
                         "hoodieentrance"
                     ],
@@ -3855,13 +3865,13 @@
                         ],
                         "requirements": "priestessentrance",
                         "autospawn": 6,
-                        "noexit": 0,
-                        "door": 7
+                        "noexit": 0
                     },
                     {
                         "tag": "hoodie_entrance",
                         "name": "hoodie_locked",
                         "door": 8,
+                        "direction": 1,
                         "requirements": "hoodiedungeonl",
                         "autospawn": 5,
                         "noexit": 0
@@ -3893,8 +3903,9 @@
                     },
                     {
                         "tag": "end",
-                        "name": "normal",
+                        "name": "end",
                         "icon": 3,
+                        "door": 1,
                         "autospawn": 31
                     },
                     {
@@ -3949,7 +3960,8 @@
                 "default": {
                     "icon": 4,
                     "requirements": "nohexdesolation",
-                    "autospawn": 1
+                    "autospawn": 1,
+                    "door": 1
                 },
                 "rooms": [
                     {
@@ -4756,6 +4768,15 @@
                             1,
                             -4
                         ],
+                        "enemies": [
+                            {
+                                "name": "firewitch",
+                                "difficulty": 5,
+                                "rougedifficulty": 5,
+                                "max": 1,
+                                "type": 2
+                            }
+                        ],
                         "autospawn": -1,
                         "noexit": 0,
                         "door": 1
@@ -5230,6 +5251,7 @@
                         "noexit": 12,
                         "requirements": "storynotwhip",
                         "autospawn": 6,
+                        "direction": 1,
                         "sequence": [
                             "priestesshall2"
                         ],
@@ -5239,6 +5261,7 @@
                         "tag": "priestesshall2",
                         "name": "priestesshall2",
                         "noexit": 12,
+                        "direction": 1,
                         "requirements": "storynotwhip",
                         "sequence": [
                             "priestesshall3"
@@ -5250,6 +5273,7 @@
                         "tag": "priestesshall3",
                         "name": "priestesshall3",
                         "noexit": 12,
+                        "direction": 1,
                         "requirements": "storynotwhip",
                         "sequence": [
                             "priestessmain"
@@ -5261,6 +5285,7 @@
                         "tag": "priestess_main",
                         "name": "priestess",
                         "icon": 8,
+                        "direction": 1,
                         "noexit": 13,
                         "requirements": "storynotwhip",
                         "autospawn": 6,
@@ -5434,7 +5459,8 @@
                 "rooms": [
                     {
                         "tag": "hoody",
-                        "name": "sleepyhoodyroom"
+                        "name": "sleepyhoodyroom",
+                        "door": 7
                     },
                     {
                         "tag": "black_rabbit",
@@ -5655,6 +5681,7 @@
                         "tag": "hoodie_entrance",
                         "name": "hoodie_locked",
                         "door": 8,
+                        "direction": 1,
                         "requirements": "hoodiecavernl",
                         "autospawn": 5,
                         "noexit": 0
@@ -5689,7 +5716,7 @@
                     },
                     {
                         "tag": "end",
-                        "name": "normal",
+                        "name": "end",
                         "icon": 3
                     },
                     {
@@ -5743,7 +5770,8 @@
                 "default": {
                     "icon": 4,
                     "requirements": "nohexdesolation",
-                    "autospawn": 1
+                    "autospawn": 1,
+                    "door": 1
                 },
                 "rooms": [
                     {
@@ -5866,7 +5894,6 @@
                         "weight": 3,
                         "name": "smallroomchest",
                         "noexit": 13,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
@@ -5883,21 +5910,18 @@
                         "weight": 2,
                         "name": "cursedtorch",
                         "noexit": 4,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 3,
                         "name": "spikedfood",
                         "noexit": 0,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 3,
                         "name": "plainchest",
                         "noexit": 0,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
@@ -5909,70 +5933,60 @@
                         "weight": 2,
                         "name": "keypillar",
                         "noexit": 0,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 3,
                         "name": "keys",
                         "noexit": 0,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 1,
                         "name": "swblessing",
                         "noexit": 5,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 1,
                         "name": "neblessing",
                         "noexit": 10,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 1,
                         "name": "nothinghole",
                         "noexit": 0,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 2,
                         "name": "sneakyeast",
                         "noexit": 11,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 2,
                         "name": "blackrabbitshop",
                         "noexit": 0,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 3,
                         "name": "goldnug",
                         "noexit": 0,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 3,
                         "name": "potion",
                         "noexit": 0,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
                         "weight": 2,
                         "name": "nugg",
                         "noexit": 0,
-                        "door": 6,
                         "recursion": 1
                     },
                     {
@@ -5988,7 +6002,6 @@
                         "icon": 14,
                         "requirements": "secretfountain",
                         "noexit": 0,
-                        "door": 6,
                         "recursion": 1
                     }
                 ]
@@ -6070,6 +6083,7 @@
             "altar": {
                 "default": {
                     "icon": 5,
+                    "door": 4,
                     "sequence": [
                         "guacamole"
                     ],
@@ -6090,20 +6104,17 @@
                     {
                         "weight": 1,
                         "name": "torches",
-                        "noexit": 0,
-                        "door": 4
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "holes",
-                        "noexit": 0,
-                        "door": 4
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "overgrown",
-                        "noexit": 0,
-                        "door": 4
+                        "noexit": 0
                     }
                 ]
             },
@@ -6143,20 +6154,17 @@
                     {
                         "weight": 1,
                         "name": "torches",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "holes",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "overgrown",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     }
                 ]
             }
@@ -6822,7 +6830,8 @@
                 "rooms": [
                     {
                         "tag": "bossroom",
-                        "name": "fireroom"
+                        "name": "fireroom",
+                        "type": 0
                     },
                     {
                         "tag": "black_rabbit",
@@ -6890,7 +6899,8 @@
             "begin": {
                 "default": {
                     "icon": 1,
-                    "autospawn": 23
+                    "autospawn": 23,
+                    "door": 1
                 },
                 "rooms": [
                     {
@@ -7109,7 +7119,7 @@
                     },
                     {
                         "tag": "end",
-                        "name": "normal",
+                        "name": "end",
                         "icon": 3
                     },
                     {
@@ -7130,26 +7140,22 @@
                     {
                         "weight": 1,
                         "name": "blocks",
-                        "noexit": 0,
-                        "door": 4
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "goldpool",
-                        "noexit": 1,
-                        "door": 4
+                        "noexit": 1
                     },
                     {
                         "weight": 1,
                         "name": "basic",
-                        "noexit": 0,
-                        "door": 4
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "torchpuzzle",
-                        "noexit": 0,
-                        "door": 4
+                        "noexit": 0
                     }
                 ]
             },
@@ -7157,7 +7163,8 @@
                 "default": {
                     "icon": 4,
                     "requirements": "nohexdesolation",
-                    "autospawn": 1
+                    "autospawn": 1,
+                    "door": 1
                 },
                 "rooms": [
                     {
@@ -8347,7 +8354,7 @@
                     },
                     {
                         "tag": "end",
-                        "name": "normal",
+                        "name": "end",
                         "icon": 3
                     },
                     {
@@ -8594,7 +8601,7 @@
                     },
                     {
                         "tag": "end",
-                        "name": "normal",
+                        "name": "end",
                         "icon": 3
                     },
                     {
@@ -8615,38 +8622,32 @@
                     {
                         "weight": 1,
                         "name": "trees",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "ruins",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "water",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "pillars",
-                        "noexit": 1,
-                        "door": 1
+                        "noexit": 1
                     },
                     {
                         "weight": 1,
                         "name": "torches",
-                        "noexit": 0,
-                        "door": 1
+                        "noexit": 0
                     },
                     {
                         "weight": 1,
                         "name": "bridge",
-                        "noexit": 11,
-                        "door": 1
+                        "noexit": 11
                     }
                 ]
             },
@@ -8654,7 +8655,8 @@
                 "default": {
                     "icon": 4,
                     "requirements": "nohexdesolation",
-                    "autospawn": 1
+                    "autospawn": 1,
+                    "door": 1
                 },
                 "rooms": [
                     {
@@ -9826,82 +9828,6 @@
                         "icon": 11,
                         "noexit": 0,
                         "door": 1
-                    }
-                ]
-            }
-        }
-    },
-    "shop": {
-        "shop": {
-            "shop": {
-                "default": {
-                    "icon": 10
-                },
-                "rooms": [
-                    {
-                        "tag": "pilfer_shop",
-                        "name": "encounter_shop"
-                    },
-                    {
-                        "tag": "pilfer_shop, shop_om",
-                        "name": "encounter_shop_om"
-                    },
-                    {
-                        "tag": "pilfer_shop, market_baby",
-                        "name": "encounter_market_baby",
-                        "subfloor": 1
-                    },
-                    {
-                        "tag": "pilfer_shop, market",
-                        "name": "encounter_market",
-                        "subfloor": 1,
-                        "sequence": [
-                            "marketbaby"
-                        ]
-                    },
-                    {
-                        "tag": "shop_storeroom",
-                        "name": "encounter_storeroom",
-                        "subfloor": 1,
-                        "icon": 0,
-                        "door": 7,
-                        "requirements": "roguemode"
-                    }
-                ]
-            }
-        }
-    },
-    "blackrabbit": {
-        "blackrabbit": {
-            "blackrabbit": {
-                "default": {
-                    "requirements": "blackrabbitmet"
-                },
-                "rooms": [
-                    {
-                        "weight": 4,
-                        "name": "encounter_br_shop"
-                    },
-                    {
-                        "weight": 1,
-                        "name": "encounter_br_treasuregame"
-                    },
-                    {
-                        "weight": 1,
-                        "name": "encounter_br_levergame",
-                        "tag": "test"
-                    }
-                ]
-            }
-        }
-    },
-    "sleepyhoodyroom": {
-        "sleepyhoodyroom": {
-            "sleepyhoodyroom": {
-                "rooms": [
-                    {
-                        "weight": 1,
-                        "name": "hoody room"
                     }
                 ]
             }

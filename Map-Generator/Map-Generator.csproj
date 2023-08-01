@@ -64,8 +64,11 @@
         </Compile>
         <Compile Include="Grid.cs" />
         <Compile Include="BardLog.cs" />
+        <Compile Include="GridControl.cs">
+          <DependentUpon>Form1.cs</DependentUpon>
+        </Compile>
         <Compile Include="MapType.cs" />
-        <Compile Include="Math\Vector2.cs" />
+        <Compile Include="Math\Vector2Int.cs" />
         <Compile Include="Parsing\Json\Classes\Encounters.cs" />
         <Compile Include="Parsing\Json\Classes\Enemy.cs" />
         <Compile Include="Parsing\Json\Classes\Maps.cs" />
@@ -77,6 +80,7 @@
         <Compile Include="Parsing\Json\JsonDecoder.cs" />
         <Compile Include="Parsing\Save.cs" />
         <Compile Include="Program.cs" />
+        <Compile Include="Undermine\DirectionExtensions.cs" />
         <Compile Include="Undermine\ListExtensions.cs" />
         <Compile Include="Undermine\Rand.cs" />
         <None Include="packages.config" />
