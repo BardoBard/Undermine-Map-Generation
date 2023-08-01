@@ -32,6 +32,13 @@ namespace Map_Generator.Parsing.Json.Classes
 
     public class Encounter : IWeight
     {
+        public Encounter DeepClone()
+        {
+            string serializedObject = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Encounter>(serializedObject) ??
+                   throw new InvalidOperationException("failed to do a deep copy");
+        }
+        
         public class WeightedDoor : IWeight
         {
             [JsonProperty("weight")] public int Weight { get; set; }

@@ -75,6 +75,7 @@ namespace Map_Generator
                         room.Encounter = encounters.Find(encounter =>
                             encounter?.Tag == room.Tag &&
                             (encounter?.Requirement == null || Save.Check(encounter.Requirement)));
+                        //?.DeepClone(); //TODO: clone?!
                     }
 
                     room.CanReload = room.Encounter is { SubFloor: 0 };
@@ -161,7 +162,7 @@ namespace Map_Generator
 
                 if (previousRoom != null)
                     previousRoom.Branches[roomName.Direction] = room;
-                
+
 
                 Console.WriteLine(Rand.Value());
 
@@ -184,16 +185,16 @@ namespace Map_Generator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MapGenerator());
         }
 
         public static List<RoomType> PositionedRooms = new(20);
 
-        public static void Start()
+        public static void Start(string saveJsonFile)
         {
-            Save.Initialize("Save2.json");
+            ClearAll();
+            Save.Initialize(saveJsonFile);
             Rand.Initialize((uint)(Save.Seed + Save.floor_number));
-
             var level = JsonDecoder.Maps.First(map =>
                     map.Name == MapType.GetMapName() && (map.Requirement == null || Save.Check(map.Requirement)))
                 .Levels[Save.FloorIndex];
@@ -212,6 +213,18 @@ namespace Map_Generator
             Console.WriteLine(Rand.Value());
             Console.WriteLine("starting get room mapping");
             GetRoomMapping();
+        }
+
+        private static void ClearAll()
+        {
+            foreach (var encounter in Rooms.Select(room => room.Encounter).Where(encounter => encounter != null))
+            {
+                encounter.Skip = false;
+                encounter.Seen = false;
+            }
+
+            Rooms.Clear();
+            PositionedRooms.Clear();
         }
 
         private static void GetRoomMapping()
@@ -250,7 +263,7 @@ namespace Map_Generator
                 {
                     break;
                 }
-                break;
+
                 Console.WriteLine("Layout failed, trying again!");
                 foreach (RoomType room2 in Rooms)
                 {
@@ -263,12 +276,124 @@ namespace Map_Generator
                 i = num;
             }
 
+            foreach (RoomType room10 in Rooms)
+            {
+                if (!room10.Secluded && room10.Encounter.Door == Door.Secret)
+                {
+                    foreach (Direction kCardinalDirection2 in DirectionExtension.CardinalDirections)
+                    {
+                        RoomType? room4 = GetRoom(GetRoomPosition(room10.Position, kCardinalDirection2));
+
+                        if (room4 == null || !room10.IsValidNeighbor(room4, kCardinalDirection2))
+                            continue;
+
+                        if (room4.Encounter.Door is Door.None or Door.Hidden or Door.Crystal || room4.Secluded)
+                            continue;
+
+                        room10.Neighbors[kCardinalDirection2] = room4;
+                        room4.Neighbors[kCardinalDirection2.Opposite()] = room10;
+                    }
+                }
+
+                if (room10.Encounter.Door != Door.Normal)
+                {
+                    continue;
+                }
+
+                foreach (Direction kCardinalDirection3 in DirectionExtension.CardinalDirections)
+                {
+                    RoomType? room5 = GetRoom(GetRoomPosition(room10.Position, kCardinalDirection3));
+
+                    if (room5 != null && room5.Encounter.Door == Door.Normal &&
+                        room10.IsValidNeighbor(room5, kCardinalDirection3) &&
+                        Rand.Chance(ZoneData.GetZoneData().Connectivity))
+                    {
+                        room10.Neighbors[kCardinalDirection3] = room5;
+                        room5.Neighbors[kCardinalDirection3.Opposite()] = room10;
+                    }
+                }
+            }
+
+            // foreach (Spawner.SpawnTable setPiece in Data.SetPieces)
+            // {
+            //     PlaceExtra(setPiece, Encounter.AutoSpawnType.SetPieces);
+            // }
+            //
+            // foreach (Spawner.SpawnTable extra in Data.Extras)
+            // {
+            //     PlaceExtra(extra, Encounter.AutoSpawnType.Extras);
+            // }
+            //
+            // foreach (Spawner.SpawnTable resource in Data.Resources)
+            // {
+            //     PlaceExtra(resource, Encounter.AutoSpawnType.Extras);
+            // }
+            //
+            // foreach (Room room in Rooms)
+            // {
+            //     RequireExt[] componentsInChildren = room.GetComponentsInChildren<RequireExt>(includeInactive: true);
+            //     RequireExt[] array = componentsInChildren;
+            //     foreach (RequireExt requirement in array)
+            //     {
+            //         requirement.SpawnTable.Spawn(
+            //             delegate(Spawner.SpawnData spawnData, out Vector3 position, out Transform parent)
+            //             {
+            //                 Room room6 = null;
+            //                 if (requirement.Location == RequireExt.SpawnLocation.RandomRoom)
+            //                 {
+            //                     List<Room> list = new List<Room>(Rooms);
+            //                     list.Shuffle();
+            //                     foreach (Room item in list)
+            //                     {
+            //                         if ((item.Encounter.AutoSpawn & Encounter.AutoSpawnType.Extras) != 0 &&
+            //                             item != room)
+            //                         {
+            //                             room6 = item;
+            //                             break;
+            //                         }
+            //                     }
+            //                 }
+            //                 else if (requirement.Location == RequireExt.SpawnLocation.SameRoom)
+            //                 {
+            //                     room6 = room;
+            //                 }
+            //
+            //                 Debug.AssertFormat(room6 != null, "No Room found for Requirement [{0}]", requirement);
+            //                 if (room6 != null)
+            //                 {
+            //                     room6.AddExtra(spawnData);
+            //                 }
+            //
+            //                 position = Vector3.zero;
+            //                 parent = null;
+            //                 return false;
+            //             }, delegate(Spawnable spawnable)
+            //             {
+            //                 if (spawnable is Entity)
+            //                 {
+            //                     Entity entity = spawnable as Entity;
+            //                     requirement.Entity.Link = entity;
+            //                     entity.Link = requirement.Entity;
+            //                 }
+            //             }, null);
+            //     }
+            // }
+
+            // foreach (RoomType room11 in Rooms)
+            // {
+            //     room11.LoadDoors();
+            // }
+
+            // foreach (RoomType room12 in Rooms)
+            // {
+            //     yield return room12.Setup();
+            // }
             Console.WriteLine("");
         }
 
         private static bool SetRoomPosition(RoomType room)
         {
-            List<Direction> list = new List<Direction>(DirectionExtensions.CardinalDirections);
+            List<Direction> list = new List<Direction>(DirectionExtension.CardinalDirections);
             Direction direction = Direction.None;
             if (room.PreviousRoom != null)
             {
@@ -345,8 +470,18 @@ namespace Map_Generator
                 }
                 else //door is not none or hidden
                 {
+                    Console.WriteLine("door type is not none or hidden");
+                    foreach (var room3 in list2)
+                    {
+                        Console.WriteLine("name: {0}, weight: {1}", room3.Encounter.Name, room3.Weight);
+                    }
+
+                    Console.WriteLine("room name: {0} ({2},{3}), door: {1}, ", room.Encounter.Name,
+                        room.Encounter.Door, room.Position.x, room.Position.y);
+
                     list2.RemoveAll(roomType =>
                         (roomType.Encounter.Branchweight ?? roomType.Weight) == 0); //TODO: check
+
                     while (direction == Direction.None && list2.Count > 0)
                     {
                         if (!Rand.GetWeightedElement(list2!, out RoomType result, false))
@@ -367,6 +502,7 @@ namespace Map_Generator
                 }
             }
 
+            Console.WriteLine("");
             if (direction == Direction.None) return false;
             if (room.Encounter is { Door: Door.None or Door.Hidden }) return true;
 
@@ -411,7 +547,7 @@ namespace Map_Generator
                     continue;
                 }
 
-                if (DirectionExtensions.CardinalDirections.Any(kCardinalDirection =>
+                if (DirectionExtension.CardinalDirections.Any(kCardinalDirection =>
                         CanMove(branch.Value, kCardinalDirection, position)))
                     num++;
             }
@@ -427,19 +563,7 @@ namespace Map_Generator
 
         public static Vector2Int GetRoomPosition(Vector2Int position, Direction direction)
         {
-            return position + DirectionToVector(direction);
-        }
-        
-        public static Vector2Int DirectionToVector(Direction direction)
-        {
-            return direction switch
-            {
-                Direction.North => Vector2Int.Up,
-                Direction.South => Vector2Int.Down,
-                Direction.East => Vector2Int.Right,
-                Direction.West => Vector2Int.Left,
-                _ => Vector2Int.Zero,
-            };
+            return position + direction.DirectionToVector();
         }
     }
 }

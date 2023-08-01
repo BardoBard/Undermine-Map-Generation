@@ -2951,6 +2951,7 @@
                         "weight": 3,
                         "name": "cornerbridge",
                         "noexit": 0,
+                        "branchweight": 0,
                         "door": 1
                     },
                     {

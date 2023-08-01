@@ -1,45 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Map_Generator.Math;
 
 namespace Map_Generator;
 
 public class Grid
 {
-    public int Size = 32;
-    public int Height = 72;
-    public int Width = 32;
-    public float CellSzie = 0.4f;
-    // public Vector2Int LocalOrigin = new(-14.2, -7); //TODO: check if it's woth having multiple types of Vector2
-    public Vector2Int Origin = new();
-    public List<Vector2Int> Coordinates;
-    public List<Grid> SubGrids;
-    
-    public class GridMap
-    {
-        public Vector2Int size = Vector2Int.One;
-    }
+    public List<GridSquare> GridSquares { get; private set; }
+    public const int CellSize = 40;
+    public const int GapSize = 10;
+    public int GridWidth => 5;
+    public int GridHeight => 5;
+    public int Width { get; set; } = 0;
+    public int Height { get; set; } = 0;
+    public Vector2Int GridTranslation { get; private set; }
 
-
-    public Grid()
+    public Grid(int width, int height, List<GridSquare> gridSquares, Vector2Int? gridTranslation = null)
     {
-        
-    }
-    public Grid(string stage)
-    {
-        switch (stage)
-        {
-            case "small":
-                Height = 11;
-                Width = 20;
-                break;
-            case "extra":
-                Height = 11;
-                Width = 20;
-                break;
-            case "large":
-                Height = 13;
-                Height = 20;
-                break;
-        }
+        GridTranslation = gridTranslation ?? Vector2Int.One;
+        this.GridSquares = gridSquares;
+        this.Width = width;
+        this.Height = height;
     }
 }

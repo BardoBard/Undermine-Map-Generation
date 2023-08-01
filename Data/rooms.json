@@ -5,7 +5,8 @@
     ],
     "roomtype": "begin",
     "branchweight": 1,
-    "name": "begin"
+    "name": "begin",
+    "icon": 1
   },
   "beginend": {
     "stage": [
@@ -13,7 +14,8 @@
     ],
     "roomtype": "begin",
     "branchweight": 4,
-    "name": "beginend"
+    "name": "beginend",
+    "icon": 1
   },
   "end": {
     "stage": [
@@ -22,7 +24,8 @@
     "roomtype": "special",
     "tags": "end",
     "branchweight": 1,
-    "name": "end"
+    "name": "end",
+    "icon": 12
   },
   "normalsmall": {
     "stage": [
@@ -62,7 +65,8 @@
       "small"
     ],
     "roomtype": "relic",
-    "name": "relic"
+    "name": "relic",
+    "icon": 3
   },
   "relicchance": {
     "stage": [
@@ -70,7 +74,8 @@
       "large"
     ],
     "roomtype": "relic",
-    "name": "relicchance"
+    "name": "relicchance",
+    "icon": 3
   },
   "relicunlocked": {
     "stage": [
@@ -78,7 +83,8 @@
     ],
     "roomtype": "relic_unlocked",
     "branchweight": 1,
-    "name": "relicunlocked"
+    "name": "relicunlocked",
+    "icon": 3
   },
   "relicextracost": {
     "stage": [
@@ -86,7 +92,8 @@
     ],
     "roomtype": "relic",
     "doorcost": 2,
-    "name": "relicextracost"
+    "name": "relicextracost",
+    "icon": 3
   },
   "altar": {
     "stage": [
@@ -94,21 +101,24 @@
     ],
     "roomtype": "altar",
     "branchweight": 1,
-    "name": "altar"
+    "name": "altar",
+    "icon": 7
   },
   "altarnobranch": {
     "stage": [
       "small"
     ],
     "roomtype": "altar",
-    "name": "altarnobranch"
+    "name": "altarnobranch",
+    "icon": 7
   },
   "guacamole": {
     "stage": [
       "small"
     ],
     "roomtype": "altar_guacamole",
-    "name": "guacamole"
+    "name": "guacamole",
+    "icon": 7
   },
   "guacamolealt": {
     "stage": [
@@ -116,7 +126,8 @@
     ],
     "roomtype": "altar_guacamole",
     "requirements": "relicguacamole",
-    "name": "guacamolealt"
+    "name": "guacamolealt",
+    "icon": 7
   },
   "blackrabbit": {
     "stage": [
@@ -125,7 +136,8 @@
     "roomtype": "blackrabbit",
     "tags": "black_rabbit",
     "chance": 0.5,
-    "name": "blackrabbit"
+    "name": "blackrabbit",
+    "icon": 8
   },
   "hoodieentrance": {
     "stage": [
@@ -134,7 +146,8 @@
     "roomtype": "special",
     "tags": "hoodie_entrance",
     "direction": 1,
-    "name": "hoodieentrance"
+    "name": "hoodieentrance",
+    "icon": 2
   },
   "hoody": {
     "stage": [
@@ -143,7 +156,8 @@
     "encounter": true,
     "roomtype": "special",
     "tags": "hoody",
-    "name": "hoody"
+    "name": "hoody",
+    "icon": 2
   },
   "secret": {
     "stage": [
@@ -151,7 +165,8 @@
       "large"
     ],
     "roomtype": "secret",
-    "name": "secret"
+    "name": "secret",
+    "icon": 6
   },
   "secretchance": {
     "stage": [
@@ -161,7 +176,8 @@
     "roomtype": "secret",
     "chance": 0.5,
     "requirements": "adventurers_hat",
-    "name": "secretchance"
+    "name": "secretchance",
+    "icon": 6
   },
   "circinus": {
     "stage": [
@@ -171,7 +187,8 @@
     "roomtype": "secret",
     "chance": 0.25,
     "requirements": "reliccircinus",
-    "name": "circinus"
+    "name": "circinus",
+    "icon": 6
   },
   "treasure": {
     "stage": [
@@ -180,7 +197,8 @@
     ],
     "roomtype": "treasure",
     "branchweight": 1,
-    "name": "treasure"
+    "name": "treasure",
+    "icon": 4
   },
   "treasurechance": {
     "stage": [
@@ -190,7 +208,8 @@
     "roomtype": "treasure",
     "chance": 0.5,
     "requirements": "relicadventurerswhip",
-    "name": "treasurechance"
+    "name": "treasurechance",
+    "icon": 4
   },
   "treasurebasic": {
     "stage": [
@@ -198,7 +217,8 @@
     ],
     "roomtype": "treasurebasic",
     "branchweight": 1,
-    "name": "treasurebasic"
+    "name": "treasurebasic",
+    "icon": 4
   },
   "treasurebasicchance": {
     "stage": [
@@ -208,7 +228,8 @@
     "roomtype": "treasurebasic",
     "chance": 0.5,
     "requirements": "relicadventurerswhip",
-    "name": "treasurebasicchance"
+    "name": "treasurebasicchance",
+    "icon": 4
   },
   "hidden": {
     "stage": [
@@ -241,7 +262,8 @@
     "stepchance": 0.25,
     "roomtype": "special",
     "tags": "royal_road_0",
-    "name": "royalroad0"
+    "name": "royalroad0",
+    "icon": 10
   },
   "royalroad1": {
     "stage": [
@@ -250,7 +272,8 @@
     "roomtype": "special",
     "tags": "royal_road_1",
     "direction": 2,
-    "name": "royalroad1"
+    "name": "royalroad1",
+    "icon": 10
   },
   "royalroad2": {
     "stage": [
@@ -259,7 +282,8 @@
     "roomtype": "special",
     "tags": "royal_road_2",
     "direction": 1,
-    "name": "royalroad2"
+    "name": "royalroad2",
+    "icon": 10
   },
   "royalroad3": {
     "stage": [
@@ -268,7 +292,8 @@
     "roomtype": "special",
     "tags": "royal_road_3",
     "direction": 8,
-    "name": "royalroad3"
+    "name": "royalroad3",
+    "icon": 10
   },
   "royalroad4": {
     "stage": [
@@ -277,7 +302,8 @@
     "roomtype": "special",
     "tags": "royal_road_4",
     "direction": 1,
-    "name": "royalroad4"
+    "name": "royalroad4",
+    "icon": 10
   },
   "queenroom": {
     "stage": [
@@ -295,7 +321,8 @@
     "roomtype": "special",
     "tags": "down_boss",
     "branchweight": 1,
-    "name": "endboss"
+    "name": "endboss",
+    "icon": 11
   },
   "endbosssmall": {
     "stage": [
@@ -303,7 +330,8 @@
     ],
     "roomtype": "special",
     "tags": "down_boss",
-    "name": "endbosssmall"
+    "name": "endbosssmall",
+    "icon": 11
   },
   "bossroom": {
     "stage": [
@@ -317,7 +345,8 @@
       "cavern": {
         "sprites": 14
       }
-    }
+    },
+    "icon": 11
   },
   "prechamber": {
     "stage": [
@@ -352,7 +381,8 @@
       "hall": {
         "sprites": 24
       }
-    }
+    },
+    "icon": 12
   },
   "bogprechamber": {
     "stage": [
@@ -362,7 +392,8 @@
     "tags": "pre_bog",
     "direction": 1,
     "name": "bogprechamber",
-    "encounter": true
+    "encounter": true,
+    "icon": 10
   },
   "bogdown": {
     "stage": [
@@ -371,7 +402,8 @@
     "roomtype": "special",
     "tags": "next_entrance_bog",
     "direction": 1,
-    "name": "bogdown"
+    "name": "bogdown",
+    "icon": 12
   },
   "bogprechamberbug": {
     "stage": [
@@ -395,7 +427,8 @@
     ],
     "roomtype": "shop",
     "branchweight": 1,
-    "name": "shop"
+    "name": "shop",
+    "icon": 5
   },
   "shopextracost": {
     "stage": [
@@ -404,7 +437,8 @@
     "roomtype": "shop",
     "branchweight": 1,
     "doorcost": 2,
-    "name": "shopextracost"
+    "name": "shopextracost",
+    "icon": 5
   },
   "marketbaby": {
     "stage": [
@@ -432,7 +466,8 @@
     "stepchance": 0.0625,
     "zonestepchance": -0.0625,
     "tags": "relic_altar",
-    "name": "relicaltar"
+    "name": "relicaltar",
+    "icon": 9
   },
   "relicaltarlastfloors": {
     "stage": [
@@ -443,7 +478,8 @@
     "zonestepchance": -0.0625,
     "roomtype": "special",
     "tags": "relic_altar",
-    "name": "relicaltarlastfloors"
+    "name": "relicaltarlastfloors",
+    "icon": 9
   },
   "fountain": {
     "stage": [
@@ -533,7 +569,8 @@
     "tags": "end_tutorial",
     "direction": 1,
     "branchweight": 1,
-    "name": "tuend"
+    "name": "tuend",
+    "icon": 12
   },
   "tusecret": {
     "stage": [
@@ -543,7 +580,8 @@
     "tags": "tutorial_secret",
     "direction": 1,
     "branchweight": 1,
-    "name": "tusecret"
+    "name": "tusecret",
+    "icon": 6
   },
   "dodsoncage": {
     "name": "dodsoncage,normalsmall",
@@ -560,7 +598,8 @@
       "large"
     ],
     "roomtype": "special",
-    "tags": "rockmimicencounter"
+    "tags": "rockmimicencounter",
+    "icon": 10
   },
   "waylandshophallway": {
     "stage": [
@@ -577,7 +616,8 @@
     "roomtype": "special",
     "tags": "waylandshop",
     "direction": 1,
-    "name": "waylandshop"
+    "name": "waylandshop",
+    "icon": 10
   },
   "mushroomapprentice": {
     "stage": [
@@ -588,7 +628,8 @@
     "roomtype": "special",
     "tags": "mushroom_apprentice",
     "branchweight": 1,
-    "name": "mushroomapprentice"
+    "name": "mushroomapprentice",
+    "icon": 10
   },
   "mushroom": {
     "stage": [
@@ -599,7 +640,8 @@
     "stepchance": 0.1,
     "roomtype": "special",
     "tags": "mushroom",
-    "name": "mushroom"
+    "name": "mushroom",
+    "icon": 10
   },
   "blackrabbitfirst": {
     "stage": [
@@ -608,7 +650,8 @@
     "roomtype": "special",
     "tags": "black_rabbit_first",
     "branchweight": 1,
-    "name": "blackrabbitfirst"
+    "name": "blackrabbitfirst",
+    "icon": 8
   },
   "dibble": {
     "stage": [
@@ -617,7 +660,8 @@
     "roomtype": "special",
     "tags": "dibble",
     "direction": 1,
-    "name": "dibble"
+    "name": "dibble",
+    "icon": 10
   },
   "storeroom": {
     "stage": [
@@ -626,7 +670,8 @@
     "roomtype": "special",
     "tags": "store_room",
     "direction": 1,
-    "name": "storeroom"
+    "name": "storeroom",
+    "icon": 10
   },
   "masterskey": {
     "stage": [
@@ -634,7 +679,8 @@
     ],
     "roomtype": "special",
     "tags": "masters_key",
-    "name": "masterskey"
+    "name": "masterskey",
+    "icon": 10
   },
   "priestess": {
     "stage": [
@@ -643,7 +689,8 @@
     "roomtype": "special",
     "tags": "priestess",
     "branchweight": 0,
-    "name": "priestess"
+    "name": "priestess",
+    "icon": 10
   },
   "priestesshall1": {
     "stage": [
@@ -690,7 +737,8 @@
     "roomtype": "special",
     "tags": "hall_library_combat_arena",
     "branchweight": 1,
-    "name": "librarycombat"
+    "name": "librarycombat",
+    "icon": 10
   },
   "library": {
     "stage": [
@@ -699,7 +747,8 @@
     "roomtype": "special",
     "tags": "hall_library",
     "direction": 1,
-    "name": "library"
+    "name": "library",
+    "icon": 10
   },
   "threechests": {
     "stage": [
@@ -717,7 +766,8 @@
     ],
     "roomtype": "secret",
     "direction": 2,
-    "name": "secreteast"
+    "name": "secreteast",
+    "icon": 6
   },
   "hiddenhallway": {
     "stage": [
@@ -745,7 +795,8 @@
     ],
     "roomtype": "secret",
     "direction": 8,
-    "name": "secretwest"
+    "name": "secretwest",
+    "icon": 6
   },
   "maybesecreteast": {
     "stage": [
@@ -755,6 +806,7 @@
     "roomtype": "secret",
     "chance": 0.5,
     "direction": 2,
-    "name": "maybesecreteast"
+    "name": "maybesecreteast",
+    "icon": 6
   }
 }

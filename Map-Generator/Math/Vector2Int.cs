@@ -31,7 +31,9 @@ public class Vector2Int/*<T> where T : IComparable<T>*/ //TODO: check if it's wo
     public static Vector2Int operator *(Vector2Int a, int n) => new(a.x * n, a.y * n);
     public static Vector2Int operator /(Vector2Int a, int n) => new(a.x / n, a.y / n);
     public static Vector2Int operator /(Vector2Int a, Vector2Int b) => new(a.x / b.x, a.y / a.y);
+    
+    public static Vector2Int operator -(Vector2Int a) => new(-a.x, -a.y);
+    
     public static bool operator ==(Vector2Int a, Vector2Int b) => a.x == b.x && a.y == b.y;
-
     public static bool operator !=(Vector2Int a, Vector2Int b) => !(a == b);
 }

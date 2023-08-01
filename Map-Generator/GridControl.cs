@@ -1,145 +1,108 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Map_Generator.Math;
+using Map_Generator.Parsing;
 using Map_Generator.Parsing.Json.Classes;
 using Map_Generator.Parsing.Json.Enums;
 
 namespace Map_Generator
 {
-    public class GridSquare
-    {
-        public RoomType Room { get; set; }
-        public int x => Room.Position.x;
-        public int y => Room.Position.y;
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public Color Color { get; set; }
-
-        public GridSquare(RoomType room, int width, int height, Color color)
-        {
-            Room = room;
-            Width = width;
-            Height = height;
-            Color = color;
-        }
-
-        public string GetEnemyInformation()
-        {
-            List<string> enemiesInfo = (Room.Encounter!.Enemies ?? new List<Enemy>())
-                .Select(enemy => $"Enemy: {enemy.Name}")
-                .ToList();
-            return string.Concat(
-                $"{Room.RoomTypeTag}_{Room.Encounter.Name}",
-                "\n\n\n",
-                string.Join("\n", enemiesInfo));
-        }
-    }
-
     public class GridControl : Control
     {
-        private const int CellSize = 40;
-        private const int GapSize = 10;
-
-        private Vector2Int Origin => GridSquares.Count > 0
-            ? new(
-                (GridSquares[0].x - GridSquares.Min(s => s.x)) * (CellSize + GapSize),
-                (GridSquares[0].y - GridSquares.Min(s => s.y)) * (CellSize + GapSize))
-            : new();
+        private const int IconSize = 30;
+        private Grid _grid = new Grid(0, 0, new List<GridSquare>());
 
         private ToolTip Tooltip = new ToolTip();
 
-        private List<GridSquare> GridSquares { get; set; } = new List<GridSquare>();
-
         public void InitializeGridSquares(List<RoomType> roomTypes)
         {
-            GridSquares = new List<GridSquare>();
-
-            foreach (var room in roomTypes)
-                GridSquares.Add(new GridSquare(room, CellSize, CellSize, AssignColor(room)));
+            _grid = new Grid(this.Width, this.Height,
+                roomTypes.Select(room => new GridSquare(room, MapIconExtension.AssignColor(room))).ToList(),
+                new(1, -1));
 
             Invalidate();
-        }
-
-        private Color AssignColor(RoomType room)
-        {
-            Color color = Color.Gray;
-
-            if (room.Position == Vector2Int.Zero)
-                color = Color.GreenYellow;
-            else if (room.Tag == "end")
-                color = Color.Red;
-            else if (room.Encounter.Door == Door.Secret)
-                color = Color.Yellow;
-            else if (room.Encounter.Door == Door.Hidden)
-                color = Color.Black;
-            else if (room.RoomTypeTag is "relic" or "relic_unlocked")
-                color = Color.Blue;
-
-            return color;
         }
 
         public GridControl()
         {
             DoubleBuffered = true;
-            Tooltip.ToolTipTitle = "Room Information";
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            if (GridSquares == null || GridSquares.Count == 0)
+            if (_grid.GridSquares.Count == 0)
                 return;
 
             Graphics g = e.Graphics;
             g.TranslateTransform(0, this.Height);
-            g.ScaleTransform(1, -1);
+            g.ScaleTransform(_grid.GridTranslation.x, _grid.GridTranslation.y);
 
-            // Calculate the number of rows and columns
-            int numRows = GridSquares.Max(square => square.y) - GridSquares.Min(square => square.y) + 1;
-            int numCols = GridSquares.Max(square => square.x) - GridSquares.Min(square => square.x) + 1;
-
-            // Calculate the total size of the grid
-            int totalWidth = numCols * CellSize + (numCols - 1) * GapSize;
-            int totalHeight = numRows * CellSize + (numRows - 1) * GapSize;
-
-            // Calculate the offset to center the grid in the control
-            int offsetX = (this.Width - totalWidth) / 2;
-            int offsetY = (this.Height - totalHeight) / 2;
-
-            foreach (GridSquare? square in GridSquares)
+            foreach (GridSquare? square in _grid.GridSquares)
             {
-                int x = offsetX + (square.x - GridSquares.Min(s => s.x)) * (CellSize + GapSize);
-                int y = offsetY + (square.y - GridSquares.Min(s => s.y)) * (CellSize + GapSize);
+                var position = square.GetPositionOnGrid(_grid);
 
-                DrawRoom(g, square, x, y);
+                DrawRoom(g, square, position.x, position.y);
             }
         }
 
         private void DrawRoom(Graphics g, GridSquare square, int x, int y)
         {
             Brush brush = new SolidBrush(square.Color);
-            g.FillRectangle(brush, x, y, square.Width, square.Height);
+            g.FillRectangle(brush, x, y, Grid.CellSize, Grid.CellSize);
 
-            // Draw exits/doors between neighboring rooms
+            // draw connections between neighbors
             foreach (var neighborDirection in square.Room.Neighbors.Keys)
             {
-                Vector2Int center = new(x + square.Width / 2, y + square.Height / 2);
+                Vector2Int center = square.Center(_grid);
+                Vector2Int neighborCenter = square.NeighborCenter(_grid, neighborDirection);
 
-                Vector2Int neighborCenter =
-                    center + Program.DirectionToVector(neighborDirection) * (square.Width + GapSize);
+                int neighborCenterX = neighborCenter.x;
+                int neighborCenterY = neighborCenter.y;
 
-                // Draw a line from the current room to the neighbor with the direction
-                g.DrawLine(Pens.Black, center.x, center.y, neighborCenter.x, neighborCenter.y);
+                g.DrawLine(Pens.Black, center.x, center.y, neighborCenterX, neighborCenterY);
+
+
+                Image? doorImage = DoorExtension.GetDoorImage(square.Room.Encounter.Door);
+                if (doorImage != null)
+                {
+                    doorImage.RotateFlip(RotateFlipType.Rotate180FlipX);
+                    int iconX = x + neighborDirection.DirectionToVector().x * (Grid.CellSize / 2) +
+                                (Grid.CellSize - IconSize) / 2;
+                    int iconY = y + neighborDirection.DirectionToVector().y * (Grid.CellSize / 2) +
+                                (Grid.CellSize - IconSize) / 2;
+                    // Vector2Int neighborDoorPosition = square.DoorPosition(_grid, IconSize);
+                    g.DrawImage(
+                        doorImage,
+                        iconX,
+                        iconY,
+                        IconSize, IconSize
+                    );
+                }
+            }
+
+            Image? mapImage = MapIconExtension.GetMapImage(square.Room.MapIcon);
+            if (mapImage != null)
+            {
+                int iconX = x + (Grid.CellSize - IconSize) / 2;
+                int iconY = y + (Grid.CellSize - IconSize) / 2;
+
+                mapImage.RotateFlip(RotateFlipType.Rotate180FlipX);
+
+                g.DrawImage(mapImage, iconX, iconY, IconSize, IconSize);
             }
         }
 
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
+            _grid.Width = this.Width;
+            _grid.Height = this.Height;
             Invalidate();
         }
 
@@ -147,18 +110,21 @@ namespace Map_Generator
         {
             base.OnMouseClick(e);
 
-            int gridX = (this.Width - e.Location.X - GapSize - Origin.x) / (CellSize + GapSize);
-            int gridY = (this.Height - e.Location.Y - GapSize - Origin.y) / (CellSize + GapSize);
-
             // Find the grid square where the mouse cursor is
-            GridSquare? clickedSquare = GridSquares.FirstOrDefault(square =>
-                square.x == Origin.x + gridX && square.y == Origin.y + gridY);
+            GridSquare? clickedSquare = _grid.GridSquares.FirstOrDefault(square =>
+            {
+                var position = square.GetPositionOnGrid(_grid);
+                return e.X >= position.x && e.X <= position.x + Grid.CellSize &&
+                       e.Y <= position.y && e.Y >= position.y - Grid.CellSize;
+            });
 
             if (clickedSquare is null) return;
 
             string enemyInformation = clickedSquare.GetEnemyInformation();
 
             if (string.IsNullOrEmpty(enemyInformation)) return;
+
+            Tooltip.ToolTipTitle = $"{clickedSquare.Room.RoomTypeTag}_{clickedSquare.Room.Encounter.Name}";
 
             Tooltip.Show(enemyInformation, this, 6000);
         }

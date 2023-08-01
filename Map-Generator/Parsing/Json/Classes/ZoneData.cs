@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Map_Generator.Json;
 using Newtonsoft.Json;
 
 namespace Map_Generator.Parsing.Json.Classes
@@ -17,6 +19,12 @@ namespace Map_Generator.Parsing.Json.Classes
             {
                 EnemyTypeWeight = EnemyTypeWeight.Append(0).ToArray();
             }
+        }
+
+        public static ZoneData GetZoneData()
+        {
+            return JsonDecoder.ZoneData[Save.ZoneIndex].First(zoneData => Save.Check(zoneData.Requirements)) ??
+                   throw new InvalidOperationException("data is null");
         }
 
         [JsonProperty("name")] public string Name { get; set; }

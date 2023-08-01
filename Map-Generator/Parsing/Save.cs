@@ -288,9 +288,9 @@ public static class Save
         room.IsHidden && Save.FloorNumber == 4 ? MapType.GetNextMapName() : MapType.GetMapName();
     // && !bog_unlocked; //TODO: check this bog (enterBog)
 
-    public static void Initialize(string saveString)
+    public static void Initialize(string saveJsonFile)
     {
-        var path = JsonDecoder.UnderminePath + @"\Saves\" + saveString;
+        var path = saveJsonFile;
         var json = File.ReadAllText(path);
         var jsonObject = JObject.Parse(json);
         ParseUpgradeString(jsonObject["upgradeString"]);

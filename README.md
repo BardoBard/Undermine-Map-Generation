@@ -29,6 +29,11 @@ Used for the Undermine speedrunning community.
 - add enemies in json, not sure what I was thinking
 - no need to do some dumb shit with floornumber == 4 && ishidden, just rename the maps
 - noexit check
+- fix branchweight for encounters if possible
+- figure out why it doesn't work on the second time
+- change grid, this sucks
+- fix click information
+- get json from data instead of appdata
 
 - **figure out when rooms bug rooms happen, dungeon 1 hoody is one example**
 - **figure out when sprites are being used?!?!?!?**

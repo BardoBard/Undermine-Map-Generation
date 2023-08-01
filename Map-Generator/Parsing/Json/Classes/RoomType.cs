@@ -44,7 +44,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("tags")] public string? Tag { get; set; }
         [JsonProperty("children")] public bool Children { get; set; } = false;
         [JsonProperty("encounter")] public bool HasExtraEncounter { get; set; } = false;
-        [JsonProperty("sprites")] public int Sprites { get; set; } = 0;
+        [JsonProperty("icon")] public MapIcon MapIcon { get; set; } = MapIcon.None;
 
         [JsonProperty("extrainformation")]
         public Dictionary<string, ExtraInformation> ExtraInformations { get; set; } = new();
@@ -88,10 +88,7 @@ namespace Map_Generator.Parsing.Json.Classes
                 JsonDecoder.Encounters[mapNameEncounter][name2][this.RoomTypeTag].Default.Difficulty;
 
             // loop through data and check if requirement fits
-            ZoneData data = JsonDecoder.ZoneData[Save.ZoneIndex]
-                                .First(zoneData => Save.Check(zoneData.Requirements)) ??
-                            throw new InvalidOperationException(
-                                "data is null"); //TODO: change zonedata[0] to generic value
+            ZoneData data = ZoneData.GetZoneData();
             Console.WriteLine("found zonedata: {0}, with requirement: {1}", data.Name, data.Requirements);
             this.Encounter.DetermineEnemies(data); //not scoped randomness
             this.Encounter.Seen = true;

@@ -87,6 +87,7 @@ namespace Map_Generator.Undermine
         public static void Initialize(uint initialSeed)
         {
             seeds.Clear();
+            stateStack.Clear();
 
             foreach (StateType scope in Enum.GetValues(typeof(StateType)))
             {

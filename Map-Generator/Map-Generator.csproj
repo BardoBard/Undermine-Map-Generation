@@ -56,16 +56,19 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Form1.cs">
+        <Compile Include="Grid.cs" />
+        <Compile Include="MapGenerator.cs">
             <SubType>Form</SubType>
         </Compile>
-        <Compile Include="Form1.Designer.cs">
-            <DependentUpon>Form1.cs</DependentUpon>
+        <Compile Include="MapGenerator.Designer.cs">
+            <DependentUpon>MapGenerator.cs</DependentUpon>
         </Compile>
-        <Compile Include="Grid.cs" />
         <Compile Include="BardLog.cs" />
         <Compile Include="GridControl.cs">
-          <DependentUpon>Form1.cs</DependentUpon>
+          <DependentUpon>MapGenerator.cs</DependentUpon>
+        </Compile>
+        <Compile Include="GridSquare.cs">
+          <DependentUpon>GridControl.cs</DependentUpon>
         </Compile>
         <Compile Include="MapType.cs" />
         <Compile Include="Math\Vector2Int.cs" />
@@ -76,17 +79,21 @@
         <Compile Include="Parsing\Json\Classes\ZoneData.cs" />
         <Compile Include="Parsing\Json\Enums\Direction.cs" />
         <Compile Include="Parsing\Json\Enums\Door.cs" />
+        <Compile Include="Parsing\Json\Enums\MapIcon.cs" />
         <Compile Include="Parsing\Json\Interfaces\IWeight.cs" />
         <Compile Include="Parsing\Json\JsonDecoder.cs" />
+        <Compile Include="Parsing\PathHandler.cs" />
         <Compile Include="Parsing\Save.cs" />
         <Compile Include="Program.cs" />
-        <Compile Include="Undermine\DirectionExtensions.cs" />
         <Compile Include="Undermine\ListExtensions.cs" />
         <Compile Include="Undermine\Rand.cs" />
         <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="ClassExtensions" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
