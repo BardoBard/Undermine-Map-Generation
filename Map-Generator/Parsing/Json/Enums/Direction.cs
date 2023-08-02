@@ -7,6 +7,7 @@ namespace Map_Generator.Parsing.Json.Enums
     [Flags]
     public enum Direction
     {
+        Undetermined = -1,
         None = 0,
         North = 1,
         South = 2,
@@ -14,12 +15,12 @@ namespace Map_Generator.Parsing.Json.Enums
         West = 8,
         Up = 16,
         Down = 32,
-        NE = 3,
+        NS = 3,
         NW = 9,
         SE = 6,
-        SW = 12,
-        NS = 5,
-        EW = 10,
+        EW = 12,
+        NE = 5,
+        SW = 10,
         WNE = 13,
         NES = 7,
         ESW = 14,

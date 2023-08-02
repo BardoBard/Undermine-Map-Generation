@@ -129,9 +129,9 @@ namespace Map_Generator
 
                 room.Initialize(MapType.GetMapName(), name2);
 
-                if (room.Encounter?.Enemies != null)
+                if (room.Encounter?.RoomEnemies != null)
                 {
-                    foreach (var enemy in room.Encounter?.Enemies)
+                    foreach (var enemy in room.Encounter?.RoomEnemies)
                         Console.WriteLine(enemy.Name);
                 }
 
@@ -254,8 +254,12 @@ namespace Map_Generator
 
                 foreach (var mPositionedRoom in PositionedRooms)
                 {
-                    Console.WriteLine("room name: {0} ({2},{3}), door: {1}, ", mPositionedRoom.Encounter.Name,
-                        mPositionedRoom.Encounter.Door, mPositionedRoom.Position.x, mPositionedRoom.Position.y);
+                    Console.WriteLine("room name: {0} ({2},{3}), door: {1}, \nnoexit: {4}, branchweight: {5}",
+                        mPositionedRoom.Encounter.Name,
+                        mPositionedRoom.Encounter.Door.ToString(),
+                        mPositionedRoom.Position.x, mPositionedRoom.Position.y,
+                        mPositionedRoom.Encounter.NoExit.ToString(),
+                        mPositionedRoom.Weight);
                 }
 
                 Console.WriteLine(Rand.Value());
@@ -479,8 +483,7 @@ namespace Map_Generator
                     Console.WriteLine("room name: {0} ({2},{3}), door: {1}, ", room.Encounter.Name,
                         room.Encounter.Door, room.Position.x, room.Position.y);
 
-                    list2.RemoveAll(roomType =>
-                        (roomType.Encounter.Branchweight ?? roomType.Weight) == 0); //TODO: check
+                    list2.RemoveAll(roomType => roomType.Weight == 0);
 
                     while (direction == Direction.None && list2.Count > 0)
                     {

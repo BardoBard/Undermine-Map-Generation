@@ -55,12 +55,27 @@ namespace Map_Generator.Parsing.Json.Classes
                 : 0) + (HasExtraEncounter ? 1 : 0);
 
         [JsonProperty("name")] public string Name { get; set; } = null!;
-        [JsonProperty("branchweight")] public int Weight { get; set; } = 0;
+        [JsonProperty("branchweight")] 
+        private int _weight = 0;
+        public int Weight
+        {
+            get =>
+                (int)(Encounter is { Branchweight: { } }
+                    ? Encounter.Branchweight
+                    : this._weight);
+            set => this._weight = value; //TODO: this isn't nessesary I think
+        }
+
         [JsonProperty("doorcost")] public int? DoorCost { get; set; }
         [JsonProperty("requirements")] public string? Requirement { get; set; }
 
         [JsonProperty("direction", NullValueHandling = NullValueHandling.Ignore)]
-        public Direction Direction { get; set; }
+        private Direction _direction = Direction.None;
+
+        public Direction Direction =>
+            Encounter != null && Encounter.Direction != Direction.Undetermined
+                ? Encounter.Direction
+                : this._direction;
 
         [JsonIgnore] public Encounter? Encounter { get; set; }
         [JsonIgnore] public RoomType? PreviousRoom { get; set; }

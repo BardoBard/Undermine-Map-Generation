@@ -56,7 +56,6 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Grid.cs" />
         <Compile Include="MapGenerator.cs">
             <SubType>Form</SubType>
         </Compile>
@@ -79,12 +78,16 @@
         <Compile Include="Parsing\Json\Classes\ZoneData.cs" />
         <Compile Include="Parsing\Json\Enums\Direction.cs" />
         <Compile Include="Parsing\Json\Enums\Door.cs" />
+        <Compile Include="Parsing\Json\Enums\EnemyIcon.cs" />
         <Compile Include="Parsing\Json\Enums\MapIcon.cs" />
         <Compile Include="Parsing\Json\Interfaces\IWeight.cs" />
         <Compile Include="Parsing\Json\JsonDecoder.cs" />
         <Compile Include="Parsing\PathHandler.cs" />
         <Compile Include="Parsing\Save.cs" />
         <Compile Include="Program.cs" />
+        <Compile Include="RoomInformationBox.cs">
+          <DependentUpon>MapGenerator.cs</DependentUpon>
+        </Compile>
         <Compile Include="Undermine\ListExtensions.cs" />
         <Compile Include="Undermine\Rand.cs" />
         <None Include="packages.config" />

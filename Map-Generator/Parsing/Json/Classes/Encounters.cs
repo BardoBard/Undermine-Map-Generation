@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Map_Generator.Json;
 using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Parsing.Json.Interfaces;
 using Map_Generator.Undermine;
@@ -38,7 +39,7 @@ namespace Map_Generator.Parsing.Json.Classes
             return JsonConvert.DeserializeObject<Encounter>(serializedObject) ??
                    throw new InvalidOperationException("failed to do a deep copy");
         }
-        
+
         public class WeightedDoor : IWeight
         {
             [JsonProperty("weight")] public int Weight { get; set; }
@@ -53,11 +54,15 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("Name")] public string? Name;
         [JsonProperty("weighteddoor")] public List<WeightedDoor>? WeightedDoors { get; set; }
         [JsonProperty("requirements")] public string? Requirement { get; set; }
-        [JsonProperty("enemies")] public List<Enemy>? Enemies { get; set; }
+        [JsonProperty("enemies")] private List<string>? enemies { get; set; } = null;
+        private List<Enemy>? Enemies => enemies?.Select(Enemy.GetEnemy).ToList();
+        public List<Enemy> RoomEnemies { get; private set; } = new List<Enemy>();
         [JsonProperty("prohibitedenemies")] public List<string>? ProhibitedEnemies { get; set; }
         [JsonProperty("difficulty")] public float[]? Difficulty { get; set; }
 
-        // [JsonProperty("direction, noexit")] public int NoExit { get; set; }
+        [JsonProperty("direction", NullValueHandling = NullValueHandling.Ignore)]
+        public Direction Direction { get; set; } = Direction.Undetermined;
+
         [JsonProperty("noexit")] public Direction NoExit { get; set; } = 0;
         [JsonIgnore] public int SubFloor { get; set; }
         [JsonProperty("recursion")] public int SequenceRecursionCount { get; set; } = -1;
@@ -105,35 +110,35 @@ namespace Map_Generator.Parsing.Json.Classes
                 (data.BaseDifficulty + data.DifficultyStep * floorNumber); //TODO: difficulty int?
 
             int[] enemyTypeWeight = floorOverride?.EnemyTypeWeight ?? data.EnemyTypeWeight;
-            List<Enemy> enemies = new List<Enemy>(this.Enemies ?? data.Floors[floorNumber].Enemies);
-            this.Enemies =
+            List<Enemy> enemies1 = new List<Enemy>(this.Enemies ?? data.Floors[floorNumber].Enemies);
+            this.RoomEnemies =
                 new List<Enemy>(); //TODO: probably not override the current enemies instead return a new list
-
+            
             if (this.ProhibitedEnemies != null)
-                enemies.RemoveAll(enemy => this.ProhibitedEnemies.Contains(enemy.Name));
+                enemies1.RemoveAll(enemy => this.ProhibitedEnemies.Contains(enemy.Name));
 
-            if (enemies.Count <= 0)
+            if (enemies1.Count <= 0)
             {
                 Console.WriteLine("no enemies");
                 return;
             }
 
-            enemies.Shuffle();
+            enemies1.Shuffle();
 
-            int enemyCombo = new[] { 3, 5, 6 }.FirstOrDefault(type => (enemies[0].Type & type) != 0);
+            int enemyCombo = new[] { 3, 5, 6 }.FirstOrDefault(type => (enemies1[0].Type & type) != 0);
 
-            enemies.RemoveAll(enemy => (enemy.Type & enemyCombo) == 0);
+            enemies1.RemoveAll(enemy => (enemy.Type & enemyCombo) == 0);
 
-            int num = System.Math.Min(enemies.Count, GetEnemyTypeCount(enemyTypeWeight));
+            int num = System.Math.Min(enemies1.Count, GetEnemyTypeCount(enemyTypeWeight));
             if (num <= 0)
                 return;
 
-            enemies.Shuffle();
+            enemies1.Shuffle();
 
             List<Enemy> enemies2 = new List<Enemy>();
 
             //get enemies and remove enemies that don't belong
-            foreach (var enemy in enemies.Where(enemy => num != 1 || enemy.CanBeSolo))
+            foreach (var enemy in enemies1.Where(enemy => num != 1 || enemy.CanBeSolo))
             {
                 if ((enemy.Type & enemyCombo) != 0 || enemyCombo == 0)
                 {
@@ -154,7 +159,7 @@ namespace Map_Generator.Parsing.Json.Classes
                 {
                     Enemy? enemy = enemies2[i];
                     float difficulty = enemy.GetDifficulty();
-                    this.Enemies.Add(enemies2[i]);
+                    this.RoomEnemies.Add(enemies2[i]);
                     totalDifficulty -= difficulty;
                     array[i]++;
                 }
@@ -172,7 +177,7 @@ namespace Map_Generator.Parsing.Json.Classes
                         continue;
                     }
 
-                    this.Enemies.Add(enemies2[randomNum]);
+                    this.RoomEnemies.Add(enemies2[randomNum]);
                     totalDifficulty -= enemyDifficulty;
                     array[randomNum]++;
                 }

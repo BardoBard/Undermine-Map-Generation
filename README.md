@@ -31,9 +31,14 @@ Used for the Undermine speedrunning community.
 - noexit check
 - fix branchweight for encounters if possible
 - figure out why it doesn't work on the second time
-- change grid, this sucks
 - fix click information
 - get json from data instead of appdata
+- pathfinding algorithm
 
 - **figure out when rooms bug rooms happen, dungeon 1 hoody is one example**
 - **figure out when sprites are being used?!?!?!?**
+
+
+- CornerBridge branchweight?
+- mine torches branchweight?
+- mine hazardheavy branchweight?

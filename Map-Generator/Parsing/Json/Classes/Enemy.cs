@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Map_Generator.Json;
+using Map_Generator.Parsing.Json.Enums;
+using Newtonsoft.Json;
 
 namespace Map_Generator.Parsing.Json.Classes
 {
@@ -10,7 +12,9 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("canbesolo")] public bool CanBeSolo { get; set; }
         [JsonProperty("max")] public int Max { get; set; }
         [JsonProperty("type")] public int Type { get; set; }
+        [JsonProperty("icon")] public EnemyIcon EnemyIcon { get; set; }
 
         public int GetDifficulty() => Save.storymode ? Difficulty : RougeDifficulty;
+        public static Enemy GetEnemy(string name) => JsonDecoder.Enemies[name];
     }
 }

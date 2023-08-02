@@ -17,11 +17,30 @@ public enum Door
     Crystal = 8
 }
 
-public class DoorExtension
+public static class DoorExtension
 {
-    public static Image? GetDoorImage(Door door)
+    public static Image? GetDoorImage(this Door door)
     {
-        if (door is Door.None or Door.Normal or Door.Secret or Door.Unused) return null;
+        if (door is Door.None or Door.Normal or Door.Secret or Door.Unused or Door.Hidden) return null;
+
+        string iconFileName = door.ToString() + ".png";
+        string iconFilePath = Path.Combine(PathHandler.DoorPath, iconFileName);
+
+        if (!File.Exists(iconFilePath))
+            throw new FileNotFoundException($"Could not find icon file: {iconFilePath}");
+
+        return Image.FromFile(iconFilePath);
+    }
+
+    public static Image? GetDoorImage(this Door door, RoomType neighborRoom)
+    {
+        switch (door)
+        {
+            case Door.None or Door.Normal or Door.Secret or Door.Unused or Door.Hidden:
+                return null;
+            case Door.Locked when neighborRoom.Encounter is { Door: Door.Secret }:
+                return null;
+        }
 
         string iconFileName = door.ToString() + ".png";
         string iconFilePath = Path.Combine(PathHandler.DoorPath, iconFileName);

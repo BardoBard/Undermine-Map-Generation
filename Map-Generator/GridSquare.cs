@@ -8,49 +8,39 @@ using Map_Generator.Parsing.Json.Enums;
 
 namespace Map_Generator;
 
-public class GridSquare
+public class GridSquare //maybe make an observer pattern for this
 {
     public RoomType Room { get; set; }
-    public int x => Room.Position.x;
-    public int y => Room.Position.y;
+    public Vector2Int GridPosition { get; set; }
     public Color Color { get; set; }
 
-    public Vector2Int GetPositionOnGrid(Grid grid, Vector2Int? originalPosition = null)
+    public Vector2Int Center()
     {
-        originalPosition ??= Room.Position;
-        return new Vector2Int(
-            grid.Width / 2 + (originalPosition.x * (Grid.CellSize + Grid.GapSize)),
-            grid.Height / 2 + (originalPosition.y * (Grid.CellSize + Grid.GapSize))
-        );
-    }
-
-
-    public Vector2Int Center(Grid grid)
-    {
-        var p = GetPositionOnGrid(grid, this.Room.Position);
-        var x = p + ((Grid.CellSize / 2));
+        var p = GridPosition;
+        var x = p + ((GridControl.CellSize / 2));
         return x;
     }
 
-    public Vector2Int NeighborCenter(Grid grid, Direction direction) =>
-        Center(grid) + ((direction.DirectionToVector() * (Grid.CellSize / 2 + Grid.GapSize)));
+    public Vector2Int NeighborCenter(Direction direction) =>
+        Center() + ((direction.DirectionToVector() * (GridControl.CellSize / 2 + GridControl.GapSize)));
 
-    public Vector2Int DoorPosition(Grid grid, int iconSize)
+    public Vector2Int DoorPosition(int iconSize)
     {
-        var c = Center(grid);
-        var x = c + (Room.Direction.DirectionToVector() * (Grid.CellSize / 2 + iconSize / 2));
+        var c = Center();
+        var x = c + (Room.Direction.DirectionToVector() * (GridControl.CellSize / 2 + iconSize / 2));
         return x;
     }
 
-    public GridSquare(RoomType room, Color color)
+    public GridSquare(RoomType room, Color color, Vector2Int gridPosition)
     {
         Room = room;
         Color = color;
+        GridPosition = gridPosition;
     }
 
     public string GetEnemyInformation()
     {
-        List<string> enemiesInfo = (Room.Encounter!.Enemies ?? new List<Enemy>())
+        List<string> enemiesInfo = (Room.Encounter!.RoomEnemies ?? new List<Enemy>())
             .Select(enemy => $"Enemy: {enemy.Name}")
             .ToList();
         return string.Concat(

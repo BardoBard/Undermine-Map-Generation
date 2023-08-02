@@ -310,6 +310,8 @@
                     {
                         "tag": "next_entrance",
                         "name": "cavernentrance",
+                        "noexit": 13,
+                        "direction": 1,
                         "icon": 3,
                         "door": 2,
                         "requirements": "storymode"
@@ -317,7 +319,8 @@
                     {
                         "tag": "end",
                         "name": "end",
-                        "icon": 3
+                        "icon": 3,
+                        "door": 1
                     },
                     {
                         "tag": "endboss",
@@ -832,7 +835,6 @@
                     {
                         "weight": 2,
                         "name": "bendsw",
-                        "direction": 3,
                         "difficulty": [
                             1,
                             -4
@@ -843,7 +845,6 @@
                     {
                         "weight": 1,
                         "name": "bendswpillar",
-                        "direction": 3,
                         "difficulty": [
                             1,
                             -6
@@ -854,7 +855,6 @@
                     {
                         "weight": 2,
                         "name": "bendse",
-                        "direction": 9,
                         "difficulty": [
                             1,
                             -4
@@ -865,7 +865,6 @@
                     {
                         "weight": 1,
                         "name": "bendsepillar",
-                        "direction": 9,
                         "difficulty": [
                             1,
                             -6
@@ -876,7 +875,6 @@
                     {
                         "weight": 2,
                         "name": "bendnw",
-                        "direction": 6,
                         "difficulty": [
                             1,
                             -4
@@ -887,7 +885,6 @@
                     {
                         "weight": 1,
                         "name": "bendnwpillar",
-                        "direction": 6,
                         "difficulty": [
                             1,
                             -6
@@ -898,7 +895,6 @@
                     {
                         "weight": 1,
                         "name": "bendnepillar",
-                        "direction": 12,
                         "difficulty": [
                             1,
                             -6
@@ -909,7 +905,6 @@
                     {
                         "weight": 2,
                         "name": "bendne",
-                        "direction": 12,
                         "difficulty": [
                             1,
                             -4
@@ -926,7 +921,6 @@
                     {
                         "weight": 3,
                         "name": "deadlydonut",
-                        "direction": 10,
                         "difficulty": [
                             0,
                             0
@@ -947,7 +941,6 @@
                     {
                         "weight": 2,
                         "name": "donutspinner",
-                        "direction": 5,
                         "difficulty": [
                             1,
                             -4
@@ -974,19 +967,12 @@
                     {
                         "weight": 2,
                         "name": "ewbridgethin",
-                        "direction": 5,
                         "difficulty": [
                             0.8,
                             -8
                         ],
                         "enemies": [
-                            {
-                                "name": "bat",
-                                "difficulty": 4,
-                                "rougedifficulty": 4,
-                                "canbesolo": true,
-                                "type": 1
-                            }
+                            "bat"
                         ],
                         "noexit": 3,
                         "door": 1
@@ -994,7 +980,6 @@
                     {
                         "weight": 3,
                         "name": "ewbridgethick",
-                        "direction": 5,
                         "difficulty": [
                             0.8,
                             -10
@@ -1023,7 +1008,6 @@
                     {
                         "weight": 2,
                         "name": "arrowfun",
-                        "direction": 5,
                         "difficulty": [
                             1,
                             -6
@@ -1387,13 +1371,7 @@
                             -10
                         ],
                         "enemies": [
-                            {
-                                "name": "spiderwolf",
-                                "difficulty": 3,
-                                "rougedifficulty": 2,
-                                "canbesolo": true,
-                                "type": 1
-                            }
+                            "spiderwolf"
                         ],
                         "noexit": 0
                     },
@@ -1461,7 +1439,10 @@
                         "tag": "pre_room",
                         "name": "beforecavernentrance",
                         "icon": 3,
-                        "door": 2,
+                        "noexit": 12,
+                        "branchweight": 0,
+                        "direction": 1,
+                        "door": 1,
                         "requirements": "storymode"
                     }
                 ]
@@ -1927,7 +1908,6 @@
                         "tag": "hoodie_entrance",
                         "name": "hoodie_locked",
                         "door": 8,
-                        "direction": 1,
                         "requirements": "hoodieminel",
                         "autospawn": 5,
                         "noexit": 0
@@ -2621,6 +2601,7 @@
                     {
                         "weight": 2,
                         "name": "holebridge",
+                        "branchweight": 0,
                         "noexit": 0,
                         "door": 1
                     },
@@ -2669,28 +2650,9 @@
                         ],
                         "autospawn": 9,
                         "enemies": [
-                            {
-                                "name": "flyranged",
-                                "difficulty": 2,
-                                "rougedifficulty": 3,
-                                "canbesolo": true,
-                                "type": 2,
-                                "max": 7
-                            },
-                            {
-                                "name": "flyranged02",
-                                "difficulty": 4,
-                                "rougedifficulty": 4,
-                                "canbesolo": true,
-                                "type": 2
-                            },
-                            {
-                                "name": "bat",
-                                "difficulty": 4,
-                                "rougedifficulty": 4,
-                                "canbesolo": true,
-                                "type": 1
-                            }
+                            "flyranged",
+                            "flyranged02",
+                            "bat"
                         ],
                         "noexit": 0,
                         "door": 1
@@ -2752,14 +2714,7 @@
                         ],
                         "autospawn": 15,
                         "enemies": [
-                            {
-                                "name": "flyranged",
-                                "difficulty": 2,
-                                "rougedifficulty": 3,
-                                "canbesolo": true,
-                                "type": 2,
-                                "max": 7
-                            }
+                            "flyranged"
                         ],
                         "door": 1
                     },
@@ -2779,14 +2734,7 @@
                         ],
                         "autospawn": 15,
                         "enemies": [
-                            {
-                                "name": "flyranged",
-                                "difficulty": 2,
-                                "rougedifficulty": 3,
-                                "canbesolo": true,
-                                "type": 2,
-                                "max": 7
-                            }
+                            "flyranged"
                         ],
                         "door": 1
                     },
@@ -2903,7 +2851,6 @@
                     {
                         "weight": 2,
                         "name": "hazardheavy",
-                        "branchweight": 0,
                         "noexit": 0,
                         "door": 1
                     },
@@ -2951,7 +2898,7 @@
                         "weight": 3,
                         "name": "cornerbridge",
                         "noexit": 0,
-                        "branchweight": 0,
+                        "branchweight": 4,
                         "door": 1
                     },
                     {
@@ -3040,6 +2987,7 @@
                         "name": "torches",
                         "autospawn": 31,
                         "noexit": 0,
+                        "branchweight": 0,
                         "door": 1
                     },
                     {
@@ -3866,13 +3814,13 @@
                         ],
                         "requirements": "priestessentrance",
                         "autospawn": 6,
+                        "door": 7,
                         "noexit": 0
                     },
                     {
                         "tag": "hoodie_entrance",
                         "name": "hoodie_locked",
                         "door": 8,
-                        "direction": 1,
                         "requirements": "hoodiedungeonl",
                         "autospawn": 5,
                         "noexit": 0
@@ -3898,8 +3846,10 @@
                     {
                         "tag": "next_entrance",
                         "name": "hallentrance",
+                        "branchweight": 0,
                         "icon": 3,
-                        "door": 2,
+                        "door": 1,
+                        "noexit": 13,
                         "requirements": "storymode"
                     },
                     {
@@ -4770,13 +4720,7 @@
                             -4
                         ],
                         "enemies": [
-                            {
-                                "name": "firewitch",
-                                "difficulty": 5,
-                                "rougedifficulty": 5,
-                                "max": 1,
-                                "type": 2
-                            }
+                            "firewitch"
                         ],
                         "autospawn": -1,
                         "noexit": 0,
@@ -5252,7 +5196,6 @@
                         "noexit": 12,
                         "requirements": "storynotwhip",
                         "autospawn": 6,
-                        "direction": 1,
                         "sequence": [
                             "priestesshall2"
                         ],
@@ -5262,7 +5205,6 @@
                         "tag": "priestesshall2",
                         "name": "priestesshall2",
                         "noexit": 12,
-                        "direction": 1,
                         "requirements": "storynotwhip",
                         "sequence": [
                             "priestesshall3"
@@ -5274,7 +5216,6 @@
                         "tag": "priestesshall3",
                         "name": "priestesshall3",
                         "noexit": 12,
-                        "direction": 1,
                         "requirements": "storynotwhip",
                         "sequence": [
                             "priestessmain"
@@ -5286,7 +5227,6 @@
                         "tag": "priestess_main",
                         "name": "priestess",
                         "icon": 8,
-                        "direction": 1,
                         "noexit": 13,
                         "requirements": "storynotwhip",
                         "autospawn": 6,
@@ -5322,7 +5262,9 @@
                         "tag": "pre_room",
                         "name": "beforehallentrance",
                         "icon": 3,
-                        "door": 2,
+                        "branchweight": 0,
+                        "door": 1,
+                        "noexit": 12,
                         "requirements": "storymode"
                     }
                 ]
@@ -5682,7 +5624,6 @@
                         "tag": "hoodie_entrance",
                         "name": "hoodie_locked",
                         "door": 8,
-                        "direction": 1,
                         "requirements": "hoodiecavernl",
                         "autospawn": 5,
                         "noexit": 0
@@ -5718,6 +5659,7 @@
                     {
                         "tag": "end",
                         "name": "end",
+                        "door": 1,
                         "icon": 3
                     },
                     {

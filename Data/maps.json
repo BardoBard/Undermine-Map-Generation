@@ -250,7 +250,7 @@
                 ],
                 "roomsmulti": [
                     "dibble",
-                    "relic",
+                    "relicchance",
                     "treasure",
                     "treasurechance",
                     "shop",
@@ -259,8 +259,8 @@
                     "secret",
                     "secret",
                     "secretchance",
-                    "priestess",
                     "hoody",
+                    "priestess",
                     "hidden",
                     "relicaltar",
                     "fountain"
@@ -324,7 +324,7 @@
             {
                 "rooms": [
                     [
-                        "beginend",
+                        "begin",
                         "normallarge",
                         "normal",
                         "normallarge",
@@ -405,7 +405,7 @@
                 ],
                 "roomsmulti": [
                     "librarycombat",
-                    "relicchance",
+                    "relic",
                     "treasure",
                     "treasurechance",
                     "shop",
@@ -493,7 +493,7 @@
                     "secret",
                     "secretchance",
                     "bossroom",
-                    "hallsspritehidden",
+                    "hidden",
                     "relicaltar",
                     "fountain"
                 ]

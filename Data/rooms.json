@@ -236,21 +236,12 @@
       "small",
       "large"
     ],
-    "ishidden": true,
-    "roomtype": "hidden",
-    "name": "hidden"
-  },
-  "hallshidden": {
-    "stage": [
-      "small",
-      "large"
-    ],
-    "ishidden": true,
     "extrainformation": {
       "hall": {
         "sprites": 4
       }
     },
+    "ishidden": true,
     "roomtype": "hidden",
     "name": "hidden"
   },
@@ -738,7 +729,7 @@
     "tags": "hall_library_combat_arena",
     "branchweight": 1,
     "name": "librarycombat",
-    "icon": 10
+    "icon": 13
   },
   "library": {
     "stage": [

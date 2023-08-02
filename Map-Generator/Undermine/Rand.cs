@@ -63,6 +63,24 @@ namespace Map_Generator.Undermine
 
             return y;
         }
+        public static uint NextUIntWatch()
+        {
+            StateType currentScope = GetCurrentScope();
+
+            var Seeds = new Dictionary<StateType, List<uint>>(seeds);
+            uint x = Seeds[currentScope][0];
+            x ^= x << 11;
+            x ^= x >> 8;
+
+            uint y = Seeds[currentScope][3];
+            y ^= y >> 19;
+            y = x ^ y;
+
+            Seeds[currentScope].RemoveAt(0);
+            Seeds[currentScope].Add(y);
+
+            return y;
+        }
 
         public static float RangeFloat(uint min = 0, uint max = 1)
         {
