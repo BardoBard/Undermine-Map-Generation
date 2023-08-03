@@ -14,14 +14,13 @@ namespace Map_Generator
     public sealed class GridControl : Control
     {
         public List<GridSquare> GridSquares { get; private set; } = new List<GridSquare>();
-        public const int CellSize = 40;
-        public const int GapSize = 10;
-        private const int IconSize = 30;
-        private readonly Vector2Int Translation = new(1, -1);
+        public static int CellSize = 40;
+        public static int GapSize = 10;
+        public int IconSize = 30;
+        private const int MaxImagesPerRow = 2;
+        private readonly Vector2Int _translation = new(1, -1);
 
         public Vector2Int GridOffset { get; set; } = Vector2Int.Zero;
-
-        private ToolTip Tooltip = new ToolTip();
 
         public void InitializeGridSquares(List<RoomType> roomTypes)
         {
@@ -49,7 +48,7 @@ namespace Map_Generator
 
             Graphics g = e.Graphics;
             g.TranslateTransform(0, this.Height);
-            g.ScaleTransform(Translation.x, Translation.y);
+            g.ScaleTransform(_translation.x, _translation.y);
 
             foreach (GridSquare? square in GridSquares)
             {
@@ -97,14 +96,37 @@ namespace Map_Generator
                 }
             }
 
-            Image? mapImage = MapIconExtension.GetMapImage(square.Room);
-            if (mapImage != null)
+            List<Image> mapImages = MapIconExtension.GetMapImage(square.Room);
+            DrawImages(mapImages, square.Center(), g, MaxImagesPerRow);
+        }
+
+        private void DrawImages(List<Image> images, Vector2Int center, Graphics g, int maxImagesPerRow)
+        {
+            int totalImages = images.Count;
+            maxImagesPerRow = totalImages > 1 ? maxImagesPerRow : 1; // Set the maximum number of images per row
+            int numRows = (totalImages + maxImagesPerRow - 1) / maxImagesPerRow; // Calculate the number of rows
+
+            int iconSize2 = totalImages > 1 ? CellSize / maxImagesPerRow : IconSize;
+
+            int startX = center.x - (maxImagesPerRow * iconSize2) / 2;
+            int startY = center.y - (numRows * iconSize2) / 2;
+
+            int currentRow = 0, currentCol = 0;
+
+            for (int i = 0; i < totalImages; i++)
             {
-                var iconPosition = square.Center() - IconSize / 2;
+                var mapImage = images[i];
+                var iconPosition = new Point(startX + currentCol * iconSize2, startY + currentRow * iconSize2);
 
                 mapImage.RotateFlip(RotateFlipType.Rotate180FlipX);
 
-                g.DrawImage(mapImage, iconPosition.x, iconPosition.y, IconSize, IconSize);
+                g.DrawImage(mapImage, iconPosition.X, iconPosition.Y, iconSize2, iconSize2);
+
+                if (++currentCol >= maxImagesPerRow)
+                {
+                    currentCol = 0;
+                    currentRow++;
+                }
             }
         }
 
@@ -122,6 +144,9 @@ namespace Map_Generator
                 );
             }
 
+            CellSize = (int)System.Math.Floor((Width / 2.0f) / 10.0f);
+            GapSize = (int)System.Math.Floor(CellSize / 4.0f);
+            IconSize = (int)System.Math.Floor(CellSize / 1.5f);
             Invalidate();
         }
 
@@ -163,18 +188,18 @@ namespace Map_Generator
 
             int xMax = allPositions.Max(position => position.x);
             int yMax = allPositions.Max(position => position.y);
-            
+
             int xMiddle = (xMin + xMax) / 2;
             int yMiddle = (yMin + yMax) / 2;
 
             GridOffset = new Vector2Int(
-                xMiddle * (GridControl.CellSize + GridControl.GapSize),
-                yMiddle * (GridControl.CellSize + GridControl.GapSize)
+                (xMiddle + 1) * (CellSize + GapSize),
+                (yMiddle) * (CellSize + GapSize)
             );
 
             return new Vector2Int(
-                this.Width / 2 + (originalPosition.x * (GridControl.CellSize + GridControl.GapSize)) - GridOffset.x,
-                this.Height / 2 + (originalPosition.y * (GridControl.CellSize + GridControl.GapSize)) - GridOffset.y
+                this.Width / 2 + (originalPosition.x * (CellSize + GapSize)) - GridOffset.x,
+                this.Height / 2 + (originalPosition.y * (CellSize + GapSize)) - GridOffset.y
             );
         }
     }

@@ -50,13 +50,13 @@ namespace Map_Generator.Parsing.Json.Classes
         public Dictionary<string, ExtraInformation> ExtraInformations { get; set; } = new();
 
         public int ExtraEncounters =>
-            (ExtraInformations.TryGetValue(Save.GetZoneName(this), out ExtraInformation ExtraInformation)
-                ? ExtraInformation.Sprites
+            (ExtraInformations.TryGetValue(Save.GetZoneName(this), out ExtraInformation extraInformation)
+                ? extraInformation.Sprites
                 : 0) + (HasExtraEncounter ? 1 : 0);
 
         [JsonProperty("name")] public string Name { get; set; } = null!;
-        [JsonProperty("branchweight")] 
-        private int _weight = 0;
+        [JsonProperty("branchweight")] private int _weight = 0;
+
         public int Weight
         {
             get =>
@@ -75,7 +75,7 @@ namespace Map_Generator.Parsing.Json.Classes
         public Direction Direction =>
             Encounter != null && Encounter.Direction != Direction.Undetermined
                 ? Encounter.Direction
-                : this._direction;
+                : _direction;
 
         [JsonIgnore] public Encounter? Encounter { get; set; }
         [JsonIgnore] public RoomType? PreviousRoom { get; set; }
@@ -85,26 +85,26 @@ namespace Map_Generator.Parsing.Json.Classes
 
         [JsonIgnore] public Dictionary<Direction, RoomType> Neighbors { get; } = new();
         [JsonIgnore] public Dictionary<Direction, RoomType> Branches { get; set; } = new();
+        [JsonIgnore] public List<Item> SetPieces { get; set; } = new();
+        [JsonIgnore] public List<Item> Extras { get; set; } = new();
 
         [JsonProperty("ishidden")] public bool IsHidden { get; set; } = false;
 
-        public void Initialize(string mapNameEncounter, string name2)
+        public void Initialize(ZoneData data, string mapNameEncounter, string name2)
         {
             if (this.Encounter == null)
                 return;
 
+            var defaultEncounter = JsonDecoder.Encounters[mapNameEncounter][name2][RoomTypeTag].Default;
+            
             if (Rand.GetWeightedElement(
-                    this.Encounter.WeightedDoors ?? JsonDecoder.Encounters[mapNameEncounter][name2][this.RoomTypeTag]
-                        .Default.WeightedDoors, out var door))
+                    this.Encounter.WeightedDoors ?? defaultEncounter.WeightedDoors, out var door))
                 this.Encounter.Door = door.Door;
 
 
-            this.Encounter.Difficulty ??=
-                JsonDecoder.Encounters[mapNameEncounter][name2][this.RoomTypeTag].Default.Difficulty;
+            this.Encounter.Difficulty ??= defaultEncounter.Difficulty;
+            this.Encounter.AutoSpawn ??= defaultEncounter.AutoSpawn;
 
-            // loop through data and check if requirement fits
-            ZoneData data = ZoneData.GetZoneData();
-            Console.WriteLine("found zonedata: {0}, with requirement: {1}", data.Name, data.Requirements);
             this.Encounter.DetermineEnemies(data); //not scoped randomness
             this.Encounter.Seen = true;
         }
@@ -155,9 +155,9 @@ namespace Map_Generator.Parsing.Json.Classes
         public bool IsValidNeighbor(RoomType neighbor, Direction direction)
         {
             if (Encounter == null)
-                Console.WriteLine("Unable to validate neighbor for Room [{0}] without an Encounter!", this.Name);
+                throw new Exception($"Unable to validate neighbor for Room [{Name}] without an Encounter!");
             if (neighbor.Encounter == null)
-                Console.WriteLine("Unable to validate neighbor for Room [{0}] without an Encounter!", neighbor.Name);
+                throw new Exception($"Unable to validate neighbor for Room [{neighbor.Name}] without an Encounter!");
 
             if (direction == Enums.Direction.None)
                 return Encounter.AllowNeighbor(neighbor.Encounter);

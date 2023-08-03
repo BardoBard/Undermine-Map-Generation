@@ -51,8 +51,8 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("branchweight")] public int? Branchweight { get; set; }
         public bool Skip { get; set; }
         [JsonProperty("tag")] public string? Tag;
-        [JsonProperty("Name")] public string? Name;
-        [JsonProperty("weighteddoor")] public List<WeightedDoor>? WeightedDoors { get; set; }
+        [JsonProperty("name")] public string? Name;
+        [JsonProperty("weighteddoor")] public List<WeightedDoor?>? WeightedDoors { get; set; }
         [JsonProperty("requirements")] public string? Requirement { get; set; }
         [JsonProperty("enemies")] private List<string>? enemies { get; set; } = null;
         private List<Enemy>? Enemies => enemies?.Select(Enemy.GetEnemy).ToList();
@@ -68,7 +68,9 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("recursion")] public int SequenceRecursionCount { get; set; } = -1;
         [JsonProperty("sequence")] public List<string> Sequence { get; set; } = new();
         [JsonIgnore] public bool Seen { get; set; } = false;
+        [JsonIgnore] public bool HasCrawlSpace { get; set; } = false;
         [JsonProperty("door")] public Door Door { get; set; } = Door.None;
+        [JsonProperty("autospawn")] public int? AutoSpawn { get; set; }
 
         public bool AllowNeighbor(Encounter neighbor)
         {
@@ -94,7 +96,7 @@ namespace Map_Generator.Parsing.Json.Classes
         /// <param name="data">zonedata</param>
         public void DetermineEnemies(ZoneData data)
         {
-            Console.WriteLine("enemySpawnChance: {0}", this.Difficulty[0]);
+            Console.WriteLine("enemySpawnChance: {0}", Difficulty[0]);
             if (!Rand.Chance(this.Difficulty[0])) //TODO: check if we have to check encounter
             {
                 Console.WriteLine("skipping room {0}", this.Name);
@@ -113,7 +115,7 @@ namespace Map_Generator.Parsing.Json.Classes
             List<Enemy> enemies1 = new List<Enemy>(this.Enemies ?? data.Floors[floorNumber].Enemies);
             this.RoomEnemies =
                 new List<Enemy>(); //TODO: probably not override the current enemies instead return a new list
-            
+
             if (this.ProhibitedEnemies != null)
                 enemies1.RemoveAll(enemy => this.ProhibitedEnemies.Contains(enemy.Name));
 
@@ -214,8 +216,10 @@ namespace Map_Generator.Parsing.Json.Classes
         public float[] Difficulty { get; set; }
         public List<string> Sequence { get; set; } = new();
         [JsonProperty("requirements")] public string? Requirement { get; set; }
-        [JsonProperty("weighteddoor")] public List<Encounter.WeightedDoor> WeightedDoors { get; set; }
+        [JsonProperty("weighteddoor")] public List<Encounter.WeightedDoor?>? WeightedDoors { get; set; }
         [JsonProperty("door")] public Door Door { get; set; }
+
+        [JsonProperty("autospawn")] public int AutoSpawn = 0;
 
         public Default()
         {

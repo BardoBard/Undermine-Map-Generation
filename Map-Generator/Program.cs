@@ -127,7 +127,7 @@ namespace Map_Generator
 
                 room.PreviousRoom = previousRoom;
 
-                room.Initialize(MapType.GetMapName(), name2);
+                room.Initialize(Zonedata, MapType.GetMapName(), name2);
 
                 if (room.Encounter?.RoomEnemies != null)
                 {
@@ -188,6 +188,8 @@ namespace Map_Generator
             Application.Run(new MapGenerator());
         }
 
+        public static ZoneData Zonedata = null!;
+
         public static List<RoomType> PositionedRooms = new(20);
 
         public static void Start(string saveJsonFile)
@@ -209,11 +211,158 @@ namespace Map_Generator
                      select encounter)
                 encounter.Value.Initialize();
 
+            Zonedata = ZoneData.GetZoneData();
+            Console.WriteLine("found zonedata: {0}, with requirement: {1}", Zonedata.Name, Zonedata.Requirements);
+
             GetRooms(batches);
             Console.WriteLine(Rand.Value());
             Console.WriteLine("starting get room mapping");
             GetRoomMapping();
+            Console.WriteLine(Rand.Value());
+
+            if (Zonedata.SetPieces != null)
+                foreach (var setPiece in Zonedata.SetPieces)
+                {
+                    PlaceExtras(setPiece, AutoSpawnType.SetPieces);
+                }
+
+            Console.WriteLine(Rand.Value());
+            Console.WriteLine("");
+
+            if (Zonedata.Extras != null)
+                foreach (var extra in Zonedata.Extras)
+                {
+                    PlaceExtras(extra, AutoSpawnType.Extras);
+                }
+
+            Console.WriteLine(Rand.Value());
+            Console.WriteLine("");
+
+            if (Zonedata.Resources != null)
+                foreach (var extra in Zonedata.Resources)
+                {
+                    PlaceExtras(extra, AutoSpawnType.Extras);
+                }
+
+            Console.WriteLine(Rand.Value());
+            Console.WriteLine("");
+            AddCrawlSpace();
         }
+
+        private static void AddCrawlSpace()
+        {
+            Spawn(delegate(Item item)
+            {
+                List<RoomType> list = new List<RoomType>(Rooms);
+                list.Shuffle();
+                foreach (var room in list)
+                {
+                    if ((room.Encounter?.AutoSpawn & (int)AutoSpawnType.Extras) == 0) continue;
+
+                    Console.WriteLine("crawl space: {0}", room.Encounter?.Name);
+                    room.Extras.Add(item);
+                    room.Encounter.HasCrawlSpace = true;
+                    return;
+                }
+            }, ZoneData.Crawlspace);
+        }
+
+        private static void PlaceExtras<T>(T? extras, AutoSpawnType mask) where T : ZoneData.DefaultInformation
+        {
+            if (extras == null)
+                return;
+
+            Spawn(delegate(Item item)
+            {
+                Console.WriteLine("");
+                Rooms.Shuffle();
+                foreach (var roomType in Rooms)
+                {
+                    Console.WriteLine("name: {0}_{1} autospawn: {2}", roomType.Name, roomType.Encounter.Name,
+                        roomType.Encounter.AutoSpawn);
+                }
+
+                foreach (RoomType room in Rooms)
+                {
+                    if ((room.Encounter?.AutoSpawn & (int)mask) != 0)
+                    {
+                        if (mask == AutoSpawnType.SetPieces)
+                        {
+                            // Console.WriteLine("room: {0}, name: {1}", room.Name, item.Name);
+                            room.SetPieces.Add(item);
+                        }
+                        else
+                        {
+                            Console.WriteLine("room: {0}, name: {1}", room.Encounter.Name, item.Name);
+                            room.Extras.Add(item);
+                        }
+
+                        break;
+                    }
+                }
+            }, extras);
+        }
+
+        private delegate void PreCallback(Item item);
+
+        private static void Spawn<T>(PreCallback preCallback, T extras) where T : ZoneData.DefaultInformation
+        {
+            int num = Rand.RangeInclusive(extras.Min, extras.Max);
+            for (int i = 0; i < num; i++)
+            {
+                Item? item = GetWeightedSpawnData(extras);
+                if (item == null) continue;
+
+                Console.WriteLine("name: {0}, weight: {1}", item.Name, item.Weight);
+
+                Console.WriteLine("");
+                preCallback(item);
+            }
+        }
+
+        private static Item? GetWeightedSpawnData<T>(T? extras) where T : ZoneData.DefaultInformation
+        {
+            if (extras?.Items == null)
+                return null;
+
+            foreach (var item in extras.Items)
+            {
+                item.AdjustedWeight = (item.Requirement == null || Save.Check(item.Requirement)) ? item.Weight : 0;
+            }
+
+            int sum = extras.Items.Sum(item => item.AdjustedWeight);
+            if (!extras.Percent100 && sum == 0)
+            {
+                Rand.NextUInt();
+                return null;
+            }
+
+            Console.WriteLine("percent: {0}", extras.Percent100 ? 100 : sum);
+
+            int randomNumber = Rand.RangeInclusive(1, extras.Percent100 ? 100 : sum);
+
+            foreach (Item? item in extras.Items)
+            {
+                randomNumber -= item.AdjustedWeight;
+                if (randomNumber <= 0)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+
+        public enum AutoSpawnType
+        {
+            Ornaments = 1,
+            Props = 2,
+            Water = 4,
+            Rewards = 8,
+            Extras = 0x10,
+            SetPieces = 0x20
+        }
+        // private static T GetWeightedItem<T>(List<T> items)
 
         private static void ClearAll()
         {

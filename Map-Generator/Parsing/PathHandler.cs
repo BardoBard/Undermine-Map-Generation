@@ -14,9 +14,18 @@ public class PathHandler
     private static readonly string LocalLowPath =
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
 
-    public static readonly string UnderminePath = LocalLowPath + @"\Thorium Entertainment\UnderMine\";
+    private static readonly string UnderminePath = LocalLowPath + @"\Thorium Entertainment\UnderMine\";
+
+
+    //savedata
+    public static readonly string UndermineSavePath = Path.Combine(UnderminePath, @"Saves\");
 
     public static readonly string DataPath = Path.Combine(BasePath, @"Data\");
+
+    //json
+    public static readonly string JsonPath = Path.Combine(DataPath, @"Json\");
+
+    //images
     public static readonly string ImagesPath = Path.Combine(DataPath, @"Images\");
     public static readonly string MapPath = Path.Combine(ImagesPath, @"Maps\");
     public static readonly string EnemyPath = Path.Combine(ImagesPath, @"Enemies\");
@@ -28,34 +37,32 @@ public class PathHandler
         return result;
     }
 
-    public static bool FindDirectory(string baseDirectory, string targetDirectory, int backwards, out string result)
+    public static bool FindDirectory(string? baseDirectory, string targetDirectory, int backwards, out string result)
     {
+        //TODO: thinking about it, everytime it goes backwards it checks every directory again probably fix that, currently it's not a problem
         result = "";
-        if (Directory.Exists(baseDirectory))
+        if (baseDirectory == null)
+            return false;
+
+        if (!Directory.Exists(baseDirectory))
+            throw new DirectoryNotFoundException($"Could not find directory {targetDirectory} in {baseDirectory}");
+
+        string[] directories = Directory.GetDirectories(baseDirectory);
+        foreach (string directory in directories)
         {
-            if (backwards == 0 || FindDirectory(Directory.GetParent(baseDirectory).FullName, targetDirectory,
-                    --backwards, out result))
+            if (Path.GetFileName(directory).Equals(targetDirectory, StringComparison.OrdinalIgnoreCase))
             {
-                if (!string.IsNullOrEmpty(result))
-                    return true;
-
-                string[] directories = Directory.GetDirectories(baseDirectory);
-                foreach (string directory in directories)
-                {
-                    if (Path.GetFileName(directory).Equals(targetDirectory, StringComparison.OrdinalIgnoreCase))
-                    {
-                        result = directory;
-                        return true;
-                    }
-
-                    if (FindDirectory(directory, targetDirectory, 0, out result))
-                        return true;
-                }
+                result = directory;
+                return true;
             }
 
-            return false;
+            if (FindDirectory(directory, targetDirectory, 0, out result))
+                return true;
         }
 
-        throw new DirectoryNotFoundException($"Could not find directory {targetDirectory} in {baseDirectory}");
+        if (backwards != 0 && !FindDirectory(Directory.GetParent(baseDirectory)?.FullName, targetDirectory,
+                --backwards, out result)) return false;
+
+        return !string.IsNullOrEmpty(result);
     }
 }

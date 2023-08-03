@@ -23,8 +23,6 @@ public class Discoverable
 public static class Save
 {
     //TODO: make a lot of stuff private instead of public
-    //????
-    private static bool secret_treasure_note { get; set; }
 
     //guid
     private static readonly Guid TitleScreenGuid = new("219d813ae07049b39d1bf35f1863c2b1");
@@ -81,6 +79,7 @@ public static class Save
     public static bool whip_enabled { get; set; }
 
     //upgrade string
+    public static bool secret_treasure_note { get; set; }
     public static int apprentice_met { get; set; }
     public static int arkanos_defeated { get; set; }
     public static int arkanos_talk_count { get; set; }
@@ -226,6 +225,7 @@ public static class Save
     public static bool dodsonnotrescued => (!peasant1_unlocked && !whip_enabled && storymode);
 
     //zondata:
+    public static bool treasurehuntx => secret_treasure_note;
     public static bool tutorialincomplete => !tutorial_complete;
     public static bool firstdelve => delve_count <= 1;
 

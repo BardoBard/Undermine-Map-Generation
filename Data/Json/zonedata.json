@@ -18,7 +18,7 @@
                 {
                     "min": 10,
                     "max": 12,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
@@ -65,7 +65,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 5,
@@ -76,7 +76,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 10,
@@ -95,11 +95,12 @@
                 {
                     "min": 0,
                     "max": 1,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
-                            "name": "treasurehuntx"
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
                         }
                     ]
                 }
@@ -108,7 +109,7 @@
                 {
                     "min": 8,
                     "max": 8,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 3,
@@ -133,7 +134,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 30,
@@ -211,7 +212,7 @@
                 {
                     "min": 10,
                     "max": 12,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
@@ -258,7 +259,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 5,
@@ -269,7 +270,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 10,
@@ -288,11 +289,12 @@
                 {
                     "min": 0,
                     "max": 1,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
-                            "name": "treasurehuntx"
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
                         }
                     ]
                 }
@@ -301,7 +303,7 @@
                 {
                     "min": 8,
                     "max": 8,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 3,
@@ -326,7 +328,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 30,
@@ -406,7 +408,7 @@
                 {
                     "min": 10,
                     "max": 12,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
@@ -453,7 +455,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 5,
@@ -464,7 +466,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 10,
@@ -483,11 +485,12 @@
                 {
                     "min": 0,
                     "max": 1,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
-                            "name": "treasurehuntx"
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
                         }
                     ]
                 }
@@ -496,7 +499,7 @@
                 {
                     "min": 8,
                     "max": 8,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 3,
@@ -521,7 +524,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 30,
@@ -606,7 +609,7 @@
                 {
                     "min": 10,
                     "max": 12,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
@@ -653,7 +656,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 5,
@@ -664,7 +667,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 10,
@@ -683,11 +686,12 @@
                 {
                     "min": 0,
                     "max": 1,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
-                            "name": "treasurehuntx"
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
                         }
                     ]
                 }
@@ -696,7 +700,7 @@
                 {
                     "min": 8,
                     "max": 8,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 3,
@@ -721,7 +725,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 30,
@@ -820,7 +824,7 @@
                 {
                     "min": 10,
                     "max": 12,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
@@ -867,7 +871,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 5,
@@ -878,7 +882,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 10,
@@ -897,20 +901,21 @@
                 {
                     "min": 0,
                     "max": 1,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
-                            "name": "treasurehuntx"
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
                         }
                     ]
                 }
             ],
             "resources": [
                 {
-                    "min": 8,
-                    "max": 8,
-                    "percent": false,
+                    "min": 7,
+                    "max": 7,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 3,
@@ -935,7 +940,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 30,
@@ -1028,7 +1033,7 @@
                 {
                     "min": 10,
                     "max": 12,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
@@ -1075,7 +1080,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 5,
@@ -1086,7 +1091,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 10,
@@ -1105,11 +1110,12 @@
                 {
                     "min": 0,
                     "max": 1,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 1,
-                            "name": "treasurehuntx"
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
                         }
                     ]
                 }
@@ -1118,7 +1124,7 @@
                 {
                     "min": 8,
                     "max": 8,
-                    "percent": false,
+                    "100percent": false,
                     "items": [
                         {
                             "weight": 3,
@@ -1143,7 +1149,7 @@
                 {
                     "min": 1,
                     "max": 1,
-                    "percent": true,
+                    "100percent": true,
                     "items": [
                         {
                             "weight": 30,

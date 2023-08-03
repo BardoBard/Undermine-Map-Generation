@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using Map_Generator.Parsing.Json.Classes;
@@ -22,15 +23,24 @@ namespace Map_Generator.Parsing.Json.Enums
         End = 12,
         Fight = 13,
         Enemy = 14,
+        Crawlspace = 15
     }
 
     public static class MapIconExtension
     {
-        public static Image? GetMapImage(RoomType room)
+        public static List<Image> GetMapImage(RoomType room)
         {
+            var images = new List<Image?>();
             var icon = room.MapIcon;
 
-            return GetMapImage(icon);
+            if (room.Encounter is { HasCrawlSpace: true })
+            {
+                images.Add(GetMapImage(MapIcon.Crawlspace));
+            }
+
+            images.Add(GetMapImage(icon));
+            
+            return images.Where(image => image != null).ToList()!;
         }
 
         public static Image? GetMapImageExtraInformation(RoomType room)

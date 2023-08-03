@@ -21,7 +21,7 @@ namespace Map_Generator
             
             roomInfoBox = new RoomInformationBox(this);
 
-            Program.Start(Path.Combine(PathHandler.UnderminePath, @"Saves\Save2.json"));
+            Program.Start(Path.Combine(PathHandler.UndermineSavePath, @"Save2.json"));
 
             // roomInfoBox.Dock = DockStyle.None; 
             roomInfoBox.Width = 200;
@@ -42,7 +42,7 @@ namespace Map_Generator
                 Application.Restart();
 
 
-            Program.Start(Path.Combine(PathHandler.UnderminePath, @$"Saves\Save{this.saveNumber.Value}.json"));
+            Program.Start(Path.Combine(PathHandler.UndermineSavePath, @$"Save{saveNumber.Value}.json"));
             gridControl.InitializeGridSquares(Program.PositionedRooms);
 
             second = true;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Map_Generator.Json;
+using Map_Generator.Parsing.Json.Interfaces;
 using Newtonsoft.Json;
 
 namespace Map_Generator.Parsing.Json.Classes
@@ -36,7 +37,75 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("difficultystep")] public int DifficultyStep { get; set; }
         [JsonProperty("enemytypeweight")] public int[] EnemyTypeWeight { get; set; }
         [JsonProperty("requirements")] public string Requirements { get; set; }
+
+        //rest
+        [JsonIgnore]public static CrawlSpace Crawlspace { get; set; } = new CrawlSpace()
+        {
+            Min = 1,
+            Max = 1,
+            Percent100 = false,
+            Items = new List<Item>
+            {
+                new()
+                {
+                    Name = "Crawl Space",
+                    Requirement = null,
+                    Weight = 1,
+                    AdjustedWeight = 0
+                }
+            }
+        };
+        [JsonProperty("extras")] public List<Extra>? Extras { get; set; }
+        [JsonProperty("resources")] public List<Resource>? Resources { get; set; }
+        [JsonProperty("setpieces")] public List<SetPiece>? SetPieces { get; set; }
+        
+
         [JsonProperty("floors")] public List<Floor> Floors { get; set; }
+
+        public abstract class DefaultInformation
+        {
+            [JsonProperty("min")] public int Min { get; set; }
+            [JsonProperty("max")] public int Max { get; set; }
+            [JsonProperty("100percent")] public bool Percent100 { get; set; }
+            [JsonProperty("items")] public List<Item> Items { get; set; } = null!;
+        }
+
+        public class Extra : DefaultInformation
+        {
+        }
+
+        public class Resource : DefaultInformation
+        {
+        }
+
+        public class SetPiece : DefaultInformation
+        {
+        }
+
+        public class CrawlSpace : DefaultInformation
+        {
+        }
+    }
+
+
+    public class Item : IWeight
+    {
+        [JsonProperty("name")] public string Name { get; set; } = null!;
+        [JsonProperty("weight")] public int Weight { get; set; }
+        [JsonProperty("requirement")] public string? Requirement { get; set; }
+        [JsonIgnore] public bool Skip { get; set; }
+
+        public enum SpawnType
+        {
+            Spawnable,
+            Item,
+            Blueprint,
+            ExternalTable,
+            ItemMissile
+        }
+
+        [JsonIgnore] public SpawnType Type { get; set; }
+        [JsonIgnore] public int AdjustedWeight { get; set; }
     }
 
     public class Override
@@ -49,6 +118,6 @@ namespace Map_Generator.Parsing.Json.Classes
     {
         [JsonProperty("override")] public Override? Override { get; set; }
         [JsonProperty("enemies")] private List<string> enemies { get; set; }
-         public List<Enemy> Enemies => enemies.Select(Enemy.GetEnemy).ToList();
+        public List<Enemy> Enemies => enemies.Select(Enemy.GetEnemy).ToList();
     }
 }

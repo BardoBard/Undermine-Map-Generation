@@ -83,8 +83,7 @@ namespace Map_Generator.Parsing.Json.Enums
         Spiderbasic = 80,
         Spiderwolf = 81,
         Throwbo = 82,
-
-        //ticker here
+        Ticker = 83,
         Trollbombardier = 84,
         Voodoodoll = 85,
     }

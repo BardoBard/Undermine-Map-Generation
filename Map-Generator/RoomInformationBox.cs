@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Forms;
 using Map_Generator.Math;
@@ -9,17 +10,22 @@ namespace Map_Generator
 {
     public sealed class RoomInformationBox : Control
     {
-        private readonly Form form;
+        private readonly Form _form;
         public RoomType? Room { get; set; } = new RoomType();
-        private const int TextOffset = 20;
-        private const int RowSize = 15;
+        private int _textOffset = 20;
+        private int _rowSize = 15;
         private const int GapSize = 5;
 
         public RoomInformationBox(Form form)
         {
-            this.form = form;
+            this._form = form;
             DoubleBuffered = true;
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -36,7 +42,7 @@ namespace Map_Generator
             Draw(g, MapIconExtension.GetMapImageExtraInformation(Room), $"{Room.Name}_{Room.Encounter?.Name}",
                 position);
 
-            position.y += RowSize + GapSize;
+            position.y += _rowSize + GapSize;
 
             if (Room.Encounter?.RoomEnemies != null)
                 foreach (Enemy? enemy in Room.Encounter.RoomEnemies)
@@ -45,12 +51,12 @@ namespace Map_Generator
 
         private void Draw(Graphics g, Image? image, string text, Vector2Int position)
         {
-            if (image != null && position.y < this.form.Height)
-                g.DrawImage(image, new Rectangle(position.x, position.y, RowSize, RowSize));
+            if (image != null && position.y < this._form.Height)
+                g.DrawImage(image, new Rectangle(position.x, position.y, _rowSize, _rowSize));
 
 
-            g.DrawString(text, this.Font, Brushes.Black, new Point(position.x + TextOffset, position.y));
-            position.y += RowSize + GapSize;
+            g.DrawString(text, this.Font, Brushes.Black, new Point(position.x + _textOffset, position.y));
+            position.y += _rowSize + GapSize;
         }
     }
 }
