@@ -44,7 +44,10 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("tags")] public string? Tag { get; set; }
         [JsonProperty("children")] public bool Children { get; set; } = false;
         [JsonProperty("encounter")] public bool HasExtraEncounter { get; set; } = false;
-        [JsonProperty("icon")] public MapIcon MapIcon { get; set; } = MapIcon.None;
+        [JsonProperty("icon")] private List<MapIcon>? _mapIcons { get; set; }
+
+        [JsonIgnore]
+        public List<MapIcon> MapIcons => _mapIcons ?? new List<MapIcon> { MapIcon.None }; //TODO: change this
 
         [JsonProperty("extrainformation")]
         public Dictionary<string, ExtraInformation> ExtraInformations { get; set; } = new();
@@ -96,7 +99,7 @@ namespace Map_Generator.Parsing.Json.Classes
                 return;
 
             var defaultEncounter = JsonDecoder.Encounters[mapNameEncounter][name2][RoomTypeTag].Default;
-            
+
             if (Rand.GetWeightedElement(
                     this.Encounter.WeightedDoors ?? defaultEncounter.WeightedDoors, out var door))
                 this.Encounter.Door = door.Door;

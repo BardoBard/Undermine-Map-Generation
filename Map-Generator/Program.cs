@@ -220,14 +220,17 @@ namespace Map_Generator
             GetRoomMapping();
             Console.WriteLine(Rand.Value());
 
+            Console.WriteLine("setpieces");
             if (Zonedata.SetPieces != null)
                 foreach (var setPiece in Zonedata.SetPieces)
                 {
                     PlaceExtras(setPiece, AutoSpawnType.SetPieces);
                 }
 
+
             Console.WriteLine(Rand.Value());
             Console.WriteLine("");
+            Console.WriteLine("extras");
 
             if (Zonedata.Extras != null)
                 foreach (var extra in Zonedata.Extras)
@@ -238,6 +241,7 @@ namespace Map_Generator
             Console.WriteLine(Rand.Value());
             Console.WriteLine("");
 
+            Console.WriteLine("resources");
             if (Zonedata.Resources != null)
                 foreach (var extra in Zonedata.Resources)
                 {
@@ -246,10 +250,12 @@ namespace Map_Generator
 
             Console.WriteLine(Rand.Value());
             Console.WriteLine("");
-            AddCrawlSpace();
+            AddCrawlSpace(ZoneData.Crawlspace);
+            if (!Save.priestessrescued)
+                AddCrawlSpace(ZoneData.PriestessCrawlSpace);
         }
 
-        private static void AddCrawlSpace()
+        private static void AddCrawlSpace(ZoneData.CrawlSpace extra)
         {
             Spawn(delegate(Item item)
             {
@@ -264,7 +270,7 @@ namespace Map_Generator
                     room.Encounter.HasCrawlSpace = true;
                     return;
                 }
-            }, ZoneData.Crawlspace);
+            }, extra);
         }
 
         private static void PlaceExtras<T>(T? extras, AutoSpawnType mask) where T : ZoneData.DefaultInformation
@@ -307,6 +313,9 @@ namespace Map_Generator
 
         private static void Spawn<T>(PreCallback preCallback, T extras) where T : ZoneData.DefaultInformation
         {
+            if (!Zonedata.Floors[Save.FloorIndex].Override.Enabled)
+                return;
+
             int num = Rand.RangeInclusive(extras.Min, extras.Max);
             for (int i = 0; i < num; i++)
             {
@@ -327,13 +336,16 @@ namespace Map_Generator
 
             foreach (var item in extras.Items)
             {
-                item.AdjustedWeight = (item.Requirement == null || Save.Check(item.Requirement)) ? item.Weight : 0;
+                item.AdjustedWeight =
+                    item.Requirement == null || Save.Check(item.Requirement) || item.RequirementSkip[Save.FloorIndex]
+                        ? item.Weight
+                        : 0;
             }
 
             int sum = extras.Items.Sum(item => item.AdjustedWeight);
             if (!extras.Percent100 && sum == 0)
             {
-                Rand.NextUInt();
+                // Rand.NextUInt();
                 return null;
             }
 
@@ -431,6 +443,8 @@ namespace Map_Generator
 
             foreach (RoomType room10 in Rooms)
             {
+                if (room10.Encounter == null) continue;
+
                 if (!room10.Secluded && room10.Encounter.Door == Door.Secret)
                 {
                     foreach (Direction kCardinalDirection2 in DirectionExtension.CardinalDirections)
@@ -457,31 +471,22 @@ namespace Map_Generator
                 {
                     RoomType? room5 = GetRoom(GetRoomPosition(room10.Position, kCardinalDirection3));
 
-                    if (room5 != null && room5.Encounter.Door == Door.Normal &&
-                        room10.IsValidNeighbor(room5, kCardinalDirection3) &&
-                        Rand.Chance(ZoneData.GetZoneData().Connectivity))
+                    if (room5 == null || room5.Encounter.Door != Door.Normal) continue;
+
+                    if (room10.IsValidNeighbor(room5, kCardinalDirection3))
                     {
-                        room10.Neighbors[kCardinalDirection3] = room5;
-                        room5.Neighbors[kCardinalDirection3.Opposite()] = room10;
+                        Console.WriteLine("neighbor is valid {0}, {1}", room10.Encounter.Name, room5.Encounter.Name);
+
+                        if (Rand.Chance(Zonedata.Floors[Save.FloorIndex].Override.Connectivity ??
+                                        Zonedata.Connectivity))
+                        {
+                            room10.Neighbors[kCardinalDirection3] = room5;
+                            room5.Neighbors[kCardinalDirection3.Opposite()] = room10;
+                        }
                     }
                 }
             }
 
-            // foreach (Spawner.SpawnTable setPiece in Data.SetPieces)
-            // {
-            //     PlaceExtra(setPiece, Encounter.AutoSpawnType.SetPieces);
-            // }
-            //
-            // foreach (Spawner.SpawnTable extra in Data.Extras)
-            // {
-            //     PlaceExtra(extra, Encounter.AutoSpawnType.Extras);
-            // }
-            //
-            // foreach (Spawner.SpawnTable resource in Data.Resources)
-            // {
-            //     PlaceExtra(resource, Encounter.AutoSpawnType.Extras);
-            // }
-            //
             // foreach (Room room in Rooms)
             // {
             //     RequireExt[] componentsInChildren = room.GetComponentsInChildren<RequireExt>(includeInactive: true);

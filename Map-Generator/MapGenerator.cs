@@ -24,9 +24,9 @@ namespace Map_Generator
             Program.Start(Path.Combine(PathHandler.UndermineSavePath, @"Save2.json"));
 
             // roomInfoBox.Dock = DockStyle.None; 
-            roomInfoBox.Width = 200;
-            roomInfoBox.Height = 200;
-            roomInfoBox.Location = new Point(0, (this.ClientSize.Height - roomInfoBox.Height) );
+            roomInfoBox.Width = 250;
+            roomInfoBox.Height = 500;
+            roomInfoBox.Location = new Point(0, 50 );
             Controls.Add(roomInfoBox);
 
 

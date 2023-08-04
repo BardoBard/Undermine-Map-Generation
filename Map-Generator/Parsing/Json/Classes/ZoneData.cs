@@ -39,7 +39,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("requirements")] public string Requirements { get; set; }
 
         //rest
-        [JsonIgnore]public static CrawlSpace Crawlspace { get; set; } = new CrawlSpace()
+        [JsonIgnore] public static readonly CrawlSpace Crawlspace = new()
         {
             Min = 1,
             Max = 1,
@@ -55,10 +55,28 @@ namespace Map_Generator.Parsing.Json.Classes
                 }
             }
         };
+
+        public static readonly CrawlSpace PriestessCrawlSpace = new()
+        {
+            Min = 1,
+            Max = 1,
+            Percent100 = false,
+            Items = new List<Item>
+            {
+                new()
+                {
+                    Name = "Priestess Crawl Space",
+                    Requirement = null,
+                    Weight = 1,
+                    AdjustedWeight = 0
+                }
+            }
+        };
+
         [JsonProperty("extras")] public List<Extra>? Extras { get; set; }
         [JsonProperty("resources")] public List<Resource>? Resources { get; set; }
         [JsonProperty("setpieces")] public List<SetPiece>? SetPieces { get; set; }
-        
+
 
         [JsonProperty("floors")] public List<Floor> Floors { get; set; }
 
@@ -66,6 +84,7 @@ namespace Map_Generator.Parsing.Json.Classes
         {
             [JsonProperty("min")] public int Min { get; set; }
             [JsonProperty("max")] public int Max { get; set; }
+
             [JsonProperty("100percent")] public bool Percent100 { get; set; }
             [JsonProperty("items")] public List<Item> Items { get; set; } = null!;
         }
@@ -93,18 +112,10 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("name")] public string Name { get; set; } = null!;
         [JsonProperty("weight")] public int Weight { get; set; }
         [JsonProperty("requirement")] public string? Requirement { get; set; }
+
+        [JsonProperty("requirementskip")] public bool[] RequirementSkip { get; set; } = { false, false, false, false };
+
         [JsonIgnore] public bool Skip { get; set; }
-
-        public enum SpawnType
-        {
-            Spawnable,
-            Item,
-            Blueprint,
-            ExternalTable,
-            ItemMissile
-        }
-
-        [JsonIgnore] public SpawnType Type { get; set; }
         [JsonIgnore] public int AdjustedWeight { get; set; }
     }
 
@@ -112,11 +123,14 @@ namespace Map_Generator.Parsing.Json.Classes
     {
         [JsonProperty("difficulty")] public float? Difficulty { get; set; }
         [JsonProperty("enemytypeweight")] public int[]? EnemyTypeWeight { get; set; }
+
+        [JsonProperty("connectivity")] public int? Connectivity { get; set; }
+        [JsonProperty("enabled")] public bool Enabled { get; set; } = true;
     }
 
     public class Floor
     {
-        [JsonProperty("override")] public Override? Override { get; set; }
+        [JsonProperty("override")] public Override Override { get; set; } = new();
         [JsonProperty("enemies")] private List<string> enemies { get; set; }
         public List<Enemy> Enemies => enemies.Select(Enemy.GetEnemy).ToList();
     }

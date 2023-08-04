@@ -81,7 +81,6 @@ namespace Map_Generator.Parsing.Json.Classes
             if ((NoExit & Direction.West) == 0)
                 return (neighbor.NoExit & Direction.East) == 0;
 
-
             return false;
         }
 
@@ -108,7 +107,7 @@ namespace Map_Generator.Parsing.Json.Classes
             data.Initialize(); //TODO: check, maybe earlier or not needed
             Override? floorOverride = data.Floors[floorNumber].Override;
             float floorDifficulty =
-                floorOverride?.Difficulty ??
+                floorOverride.Difficulty ??
                 (data.BaseDifficulty + data.DifficultyStep * floorNumber); //TODO: difficulty int?
 
             int[] enemyTypeWeight = floorOverride?.EnemyTypeWeight ?? data.EnemyTypeWeight;

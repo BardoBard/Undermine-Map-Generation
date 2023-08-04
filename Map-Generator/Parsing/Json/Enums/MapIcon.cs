@@ -31,24 +31,15 @@ namespace Map_Generator.Parsing.Json.Enums
         public static List<Image> GetMapImage(RoomType room)
         {
             var images = new List<Image?>();
-            var icon = room.MapIcon;
 
             if (room.Encounter is { HasCrawlSpace: true })
             {
                 images.Add(GetMapImage(MapIcon.Crawlspace));
             }
 
-            images.Add(GetMapImage(icon));
-            
-            return images.Where(image => image != null).ToList()!;
-        }
+            images.AddRange(room.MapIcons.Select(GetMapImage));
 
-        public static Image? GetMapImageExtraInformation(RoomType room)
-        {
-            var icon = room.MapIcon;
-            if (room.Encounter != null && room.MapIcon == MapIcon.None && room.Encounter.RoomEnemies.Count > 0)
-                icon = MapIcon.Enemy;
-            return GetMapImage(icon);
+            return images.Where(image => image != null).ToList()!;
         }
 
         public static Image? GetMapImage(this MapIcon mapIcon)
@@ -66,7 +57,7 @@ namespace Map_Generator.Parsing.Json.Enums
 
         public static Color AssignColor(RoomType room)
         {
-            Color color = room.MapIcon switch
+            Color color = room.MapIcons.FirstOrDefault() switch
             {
                 MapIcon.Begin => Color.DimGray,
                 MapIcon.End => Color.DimGray,

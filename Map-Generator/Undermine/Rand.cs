@@ -99,7 +99,22 @@ namespace Map_Generator.Undermine
 
         public static int Range(int min, int max) => (int)(NextUInt() % (max - min) + min);
 
-        public static bool Chance(float chance) => chance == 1.0f || (chance != 0.0f && chance > Value());
+        public static bool Chance(float chance)
+        {
+            // return chance == 1.0f || (chance != 0.0f && chance > Value());
+            if (chance != 1f)
+            {
+                if (chance != 0f)
+                {
+                    Console.WriteLine("chance");
+                    return chance > Value();
+                }
+
+                return false;
+            }
+
+            return true;
+        }
 
 
         public static void Initialize(uint initialSeed)

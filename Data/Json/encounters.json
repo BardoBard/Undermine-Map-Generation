@@ -87,7 +87,7 @@
                     "sequence": [
                         "hoodieentrance"
                     ],
-                    "autospawn": 23
+                    "autospawn": 19
                 },
                 "rooms": [
                     {
@@ -320,6 +320,7 @@
                     {
                         "tag": "end",
                         "name": "end",
+                        "autospawn": 23,
                         "icon": 3,
                         "door": 1
                     },
@@ -351,6 +352,7 @@
                     {
                         "weight": 1,
                         "name": "pillars",
+                        "autospawn": 7,
                         "noexit": 0
                     }
                 ]
@@ -398,6 +400,7 @@
                     {
                         "weight": 3,
                         "name": "halfeast",
+                        "autospawn": 7,
                         "noexit": 8,
                         "door": 1
                     },
@@ -756,7 +759,8 @@
                     "difficulty": [
                         1,
                         2
-                    ]
+                    ],
+                    "autospawn": 31
                 },
                 "rooms": [
                     {
@@ -991,6 +995,9 @@
                     {
                         "weight": 3,
                         "name": "spiderden",
+                        "enemies": [
+                            "bat"
+                        ],
                         "noexit": 0,
                         "door": 1
                     },
@@ -1299,6 +1306,7 @@
                     {
                         "weight": 2,
                         "name": "keypillars",
+                        "requirements": "priestessrescued",
                         "noexit": 0,
                         "door": 6,
                         "recursion": 1
@@ -1424,6 +1432,7 @@
                         "sequence": [
                             "library"
                         ],
+                        "autospawn": 5,
                         "requirements": "halllibrarycombat",
                         "door": 1
                     },
@@ -2944,6 +2953,7 @@
                     {
                         "weight": 3,
                         "name": "empty",
+                        "branchweight": 0,
                         "difficulty": [
                             1,
                             3
@@ -3075,6 +3085,7 @@
                         "tag": "pre_room",
                         "name": "beforedungeonentrance",
                         "icon": 3,
+                        "autospawn": 6,
                         "door": 1,
                         "requirements": "storymode"
                     }
@@ -3817,7 +3828,7 @@
                             "priestesshall1"
                         ],
                         "requirements": "priestessentrance",
-                        "autospawn": 6,
+                        "autospawn": 0,
                         "door": 7,
                         "noexit": 0
                     },

@@ -6,7 +6,9 @@
     "roomtype": "begin",
     "branchweight": 1,
     "name": "begin",
-    "icon": 1
+    "icon": [
+      1
+    ]
   },
   "beginend": {
     "stage": [
@@ -15,7 +17,9 @@
     "roomtype": "begin",
     "branchweight": 4,
     "name": "beginend",
-    "icon": 1
+    "icon": [
+      1
+    ]
   },
   "end": {
     "stage": [
@@ -25,7 +29,9 @@
     "tags": "end",
     "branchweight": 1,
     "name": "end",
-    "icon": 12
+    "icon": [
+      12
+    ]
   },
   "normalsmall": {
     "stage": [
@@ -66,7 +72,9 @@
     ],
     "roomtype": "relic",
     "name": "relic",
-    "icon": 3
+    "icon": [
+      3
+    ]
   },
   "relicchance": {
     "stage": [
@@ -75,7 +83,9 @@
     ],
     "roomtype": "relic",
     "name": "relicchance",
-    "icon": 3
+    "icon": [
+      3
+    ]
   },
   "relicunlocked": {
     "stage": [
@@ -84,7 +94,9 @@
     "roomtype": "relic_unlocked",
     "branchweight": 1,
     "name": "relicunlocked",
-    "icon": 3
+    "icon": [
+      3
+    ]
   },
   "relicextracost": {
     "stage": [
@@ -93,7 +105,9 @@
     "roomtype": "relic",
     "doorcost": 2,
     "name": "relicextracost",
-    "icon": 3
+    "icon": [
+      3
+    ]
   },
   "altar": {
     "stage": [
@@ -102,7 +116,9 @@
     "roomtype": "altar",
     "branchweight": 1,
     "name": "altar",
-    "icon": 7
+    "icon": [
+      7
+    ]
   },
   "altarnobranch": {
     "stage": [
@@ -110,7 +126,9 @@
     ],
     "roomtype": "altar",
     "name": "altarnobranch",
-    "icon": 7
+    "icon": [
+      7
+    ]
   },
   "guacamole": {
     "stage": [
@@ -118,7 +136,9 @@
     ],
     "roomtype": "altar_guacamole",
     "name": "guacamole",
-    "icon": 7
+    "icon": [
+      7
+    ]
   },
   "guacamolealt": {
     "stage": [
@@ -127,7 +147,9 @@
     "roomtype": "altar_guacamole",
     "requirements": "relicguacamole",
     "name": "guacamolealt",
-    "icon": 7
+    "icon": [
+      7
+    ]
   },
   "blackrabbit": {
     "stage": [
@@ -137,7 +159,9 @@
     "tags": "black_rabbit",
     "chance": 0.5,
     "name": "blackrabbit",
-    "icon": 8
+    "icon": [
+      8
+    ]
   },
   "hoodieentrance": {
     "stage": [
@@ -147,7 +171,10 @@
     "tags": "hoodie_entrance",
     "direction": 1,
     "name": "hoodieentrance",
-    "icon": 2
+    "icon": [
+      2,
+      15
+    ]
   },
   "hoody": {
     "stage": [
@@ -157,7 +184,9 @@
     "roomtype": "special",
     "tags": "hoody",
     "name": "hoody",
-    "icon": 2
+    "icon": [
+      2
+    ]
   },
   "secret": {
     "stage": [
@@ -166,7 +195,9 @@
     ],
     "roomtype": "secret",
     "name": "secret",
-    "icon": 6
+    "icon": [
+      6
+    ]
   },
   "secretchance": {
     "stage": [
@@ -177,7 +208,9 @@
     "chance": 0.5,
     "requirements": "adventurers_hat",
     "name": "secretchance",
-    "icon": 6
+    "icon": [
+      6
+    ]
   },
   "circinus": {
     "stage": [
@@ -188,7 +221,9 @@
     "chance": 0.25,
     "requirements": "reliccircinus",
     "name": "circinus",
-    "icon": 6
+    "icon": [
+      6
+    ]
   },
   "treasure": {
     "stage": [
@@ -198,7 +233,9 @@
     "roomtype": "treasure",
     "branchweight": 1,
     "name": "treasure",
-    "icon": 4
+    "icon": [
+      4
+    ]
   },
   "treasurechance": {
     "stage": [
@@ -209,7 +246,9 @@
     "chance": 0.5,
     "requirements": "relicadventurerswhip",
     "name": "treasurechance",
-    "icon": 4
+    "icon": [
+      4
+    ]
   },
   "treasurebasic": {
     "stage": [
@@ -218,7 +257,9 @@
     "roomtype": "treasurebasic",
     "branchweight": 1,
     "name": "treasurebasic",
-    "icon": 4
+    "icon": [
+      4
+    ]
   },
   "treasurebasicchance": {
     "stage": [
@@ -229,7 +270,9 @@
     "chance": 0.5,
     "requirements": "relicadventurerswhip",
     "name": "treasurebasicchance",
-    "icon": 4
+    "icon": [
+      4
+    ]
   },
   "hidden": {
     "stage": [
@@ -254,7 +297,9 @@
     "roomtype": "special",
     "tags": "royal_road_0",
     "name": "royalroad0",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "royalroad1": {
     "stage": [
@@ -264,7 +309,9 @@
     "tags": "royal_road_1",
     "direction": 2,
     "name": "royalroad1",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "royalroad2": {
     "stage": [
@@ -274,7 +321,9 @@
     "tags": "royal_road_2",
     "direction": 1,
     "name": "royalroad2",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "royalroad3": {
     "stage": [
@@ -284,7 +333,9 @@
     "tags": "royal_road_3",
     "direction": 8,
     "name": "royalroad3",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "royalroad4": {
     "stage": [
@@ -294,7 +345,9 @@
     "tags": "royal_road_4",
     "direction": 1,
     "name": "royalroad4",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "queenroom": {
     "stage": [
@@ -313,7 +366,9 @@
     "tags": "down_boss",
     "branchweight": 1,
     "name": "endboss",
-    "icon": 11
+    "icon": [
+      11
+    ]
   },
   "endbosssmall": {
     "stage": [
@@ -322,7 +377,9 @@
     "roomtype": "special",
     "tags": "down_boss",
     "name": "endbosssmall",
-    "icon": 11
+    "icon": [
+      11
+    ]
   },
   "bossroom": {
     "stage": [
@@ -337,7 +394,9 @@
         "sprites": 14
       }
     },
-    "icon": 11
+    "icon": [
+      11
+    ]
   },
   "prechamber": {
     "stage": [
@@ -373,7 +432,9 @@
         "sprites": 24
       }
     },
-    "icon": 12
+    "icon": [
+      12
+    ]
   },
   "bogprechamber": {
     "stage": [
@@ -384,7 +445,9 @@
     "direction": 1,
     "name": "bogprechamber",
     "encounter": true,
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "bogdown": {
     "stage": [
@@ -394,7 +457,9 @@
     "tags": "next_entrance_bog",
     "direction": 1,
     "name": "bogdown",
-    "icon": 12
+    "icon": [
+      12
+    ]
   },
   "bogprechamberbug": {
     "stage": [
@@ -419,7 +484,9 @@
     "roomtype": "shop",
     "branchweight": 1,
     "name": "shop",
-    "icon": 5
+    "icon": [
+      5
+    ]
   },
   "shopextracost": {
     "stage": [
@@ -429,7 +496,9 @@
     "branchweight": 1,
     "doorcost": 2,
     "name": "shopextracost",
-    "icon": 5
+    "icon": [
+      5
+    ]
   },
   "marketbaby": {
     "stage": [
@@ -458,7 +527,9 @@
     "zonestepchance": -0.0625,
     "tags": "relic_altar",
     "name": "relicaltar",
-    "icon": 9
+    "icon": [
+      9
+    ]
   },
   "relicaltarlastfloors": {
     "stage": [
@@ -470,7 +541,9 @@
     "roomtype": "special",
     "tags": "relic_altar",
     "name": "relicaltarlastfloors",
-    "icon": 9
+    "icon": [
+      9
+    ]
   },
   "fountain": {
     "stage": [
@@ -561,7 +634,9 @@
     "direction": 1,
     "branchweight": 1,
     "name": "tuend",
-    "icon": 12
+    "icon": [
+      12
+    ]
   },
   "tusecret": {
     "stage": [
@@ -572,7 +647,9 @@
     "direction": 1,
     "branchweight": 1,
     "name": "tusecret",
-    "icon": 6
+    "icon": [
+      6
+    ]
   },
   "dodsoncage": {
     "name": "dodsoncage,normalsmall",
@@ -581,7 +658,10 @@
     ],
     "roomtype": "special",
     "tags": "dodsoncageencounter",
-    "branchweight": 4
+    "branchweight": 4,
+    "icon": [
+      10
+    ]
   },
   "mimicfight": {
     "name": "mimicfight,normallarge",
@@ -590,7 +670,9 @@
     ],
     "roomtype": "special",
     "tags": "rockmimicencounter",
-    "icon": 10
+    "icon": [
+      11
+    ]
   },
   "waylandshophallway": {
     "stage": [
@@ -608,7 +690,9 @@
     "tags": "waylandshop",
     "direction": 1,
     "name": "waylandshop",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "mushroomapprentice": {
     "stage": [
@@ -620,7 +704,9 @@
     "tags": "mushroom_apprentice",
     "branchweight": 1,
     "name": "mushroomapprentice",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "mushroom": {
     "stage": [
@@ -632,7 +718,9 @@
     "roomtype": "special",
     "tags": "mushroom",
     "name": "mushroom",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "blackrabbitfirst": {
     "stage": [
@@ -642,7 +730,9 @@
     "tags": "black_rabbit_first",
     "branchweight": 1,
     "name": "blackrabbitfirst",
-    "icon": 8
+    "icon": [
+      8
+    ]
   },
   "dibble": {
     "stage": [
@@ -652,7 +742,9 @@
     "tags": "dibble",
     "direction": 1,
     "name": "dibble",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "storeroom": {
     "stage": [
@@ -662,7 +754,9 @@
     "tags": "store_room",
     "direction": 1,
     "name": "storeroom",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "masterskey": {
     "stage": [
@@ -671,7 +765,9 @@
     "roomtype": "special",
     "tags": "masters_key",
     "name": "masterskey",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "priestess": {
     "stage": [
@@ -681,7 +777,9 @@
     "tags": "priestess",
     "branchweight": 0,
     "name": "priestess",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "priestesshall1": {
     "stage": [
@@ -729,7 +827,9 @@
     "tags": "hall_library_combat_arena",
     "branchweight": 1,
     "name": "librarycombat",
-    "icon": 13
+    "icon": [
+      13
+    ]
   },
   "library": {
     "stage": [
@@ -739,7 +839,9 @@
     "tags": "hall_library",
     "direction": 1,
     "name": "library",
-    "icon": 10
+    "icon": [
+      10
+    ]
   },
   "threechests": {
     "stage": [
@@ -758,7 +860,9 @@
     "roomtype": "secret",
     "direction": 2,
     "name": "secreteast",
-    "icon": 6
+    "icon": [
+      6
+    ]
   },
   "hiddenhallway": {
     "stage": [
@@ -787,7 +891,9 @@
     "roomtype": "secret",
     "direction": 8,
     "name": "secretwest",
-    "icon": 6
+    "icon": [
+      6
+    ]
   },
   "maybesecreteast": {
     "stage": [
@@ -798,6 +904,8 @@
     "chance": 0.5,
     "direction": 2,
     "name": "maybesecreteast",
-    "icon": 6
+    "icon": [
+      6
+    ]
   }
 }

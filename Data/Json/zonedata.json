@@ -16,8 +16,8 @@
             "requirements": "firstdelve",
             "extras": [
                 {
-                    "min": 10,
-                    "max": 12,
+                    "min": 9,
+                    "max": 11,
                     "100percent": false,
                     "items": [
                         {
@@ -55,10 +55,6 @@
                         {
                             "weight": 4,
                             "name": "plant02"
-                        },
-                        {
-                            "weight": 1,
-                            "name": "barrelexploding01"
                         }
                     ]
                 },
@@ -107,8 +103,8 @@
             ],
             "resources": [
                 {
-                    "min": 8,
-                    "max": 8,
+                    "min": 6,
+                    "max": 6,
                     "100percent": false,
                     "items": [
                         {
@@ -160,7 +156,8 @@
                 },
                 {
                     "override": {
-                        "connectivity": 0
+                        "connectivity": 0,
+                        "enabled": false
                     },
                     "enemies": [
                         "ratbasic",
@@ -406,8 +403,8 @@
             "requirements": "mimickilled",
             "extras": [
                 {
-                    "min": 10,
-                    "max": 12,
+                    "min": 9,
+                    "max": 11,
                     "100percent": false,
                     "items": [
                         {
@@ -497,8 +494,8 @@
             ],
             "resources": [
                 {
-                    "min": 8,
-                    "max": 8,
+                    "min": 7,
+                    "max": 7,
                     "100percent": false,
                     "items": [
                         {
@@ -913,8 +910,8 @@
             ],
             "resources": [
                 {
-                    "min": 7,
-                    "max": 7,
+                    "min": 8,
+                    "max": 8,
                     "100percent": false,
                     "items": [
                         {
@@ -1286,6 +1283,148 @@
                 2,
                 1
             ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "itemcageminesetpiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate01"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "barrel01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01"
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate02"
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01"
+                        },
+                        {
+                            "weight": 5,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "requirementskip": [
+                                true,
+                                false,
+                                false,
+                                true
+                            ],
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 7,
+                    "max": 7,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallnore",
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
             "requirements": "allbossesalive",
             "floors": [
                 {
@@ -1464,6 +1603,142 @@
                 2,
                 1
             ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "itemcageminesetpiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate01"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "barrel01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01"
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate02"
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01"
+                        },
+                        {
+                            "weight": 5,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallnore",
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
             "requirements": "stonelordkilled",
             "floors": [
                 {
@@ -1630,6 +1905,171 @@
                 1,
                 2,
                 1
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "box01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "box02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallspot01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallspot02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "box01"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "box02"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "hallspot01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "hallspot02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallsplant01"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "hallsplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "hallsplant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "requirementskip": [
+                                true,
+                                false,
+                                false,
+                                false
+                            ],
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeleton01_alive"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "skeleton03_alive"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallgold",
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
             ],
             "requirements": "stonelordnotkilled",
             "floors": [

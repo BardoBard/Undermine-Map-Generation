@@ -36,7 +36,7 @@ public static class Save
         new(false, new("91f466ecbb87497b943eabd77f6e4681"));
 
     public static Discoverable foundPartyPopcornPotion { get; set; } =
-        new(false, new("0f00680feaf340518a0185d4cf9038e4"));
+        new(false, new("27497c3cdd91494ba066eb45ee59d528"));
 
     //status effects
     public static Discoverable hexDesolation { get; set; } = new(false, new("aaf06aa35fa4482cabfba81e687bfef4"));
@@ -218,8 +218,7 @@ public static class Save
     public static bool notwhip => !whip_enabled; //TODO: check this
     public static bool rougemode => !roguemode; //TODO: check this
 
-    public static bool partypopcornroom =>
-        (foundPartyPopcornPotion.hasBeenDiscovered && !whip_enabled); //TODO: check this
+    public static bool partypopcornroom => !foundPartyPopcornPotion.hasBeenDiscovered && !whip_enabled; //TODO: check this
 
     public static bool halllibrarycombat => (!(collector_book > 0) && !whip_enabled && storymode);
     public static bool dodsonnotrescued => (!peasant1_unlocked && !whip_enabled && storymode);
