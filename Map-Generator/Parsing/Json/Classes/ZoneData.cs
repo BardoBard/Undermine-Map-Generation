@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Map_Generator.Json;
+using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Parsing.Json.Interfaces;
 using Newtonsoft.Json;
 
@@ -112,8 +113,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("name")] public string Name { get; set; } = null!;
         [JsonProperty("weight")] public int Weight { get; set; }
         [JsonProperty("requirement")] public string? Requirement { get; set; }
-
-        [JsonProperty("requirementskip")] public bool[] RequirementSkip { get; set; } = { false, false, false, false };
+        [JsonProperty("icon")] public ItemIcon ItemIcon { get; set; }
 
         [JsonIgnore] public bool Skip { get; set; }
         [JsonIgnore] public int AdjustedWeight { get; set; }

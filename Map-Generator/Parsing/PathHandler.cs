@@ -29,6 +29,7 @@ public class PathHandler
     public static readonly string ImagesPath = Path.Combine(DataPath, @"Images\");
     public static readonly string MapPath = Path.Combine(ImagesPath, @"Maps\");
     public static readonly string EnemyPath = Path.Combine(ImagesPath, @"Enemies\");
+    public static readonly string ItemPath = Path.Combine(ImagesPath, @"Items\");
     public static readonly string DoorPath = Path.Combine(ImagesPath, @"Doors\");
 
     public static string FindDirectory(string baseDirectory, string targetDirectory, int backwards)

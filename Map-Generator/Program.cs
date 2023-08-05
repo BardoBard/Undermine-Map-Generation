@@ -250,8 +250,10 @@ namespace Map_Generator
 
             Console.WriteLine(Rand.Value());
             Console.WriteLine("");
+            
             AddCrawlSpace(ZoneData.Crawlspace);
-            if (!Save.priestessrescued)
+            
+            if (MapType.GetMap() == MapType.MapName.dungeon && !Save.priestessrescued)
                 AddCrawlSpace(ZoneData.PriestessCrawlSpace);
         }
 
@@ -317,6 +319,7 @@ namespace Map_Generator
                 return;
 
             int num = Rand.RangeInclusive(extras.Min, extras.Max);
+            Console.WriteLine("num: {0}", num);
             for (int i = 0; i < num; i++)
             {
                 Item? item = GetWeightedSpawnData(extras);
@@ -337,7 +340,7 @@ namespace Map_Generator
             foreach (var item in extras.Items)
             {
                 item.AdjustedWeight =
-                    item.Requirement == null || Save.Check(item.Requirement) || item.RequirementSkip[Save.FloorIndex]
+                    item.Requirement == null || Save.Check(item.Requirement)
                         ? item.Weight
                         : 0;
             }

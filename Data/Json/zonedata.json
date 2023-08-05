@@ -22,35 +22,43 @@
                     "items": [
                         {
                             "weight": 1,
-                            "name": "skeletonspawner"
+                            "name": "skeletonspawner",
+                            "icon":8
                         },
                         {
                             "weight": 3,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 2,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 3,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 6,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 5,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 5,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 4,
-                            "name": "plant01"
+                            "name": "plant01",
+                            "icon":7
                         },
                         {
                             "weight": 4,
@@ -109,19 +117,23 @@
                     "items": [
                         {
                             "weight": 3,
-                            "name": "rockgold01"
+                            "name": "rockgold01",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold02"
+                            "name": "rockgold02",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold03"
+                            "name": "rockgold03",
+                            "icon":5
                         },
                         {
                             "weight": 4,
-                            "name": "orewall"
+                            "name": "orewall",
+                            "icon":6
                         }
                     ]
                 }
@@ -213,35 +225,43 @@
                     "items": [
                         {
                             "weight": 1,
-                            "name": "skeletonspawner"
+                            "name": "skeletonspawner",
+                            "icon":8
                         },
                         {
                             "weight": 3,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 2,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 3,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 6,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 5,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 5,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 4,
-                            "name": "plant01"
+                            "name": "plant01",
+                            "icon":7
                         },
                         {
                             "weight": 4,
@@ -249,7 +269,8 @@
                         },
                         {
                             "weight": 1,
-                            "name": "barrelexploding01"
+                            "name": "barrelexploding01",
+                            "icon":2
                         }
                     ]
                 },
@@ -304,19 +325,23 @@
                     "items": [
                         {
                             "weight": 3,
-                            "name": "rockgold01"
+                            "name": "rockgold01",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold02"
+                            "name": "rockgold02",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold03"
+                            "name": "rockgold03",
+                            "icon":5
                         },
                         {
                             "weight": 4,
-                            "name": "orewall"
+                            "name": "orewall",
+                            "icon":6
                         }
                     ]
                 }
@@ -409,35 +434,43 @@
                     "items": [
                         {
                             "weight": 1,
-                            "name": "skeletonspawner"
+                            "name": "skeletonspawner",
+                            "icon":8
                         },
                         {
                             "weight": 3,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 2,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 3,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 6,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 5,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 5,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 4,
-                            "name": "plant01"
+                            "name": "plant01",
+                            "icon":7
                         },
                         {
                             "weight": 4,
@@ -445,7 +478,8 @@
                         },
                         {
                             "weight": 1,
-                            "name": "barrelexploding01"
+                            "name": "barrelexploding01",
+                            "icon":2
                         }
                     ]
                 },
@@ -500,19 +534,23 @@
                     "items": [
                         {
                             "weight": 3,
-                            "name": "rockgold01"
+                            "name": "rockgold01",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold02"
+                            "name": "rockgold02",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold03"
+                            "name": "rockgold03",
+                            "icon":5
                         },
                         {
                             "weight": 4,
-                            "name": "orewall"
+                            "name": "orewall",
+                            "icon":6
                         }
                     ]
                 }
@@ -610,35 +648,43 @@
                     "items": [
                         {
                             "weight": 1,
-                            "name": "skeletonspawner"
+                            "name": "skeletonspawner",
+                            "icon":8
                         },
                         {
                             "weight": 3,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 2,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 3,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 6,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 5,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 5,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 4,
-                            "name": "plant01"
+                            "name": "plant01",
+                            "icon":7
                         },
                         {
                             "weight": 4,
@@ -646,7 +692,8 @@
                         },
                         {
                             "weight": 1,
-                            "name": "barrelexploding01"
+                            "name": "barrelexploding01",
+                            "icon":2
                         }
                     ]
                 },
@@ -701,19 +748,23 @@
                     "items": [
                         {
                             "weight": 3,
-                            "name": "rockgold01"
+                            "name": "rockgold01",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold02"
+                            "name": "rockgold02",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold03"
+                            "name": "rockgold03",
+                            "icon":5
                         },
                         {
                             "weight": 4,
-                            "name": "orewall"
+                            "name": "orewall",
+                            "icon":6
                         }
                     ]
                 }
@@ -825,35 +876,43 @@
                     "items": [
                         {
                             "weight": 1,
-                            "name": "skeletonspawner"
+                            "name": "skeletonspawner",
+                            "icon":8
                         },
                         {
                             "weight": 3,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 2,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 3,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 6,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 5,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 5,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 4,
-                            "name": "plant01"
+                            "name": "plant01",
+                            "icon":7
                         },
                         {
                             "weight": 4,
@@ -861,7 +920,8 @@
                         },
                         {
                             "weight": 1,
-                            "name": "barrelexploding01"
+                            "name": "barrelexploding01",
+                            "icon":2
                         }
                     ]
                 },
@@ -916,19 +976,23 @@
                     "items": [
                         {
                             "weight": 3,
-                            "name": "rockgold01"
+                            "name": "rockgold01",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold02"
+                            "name": "rockgold02",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold03"
+                            "name": "rockgold03",
+                            "icon":5
                         },
                         {
                             "weight": 4,
-                            "name": "orewall"
+                            "name": "orewall",
+                            "icon":6
                         }
                     ]
                 }
@@ -1034,7 +1098,8 @@
                     "items": [
                         {
                             "weight": 1,
-                            "name": "skeletonspawner"
+                            "name": "skeletonspawner",
+                            "icon":8
                         },
                         {
                             "weight": 3,
@@ -1062,7 +1127,8 @@
                         },
                         {
                             "weight": 4,
-                            "name": "plant01"
+                            "name": "plant01",
+                            "icon":7
                         },
                         {
                             "weight": 4,
@@ -1070,7 +1136,8 @@
                         },
                         {
                             "weight": 1,
-                            "name": "barrelexploding01"
+                            "name": "barrelexploding01",
+                            "icon":2
                         }
                     ]
                 },
@@ -1125,19 +1192,23 @@
                     "items": [
                         {
                             "weight": 3,
-                            "name": "rockgold01"
+                            "name": "rockgold01",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold02"
+                            "name": "rockgold02",
+                            "icon":5
                         },
                         {
                             "weight": 3,
-                            "name": "rockgold03"
+                            "name": "rockgold03",
+                            "icon":5
                         },
                         {
                             "weight": 4,
-                            "name": "orewall"
+                            "name": "orewall",
+                            "icon":6
                         }
                     ]
                 }
@@ -1304,19 +1375,23 @@
                     "items": [
                         {
                             "weight": 1,
-                            "name": "skeletonspawner"
+                            "name": "skeletonspawner",
+                            "icon":8
                         },
                         {
                             "weight": 1,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 1,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 2,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 2,
@@ -1324,15 +1399,18 @@
                         },
                         {
                             "weight": 6,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 3,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 5,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 5,
@@ -1344,7 +1422,8 @@
                         },
                         {
                             "weight": 1,
-                            "name": "barrelexploding01"
+                            "name": "barrelexploding01",
+                            "icon":2
                         }
                     ]
                 },
@@ -1384,12 +1463,6 @@
                     "100percent": false,
                     "items": [
                         {
-                            "requirementskip": [
-                                true,
-                                false,
-                                false,
-                                true
-                            ],
                             "weight": 1,
                             "name": "treasurehuntx",
                             "requirement": "treasurehuntx"
@@ -1624,19 +1697,23 @@
                     "items": [
                         {
                             "weight": 1,
-                            "name": "skeletonspawner"
+                            "name": "skeletonspawner",
+                            "icon":8
                         },
                         {
                             "weight": 1,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 1,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 2,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 2,
@@ -1644,15 +1721,18 @@
                         },
                         {
                             "weight": 6,
-                            "name": "crate01"
+                            "name": "crate01",
+                            "icon":3
                         },
                         {
                             "weight": 3,
-                            "name": "crate02"
+                            "name": "crate02",
+                            "icon":4
                         },
                         {
                             "weight": 5,
-                            "name": "barrel01"
+                            "name": "barrel01",
+                            "icon":1
                         },
                         {
                             "weight": 5,
@@ -1664,7 +1744,8 @@
                         },
                         {
                             "weight": 1,
-                            "name": "barrelexploding01"
+                            "name": "barrelexploding01",
+                            "icon":2
                         }
                     ]
                 },
@@ -1927,7 +2008,8 @@
                     "items": [
                         {
                             "weight": 1,
-                            "name": "skeletonspawner"
+                            "name": "skeletonspawner",
+                            "icon":8
                         },
                         {
                             "weight": 1,
@@ -1975,7 +2057,8 @@
                         },
                         {
                             "weight": 1,
-                            "name": "barrelexploding01"
+                            "name": "barrelexploding01",
+                            "icon":2
                         }
                     ]
                 },
@@ -2015,12 +2098,6 @@
                     "100percent": false,
                     "items": [
                         {
-                            "requirementskip": [
-                                true,
-                                false,
-                                false,
-                                false
-                            ],
                             "weight": 1,
                             "name": "treasurehuntx",
                             "requirement": "treasurehuntx"

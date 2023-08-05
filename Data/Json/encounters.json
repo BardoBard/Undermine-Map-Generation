@@ -133,7 +133,8 @@
                     "difficulty": [
                         1,
                         -4
-                    ]
+                    ],
+                    "autospawn": 31
                 },
                 "rooms": [
                     {
@@ -187,6 +188,7 @@
                     {
                         "weight": 3,
                         "name": "bridgeew",
+                        "autospawn": 13,
                         "noexit": 3,
                         "difficulty": [
                             0,
@@ -311,6 +313,7 @@
                     {
                         "tag": "next_entrance",
                         "name": "cavernentrance",
+                        "autospawn": 1,
                         "noexit": 13,
                         "direction": 1,
                         "icon": 3,
@@ -347,6 +350,7 @@
                     {
                         "weight": 1,
                         "name": "statues",
+                        "autospawn": 7,
                         "noexit": 0
                     },
                     {
@@ -473,7 +477,7 @@
                         "recursion": 1
                     },
                     {
-                        "weight": 3,
+                        "weight": 5,
                         "name": "skeletons",
                         "noexit": 1
                     },
@@ -490,6 +494,7 @@
                     {
                         "weight": 5,
                         "name": "items",
+                        "autospawn": 3,
                         "noexit": 0,
                         "door": 6,
                         "recursion": 1
@@ -502,7 +507,7 @@
                         "recursion": 1
                     },
                     {
-                        "weight": 3,
+                        "weight": 5,
                         "name": "chest",
                         "noexit": 0
                     },
@@ -586,7 +591,7 @@
                         "recursion": 1
                     },
                     {
-                        "weight": 2,
+                        "weight": 3,
                         "name": "bard",
                         "requirements": "notbardmet",
                         "autospawn": 5,
@@ -767,6 +772,7 @@
                         "weight": 5,
                         "name": "randompillars",
                         "noexit": 0,
+                        "autospawn": -1,
                         "door": 1
                     },
                     {
@@ -792,6 +798,7 @@
                     {
                         "weight": 5,
                         "name": "tallrocks",
+                        "autospawn": -1,
                         "noexit": 0,
                         "door": 1
                     },
@@ -824,6 +831,7 @@
                     {
                         "weight": 5,
                         "name": "empty",
+                        "autospawn": -1,
                         "noexit": 0,
                         "door": 1
                     },
@@ -1004,6 +1012,7 @@
                     {
                         "weight": 4,
                         "name": "chessboard",
+                        "autospawn": -1,
                         "noexit": 0,
                         "door": 1
                     },
@@ -1026,6 +1035,7 @@
                     {
                         "weight": 5,
                         "name": "cornerpillars",
+                        "autospawn": -1,
                         "noexit": 0,
                         "door": 1
                     },
@@ -1038,6 +1048,7 @@
                     {
                         "weight": 4,
                         "name": "verticalholes",
+                        "autospawn": -1,
                         "noexit": 0,
                         "door": 1
                     },
@@ -1060,6 +1071,7 @@
                     {
                         "weight": 5,
                         "name": "cornerpillars",
+                        "autospawn": -1,
                         "noexit": 0,
                         "door": 1
                     },
@@ -1086,6 +1098,9 @@
                 ]
             },
             "treasure": {
+                "default": {
+                    "autospawn": 31
+                },
                 "rooms": [
                     {
                         "weight": 3,
@@ -1123,6 +1138,7 @@
                     {
                         "weight": 3,
                         "name": "eggs",
+                        "autospawn": 7,
                         "noexit": 1,
                         "door": 1
                     },
@@ -1420,6 +1436,7 @@
                     {
                         "tag": "down_boss",
                         "name": "shadowlordentrance",
+                        "autospawn": 7,
                         "icon": 2,
                         "requirements": "storymode",
                         "noexit": 0,
@@ -1451,6 +1468,7 @@
                         "icon": 3,
                         "noexit": 12,
                         "branchweight": 0,
+                        "autospawn": 2,
                         "direction": 1,
                         "door": 1,
                         "requirements": "storymode"

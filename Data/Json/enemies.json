@@ -3,7 +3,7 @@
         "name": "assassin",
         "difficulty": 7,
         "rougedifficulty": 5,
-        "max": 3,
+        "max": 1,
         "type": 1,
         "icon": 1
     },

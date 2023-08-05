@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Map_Generator.Parsing;
 using Map_Generator.Parsing.Json.Classes;
 using Map_Generator.Parsing.Json.Enums;
+using Map_Generator.Undermine;
 
 namespace Map_Generator
 {
@@ -18,6 +19,7 @@ namespace Map_Generator
         public MapGenerator()
         {
             InitializeComponent();
+            WhipSeed.Text = $@"Whip Seed: {Whip.CurrentWhipSeed}";
             
             roomInfoBox = new RoomInformationBox(this);
 

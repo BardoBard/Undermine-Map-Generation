@@ -32,6 +32,7 @@
             this.saveNumber = new System.Windows.Forms.NumericUpDown();
             this.saveNumberLabel = new System.Windows.Forms.Label();
             this.findMapButton = new System.Windows.Forms.Button();
+            this.WhipSeed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.saveNumber)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,11 +70,22 @@
             this.findMapButton.UseVisualStyleBackColor = true;
             this.findMapButton.Click += new System.EventHandler(this.findMapButton_Click);
             // 
+            // WhipSeed
+            // 
+            this.WhipSeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.WhipSeed.AutoSize = true;
+            this.WhipSeed.Location = new System.Drawing.Point(678, 9);
+            this.WhipSeed.Name = "WhipSeed";
+            this.WhipSeed.Size = new System.Drawing.Size(70, 13);
+            this.WhipSeed.TabIndex = 3;
+            this.WhipSeed.Text = "WHIP Seed: ";
+            // 
             // MapGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.WhipSeed);
             this.Controls.Add(this.findMapButton);
             this.Controls.Add(this.saveNumberLabel);
             this.Controls.Add(this.saveNumber);
@@ -90,5 +102,6 @@
         private System.Windows.Forms.NumericUpDown saveNumber;
         private System.Windows.Forms.Label saveNumberLabel;
         private System.Windows.Forms.Button findMapButton;
+        private System.Windows.Forms.Label WhipSeed;
     }
 }

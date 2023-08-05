@@ -44,7 +44,7 @@ namespace Map_Generator
             // draw roomname
             Draw(g, MapIconExtension.GetMapImage(Room).FirstOrDefault(), $"{Room.Name}_{Room.Encounter?.Name}",
                 position);
-            
+
             //draw door cost
             if (Room.Encounter is { Door: not Door.None and not Door.Normal })
                 Draw(g, Room.Encounter.Door.GetDoorImage(), $"Door: {Room.Encounter.Door.ToString()}",
@@ -62,16 +62,16 @@ namespace Map_Generator
             position.y = _rowSize + (GapSize * 2);
 
             foreach (Item? item in Room.Extras)
-            {
-                Draw(g, null, item.Name, position);
-            }
+                Draw(g, item.ItemIcon.GetEnemyImage(), item.Name, position);
         }
 
         private void Draw(Graphics g, Image? image, string text, Vector2Int position)
         {
             if (image != null && position.y < this._form.Height)
-                g.DrawImage(image, new Rectangle(position.x, position.y, _rowSize, _rowSize));
-
+            {
+                float aspectRatio = (float)image.Width / image.Height;
+                g.DrawImage(image, new Rectangle(position.x, position.y, (int)(aspectRatio * _rowSize), _rowSize));
+            }
 
             g.DrawString(text, this.Font, Brushes.Black, new Point(position.x + _textOffset, position.y));
             position.y += _rowSize + GapSize;

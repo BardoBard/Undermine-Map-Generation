@@ -41,7 +41,9 @@ namespace Map_Generator.Undermine
             // Transmute,
             Prayer
         }
+        public const int MinSeed = 0;
 
+        public const int MaxSeed = 99999999;
         private static readonly Dictionary<StateType, List<uint>> seeds = new();
         private static readonly Stack<StateType> stateStack = new();
 
@@ -171,6 +173,15 @@ namespace Map_Generator.Undermine
 
             result = default;
             return false;
+        }
+        public static int ClampSeed(int seed)
+        {
+            while (seed > MaxSeed)
+            {
+                seed /= 10;
+            }
+
+            return Unity.Mathf.Clamp(seed, MinSeed, MaxSeed);
         }
 
         private static void EnterScope(StateType scope) => stateStack.Push(scope);
