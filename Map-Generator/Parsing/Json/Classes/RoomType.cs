@@ -116,7 +116,7 @@ namespace Map_Generator.Parsing.Json.Classes
         {
             if (encounter == null)
             {
-                Console.WriteLine("null during check...");
+                BardLog.Log("null during check...");
                 return false;
             }
 
@@ -128,10 +128,10 @@ namespace Map_Generator.Parsing.Json.Classes
             {
                 if (!previousRoom.Encounter.AllowNeighbor(encounter))
                 {
-                    Console.WriteLine("not allowed encounter: {0}, noexit: {1}", encounter.Name, encounter.NoExit);
-                    Console.WriteLine("not allowed neighbor: {0}, noexit: {1}", previousRoom.Encounter.Name,
+                    BardLog.Log("not allowed encounter: {0}, noexit: {1}", encounter.Name, encounter.NoExit);
+                    BardLog.Log("not allowed neighbor: {0}, noexit: {1}", previousRoom.Encounter.Name,
                         previousRoom.Encounter.NoExit);
-                    Console.WriteLine("");
+                    BardLog.Log("");
                     return false;
                 }
             }
@@ -142,13 +142,13 @@ namespace Map_Generator.Parsing.Json.Classes
             // }
             if (encounter.Requirement != null && !Save.Check(encounter.Requirement))
             {
-                Console.WriteLine("requirement failed for: {0}, req: {1} ", encounter.Name, encounter.Requirement);
+                BardLog.Log("requirement failed for: {0}, req: {1} ", encounter.Name, encounter.Requirement);
                 return false;
             }
 
             if (encounter.Seen) //&& !encounter.Repeatable <- TODO: repeatable only for a few rooms, which in a normal run can be ignored
             {
-                Console.WriteLine("seen: {0}", encounter.Name);
+                BardLog.Log("seen: {0}", encounter.Name);
                 return false;
             }
 

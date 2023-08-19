@@ -95,10 +95,10 @@ namespace Map_Generator.Parsing.Json.Classes
         /// <param name="data">zonedata</param>
         public void DetermineEnemies(ZoneData data)
         {
-            Console.WriteLine("enemySpawnChance: {0}", Difficulty[0]);
+            BardLog.Log("enemySpawnChance: {0}", Difficulty[0]);
             if (!Rand.Chance(this.Difficulty[0])) //TODO: check if we have to check encounter
             {
-                Console.WriteLine("skipping room {0}", this.Name);
+                BardLog.Log("skipping room {0}", this.Name);
                 return;
             }
 
@@ -120,7 +120,7 @@ namespace Map_Generator.Parsing.Json.Classes
 
             if (enemies1.Count <= 0)
             {
-                Console.WriteLine("no enemies");
+                BardLog.Log("no enemies");
                 return;
             }
 
@@ -154,7 +154,7 @@ namespace Map_Generator.Parsing.Json.Classes
             if (enemies2.Count > 0)
             {
                 float totalDifficulty = floorDifficulty + this.Difficulty[1];
-                Console.WriteLine("total difficulty: {0}", totalDifficulty);
+                BardLog.Log("total difficulty: {0}", totalDifficulty);
                 int[] array = new int[enemies2.Count];
                 for (int i = 0; i < enemies2.Count; i++)
                 {
@@ -165,7 +165,7 @@ namespace Map_Generator.Parsing.Json.Classes
                     array[i]++;
                 }
 
-                Console.WriteLine("total difficulty after: {0}", totalDifficulty);
+                BardLog.Log("total difficulty after: {0}", totalDifficulty);
                 while (totalDifficulty > 0f && enemies2.Count > 0)
                 {
                     int randomNum = Rand.Range(0, enemies2.Count);

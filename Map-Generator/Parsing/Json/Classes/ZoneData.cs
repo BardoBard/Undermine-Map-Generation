@@ -80,14 +80,28 @@ namespace Map_Generator.Parsing.Json.Classes
 
 
         [JsonProperty("floors")] public List<Floor> Floors { get; set; }
-
-        public abstract class DefaultInformation
+        [JsonProperty("roomnames")] public List<Dictionary<string, RoomType>> Rooms { get; set; }
+        public interface IAbsolutes
         {
+            public int Min { get; set; }
+            public int Max { get; set; }
+        }
+
+        public abstract class DefaultInformation : IAbsolutes
+        {
+            [JsonProperty("override")] public List<OverrideDefaultInformation> Override { get; set; } = new();
             [JsonProperty("min")] public int Min { get; set; }
             [JsonProperty("max")] public int Max { get; set; }
 
             [JsonProperty("100percent")] public bool Percent100 { get; set; }
             [JsonProperty("items")] public List<Item> Items { get; set; } = null!;
+
+            public class OverrideDefaultInformation : IAbsolutes
+            {
+                [JsonProperty("min")] public int Min { get; set; }
+                [JsonProperty("max")] public int Max { get; set; }
+                [JsonProperty("enabled")] public bool Enabled { get; set; } = true;
+            }
         }
 
         public class Extra : DefaultInformation
@@ -125,7 +139,6 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("enemytypeweight")] public int[]? EnemyTypeWeight { get; set; }
 
         [JsonProperty("connectivity")] public int? Connectivity { get; set; }
-        [JsonProperty("enabled")] public bool Enabled { get; set; } = true;
     }
 
     public class Floor

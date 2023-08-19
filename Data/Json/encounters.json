@@ -99,6 +99,7 @@
                     {
                         "weight": 1,
                         "name": "statues",
+                        "autospawn": 23,
                         "noexit": 0,
                         "door": 1
                     },
@@ -152,6 +153,7 @@
                     {
                         "weight": 5,
                         "name": "cornerrocks",
+                        "autospawn": 15,
                         "noexit": 0,
                         "door": 1
                     },
@@ -164,12 +166,14 @@
                     {
                         "weight": 5,
                         "name": "empty",
+                        "autospawn": -1,
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 5,
                         "name": "corners",
+                        "autospawn": -1,
                         "noexit": 0,
                         "door": 1
                     },
@@ -199,6 +203,7 @@
                     {
                         "weight": 3,
                         "name": "bridgens",
+                        "autospawn": 13,
                         "noexit": 12,
                         "difficulty": [
                             0,
@@ -208,48 +213,56 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 29,
                         "name": "tallrockseast",
                         "noexit": 4,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": 29,
                         "name": "tallrockswest",
                         "noexit": 8,
                         "door": 1
                     },
                     {
                         "weight": 4,
+                        "autospawn": 29,
                         "name": "bowtie",
                         "noexit": 3,
                         "door": 1
                     },
                     {
                         "weight": 4,
+                        "autospawn": 29,
                         "name": "hourglass",
                         "noexit": 12,
                         "door": 1
                     },
                     {
                         "weight": 5,
+                        "autospawn": 29,
                         "name": "cornerblocks",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 2,
+                        "autospawn": 29,
                         "name": "track",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 4,
+                        "autospawn": -1,
                         "name": "cornerholes",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": -1,
                         "name": "crypt",
                         "difficulty": [
                             1,
@@ -267,6 +280,7 @@
                         "name": "entrance",
                         "icon": 3,
                         "noexit": 13,
+                        "autospawn": 3,
                         "door": 2,
                         "requirements": "storymode"
                     },
@@ -274,6 +288,8 @@
                         "tag": "hall_hidden_three_chests",
                         "name": "threechests",
                         "noexit": 7,
+                        "autospawn": 7,
+                        "subfloor": 1,
                         "requirements": "storymode"
                     },
                     {
@@ -339,7 +355,7 @@
                     "icon": 4,
                     "door": 5,
                     "requirements": "nohexdesolation",
-                    "autospawn": 1
+                    "autospawn": 7
                 },
                 "rooms": [
                     {
@@ -365,7 +381,7 @@
                 "default": {
                     "icon": 4,
                     "requirements": "nohexdesolation",
-                    "autospawn": 1,
+                    "autospawn": 7,
                     "door": 1
                 },
                 "rooms": [
@@ -384,10 +400,14 @@
                 ]
             },
             "treasure": {
+                "default": {
+                    "autospawn": 7
+                },
                 "rooms": [
                     {
                         "weight": 2,
                         "name": "setpiece",
+                        "autospawn": 6,
                         "difficulty": [
                             0.4,
                             -6
@@ -396,6 +416,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 23,
                         "weight": 3,
                         "name": "chestspawner",
                         "noexit": 0,
@@ -434,12 +455,14 @@
                     },
                     {
                         "weight": 1,
+                        "autospawn": 31,
                         "name": "cursedrelics",
                         "noexit": 0,
                         "door": 4
                     },
                     {
                         "weight": 2,
+                        "autospawn": 15,
                         "name": "spikesacrifice",
                         "noexit": 0,
                         "door": 1
@@ -649,7 +672,8 @@
                     },
                     {
                         "weight": 1,
-                        "name": "lab"
+                        "name": "lab",
+                        "autospawn": 1
                     },
                     {
                         "weight": 2,
@@ -847,6 +871,7 @@
                     },
                     {
                         "weight": 2,
+                        "autospawn": -1,
                         "name": "bendsw",
                         "difficulty": [
                             1,
@@ -867,6 +892,7 @@
                     },
                     {
                         "weight": 2,
+                        "autospawn": -1,
                         "name": "bendse",
                         "difficulty": [
                             1,
@@ -887,6 +913,7 @@
                     },
                     {
                         "weight": 2,
+                        "autospawn": -1,
                         "name": "bendnw",
                         "difficulty": [
                             1,
@@ -906,6 +933,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": -1,
                         "weight": 1,
                         "name": "bendnepillar",
                         "difficulty": [
@@ -926,12 +954,14 @@
                         "door": 1
                     },
                     {
+                        "autospawn": -1,
                         "weight": 5,
                         "name": "arena",
                         "noexit": 0,
                         "door": 1
                     },
                     {
+                        "autospawn": 1,
                         "weight": 3,
                         "name": "deadlydonut",
                         "difficulty": [
@@ -962,6 +992,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": -1,
                         "weight": 3,
                         "name": "hazardheavy",
                         "noexit": 0,
@@ -993,6 +1024,9 @@
                     {
                         "weight": 3,
                         "name": "ewbridgethick",
+                        "enemies": [
+                            "bat"
+                        ],
                         "difficulty": [
                             0.8,
                             -10
@@ -1018,12 +1052,14 @@
                     },
                     {
                         "weight": 5,
+                        "autospawn": -1,
                         "name": "crosshole",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 2,
+                        "autospawn": -1,
                         "name": "arrowfun",
                         "difficulty": [
                             1,
@@ -1041,6 +1077,7 @@
                     },
                     {
                         "weight": 5,
+                        "autospawn": -1,
                         "name": "cornerholes",
                         "noexit": 0,
                         "door": 1
@@ -1054,6 +1091,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": -1,
                         "name": "pillars",
                         "noexit": 0,
                         "door": 1
@@ -1077,6 +1115,7 @@
                     },
                     {
                         "weight": 1,
+                        "autospawn": -1,
                         "name": "randomwall",
                         "difficulty": [
                             0,
@@ -1087,6 +1126,7 @@
                     },
                     {
                         "weight": 1,
+                        "autospawn": -1,
                         "name": "gargoyles",
                         "difficulty": [
                             0,
@@ -1099,7 +1139,7 @@
             },
             "treasure": {
                 "default": {
-                    "autospawn": 31
+                    "autospawn": 7
                 },
                 "rooms": [
                     {
@@ -1124,12 +1164,14 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 31,
                         "weight": 4,
                         "name": "gargoylesmaybe",
                         "noexit": 0,
                         "door": 1
                     },
                     {
+                        "autospawn": 31,
                         "weight": 4,
                         "name": "healthlever",
                         "noexit": 0,
@@ -1143,6 +1185,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 5,
                         "weight": 3,
                         "name": "secretshop",
                         "icon": 10,
@@ -1381,6 +1424,7 @@
                     {
                         "weight": 3,
                         "name": "chessboard",
+                        "autospawn": 3,
                         "noexit": 0
                     },
                     {
@@ -1408,6 +1452,11 @@
                     {
                         "weight": 1,
                         "name": "smallroom",
+                        "autospawn": 5,
+                        "enemies": [
+                            "spiderwolf"
+                        ],
+                        "door": 7,
                         "difficulty": [
                             1,
                             -10
@@ -1467,7 +1516,6 @@
                         "name": "beforecavernentrance",
                         "icon": 3,
                         "noexit": 12,
-                        "branchweight": 0,
                         "autospawn": 2,
                         "direction": 1,
                         "door": 1,
@@ -1481,6 +1529,7 @@
                         "weight": 1,
                         "name": "gamblingroom",
                         "icon": 9,
+                        "autospawn": 7,
                         "noexit": 0,
                         "door": 1
                     },
@@ -1489,6 +1538,7 @@
                         "name": "combat",
                         "icon": 11,
                         "noexit": 0,
+                        "autospawn": 15,
                         "door": 1
                     }
                 ]
@@ -2005,6 +2055,13 @@
                         "autospawn": 5
                     },
                     {
+                        "tag": "end_boss",
+                        "name": "boss",
+                        "door": 1,
+                        "icon": 2,
+                        "autospawn": 1
+                    },
+                    {
                         "tag": "end_tutorial",
                         "name": "tutorial",
                         "icon": 3
@@ -2518,25 +2575,25 @@
                         "weight": 2,
                         "name": "torches",
                         "noexit": 0,
-                        "door": 4
+                        "door": 1
                     },
                     {
                         "weight": 2,
                         "name": "statues",
                         "noexit": 0,
-                        "door": 4
+                        "door": 1
                     },
                     {
                         "weight": 2,
                         "name": "bridges",
                         "noexit": 0,
-                        "door": 4
+                        "door": 1
                     },
                     {
                         "weight": 2,
                         "name": "tiled",
                         "noexit": 2,
-                        "door": 4
+                        "door": 1
                     }
                 ]
             },
@@ -2630,7 +2687,6 @@
                     {
                         "weight": 2,
                         "name": "holebridge",
-                        "branchweight": 0,
                         "noexit": 0,
                         "door": 1
                     },
@@ -2927,7 +2983,6 @@
                         "weight": 3,
                         "name": "cornerbridge",
                         "noexit": 0,
-                        "branchweight": 4,
                         "door": 1
                     },
                     {
@@ -2971,7 +3026,6 @@
                     {
                         "weight": 3,
                         "name": "empty",
-                        "branchweight": 0,
                         "difficulty": [
                             1,
                             3
@@ -3017,7 +3071,6 @@
                         "name": "torches",
                         "autospawn": 31,
                         "noexit": 0,
-                        "branchweight": 0,
                         "door": 1
                     },
                     {
@@ -3847,6 +3900,7 @@
                         ],
                         "requirements": "priestessentrance",
                         "autospawn": 0,
+                        "subfloor": 3,
                         "door": 7,
                         "noexit": 0
                     },
@@ -3879,7 +3933,6 @@
                     {
                         "tag": "next_entrance",
                         "name": "hallentrance",
-                        "branchweight": 0,
                         "icon": 3,
                         "door": 1,
                         "noexit": 13,
@@ -4281,6 +4334,7 @@
                     {
                         "weight": 1,
                         "name": "doubleblessing",
+                        "autospawn": 7,
                         "noexit": 0
                     },
                     {
@@ -4320,6 +4374,7 @@
                     {
                         "weight": 1,
                         "name": "fourbigchests",
+                        "autospawn": 0,
                         "noexit": 0
                     },
                     {
@@ -4598,6 +4653,10 @@
                         "difficulty": [
                             1,
                             -10
+                        ],
+                        "prohibitedenemies": [
+                            "jumperfire",
+                            "firewitch"
                         ],
                         "noexit": 0,
                         "door": 1
@@ -5216,7 +5275,7 @@
                         "name": "dibblesemporium",
                         "door": 1,
                         "subfloor": 1,
-                        "autospawn": 7,
+                        "autospawn": 3,
                         "sequence": [
                             "storeroom"
                         ],
@@ -5229,6 +5288,7 @@
                         "noexit": 12,
                         "requirements": "storynotwhip",
                         "autospawn": 6,
+                        "subfloor": 3,
                         "sequence": [
                             "priestesshall2"
                         ],
@@ -5243,6 +5303,7 @@
                             "priestesshall3"
                         ],
                         "autospawn": 6,
+                        "subfloor": 3,
                         "door": 1
                     },
                     {
@@ -5254,6 +5315,7 @@
                             "priestessmain"
                         ],
                         "autospawn": 6,
+                        "subfloor": 3,
                         "door": 1
                     },
                     {
@@ -5263,6 +5325,7 @@
                         "noexit": 13,
                         "requirements": "storynotwhip",
                         "autospawn": 6,
+                        "subfloor": 3,
                         "door": 1
                     },
                     {
@@ -5279,6 +5342,7 @@
                         "name": "stonelordentrance",
                         "icon": 2,
                         "requirements": "storymode",
+                        "autospawn": 1,
                         "noexit": 0,
                         "door": 1
                     },
@@ -5295,7 +5359,6 @@
                         "tag": "pre_room",
                         "name": "beforehallentrance",
                         "icon": 3,
-                        "branchweight": 0,
                         "door": 1,
                         "noexit": 12,
                         "requirements": "storymode"
@@ -5461,7 +5524,7 @@
                     "sequence": [
                         "hoodieentrance"
                     ],
-                    "autospawn": 23
+                    "autospawn": 19
                 },
                 "rooms": [
                     {
@@ -5473,12 +5536,14 @@
                     {
                         "weight": 1,
                         "name": "pillarhole",
+                        "autospawn": 3,
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 1,
                         "name": "pillars",
+                        "autospawn": 19,
                         "noexit": 0,
                         "door": 1
                     },
@@ -5497,6 +5562,7 @@
                         -8
                     ]
                 },
+                "autospawn": 31,
                 "rooms": [
                     {
                         "weight": 3,
@@ -5651,6 +5717,7 @@
                         "name": "entrance",
                         "icon": 3,
                         "noexit": 13,
+                        "autospawn": 1,
                         "door": 2,
                         "requirements": "storymode"
                     },
@@ -5674,11 +5741,13 @@
                     {
                         "tag": "hidden_campsite",
                         "name": "hiddencampsite",
+                        "autospawn": 7,
                         "door": 3
                     },
                     {
                         "tag": "hidden_hallway",
                         "name": "hiddenhallway",
+                        "autospawn": 7,
                         "noexit": 10
                     },
                     {
@@ -5693,11 +5762,13 @@
                     {
                         "tag": "end",
                         "name": "end",
+                        "autospawn": 7,
                         "door": 1,
                         "icon": 3
                     },
                     {
                         "tag": "endboss",
+                        "autospawn": 19,
                         "name": "boss",
                         "icon": 2
                     },
@@ -5722,16 +5793,16 @@
                     "icon": 4,
                     "door": 5,
                     "requirements": "nohexdesolation",
-                    "autospawn": 1
+                    "autospawn": 7
                 },
                 "rooms": [
                     {
                         "weight": 2,
-                        "name": "ocked_blocks"
+                        "name": "locked_blocks"
                     },
                     {
                         "weight": 2,
-                        "name": "ocked_round"
+                        "name": "locked_round"
                     },
                     {
                         "weight": 2,
@@ -5739,7 +5810,8 @@
                     },
                     {
                         "weight": 1,
-                        "name": "cavern_small_relic_bridge"
+                        "name": "cavern_small_relic_bridge",
+                        "autospawn": 7
                     }
                 ]
             },
@@ -5747,7 +5819,7 @@
                 "default": {
                     "icon": 4,
                     "requirements": "nohexdesolation",
-                    "autospawn": 1,
+                    "autospawn": 7,
                     "door": 1
                 },
                 "rooms": [
@@ -5770,6 +5842,9 @@
                 ]
             },
             "treasure": {
+                "default": {
+                    "autospawn": 7
+                },
                 "rooms": [
                     {
                         "weight": 2,
@@ -6152,14 +6227,16 @@
                     "difficulty": [
                         1,
                         2
-                    ]
+                    ],
+                    "autospawn": -1
                 },
                 "rooms": [
                     {
                         "weight": 4,
                         "name": "empty",
                         "noexit": 0,
-                        "door": 1
+                        "door": 1,
+                        "autospawn": -1
                     },
                     {
                         "weight": 4,
@@ -6192,6 +6269,7 @@
                     {
                         "weight": 3,
                         "name": "hallwayew",
+                        "autospawn": -1,
                         "noexit": 3,
                         "difficulty": [
                             1,
@@ -6325,6 +6403,7 @@
                         "weight": 4,
                         "name": "razor",
                         "noexit": 12,
+                        "autospawn": -1,
                         "door": 1
                     },
                     {
@@ -6351,6 +6430,7 @@
                         "weight": 2,
                         "name": "bendne",
                         "noexit": 10,
+                        "autospawn": 31,
                         "difficulty": [
                             1,
                             -8
@@ -6361,6 +6441,7 @@
                         "weight": 2,
                         "name": "bendsw",
                         "noexit": 5,
+                        "autospawn": 31,
                         "difficulty": [
                             1,
                             -8
@@ -6371,6 +6452,7 @@
                         "weight": 2,
                         "name": "bendse",
                         "noexit": 9,
+                        "autospawn": 31,
                         "difficulty": [
                             1,
                             -8
@@ -6381,12 +6463,14 @@
                         "weight": 3,
                         "name": "blocks",
                         "noexit": 0,
+                        "autospawn": 31,
                         "door": 1
                     },
                     {
                         "weight": 4,
                         "name": "prismstone",
                         "noexit": 0,
+                        "autospawn": 31,
                         "door": 1
                     },
                     {
@@ -6396,6 +6480,7 @@
                             1,
                             0
                         ],
+                        "autospawn": 31,
                         "noexit": 0,
                         "door": 1
                     },
@@ -6406,6 +6491,7 @@
                             1,
                             -2
                         ],
+                        "autospawn": 31,
                         "noexit": 0,
                         "door": 1
                     },
@@ -6437,6 +6523,7 @@
                             0
                         ],
                         "noexit": 0,
+                        "autospawn": 31,
                         "door": 1
                     },
                     {
@@ -6458,11 +6545,15 @@
                 ]
             },
             "treasure": {
+                "default": {
+                    "autospawn": 7
+                },
                 "rooms": [
                     {
                         "weight": 1,
                         "name": "cursedrelics",
                         "door": 4,
+                        "autospawn": 23,
                         "noexit": 0
                     },
                     {
@@ -6480,6 +6571,7 @@
                     {
                         "weight": 2,
                         "name": "healthlever",
+                        "autospawn": 23,
                         "noexit": 0,
                         "door": 1
                     },
@@ -6535,6 +6627,7 @@
                         "weight": 3,
                         "name": "secretshop",
                         "icon": 10,
+                        "autospawn": 5,
                         "door": 8,
                         "requirements": "secretshop",
                         "noexit": 0
@@ -6547,11 +6640,13 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 23,
                         "name": "bulletrocks",
                         "noexit": 0,
                         "door": 1
                     },
                     {
+                        "autospawn": 23,
                         "weight": 3,
                         "name": "coupleitems",
                         "noexit": 0,
@@ -6753,6 +6848,7 @@
                         "name": "ponzuentrance",
                         "icon": 2,
                         "requirements": "storymode",
+                        "autospawn": 0,
                         "noexit": 0,
                         "door": 1
                     },
@@ -6787,12 +6883,14 @@
                         "weight": 1,
                         "name": "gamblingroom",
                         "icon": 9,
+                        "autospawn": 7,
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 1,
                         "name": "combat",
+                        "autospawn": 15,
                         "icon": 11,
                         "noexit": 0,
                         "door": 1
@@ -6877,7 +6975,7 @@
             "begin": {
                 "default": {
                     "icon": 1,
-                    "autospawn": 23,
+                    "autospawn": 19,
                     "door": 1
                 },
                 "rooms": [
@@ -6909,7 +7007,8 @@
                         "weight": 1,
                         "name": "blocks",
                         "noexit": 0,
-                        "door": 1
+                        "door": 1,
+                        "autospawn": 23
                     }
                 ]
             },
@@ -6918,7 +7017,8 @@
                     "difficulty": [
                         1,
                         -15
-                    ]
+                    ],
+                    "autospawn": 31
                 },
                 "rooms": [
                     {
@@ -6972,35 +7072,41 @@
                     {
                         "weight": 1,
                         "name": "verticalhallhazard",
+                        "autospawn": 5,
                         "noexit": 12,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": 7,
                         "name": "tsectioneast",
                         "noexit": 8,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": 7,
                         "name": "tsectionwest",
                         "noexit": 4,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": 7,
                         "name": "tsectionnorth",
                         "noexit": 2,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": 7,
                         "name": "tsectionsouth",
                         "noexit": 1,
                         "door": 1
                     },
                     {
                         "weight": 2,
+                        "autospawn": 7,
                         "name": "eastwestspikes",
                         "noexit": 3,
                         "door": 1
@@ -7068,6 +7174,7 @@
                     {
                         "weight": 3,
                         "name": "cornerrocks",
+                        "autospawn": 27,
                         "noexit": 0,
                         "door": 1
                     },
@@ -7080,6 +7187,7 @@
                     {
                         "weight": 2,
                         "name": "bridgeew",
+                        "autospawn": 1,
                         "noexit": 3,
                         "door": 1
                     }
@@ -7093,16 +7201,19 @@
                         "icon": 3,
                         "noexit": 13,
                         "door": 1,
+                        "autospawn": 1,
                         "requirements": "storymode"
                     },
                     {
                         "tag": "end",
                         "name": "end",
+                        "autospawn": 19,
                         "icon": 3
                     },
                     {
                         "tag": "endboss",
                         "name": "boss",
+                        "autospawn": 19,
                         "icon": 2
                     }
                 ]
@@ -7117,6 +7228,7 @@
                 "rooms": [
                     {
                         "weight": 1,
+                        "autospawn": 7,
                         "name": "blocks",
                         "noexit": 0
                     },
@@ -7132,6 +7244,7 @@
                     },
                     {
                         "weight": 1,
+                        "autospawn": 3,
                         "name": "torchpuzzle",
                         "noexit": 0
                     }
@@ -7147,6 +7260,7 @@
                 "rooms": [
                     {
                         "weight": 1,
+                        "autospawn": 7,
                         "name": "blocks",
                         "noexit": 0,
                         "door": 1
@@ -7165,6 +7279,7 @@
                     },
                     {
                         "weight": 1,
+                        "autospawn": 3,
                         "name": "torchpuzzle",
                         "noexit": 0,
                         "door": 1
@@ -7172,6 +7287,9 @@
                 ]
             },
             "treasure": {
+                "default": {
+                    "autospawn": 7
+                },
                 "rooms": [
                     {
                         "weight": 4,
@@ -7181,6 +7299,7 @@
                     },
                     {
                         "weight": 4,
+                        "autospawn": 6,
                         "name": "goldflow",
                         "noexit": 1,
                         "door": 1
@@ -7235,6 +7354,7 @@
                     },
                     {
                         "weight": 1,
+                        "autospawn": 31,
                         "name": "cursedrelics",
                         "noexit": 0,
                         "door": 4
@@ -7260,6 +7380,7 @@
                     {
                         "weight": 3,
                         "name": "gold",
+                        "autospawn": 6,
                         "noexit": 1,
                         "door": 1
                     },
@@ -7271,12 +7392,14 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 3,
                         "name": "doublechest",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": 3,
                         "name": "healthlever",
                         "noexit": 0,
                         "door": 1
@@ -7291,7 +7414,7 @@
                     "sequence": [
                         "circinus"
                     ],
-                    "autospawn": 7
+                    "autospawn": 3
                 },
                 "rooms": [
                     {
@@ -7380,6 +7503,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 7,
                         "name": "blessing",
                         "noexit": 8,
                         "door": 6,
@@ -7387,6 +7511,7 @@
                     },
                     {
                         "weight": 2,
+                        "autospawn": 7,
                         "name": "pressureplate",
                         "noexit": 5,
                         "door": 6,
@@ -7424,15 +7549,18 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 3,
                         "name": "cursedtorch",
                         "noexit": 0
                     },
                     {
+                        "autospawn": 3,
                         "weight": 3,
                         "name": "spikesacrifice",
                         "noexit": 0
                     },
                     {
+                        "autospawn": 3,
                         "weight": 4,
                         "name": "chest02",
                         "noexit": 0
@@ -7456,26 +7584,31 @@
                         "noexit": 0
                     },
                     {
+                        "autospawn": 1,
                         "weight": 3,
                         "name": "blessing",
                         "noexit": 0
                     },
                     {
+                        "autospawn": 1,
                         "weight": 4,
                         "name": "item",
                         "noexit": 0
                     },
                     {
+                        "autospawn": 1,
                         "weight": 2,
                         "name": "lab",
                         "noexit": 0
                     },
                     {
+                        "autospawn": 3,
                         "weight": 3,
                         "name": "skeletonrocks",
                         "noexit": 0
                     },
                     {
+                        "autospawn": 3,
                         "weight": 4,
                         "name": "cookedfood",
                         "noexit": 12
@@ -7484,7 +7617,7 @@
                         "weight": 2,
                         "name": "bard",
                         "requirements": "notbardmet",
-                        "autospawn": 5,
+                        "autospawn": 3,
                         "noexit": 0
                     }
                 ]
@@ -7517,11 +7650,13 @@
                     },
                     {
                         "weight": 1,
+                        "autospawn": 1,
                         "name": "golden",
                         "noexit": 0,
                         "door": 1
                     },
                     {
+                        "autospawn": 1,
                         "weight": 1,
                         "name": "pillars",
                         "noexit": 0,
@@ -7557,11 +7692,13 @@
                         "name": "torches"
                     },
                     {
+                        "autospawn": 1,
                         "weight": 1,
                         "name": "golden"
                     },
                     {
                         "weight": 1,
+                        "autospawn": 1,
                         "name": "pillars"
                     },
                     {
@@ -7589,10 +7726,12 @@
                         "name": "torches"
                     },
                     {
+                        "autospawn": 1,
                         "weight": 1,
                         "name": "golden"
                     },
                     {
+                        "autospawn": 1,
                         "weight": 1,
                         "name": "pillars"
                     },
@@ -7615,7 +7754,8 @@
                     "difficulty": [
                         1,
                         2
-                    ]
+                    ],
+                    "autospawn": -1
                 },
                 "rooms": [
                     {
@@ -7631,6 +7771,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 31,
                         "weight": 3,
                         "name": "centralpillar",
                         "difficulty": [
@@ -7703,6 +7844,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 31,
                         "weight": 3,
                         "name": "northledge",
                         "noexit": 1,
@@ -7713,6 +7855,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 31,
                         "weight": 3,
                         "name": "southledge",
                         "noexit": 2,
@@ -7730,6 +7873,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 31,
                         "name": "necorner",
                         "noexit": 10,
                         "difficulty": [
@@ -7740,6 +7884,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 31,
                         "name": "nwcorner",
                         "noexit": 6,
                         "difficulty": [
@@ -7750,6 +7895,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 31,
                         "name": "secorner",
                         "noexit": 9,
                         "difficulty": [
@@ -7759,6 +7905,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 31,
                         "weight": 3,
                         "name": "swcorner",
                         "noexit": 5,
@@ -7785,6 +7932,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 31,
                         "weight": 2,
                         "name": "nsdonut",
                         "noexit": 12,
@@ -7795,6 +7943,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 1,
                         "weight": 2,
                         "name": "spikebridgeew",
                         "noexit": 3,
@@ -7805,6 +7954,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 30,
                         "weight": 3,
                         "name": "northgoldpool",
                         "noexit": 1,
@@ -7825,6 +7975,7 @@
                         "door": 1
                     },
                     {
+                        "autospawn": 31,
                         "weight": 3,
                         "name": "quotes",
                         "noexit": 0,
@@ -7832,6 +7983,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 31,
                         "name": "goldhotdogs",
                         "difficulty": [
                             1,
@@ -7842,12 +7994,14 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 31,
                         "name": "goldtriangle",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": 31,
                         "name": "goldriver",
                         "difficulty": [
                             1,
@@ -7858,12 +8012,14 @@
                     },
                     {
                         "weight": 4,
+                        "autospawn": 31,
                         "name": "ventsetpeice",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": 27,
                         "name": "checkboard",
                         "noexit": 0,
                         "door": 1
@@ -7876,6 +8032,7 @@
                     },
                     {
                         "weight": 2,
+                        "autospawn": 1,
                         "name": "rollerbridgeew",
                         "noexit": 3,
                         "difficulty": [
@@ -7886,6 +8043,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 31,
                         "name": "snake",
                         "difficulty": [
                             1,
@@ -7896,12 +8054,14 @@
                     },
                     {
                         "weight": 4,
+                        "autospawn": 31,
                         "name": "singlesetpiece",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 2,
+                        "autospawn": 31,
                         "name": "doublesetpiece",
                         "difficulty": [
                             1,
@@ -7950,6 +8110,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 31,
                         "name": "arrowmaze",
                         "difficulty": [
                             0.5,
@@ -7960,6 +8121,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 31,
                         "name": "thornpillars",
                         "difficulty": [
                             1,
@@ -7976,6 +8138,7 @@
                     },
                     {
                         "weight": 2,
+                        "autospawn": 7,
                         "name": "rollerhall",
                         "difficulty": [
                             0,
@@ -8017,6 +8180,9 @@
                 ]
             },
             "treasure": {
+                "default": {
+                    "autospawn": 23
+                },
                 "rooms": [
                     {
                         "weight": 4,
@@ -8026,6 +8192,14 @@
                     },
                     {
                         "weight": 4,
+                        "autospawn": 19,
+                        "name": "justtreasure02",
+                        "noexit": 0,
+                        "door": 1
+                    },
+                    {
+                        "weight": 4,
+                        "autospawn": 3,
                         "name": "bombpuzzle",
                         "noexit": 0,
                         "door": 1
@@ -8043,13 +8217,8 @@
                         "door": 1
                     },
                     {
-                        "weight": 4,
-                        "name": "justtreasure02",
-                        "noexit": 0,
-                        "door": 1
-                    },
-                    {
                         "weight": 2,
+                        "autospawn": 3,
                         "name": "river",
                         "noexit": 0,
                         "door": 1
@@ -8070,6 +8239,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 3,
                         "name": "bridgechest",
                         "noexit": 4,
                         "door": 1
@@ -8082,30 +8252,35 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 1,
                         "name": "rollerbridge",
                         "noexit": 1,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": 3,
                         "name": "rollers",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 1,
+                        "autospawn": 7,
                         "name": "cursedrelics",
                         "noexit": 0,
                         "door": 4
                     },
                     {
                         "weight": 4,
+                        "autospawn": 7,
                         "name": "items",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 3,
+                        "autospawn": 7,
                         "name": "choice",
                         "noexit": 0,
                         "door": 1
@@ -8166,6 +8341,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 3,
                         "name": "spikesacrifice",
                         "noexit": 0,
                         "door": 6,
@@ -8180,6 +8356,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 3,
                         "name": "rollerbridge",
                         "noexit": 4,
                         "door": 6,
@@ -8187,6 +8364,7 @@
                     },
                     {
                         "weight": 4,
+                        "autospawn": 3,
                         "name": "rollerbidgensitems",
                         "noexit": 12,
                         "door": 6,
@@ -8194,6 +8372,7 @@
                     },
                     {
                         "weight": 3,
+                        "autospawn": 3,
                         "name": "gold",
                         "noexit": 0,
                         "door": 6,
@@ -8202,6 +8381,7 @@
                     {
                         "weight": 2,
                         "name": "talisman",
+                        "autospawn": 3,
                         "noexit": 0,
                         "door": 6,
                         "recursion": 1
@@ -8248,6 +8428,7 @@
                     },
                     {
                         "weight": 4,
+                        "autospawn": 3,
                         "name": "goldmoat",
                         "noexit": 0
                     },
@@ -8257,11 +8438,13 @@
                         "noexit": 0
                     },
                     {
+                        "autospawn": 3,
                         "weight": 3,
                         "name": "goldlake",
                         "noexit": 0
                     },
                     {
+                        "autospawn": 1,
                         "weight": 2,
                         "name": "tinyroom",
                         "noexit": 0
@@ -8282,11 +8465,13 @@
                         "noexit": 0
                     },
                     {
+                        "autospawn": 3,
                         "weight": 2,
                         "name": "blessing",
                         "noexit": 0
                     },
                     {
+                        "autospawn": 3,
                         "weight": 1,
                         "name": "altar",
                         "noexit": 0
@@ -8297,6 +8482,7 @@
                         "sequence": [
                             "maybesecreteast"
                         ],
+                        "subfloor": 1,
                         "noexit": 0
                     },
                     {
@@ -8315,6 +8501,7 @@
                 "rooms": [
                     {
                         "tag": "down_boss",
+                        "autospawn": 1,
                         "name": "seerentrance",
                         "icon": 2,
                         "requirements": "storymode",
@@ -8326,16 +8513,18 @@
                         "name": "relicaltar",
                         "icon": 6,
                         "requirements": "relicaltar",
-                        "autospawn": 7,
+                        "autospawn": 3,
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "tag": "end",
+                        "autospawn": 19,
                         "name": "end",
                         "icon": 3
                     },
                     {
+                        "autospawn": 19,
                         "tag": "endboss",
                         "name": "boss",
                         "icon": 2
@@ -8347,11 +8536,13 @@
                     {
                         "weight": 1,
                         "name": "gamblingroom",
+                        "autospawn": 7,
                         "icon": 9,
                         "noexit": 0,
                         "door": 1
                     },
                     {
+                        "autospawn": 15,
                         "weight": 1,
                         "name": "combat",
                         "icon": 11,

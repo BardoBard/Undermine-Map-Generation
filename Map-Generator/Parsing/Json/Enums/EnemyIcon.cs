@@ -19,7 +19,7 @@ namespace Map_Generator.Parsing.Json.Enums
         Corruptedpilferboss = 10,
         Crossbowman = 11,
         Crystalant = 12,
-        Crysalfly = 13,
+        Crystalfly = 13,
         Crystalspider = 14,
         Crystalwitch = 15,
         Cursedjar = 16,

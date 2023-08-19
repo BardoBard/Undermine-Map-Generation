@@ -16,6 +16,7 @@ public enum ItemIcon
     OreWall01 = 6,
     Plant01 = 7,
     SkeletonSpawner = 8,
+    CrawlSpace = 9,
 }
 
 public static class ItemIconExtension

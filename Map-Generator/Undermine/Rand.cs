@@ -41,6 +41,7 @@ namespace Map_Generator.Undermine
             // Transmute,
             Prayer
         }
+
         public const int MinSeed = 0;
 
         public const int MaxSeed = 99999999;
@@ -65,6 +66,7 @@ namespace Map_Generator.Undermine
 
             return y;
         }
+
         public static uint NextUIntWatch()
         {
             StateType currentScope = GetCurrentScope();
@@ -101,22 +103,9 @@ namespace Map_Generator.Undermine
 
         public static int Range(int min, int max) => (int)(NextUInt() % (max - min) + min);
 
-        public static bool Chance(float chance)
-        {
-            // return chance == 1.0f || (chance != 0.0f && chance > Value());
-            if (chance != 1f)
-            {
-                if (chance != 0f)
-                {
-                    Console.WriteLine("chance");
-                    return chance > Value();
-                }
-
-                return false;
-            }
-
-            return true;
-        }
+        public static bool Chance(float chance) =>
+            chance == 1.0f || //chance can be 1.0f due to the nature of the data that I'm working with
+            (chance != 0.0f && chance > Value());
 
 
         public static void Initialize(uint initialSeed)
@@ -142,24 +131,23 @@ namespace Map_Generator.Undermine
             //TODO: refactor this entire method
             if (elements == null || !elements.Any())
             {
-                // NextUInt(); //TODO: check if this can stay removed
                 result = default;
                 return false;
             }
 
-            var elems = elements.Where(element => !element.Skip);
+            var elems = elements.Where(element => element is { Skip: false });
             var weights = elems as T[] ?? elems.ToArray();
-            int totalweight = weights.Aggregate(0, (current, element) => current + element.Weight);
-            Console.WriteLine("totalweight {0}", totalweight);
+            int totalWeight = weights.Aggregate(0, (current, element) => current + element.Weight);
+            BardLog.Log("totalweight {0}", totalWeight);
 
-            if (totalweight == 0)
+            if (totalWeight == 0)
             {
                 NextUInt();
                 result = default;
                 return false;
             }
 
-            int randomNum = RangeInclusive(1, totalweight);
+            int randomNum = RangeInclusive(1, totalWeight);
             foreach (var element2 in weights)
             {
                 randomNum -= element2.Weight;
@@ -174,6 +162,7 @@ namespace Map_Generator.Undermine
             result = default;
             return false;
         }
+
         public static int ClampSeed(int seed)
         {
             while (seed > MaxSeed)
