@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Map_Generator.Parsing;
 using Map_Generator.Parsing.Json.Classes;
 using Newtonsoft.Json;
 
@@ -8,29 +9,47 @@ namespace Map_Generator.Json;
 
 public static class JsonDecoder
 {
-    private static readonly string LocalLowPath =
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+    private static readonly string MapsData = File.ReadAllText(PathHandler.JsonPath + "maps.json");
 
-    public static readonly string UnderminePath = LocalLowPath + @"\Thorium Entertainment\UnderMine\";
+    public static List<Maps> Maps =
+        JsonConvert.DeserializeObject<List<Maps>>(MapsData) ?? new List<Maps>();
 
-    private static readonly string MapsData = File.ReadAllText(UnderminePath + "maps.json");
+    private static readonly string RoomData = File.ReadAllText(PathHandler.JsonPath + "rooms.json");
 
-    public static readonly Dictionary<string, Maps> Maps =
-        JsonConvert.DeserializeObject<Dictionary<string, Maps>>(MapsData) ?? new Dictionary<string, Maps>();
-
-    private static readonly string RoomData = File.ReadAllText(UnderminePath + "rooms.json");
-
-    public static readonly Dictionary<string, RoomType> Rooms =
+    public static  Dictionary<string, RoomType> Rooms =
         JsonConvert.DeserializeObject<Dictionary<string, RoomType>>(RoomData) ?? new Dictionary<string, RoomType>();
 
-    private static readonly string EncounterData = File.ReadAllText(UnderminePath + "encounters.json");
+    private static readonly string EncounterData = File.ReadAllText(PathHandler.JsonPath + "encounters.json");
 
-    public static readonly Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>> Encounter =
+    public static  Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>> Encounters =
         JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>>(
             EncounterData) ?? new Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>();
 
 
-    public static readonly string ZoneDataData = File.ReadAllText(UnderminePath + "zonedata.json");
+    private static readonly string ZoneDataData = File.ReadAllText(PathHandler.JsonPath + "zonedata.json");
 
-    public static readonly List<List<ZoneData>> ZoneData = JsonConvert.DeserializeObject<List<List<ZoneData>>>(ZoneDataData) ?? new List<List<ZoneData>>();
+    public static  List<List<ZoneData>> ZoneData =
+        JsonConvert.DeserializeObject<List<List<ZoneData>>>(ZoneDataData) ?? new List<List<ZoneData>>();
+
+    private static readonly string EnemiesDataData = File.ReadAllText(PathHandler.JsonPath + "enemies.json");
+
+    public static  Dictionary<string, Enemy> Enemies =
+        JsonConvert.DeserializeObject<Dictionary<string, Enemy>>(EnemiesDataData) ?? new Dictionary<string, Enemy>();
+
+    public static void ReadJson()
+    {
+        Maps.Clear();
+        // Rooms.Clear();
+        Encounters.Clear();
+        Enemies.Clear();
+        ZoneData.Clear();
+        
+        
+        Maps =  JsonConvert.DeserializeObject<List<Maps>>(MapsData) ?? new List<Maps>();
+        // Rooms = JsonConvert.DeserializeObject<Dictionary<string, RoomType>>(RoomData) ?? new Dictionary<string, RoomType>();
+        Encounters = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>>(
+            EncounterData) ?? new Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>();
+        Enemies = JsonConvert.DeserializeObject<Dictionary<string, Enemy>>(EnemiesDataData) ?? new Dictionary<string, Enemy>();
+        ZoneData = JsonConvert.DeserializeObject<List<List<ZoneData>>>(ZoneDataData) ?? new List<List<ZoneData>>();
+    }
 }

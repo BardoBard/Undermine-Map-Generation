@@ -1,0 +1,680 @@
+{
+    "assassin": {
+        "name": "assassin",
+        "difficulty": 7,
+        "rougedifficulty": 5,
+        "max": 1,
+        "type": 1,
+        "icon": 1
+    },
+    "bat": {
+        "name": "bat",
+        "difficulty": 4,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 2
+    },
+    "bingbong": {
+        "name": "bingbong",
+        "difficulty": 15,
+        "rougedifficulty": 6,
+        "max": 3,
+        "type": 3,
+        "icon": 3
+    },
+    "bishfish": {
+        "name": "bishfish",
+        "difficulty": 3,
+        "rougedifficulty": 3,
+        "max": 3,
+        "type": 1,
+        "icon": 4
+    },
+    "bobo": {
+        "name": "bobo",
+        "difficulty": 5,
+        "rougedifficulty": 5,
+        "max": 1,
+        "type": 3,
+        "icon": 5
+    },
+    "buglightning": {
+        "name": "buglightning",
+        "difficulty": 3,
+        "rougedifficulty": 3,
+        "type": 1,
+        "icon": 6
+    },
+    "cauldron": {
+        "name": "cauldron",
+        "difficulty": 2,
+        "rougedifficulty": 3,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 7
+    },
+    "churchbell": {
+        "name": "churchbell",
+        "difficulty": 6,
+        "rougedifficulty": 3,
+        "max": 2,
+        "type": 4,
+        "icon": 8
+    },
+    "corruptedpilfer": {
+        "name": "corruptedpilfer",
+        "difficulty": 9,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 9
+    },
+    "corruptedpilferboss": {
+        "name": "corruptedpilferboss",
+        "difficulty": 9,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 10
+    },
+    "crossbowman": {
+        "name": "crossbowman",
+        "difficulty": 6,
+        "rougedifficulty": 5,
+        "max": 2,
+        "type": 2,
+        "icon": 11
+    },
+    "crystalant": {
+        "name": "crystalant",
+        "difficulty": 8,
+        "rougedifficulty": 5,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 12
+    },
+    "crystalfly": {
+        "name": "crystalfly",
+        "difficulty": 7,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 2,
+        "icon": 13
+    },
+    "crystalspider": {
+        "name": "crystalspider",
+        "difficulty": 6,
+        "rougedifficulty": 3,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 14
+    },
+    "crystalwitch": {
+        "name": "crystalwitch",
+        "difficulty": 10,
+        "rougedifficulty": 5,
+        "max": 2,
+        "type": 2,
+        "icon": 15
+    },
+    "cursedjar": {
+        "name": "cursedjar",
+        "difficulty": 3,
+        "rougedifficulty": 3,
+        "canbesolo": true,
+        "type": 4,
+        "icon": 16
+    },
+    "cursedjarwisp": {
+        "name": "cursedjarwisp",
+        "difficulty": 1,
+        "rougedifficulty": 1,
+        "canbesolo": true,
+        "type": 4,
+        "icon": 17
+    },
+    "firebat": {
+        "name": "firebat",
+        "difficulty": 9,
+        "rougedifficulty": 4,
+        "max": 2,
+        "type": 1,
+        "icon": 18
+    },
+    "firewitch": {
+        "name": "firewitch",
+        "difficulty": 5,
+        "rougedifficulty": 5,
+        "max": 1,
+        "type": 2,
+        "icon": 19
+    },
+    "flybloat": {
+        "name": "flybloat",
+        "difficulty": 9,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 2,
+        "icon": 20
+    },
+    "flyranged": {
+        "name": "flyranged",
+        "difficulty": 2,
+        "rougedifficulty": 3,
+        "canbesolo": true,
+        "type": 2,
+        "max": 7,
+        "icon": 21
+    },
+    "flyranged02": {
+        "name": "flyranged02",
+        "difficulty": 4,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 2,
+        "icon": 22
+    },
+    "flyranged03": {
+        "name": "flyranged03",
+        "difficulty": 7,
+        "rougedifficulty": 5,
+        "canbesolo": true,
+        "type": 2,
+        "icon": 23
+    },
+    "footman": {
+        "name": "footman",
+        "difficulty": 7,
+        "rougedifficulty": 6,
+        "max": 2,
+        "type": 1,
+        "icon": 24
+    },
+    "gargoyle": {
+        "name": "gargoyle",
+        "difficulty": 6,
+        "rougedifficulty": 6,
+        "max": 2,
+        "type": 2,
+        "icon": 25
+    },
+    "gargoylestatue": {
+        "name": "gargoylestatue",
+        "difficulty": 6,
+        "rougedifficulty": 6,
+        "max": 2,
+        "type": 2,
+        "icon": 25
+    },
+    "glimmerweed": {
+        "name": "glimmerweed",
+        "difficulty": 8,
+        "rougedifficulty": 4,
+        "max": 3,
+        "canbesolo": true,
+        "type": 6,
+        "icon": 27
+    },
+    "goblinengineer": {
+        "name": "goblinengineer",
+        "difficulty": 5,
+        "rougedifficulty": 4,
+        "max": 2,
+        "type": 4,
+        "icon": 28
+    },
+    "goblinpoisonengineer": {
+        "name": "goblinpoisonengineer",
+        "difficulty": 14,
+        "rougedifficulty": 5,
+        "max": 2,
+        "type": 4,
+        "icon": 29
+    },
+    "goblintickerengineer": {
+        "name": "goblintickerengineer",
+        "difficulty": 11,
+        "rougedifficulty": 6,
+        "max": 2,
+        "type": 4,
+        "icon": 30
+    },
+    "golem": {
+        "name": "golem",
+        "difficulty": 9,
+        "rougedifficulty": 6,
+        "max": 1,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 31
+    },
+    "gremlin": {
+        "name": "gremlin",
+        "difficulty": 8,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 32
+    },
+    "gremlinfiery": {
+        "name": "gremlinfiery",
+        "difficulty": 8,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 2,
+        "icon": 33
+    },
+    "highpriest": {
+        "name": "highpriest",
+        "difficulty": 16,
+        "rougedifficulty": 6,
+        "max": 2,
+        "type": 6,
+        "icon": 34
+    },
+    "hobbledoll": {
+        "name": "hobbledoll",
+        "difficulty": 0,
+        "rougedifficulty": 2,
+        "type": 0,
+        "icon": 35
+    },
+    "jumperfire": {
+        "name": "jumperfire",
+        "difficulty": 3,
+        "rougedifficulty": 3,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 36
+    },
+    "jumperfirelarge": {
+        "name": "jumperfirelarge",
+        "difficulty": 6,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 37
+    },
+    "jumperoil": {
+        "name": "jumperoil",
+        "difficulty": 3,
+        "rougedifficulty": 3,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 38
+    },
+    "jumperoillarge": {
+        "name": "jumperoillarge",
+        "difficulty": 6,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 39
+    },
+    "jumperwater": {
+        "name": "jumperwater",
+        "difficulty": 3,
+        "rougedifficulty": 3,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 40
+    },
+    "jumperwaterlarge": {
+        "name": "jumperwaterlarge",
+        "difficulty": 6,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 41
+    },
+    "lurkerbasic": {
+        "name": "lurkerbasic",
+        "difficulty": 4,
+        "rougedifficulty": 4,
+        "max": 3,
+        "type": 2,
+        "icon": 42
+    },
+    "lurkercrypt": {
+        "name": "lurkercrypt",
+        "difficulty": 7,
+        "rougedifficulty": 4,
+        "max": 1,
+        "type": 2,
+        "icon": 43
+    },
+    "lurkercrystal": {
+        "name": "lurkercrystal",
+        "difficulty": 10,
+        "rougedifficulty": 5,
+        "max": 2,
+        "type": 2,
+        "icon": 44
+    },
+    "magmawormhead": {
+        "name": "magmawormhead",
+        "difficulty": 13,
+        "rougedifficulty": 5,
+        "canbesolo": true,
+        "type": 2,
+        "icon": 45
+    },
+    "mimicchest": {
+        "name": "mimicchest",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 46
+    },
+    "mimicrarechest": {
+        "name": "mimicrarechest",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 46
+    },
+    "mimicresourcechest": {
+        "name": "mimicresourcechest",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 46
+    },
+    "minicchest": {
+        "name": "minicchest",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 46
+    },
+    "necromancer": {
+        "name": "necromancer",
+        "difficulty": 12,
+        "rougedifficulty": 7,
+        "max": 1,
+        "type": 6,
+        "icon": 50
+    },
+    "nemesis": {
+        "name": "nemesis",
+        "difficulty": 10,
+        "rougedifficulty": 10,
+        "type": 1,
+        "icon": 51
+    },
+    "ogreannihilator": {
+        "name": "ogreannihilator",
+        "difficulty": 16,
+        "rougedifficulty": 9,
+        "max": 2,
+        "type": 2,
+        "icon": 52
+    },
+    "ogrebombardier": {
+        "name": "ogrebombardier",
+        "difficulty": 6,
+        "rougedifficulty": 6,
+        "max": 2,
+        "type": 2,
+        "icon": 53
+    },
+    "ogrefirebomber": {
+        "name": "ogrefirebomber",
+        "difficulty": 18,
+        "rougedifficulty": 6,
+        "max": 2,
+        "type": 2,
+        "icon": 54
+    },
+    "pilferbasic": {
+        "name": "pilferbasic",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 0,
+        "icon": 55
+    },
+    "pilferbomb": {
+        "name": "pilferbomb",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 0,
+        "icon": 56
+    },
+    "pilfercrafting": {
+        "name": "pilfercrafting",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 0,
+        "icon": 0
+    },
+    "pilferfat": {
+        "name": "pilferfat",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 0,
+        "icon": 58
+    },
+    "pilfergolden": {
+        "name": "pilfergolden",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 0,
+        "icon": 59
+    },
+    "pilferhunter": {
+        "name": "pilferhunter",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 0,
+        "icon": 60
+    },
+    "poisonwormhead": {
+        "name": "poisonwormhead",
+        "difficulty": 15,
+        "rougedifficulty": 7,
+        "max": 2,
+        "canbesolo": true,
+        "type": 2,
+        "icon": 61
+    },
+    "practisedummy": {
+        "name": "practisedummy",
+        "difficulty": 0,
+        "rougedifficulty": 0,
+        "canbesolo": true,
+        "type": 0,
+        "icon": 0
+    },
+    "priest": {
+        "name": "priest",
+        "difficulty": 4,
+        "rougedifficulty": 4,
+        "max": 2,
+        "type": 6,
+        "icon": 63
+    },
+    "priestinnerfire": {
+        "name": "priestinnerfire",
+        "difficulty": 4,
+        "rougedifficulty": 4,
+        "max": 1,
+        "type": 6,
+        "icon": 64
+    },
+    "queenfish": {
+        "name": "queenfish",
+        "difficulty": 11,
+        "rougedifficulty": 6,
+        "canbesolo": true,
+        "type": 2,
+        "icon": 65
+    },
+    "quilledgolem": {
+        "name": "quilledgolem",
+        "difficulty": 20,
+        "rougedifficulty": 8,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 66
+    },
+    "ratbasic": {
+        "name": "ratbasic",
+        "difficulty": 1,
+        "rougedifficulty": 2,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 67
+    },
+    "ratexploding": {
+        "name": "ratexploding",
+        "difficulty": 1,
+        "rougedifficulty": 2,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 68
+    },
+    "ratlarge": {
+        "name": "ratlarge",
+        "difficulty": 3,
+        "rougedifficulty": 3,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 69
+    },
+    "ratnest": {
+        "name": "ratnest",
+        "difficulty": 3,
+        "rougedifficulty": 3,
+        "type": 4,
+        "icon": 70
+    },
+    "rattough": {
+        "name": "rattough",
+        "difficulty": 4,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 71
+    },
+    "rookfish": {
+        "name": "rookfish",
+        "difficulty": 3,
+        "rougedifficulty": 3,
+        "max": 3,
+        "type": 2,
+        "icon": 72
+    },
+    "sandwormlarva": {
+        "name": "sandwormlarva",
+        "difficulty": 1,
+        "rougedifficulty": 1,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 73
+    },
+    "scaletunnel": {
+        "name": "scaletunnel",
+        "difficulty": 18,
+        "rougedifficulty": 8,
+        "type": 4,
+        "icon": 74
+    },
+    "shaman": {
+        "name": "shaman",
+        "difficulty": 6,
+        "rougedifficulty": 5,
+        "max": 2,
+        "type": 5,
+        "icon": 75
+    },
+    "shaman02": {
+        "name": "shaman02",
+        "difficulty": 9,
+        "rougedifficulty": 5,
+        "max": 2,
+        "type": 6,
+        "icon": 76
+    },
+    "shaman03": {
+        "name": "shaman03",
+        "difficulty": 18,
+        "rougedifficulty": 5,
+        "max": 2,
+        "type": 5,
+        "icon": 77
+    },
+    "skeletonenemycrimson": {
+        "name": "skeletonenemycrimson",
+        "difficulty": 8,
+        "rougedifficulty": 6,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 78
+    },
+    "skeletonenemynorm": {
+        "name": "skeletonenemynorm",
+        "difficulty": 6,
+        "rougedifficulty": 4,
+        "canbesolo": true,
+        "type": 3,
+        "icon": 79
+    },
+    "spiderbasic": {
+        "name": "spiderbasic",
+        "difficulty": 2,
+        "rougedifficulty": 1,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 80
+    },
+    "spiderwolf": {
+        "name": "spiderwolf",
+        "difficulty": 3,
+        "rougedifficulty": 2,
+        "canbesolo": true,
+        "type": 1,
+        "icon": 81
+    },
+    "throwbo": {
+        "name": "throwbo",
+        "difficulty": 12,
+        "rougedifficulty": 7,
+        "max": 1,
+        "type": 3,
+        "icon": 82
+    },
+    "ticker": {
+        "name": "ticker",
+        "difficulty": 5,
+        "rougedifficulty": 3,
+        "canbesolo": true,
+        "type": 2,
+        "icon": 0
+    },
+    "trollbombardier": {
+        "name": "trollbombardier",
+        "difficulty": 14,
+        "rougedifficulty": 6,
+        "max": 2,
+        "type": 2,
+        "icon": 84
+    },
+    "voodoodoll": {
+        "name": "voodoodoll",
+        "difficulty": 0,
+        "rougedifficulty": 2,
+        "type": 0,
+        "icon": 85
+    }
+}

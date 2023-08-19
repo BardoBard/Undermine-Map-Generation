@@ -1,86 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{C2898FA7-E6E9-4B0F-B173-6D48D9FD82EC}</ProjectGuid>
-        <OutputType>Exe</OutputType>
-        <RootNamespace>Map_Generator</RootNamespace>
-        <AssemblyName>Map_Generator</AssemblyName>
-        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-        <Deterministic>true</Deterministic>
-        <LangVersion>latest</LangVersion>
-        <Nullable>enable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="mscorlib" />
-        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-          <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-        </Reference>
-        <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-          <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Xml.Linq" />
-        <Reference Include="System.Data.DataSetExtensions" />
-        <Reference Include="Microsoft.CSharp" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.Deployment" />
-        <Reference Include="System.Drawing" />
-        <Reference Include="System.Net.Http" />
-        <Reference Include="System.Windows.Forms" />
-        <Reference Include="System.Xml" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Form1.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="Form1.Designer.cs">
-            <DependentUpon>Form1.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Grid.cs" />
-        <Compile Include="BardLog.cs" />
-        <Compile Include="Math\Vector2.cs" />
-        <Compile Include="Parsing\Json\Classes\Encounters.cs" />
-        <Compile Include="Parsing\Json\Classes\Enemy.cs" />
-        <Compile Include="Parsing\Json\Classes\Maps.cs" />
-        <Compile Include="Parsing\Json\Classes\RoomType.cs" />
-        <Compile Include="Parsing\Json\Classes\ZoneData.cs" />
-        <Compile Include="Parsing\Json\Enums\Direction.cs" />
-        <Compile Include="Parsing\Json\Interfaces\IWeight.cs" />
-        <Compile Include="Parsing\Json\JsonDecoder.cs" />
-        <Compile Include="Parsing\Save.cs" />
-        <Compile Include="Program.cs" />
-        <Compile Include="Undermine\ListExtensions.cs" />
-        <Compile Include="Undermine\Rand.cs" />
-        <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="App.config" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C2898FA7-E6E9-4B0F-B173-6D48D9FD82EC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Map_Generator</RootNamespace>
+    <AssemblyName>Map_Generator</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MapGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapGenerator.Designer.cs">
+      <DependentUpon>MapGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BardLog.cs" />
+    <Compile Include="GridControl.cs">
+      <DependentUpon>MapGenerator.cs</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GridSquare.cs">
+      <DependentUpon>GridControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapType.cs" />
+    <Compile Include="Math\Vector2Int.cs" />
+    <Compile Include="Parsing\Json\Classes\Encounters.cs" />
+    <Compile Include="Parsing\Json\Classes\Enemy.cs" />
+    <Compile Include="Parsing\Json\Classes\Maps.cs" />
+    <Compile Include="Parsing\Json\Classes\RoomType.cs" />
+    <Compile Include="Parsing\Json\Classes\ZoneData.cs" />
+    <Compile Include="Parsing\Json\Enums\Direction.cs" />
+    <Compile Include="Parsing\Json\Enums\Door.cs" />
+    <Compile Include="Parsing\Json\Enums\EnemyIcon.cs" />
+    <Compile Include="Parsing\Json\Enums\ItemIcon.cs" />
+    <Compile Include="Parsing\Json\Enums\MapIcon.cs" />
+    <Compile Include="Parsing\Json\Interfaces\IWeight.cs" />
+    <Compile Include="Parsing\Json\JsonDecoder.cs" />
+    <Compile Include="Parsing\PathHandler.cs" />
+    <Compile Include="Parsing\Save.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="RoomInformationBox.cs">
+      <DependentUpon>MapGenerator.cs</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Undermine\Extensions.cs" />
+    <Compile Include="Undermine\ListExtensions.cs" />
+    <Compile Include="Undermine\Rand.cs" />
+    <Compile Include="Undermine\WHIP.cs" />
+    <Compile Include="Unity\Mathf.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MapGenerator.resx">
+      <DependentUpon>MapGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
