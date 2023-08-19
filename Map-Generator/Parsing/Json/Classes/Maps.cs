@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Map_Generator.Parsing.Json.Classes
 {
@@ -10,6 +11,8 @@ namespace Map_Generator.Parsing.Json.Classes
             public List<string> RoomsMulti { get; set; }
         }
 
-        public List<LevelData> Levels { get; set; }
+        [JsonProperty("levels")] public List<LevelData> Levels { get; set; }
+        [JsonProperty("requirements")] public string? Requirement { get; set; }
+        [JsonProperty("name")] public string? Name { get; set; }
     }
 }

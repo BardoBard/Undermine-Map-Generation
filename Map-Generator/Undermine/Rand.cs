@@ -42,6 +42,9 @@ namespace Map_Generator.Undermine
             Prayer
         }
 
+        public const int MinSeed = 0;
+
+        public const int MaxSeed = 99999999;
         private static readonly Dictionary<StateType, List<uint>> seeds = new();
         private static readonly Stack<StateType> stateStack = new();
 
@@ -64,6 +67,25 @@ namespace Map_Generator.Undermine
             return y;
         }
 
+        public static uint NextUIntWatch()
+        {
+            StateType currentScope = GetCurrentScope();
+
+            var Seeds = new Dictionary<StateType, List<uint>>(seeds);
+            uint x = Seeds[currentScope][0];
+            x ^= x << 11;
+            x ^= x >> 8;
+
+            uint y = Seeds[currentScope][3];
+            y ^= y >> 19;
+            y = x ^ y;
+
+            Seeds[currentScope].RemoveAt(0);
+            Seeds[currentScope].Add(y);
+
+            return y;
+        }
+
         public static float RangeFloat(uint min = 0, uint max = 1)
         {
             float range = max - min;
@@ -81,12 +103,15 @@ namespace Map_Generator.Undermine
 
         public static int Range(int min, int max) => (int)(NextUInt() % (max - min) + min);
 
-        public static bool Chance(float chance) => chance == 1.0f || (chance != 0.0f && chance > Value());
+        public static bool Chance(float chance) =>
+            chance == 1.0f || //chance can be 1.0f due to the nature of the data that I'm working with
+            (chance != 0.0f && chance > Value());
 
 
         public static void Initialize(uint initialSeed)
         {
             seeds.Clear();
+            stateStack.Clear();
 
             foreach (StateType scope in Enum.GetValues(typeof(StateType)))
             {
@@ -100,42 +125,52 @@ namespace Map_Generator.Undermine
             }
         }
 
-        public static bool GetWeightedElement<T>(ICollection<T?>? elements, out T result) where T : class, IWeight
+        public static bool GetWeightedElement<T>(ICollection<T?>? elements, out T result, bool skip = true)
+            where T : class, IWeight
         {
             //TODO: refactor this entire method
             if (elements == null || !elements.Any())
             {
-                // NextUInt(); //TODO: check if this can stay removed
                 result = default;
                 return false;
             }
 
-            var elems = elements.Where(element => !element.Skip);
+            var elems = elements.Where(element => element is { Skip: false });
             var weights = elems as T[] ?? elems.ToArray();
-            int totalweight = weights.Aggregate(0, (current, element) => current + element.Weight);
-            Console.WriteLine("totalweight {0}", totalweight);
+            int totalWeight = weights.Aggregate(0, (current, element) => current + element.Weight);
+            BardLog.Log("totalweight {0}", totalWeight);
 
-            if (totalweight == 0)
+            if (totalWeight == 0)
             {
                 NextUInt();
                 result = default;
                 return false;
             }
 
-            int randomNum = RangeInclusive(1, totalweight);
+            int randomNum = RangeInclusive(1, totalWeight);
             foreach (var element2 in weights)
             {
                 randomNum -= element2.Weight;
                 if (randomNum <= 0)
                 {
                     result = element2;
-                    element2.Skip = true;
+                    if (skip) element2.Skip = true;
                     return true;
                 }
             }
 
             result = default;
             return false;
+        }
+
+        public static int ClampSeed(int seed)
+        {
+            while (seed > MaxSeed)
+            {
+                seed /= 10;
+            }
+
+            return Unity.Mathf.Clamp(seed, MinSeed, MaxSeed);
         }
 
         private static void EnterScope(StateType scope) => stateStack.Push(scope);
