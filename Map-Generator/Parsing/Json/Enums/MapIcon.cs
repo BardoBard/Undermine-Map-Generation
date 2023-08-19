@@ -34,7 +34,7 @@ namespace Map_Generator.Parsing.Json.Enums
 
             if (room.Encounter is { HasCrawlSpace: true })
                 images.Add(GetMapImage(MapIcon.Crawlspace));
-            
+
 
             images.AddRange(room.MapIcons.Select(GetMapImage));
 

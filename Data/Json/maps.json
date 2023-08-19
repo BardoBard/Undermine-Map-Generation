@@ -80,7 +80,7 @@
             {
                 "rooms": [
                     [
-                        "beginend"
+                        "begin"
                     ],
                     [
                         "normal",
@@ -202,7 +202,7 @@
             {
                 "rooms": [
                     [
-                        "beginend"
+                        "begin"
                     ],
                     [
                         "normal",
@@ -236,6 +236,7 @@
     },
     {
         "name": "dungeon",
+        "requirements": "allbossesalive",
         "levels": [
             {
                 "rooms": [
@@ -371,7 +372,7 @@
                 ],
                 "roomsmulti": [
                     "dibble",
-                    "relic",
+                    "relicchance",
                     "treasure",
                     "treasurechance",
                     "shop",
@@ -381,6 +382,93 @@
                     "secret",
                     "secretchance",
                     "hoody",
+                    "priestess",
+                    "hidden",
+                    "relicaltar",
+                    "fountain"
+                ]
+            },
+            {
+                "rooms": [
+                    [
+                        "begin",
+                        "normallarge",
+                        "normal",
+                        "normallarge",
+                        "normallarge",
+                        "end"
+                    ]
+                ],
+                "roomsmulti": [
+                    "relicchance",
+                    "treasure",
+                    "treasurechance",
+                    "shop",
+                    "altar",
+                    "masterskey",
+                    "secret",
+                    "secret",
+                    "secretchance",
+                    "priestess",
+                    "hidden",
+                    "relicaltar",
+                    "fountain"
+                ]
+            },
+            {
+                "rooms": [
+                    [
+                        "begin",
+                        "normallarge",
+                        "normal",
+                        "normallarge",
+                        "normallarge",
+                        "end"
+                    ]
+                ],
+                "roomsmulti": [
+                    "relicchance",
+                    "treasure",
+                    "treasurechance",
+                    "shop",
+                    "altar",
+                    "blackrabbit",
+                    "masterskey",
+                    "secret",
+                    "secret",
+                    "secretchance",
+                    "priestess",
+                    "hidden",
+                    "relicaltar",
+                    "fountain"
+                ]
+            },
+            {
+                "rooms": [
+                    [
+                        "begin",
+                        "normallarge",
+                        "normal",
+                        "normallarge",
+                        "normallarge",
+                        "endboss"
+                    ],
+                    [
+                        "prechamber",
+                        "nextdown"
+                    ]
+                ],
+                "roomsmulti": [
+                    "relicchance",
+                    "treasure",
+                    "treasurechance",
+                    "shop",
+                    "altar",
+                    "masterskey",
+                    "secret",
+                    "secret",
+                    "secretchance",
+                    "bossroom",
                     "priestess",
                     "hidden",
                     "relicaltar",

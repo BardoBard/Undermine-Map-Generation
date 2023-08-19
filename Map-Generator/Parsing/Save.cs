@@ -20,6 +20,13 @@ public class Discoverable
     }
 }
 
+public class Relic : Discoverable
+{
+    public Relic(bool hasBeenDiscovered, Guid guid) : base(hasBeenDiscovered, guid)
+    {
+    }
+}
+
 public static class Save
 {
     //TODO: make a lot of stuff private instead of public
@@ -39,13 +46,13 @@ public static class Save
         new(false, new("27497c3cdd91494ba066eb45ee59d528"));
 
     //status effects
-    public static Discoverable hexDesolation { get; set; } = new(false, new("aaf06aa35fa4482cabfba81e687bfef4"));
-    public static Discoverable relicCircinus { get; set; } = new(false, new("633c1aeec47b4378a56f48ea7d965ea0"));
+    public static Relic hexDesolation { get; set; } = new(false, new("aaf06aa35fa4482cabfba81e687bfef4"));
+    public static Relic relicCircinus { get; set; } = new(false, new("633c1aeec47b4378a56f48ea7d965ea0"));
 
-    public static Discoverable relicAdventurersWhip { get; set; } =
+    public static Relic relicAdventurersWhip { get; set; } =
         new(false, new("0e7e31f44491456bb5f6268f2c2686c2"));
 
-    public static Discoverable relicGuacamole { get; set; } = new(false, new("80242154d4284cc6aab221292cb0ae93"));
+    public static Relic relicGuacamole { get; set; } = new(false, new("80242154d4284cc6aab221292cb0ae93"));
 
 
     //game data
@@ -183,9 +190,9 @@ public static class Save
     public static bool hoodiedungeonl => (!hoodie_met_dungeon && (floor_number == 6) && storymode);
     public static bool hoodiedungeonu => (hoodie_met_dungeon && (floor_number == 6) && storymode);
     public static bool hoodiehalll => (!hoodie_met_hall && (floor_number == 11) && storymode);
-    public static bool hoodiehallu => (!hoodie_met_hall && (floor_number == 11) && storymode);
+    public static bool hoodiehallu => (hoodie_met_hall && (floor_number == 11) && storymode);
     public static bool hoodiecavernl => (!hoodie_met_cavern && (floor_number == 16) && storymode);
-    public static bool hoodiecavernu => (!hoodie_met_cavern && (floor_number == 16) && storymode);
+    public static bool hoodiecavernu => (hoodie_met_cavern && (floor_number == 16) && storymode);
     public static bool nofountain => (storymode && !tribute_fountain_encountered && bog_unlocked);
     public static bool nohexdesolation => (!hexDesolation.hasBeenDiscovered);
     public static bool dogshadow => !dog_shadow_found && (delve_count > 5) && !whip_enabled;
@@ -218,7 +225,8 @@ public static class Save
     public static bool notwhip => !whip_enabled; //TODO: check this
     public static bool rougemode => !roguemode; //TODO: check this
 
-    public static bool partypopcornroom => !foundPartyPopcornPotion.hasBeenDiscovered && !whip_enabled; //TODO: check this
+    public static bool partypopcornroom =>
+        !foundPartyPopcornPotion.hasBeenDiscovered && !whip_enabled; //TODO: check this
 
     public static bool halllibrarycombat => (!(collector_book > 0) && !whip_enabled && storymode);
     public static bool dodsonnotrescued => (!peasant1_unlocked && !whip_enabled && storymode);
@@ -249,28 +257,28 @@ public static class Save
 
     public static bool allbossesalive => !(sandworm_defeated) &&
                                          !(stonelord_defeated) &&
-                                         !(shadowlord_defeated);
-    // && !(crystallord_defeated);
+                                         !(shadowlord_defeated)
+                                         && !(crystallord_defeated);
 
     public static bool sandwormkilled => (sandworm_defeated) &&
                                          !(stonelord_defeated) &&
-                                         !(shadowlord_defeated);
-    // && !(crystallord_defeated);
+                                         !(shadowlord_defeated)
+                                         && !(crystallord_defeated);
 
-    public static bool stonelordkilled => stonelord_defeated && !(shadowlord_defeated);
-    // && !(crystallord_defeated);
+    public static bool stonelordkilled => stonelord_defeated && !(shadowlord_defeated)
+                                                             && !(crystallord_defeated);
 
     public static bool crystallordkilled => (crystallord_defeated);
 
     public static bool stonelordnotkilled => !(stonelord_defeated) &&
-                                             !(shadowlord_defeated);
-    // && !(crystallord_defeated);
+                                             !(shadowlord_defeated)
+                                             && !(crystallord_defeated);
 
-    public static bool shadowlordkilled => (shadowlord_defeated);
-    // && !(crystallord_defeated));
+    public static bool shadowlordkilled => (shadowlord_defeated)
+                                           && !(crystallord_defeated);
 
-    public static bool shadowlordnotkilled => !(shadowlord_defeated);
-    // && !(crystallord_defeated);
+    public static bool shadowlordnotkilled => !(shadowlord_defeated)
+                                              && !(crystallord_defeated);
 
     public static bool crystallordnotkilled => (!(crystallord_defeated) &&
                                                 !(firelord_defeated));
@@ -346,9 +354,9 @@ public static class Save
         {
             foreach (var property in typeof(Save).GetProperties())
             {
-                if (property.PropertyType != typeof(Discoverable)) continue;
+                if (property.PropertyType != typeof(Relic)) continue;
 
-                if (typeof(Save).GetProperty(property.Name)?.GetValue(typeof(Discoverable)) is not Discoverable
+                if (typeof(Save).GetProperty(property.Name)?.GetValue(typeof(Relic)) is not Relic
                         discoverable || discoverable.guid != Guid.Parse(guidString ??
                                                                         throw new InvalidOperationException(
                                                                             "something went wrong while parsing discovered")))

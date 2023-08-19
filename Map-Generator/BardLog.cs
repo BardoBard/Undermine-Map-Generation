@@ -5,35 +5,40 @@ using System.IO;
 
 namespace Map_Generator;
 
-public class BardLog
+public static class BardLog
 {
-    private static readonly string localLowPath =
+    private static readonly string _localLowPath =
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
 
-    private static readonly string logFilePath =
-        localLowPath + @"\Thorium Entertainment\UnderMine\map.log";       
+    private static readonly string _logFilePath =
+        _localLowPath + @"\Thorium Entertainment\UnderMine\map.log";
 
-    private static StreamWriter fs = new StreamWriter(logFilePath, true) { AutoFlush = true };
+    private static StreamWriter _fs = new StreamWriter(_logFilePath, true) { AutoFlush = true };
+    public static Action<string> LogToFile = _fs.WriteLine;
+
+    public static readonly Action<string> LogToFileAndConsole = s =>
+    {
+        _fs.WriteLine(s);
+        Console.WriteLine(s);
+    };
 
     static BardLog()
     {
         ClearDebug();
     }
+
+    [Conditional("DEBUG")]
     public static void ClearDebug()
     {
-        fs.Close();
-        fs.Dispose();
-        File.WriteAllText(logFilePath, "");
-        fs = new StreamWriter(logFilePath, true) { AutoFlush = true };
-    }       
-    public static void Log(string str, params object[] args)
-    {
-
-        fs.WriteLine(str, args);
+        _fs.Close();
+        _fs.Dispose();
+        File.WriteAllText(_logFilePath, "");
+        _fs = new StreamWriter(_logFilePath, true) { AutoFlush = true };
     }
-    public static void LogStackTrace(bool overrideIsLogging = false)
+
+    [Conditional("DEBUG")]
+    public static void LogStackTrace()
     {
-        Log("");
         var frames = new StackTrace().GetFrames();
         for (var index = 1; index < frames.Length; index++)
         {
@@ -45,19 +50,32 @@ public class BardLog
                 ? $"{method.DeclaringType.FullName}.{method.Name}"
                 : method?.Name;
 
-            Console.WriteLine(fullPath);
+            Log(fullPath);
         }
 
-        Console.WriteLine("");
-    }
-    public static void Log<T>(T t) where T : IComparable
-    {
-        Log(t.ToString());
+        Log("");
     }
 
-    public static void Log<T>(IEnumerable<T> t)
+    [Conditional("DEBUG")]
+    public static void Log(string? str, Action<string>? outputMethod = null, params object?[] args)
+    {
+        outputMethod ??= Console.WriteLine;
+        string message = string.Format(str ?? string.Empty, args);
+        outputMethod.Invoke(message);
+    }
+
+    [Conditional("DEBUG")]
+    public static void Log(string str, params object?[] args) => Log(str, null, args);
+    [Conditional("DEBUG")]
+    public static void Log(string str) => Log(str, new object?[] { });
+    [Conditional("DEBUG")]
+    public static void Log<T>(T t, Action<string>? outputMethod = null) where T : IComparable =>
+        Log(t.ToString(), outputMethod);
+
+    [Conditional("DEBUG")]
+    public static void Log<T>(IEnumerable<T> t, Action<string>? outputMethod = null) where T : IComparable
     {
         foreach (var num in t)
-            Log(num.ToString());
+            Log(num.ToString(), outputMethod);
     }
 }

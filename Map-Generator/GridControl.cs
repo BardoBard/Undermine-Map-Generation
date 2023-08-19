@@ -150,9 +150,8 @@ namespace Map_Generator
             Invalidate();
         }
 
-        protected override void OnMouseClick(MouseEventArgs e)
+        public GridSquare? ClickedSquare(MouseEventArgs e)
         {
-            base.OnMouseClick(e);
             int posY = (int)System.Math.Floor(((this.Height / 2.0f - e.Y + GridOffset.y) / (CellSize + GapSize)));
 
             GridSquare? clickedSquare = GridSquares.FirstOrDefault(square =>
@@ -163,10 +162,7 @@ namespace Map_Generator
                        posY == square.Room.Position.y;
             });
 
-            if (clickedSquare is null) return;
-
-            MapGenerator.roomInfoBox.Room = clickedSquare.Room;
-            MapGenerator.roomInfoBox.Invalidate();
+            return clickedSquare;
         }
 
         public Vector2Int GetPositionOnGrid(Vector2Int originalPosition)

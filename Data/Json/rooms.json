@@ -49,6 +49,14 @@
     "branchweight": 4,
     "name": "normallarge"
   },
+  "normallargeaftermimicfight": {
+    "stage": [
+      "large"
+    ],
+    "roomtype": "normal",
+    "branchweight": 0,
+    "name": "normallargeaftermimicfight"
+  },
   "normal": {
     "stage": [
       "small",
@@ -116,16 +124,6 @@
     "roomtype": "altar",
     "branchweight": 1,
     "name": "altar",
-    "icon": [
-      7
-    ]
-  },
-  "altarnobranch": {
-    "stage": [
-      "small"
-    ],
-    "roomtype": "altar",
-    "name": "altarnobranch",
     "icon": [
       7
     ]
@@ -375,7 +373,7 @@
       "small"
     ],
     "roomtype": "special",
-    "tags": "down_boss",
+    "tags": "end_boss",
     "name": "endbosssmall",
     "icon": [
       11
@@ -664,7 +662,7 @@
     ]
   },
   "mimicfight": {
-    "name": "mimicfight,normallarge",
+    "name": "mimicfight,normallargeaftermimicfight",
     "stage": [
       "large"
     ],
@@ -755,7 +753,7 @@
     "direction": 1,
     "name": "storeroom",
     "icon": [
-      10
+      6
     ]
   },
   "masterskey": {
