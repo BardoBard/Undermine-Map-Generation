@@ -19,7 +19,7 @@ namespace Map_Generator
         public static MapName GetMap() => _mapName;
         public static string GetMapName() => _mapName.ToString();
     
-        public static MapName GetNextMap() => (MapName)System.Math.Min(Save.ZoneIndex + 1, (int)MapName.core);
-        public static string GetNextMapName() => ((MapName)System.Math.Min(Save.ZoneIndex + 1, (int)MapName.core)).ToString();
+        public static MapName GetNextMap() => (MapName)System.Math.Min(Save.ZoneIndex + 2, (int)MapName.core);
+        public static string GetNextMapName() => ((MapName)System.Math.Min(Save.ZoneIndex + 2, (int)MapName.core)).ToString();
     }
 }

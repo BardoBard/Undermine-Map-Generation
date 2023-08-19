@@ -1,0 +1,4764 @@
+[
+    [
+        {
+            "name": "minetutorial",
+            "map": "mine",
+            "connectivity": 0.15,
+            "zonenumber": 1,
+            "startfloor": 1,
+            "basedifficulty": 2,
+            "difficultystep": 3,
+            "enemytypeweight": [
+                0,
+                1,
+                2
+            ],
+            "requirements": "firstdelve",
+            "extras": [
+                {
+                    "override": [
+                        {
+                            "min": 7,
+                            "max": 9
+                        },
+                        {
+                            "min": 9,
+                            "max": 11
+                        },
+                        {
+                            "min": 9,
+                            "max": 11
+                        },
+                        {
+                            "min": 9,
+                            "max": 11
+                        }
+                    ],
+                    "min": 9,
+                    "max": 11,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 2,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 3,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 5,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant01",
+                            "icon": 7
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant02"
+                        }
+                    ]
+                },
+                {
+                    "override": [
+                        {
+                            "min": 1,
+                            "max": 1,
+                            "enabled": true
+                        },
+                        {
+                            "min": 1,
+                            "max": 1,
+                            "enabled": false
+                        },
+                        {
+                            "min": 1,
+                            "max": 1,
+                            "enabled": true
+                        },
+                        {
+                            "min": 1,
+                            "max": 1,
+                            "enabled": true
+                        }
+                    ],
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 5,
+                            "name": "pilfergolden"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 6,
+                    "max": 6,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 3,
+                            "name": "rockgold01",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold02",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold03",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 4,
+                            "name": "orewall",
+                            "icon": 6
+                        }
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 30,
+                            "name": "itemcageminesetpiece"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                {
+                    "override": {
+                        "map": "minetutorial",
+                        "connectivity": 0
+                    },
+                    "enemies": []
+                },
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "jumperwater",
+                        "flyranged"
+                    ]
+                },
+                {
+                    "override": {
+                        "connectivity": 0
+                    },
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "jumperwater",
+                        "ratnest"
+                    ]
+                },
+                {
+                    "override": {
+                        "difficulty": 10,
+                        "enemytypeweight": [
+                            0,
+                            1,
+                            2,
+                            1
+                        ]
+                    },
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "flyranged02",
+                        "jumperwater",
+                        "jumperoil",
+                        "ratnest",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {
+                    "begin": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "begin",
+                        "branchweight": 4,
+                        "name": "begin",
+                        "icon": [
+                            1
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "mine1",
+            "map": "mine",
+            "connectivity": 0.15,
+            "zonenumber": 1,
+            "startfloor": 1,
+            "basedifficulty": 3,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2
+            ],
+            "requirements": "tutorialcomplete",
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 2,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 3,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 5,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant01",
+                            "icon": 7
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 5,
+                            "name": "pilfergolden"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 7,
+                    "max": 7,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 3,
+                            "name": "rockgold01",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold02",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold03",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 4,
+                            "name": "orewall",
+                            "icon": 6
+                        }
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 30,
+                            "name": "itemcageminesetpiece"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "jumperwater",
+                        "flyranged"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "jumperwater",
+                        "flyranged"
+                    ]
+                },
+                {
+                    "override": {
+                        "difficulty": 8,
+                        "connectivity": 0
+                    },
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "jumperwater",
+                        "ratnest"
+                    ]
+                },
+                {
+                    "override": {
+                        "difficulty": 10,
+                        "enemytypeweight": [
+                            0,
+                            1,
+                            2,
+                            1
+                        ]
+                    },
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "flyranged02",
+                        "jumperwater",
+                        "jumperoil",
+                        "ratnest",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {
+                    "begin": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "begin",
+                        "branchweight": 4,
+                        "name": "begin",
+                        "icon": [
+                            1
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "mine2",
+            "map": "mine",
+            "connectivity": 0.15,
+            "zonenumber": 1,
+            "startfloor": 1,
+            "basedifficulty": 6,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "requirements": "mimickilled",
+            "extras": [
+                {
+                    "min": 9,
+                    "max": 11,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 2,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 3,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 5,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant01",
+                            "icon": 7
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 5,
+                            "name": "pilfergolden"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 7,
+                    "max": 7,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 3,
+                            "name": "rockgold01",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold02",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold03",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 4,
+                            "name": "orewall",
+                            "icon": 6
+                        }
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 30,
+                            "name": "itemcageminesetpiece"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                {
+                    "override": {
+                        "difficulty": 5,
+                        "enemytypeweight": [
+                            0,
+                            1,
+                            2
+                        ]
+                    },
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "jumperwater",
+                        "ratnest"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "rattough"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "flyranged02",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "flyranged02",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {
+                    "begin": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "begin",
+                        "branchweight": 4,
+                        "name": "begin",
+                        "icon": [
+                            1
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "mine3",
+            "map": "mine",
+            "connectivity": 0.25,
+            "zonenumber": 1,
+            "startfloor": 1,
+            "basedifficulty": 8,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "requirements": "minesandwormkilled",
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 2,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 3,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 5,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant01",
+                            "icon": 7
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 5,
+                            "name": "pilfergolden"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 7,
+                    "max": 7,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 3,
+                            "name": "rockgold01",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold02",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold03",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 4,
+                            "name": "orewall",
+                            "icon": 6
+                        }
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 30,
+                            "name": "itemcageminesetpiece"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                {
+                    "override": {
+                        "enemytypeweight": [
+                            0,
+                            1,
+                            2
+                        ]
+                    },
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "rattough",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratlarge",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "override": {
+                        "difficulty": 12
+                    },
+                    "enemies": [
+                        "ratlarge",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic",
+                        "bat",
+                        "goblinengineer",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {
+                    "begin": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "begin",
+                        "branchweight": 4,
+                        "name": "begin",
+                        "icon": [
+                            1
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "mine4",
+            "map": "mine",
+            "connectivity": 0.25,
+            "zonenumber": 1,
+            "startfloor": 1,
+            "basedifficulty": 12,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "requirements": "minestonelordkilled",
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 2,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 3,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 5,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant01",
+                            "icon": 7
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 5,
+                            "name": "pilfergolden"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "override": [
+                        {
+                            "min": 8,
+                            "max": 8
+                        }
+                    ],
+                    "min": 7,
+                    "max": 7,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 3,
+                            "name": "rockgold01",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold02",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold03",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 4,
+                            "name": "orewall",
+                            "icon": 6
+                        }
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 30,
+                            "name": "itemcageminesetpiece"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "rattough",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic",
+                        "ogrebombardier",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratlarge",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic",
+                        "ogrebombardier",
+                        "goblinengineer",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratlarge",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic",
+                        "bat",
+                        "ogrebombardier",
+                        "goblinengineer",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {
+                    "begin": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "begin",
+                        "branchweight": 4,
+                        "name": "begin",
+                        "icon": [
+                            1
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "mine5",
+            "map": "mine",
+            "connectivity": 0.25,
+            "zonenumber": 1,
+            "startfloor": 1,
+            "basedifficulty": 16,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "requirements": "mineshadowlordkilled",
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate01loot"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "crate02loot"
+                        },
+                        {
+                            "weight": 3,
+                            "name": "barrel01loot"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01noloot"
+                        },
+                        {
+                            "weight": 5,
+                            "name": "crate02noloot"
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01noloot"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant01",
+                            "icon": 7
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 5,
+                            "name": "pilfergolden"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "override": [
+                        {
+                            "min": 8,
+                            "max": 8
+                        }
+                    ],
+                    "min": 7,
+                    "max": 7,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 3,
+                            "name": "rockgold01",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold02",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 3,
+                            "name": "rockgold03",
+                            "icon": 5
+                        },
+                        {
+                            "weight": 4,
+                            "name": "orewall",
+                            "icon": 6
+                        }
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 30,
+                            "name": "itemcageminesetpiece",
+                            "choosers": [
+                                [
+                                    {
+                                        "weight": 3,
+                                        "name": "itemspawner"
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "name": "chestspawner"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "weight": 1,
+                                        "name": "tallrocks"
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "name": "tallrocksspikes"
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "name": "lockedblock"
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "name": "tallrocklockedblock"
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "name": "crystalrocks"
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "name": "spikes"
+                                    },
+                                    {
+                                        "weight": 1,
+                                        "name": "rail"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "rattough",
+                        "bobo",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratbasic",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic",
+                        "ogrebombardier",
+                        "goblinengineer",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratlarge",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "ratnest",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic",
+                        "bat",
+                        "ogrebombardier",
+                        "goblinengineer",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "ratlarge",
+                        "flyranged",
+                        "jumperoil",
+                        "jumperwater",
+                        "lurkerbasic",
+                        "rattough",
+                        "bobo",
+                        "spiderbasic",
+                        "bat",
+                        "shaman",
+                        "buglightning",
+                        "ogrebombardier",
+                        "goblinengineer",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {
+                    "begin": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "begin",
+                        "branchweight": 4,
+                        "name": "begin",
+                        "icon": [
+                            1
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "name": "dungeon1",
+            "map": "dungeon",
+            "connectivity": 0.15,
+            "zonenumber": 2,
+            "startfloor": 6,
+            "basedifficulty": 12,
+            "difficultystep": 2,
+            "requirements": "allbossesalive",
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "itemcageminesetpiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 2,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 2,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 5,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 7,
+                    "max": 7,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallgold",
+                            "icon": 6,
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                {
+                    "enemies": [
+                        "buglightning",
+                        "jumperfire",
+                        "flyranged",
+                        "flyranged02",
+                        "rattough",
+                        "ratlarge",
+                        "bat",
+                        "spiderbasic",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "flyranged",
+                        "flyranged02",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "crossbowman",
+                        "bishfish",
+                        "rookfish"
+                    ]
+                },
+                {
+                    "override": {
+                        "enemytypeweight": [
+                            0,
+                            0,
+                            2,
+                            1
+                        ]
+                    },
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "crossbowman"
+                    ]
+                },
+                {
+                    "override": {
+                        "enemytypeweight": [
+                            0,
+                            0,
+                            2,
+                            1
+                        ]
+                    },
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "crossbowman"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {
+                    "altar": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "altar",
+                        "branchweight": 0,
+                        "name": "altar",
+                        "icon": [
+                            7
+                        ]
+                    }
+                },
+                {},
+                {
+                    "altar": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "altar",
+                        "branchweight": 0,
+                        "name": "altar",
+                        "icon": [
+                            7
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "dungeon2",
+            "map": "dungeon",
+            "connectivity": 0.15,
+            "zonenumber": 2,
+            "startfloor": 6,
+            "basedifficulty": 16,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "itemcageminesetpiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 2,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 2,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 5,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallgold",
+                            "icon": 6,
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "requirements": "sandwormkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "buglightning",
+                        "jumperfire",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "flyranged",
+                        "flyranged02",
+                        "crossbowman",
+                        "bishfish",
+                        "rookfish",
+                        "goblinengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "crossbowman",
+                        "goblinengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "crossbowman"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "crossbowman"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {
+                    "altar": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "altar",
+                        "branchweight": 0,
+                        "name": "altar",
+                        "icon": [
+                            7
+                        ]
+                    }
+                },
+                {},
+                {
+                    "altar": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "altar",
+                        "branchweight": 0,
+                        "name": "altar",
+                        "icon": [
+                            7
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "dungeon3",
+            "map": "dungeon",
+            "requirements": "stonelordkilled",
+            "connectivity": 0.15,
+            "zonenumber": 2,
+            "startfloor": 6,
+            "basedifficulty": 20,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "itemcageminesetpiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 2,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 2,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 5,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallgold",
+                            "icon": 6,
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                {
+                    "enemies": [
+                        "buglightning",
+                        "jumperfire",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "flyranged",
+                        "flyranged02",
+                        "crossbowman",
+                        "goblinengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "crossbowman"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "crossbowman"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "ticker",
+                        "crossbowman"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {
+                    "altar": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "altar",
+                        "branchweight": 0,
+                        "name": "altar",
+                        "icon": [
+                            7
+                        ]
+                    }
+                },
+                {},
+                {
+                    "altar": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "altar",
+                        "branchweight": 0,
+                        "name": "altar",
+                        "icon": [
+                            7
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "dungeon4",
+            "map": "dungeon",
+            "connectivity": 0.15,
+            "zonenumber": 2,
+            "startfloor": 6,
+            "basedifficulty": 24,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "requirements": "shadowlordkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "buglightning",
+                        "jumperfire",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "flyranged",
+                        "flyranged02",
+                        "crossbowman"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "crossbowman"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "ticker",
+                        "crossbowman"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "ticker",
+                        "skeletonenemynorm",
+                        "gargoyle",
+                        "gargoylestatue",
+                        "crossbowman"
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "itemcageminesetpiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 2,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 2,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 5,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallgold",
+                            "icon": 6,
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {
+                    "altar": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "altar",
+                        "branchweight": 0,
+                        "name": "altar",
+                        "icon": [
+                            7
+                        ]
+                    }
+                },
+                {},
+                {
+                    "altar": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "altar",
+                        "branchweight": 0,
+                        "name": "altar",
+                        "icon": [
+                            7
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "dungeon5",
+            "map": "dungeon",
+            "connectivity": 0.15,
+            "zonenumber": 2,
+            "startfloor": 6,
+            "basedifficulty": 28,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "requirements": "crystallordkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "buglightning",
+                        "jumperfire",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "flyranged",
+                        "flyranged02",
+                        "crossbowman"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "crossbowman"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "ticker",
+                        "crossbowman"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "buglightning",
+                        "priest",
+                        "rattough",
+                        "footman",
+                        "ratlarge",
+                        "bat",
+                        "shaman",
+                        "spiderbasic",
+                        "firewitch",
+                        "flyranged02",
+                        "ticker",
+                        "skeletonenemynorm",
+                        "gargoyle",
+                        "gargoylestatue",
+                        "crossbowman"
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "itemcageminesetpiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 1,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 2,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 2,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "crate01",
+                            "icon": 3
+                        },
+                        {
+                            "weight": 3,
+                            "name": "crate02",
+                            "icon": 4
+                        },
+                        {
+                            "weight": 5,
+                            "name": "barrel01",
+                            "icon": 1
+                        },
+                        {
+                            "weight": 5,
+                            "name": "pot04"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "plant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallgold",
+                            "icon": 6,
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {
+                    "altar": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "altar",
+                        "branchweight": 0,
+                        "name": "altar",
+                        "icon": [
+                            7
+                        ]
+                    }
+                },
+                {},
+                {
+                    "altar": {
+                        "stage": [
+                            "small"
+                        ],
+                        "roomtype": "altar",
+                        "branchweight": 0,
+                        "name": "altar",
+                        "icon": [
+                            7
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "name": "hall1",
+            "map": "hall",
+            "connectivity": 0.15,
+            "zonenumber": 3,
+            "startfloor": 11,
+            "basedifficulty": 20,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 1,
+                            "name": "box01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "box02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallspot01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallspot02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "box01"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "box02"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "hallspot01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "hallspot02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallsplant01"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "hallsplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "hallsplant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeleton01_alive"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "skeleton03_alive"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallgold",
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "requirements": "stonelordnotkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "skeletonenemynorm",
+                        "lurkercrypt",
+                        "jumperwaterlarge",
+                        "spiderwolf"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "skeletonenemynorm",
+                        "lurkercrypt",
+                        "throwbo",
+                        "spiderwolf"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "throwbo",
+                        "lurkercrypt",
+                        "spiderwolf",
+                        "assassin"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoyle",
+                        "gargoylestatue",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "throwbo",
+                        "lurkercrypt",
+                        "spiderwolf",
+                        "assassin",
+                        "goblintickerengineer"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        {
+            "name": "hall2",
+            "map": "hall",
+            "connectivity": 0.15,
+            "zonenumber": 3,
+            "startfloor": 11,
+            "basedifficulty": 24,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "requirements": "stonelordkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "skeletonenemynorm",
+                        "lurkercrypt",
+                        "jumperwaterlarge",
+                        "spiderwolf",
+                        "throwbo"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "lurkercrypt",
+                        "throwbo",
+                        "spiderwolf",
+                        "assassin"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "throwbo",
+                        "lurkercrypt",
+                        "spiderwolf",
+                        "assassin"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoyle",
+                        "gargoylestatue",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "throwbo",
+                        "lurkercrypt",
+                        "spiderwolf",
+                        "assassin",
+                        "goblintickerengineer"
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 1,
+                            "name": "box01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "box02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallspot01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallspot02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "box01"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "box02"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "hallspot01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "hallspot02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallsplant01"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "hallsplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "hallsplant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeleton01_alive"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "skeleton03_alive"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallgold",
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        {
+            "name": "hall3",
+            "map": "hall",
+            "connectivity": 0.15,
+            "zonenumber": 3,
+            "startfloor": 11,
+            "basedifficulty": 28,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "requirements": "shadowlordkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "lurkercrypt",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "spiderwolf",
+                        "throwbo"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "lurkercrypt",
+                        "throwbo",
+                        "spiderwolf",
+                        "assassin"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "throwbo",
+                        "lurkercrypt",
+                        "spiderwolf",
+                        "assassin",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoyle",
+                        "gargoylestatue",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "throwbo",
+                        "lurkercrypt",
+                        "spiderwolf",
+                        "assassin",
+                        "goblintickerengineer"
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 1,
+                            "name": "box01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "box02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallspot01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallspot02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "box01"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "box02"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "hallspot01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "hallspot02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallsplant01"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "hallsplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "hallsplant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeleton01_alive"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "skeleton03_alive"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallgold",
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        {
+            "name": "hall4",
+            "map": "hall",
+            "connectivity": 0.15,
+            "zonenumber": 3,
+            "startfloor": 11,
+            "basedifficulty": 28,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                2,
+                1
+            ],
+            "requirements": "crystallordkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "lurkercrypt",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "spiderwolf",
+                        "throwbo"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "lurkercrypt",
+                        "throwbo",
+                        "spiderwolf",
+                        "assassin",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "lurkercrypt",
+                        "throwbo",
+                        "spiderwolf",
+                        "assassin",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "firewitch",
+                        "cursedjar",
+                        "gargoylestatue",
+                        "gargoyle",
+                        "ticker",
+                        "bat",
+                        "necromancer",
+                        "jumperwaterlarge",
+                        "jumperoillarge",
+                        "skeletonenemynorm",
+                        "skeletonenemycrimson",
+                        "throwbo",
+                        "lurkercrypt",
+                        "spiderwolf",
+                        "assassin",
+                        "trollbombardier",
+                        "goblintickerengineer"
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 1,
+                            "name": "box01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "box02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallspot01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallspot02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "box01"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "box02"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "hallspot01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "hallspot02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "hallsplant01"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "hallsplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "hallsplant03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01",
+                            "icon": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "treasurehuntx",
+                            "requirement": "treasurehuntx"
+                        }
+                    ]
+                },
+                {
+                    "min": 0,
+                    "max": 1,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeleton01_alive"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "skeleton03_alive"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "statuesgold",
+                            "weight": 5
+                        },
+                        {
+                            "name": "wallgold",
+                            "weight": 2
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "statuethorium",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        }
+    ],
+    [
+        {
+            "name": "cavern1",
+            "map": "cavern",
+            "connectivity": 0.15,
+            "zonenumber": 4,
+            "startfloor": 16,
+            "basedifficulty": 28,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                3,
+                2
+            ],
+            "requirements": "shadowlordnotkilled",
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 2,
+                            "name": "geode"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "geode"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "crystal"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "crystal"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "cavernplantmedium"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "cavernplantlarge"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "cavernorerock01",
+                            "weight": 1
+                        },
+                        {
+                            "name": "cavernorerock02",
+                            "weight": 1
+                        },
+                        {
+                            "name": "cavernorerock03",
+                            "weight": 1
+                        },
+                        {
+                            "name": "cavernorerock04",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                {
+                    "enemies": [
+                        "jumperfirelarge",
+                        "throwbo",
+                        "assassin",
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "throwbo",
+                        "assassin",
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "scaletunnel",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "scaletunnel",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "ogreannihilator",
+                        "scaletunnel",
+                        "goblintickerengineer"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        {
+            "name": "cavern2",
+            "map": "cavern",
+            "connectivity": 0.15,
+            "zonenumber": 4,
+            "startfloor": 16,
+            "basedifficulty": 32,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                3,
+                2
+            ],
+            "requirements": "shadowlordkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "assassin",
+                        "throwbo",
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "scaletunnel",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "assassin",
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "scaletunnel",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "ogreannihilator",
+                        "scaletunnel",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "ogreannihilator",
+                        "scaletunnel",
+                        "shaman02",
+                        "goblintickerengineer"
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 2,
+                            "name": "geode"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "geode"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "crystal"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "crystal"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "cavernplantmedium"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "cavernplantlarge"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "cavernorerock01",
+                            "weight": 1
+                        },
+                        {
+                            "name": "cavernorerock02",
+                            "weight": 1
+                        },
+                        {
+                            "name": "cavernorerock03",
+                            "weight": 1
+                        },
+                        {
+                            "name": "cavernorerock04",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        {
+            "name": "cavern3",
+            "map": "cavern",
+            "connectivity": 0.15,
+            "zonenumber": 4,
+            "startfloor": 16,
+            "basedifficulty": 36,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                3,
+                2
+            ],
+            "requirements": "crystallordkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "assassin",
+                        "throwbo",
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "ogreannihilator",
+                        "scaletunnel",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "ogreannihilator",
+                        "scaletunnel",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "ogreannihilator",
+                        "scaletunnel",
+                        "shaman02",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "glimmerweed",
+                        "trollbombardier",
+                        "churchbell",
+                        "lurkercrystal",
+                        "crystalant",
+                        "crystalfly",
+                        "crystalspider",
+                        "crystalwitch",
+                        "ogreannihilator",
+                        "scaletunnel",
+                        "shaman02",
+                        "goblintickerengineer"
+                    ]
+                }
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 2,
+                            "name": "geode"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "geode"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "crystal"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "crystal"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "cavernplantmedium"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "cavernplantlarge"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "cavernorerock01",
+                            "weight": 1
+                        },
+                        {
+                            "name": "cavernorerock02",
+                            "weight": 1
+                        },
+                        {
+                            "name": "cavernorerock03",
+                            "weight": 1
+                        },
+                        {
+                            "name": "cavernorerock04",
+                            "weight": 1
+                        }
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        }
+    ],
+    [
+        {
+            "name": "core1",
+            "map": "core",
+            "connectivity": 0.15,
+            "zonenumber": 5,
+            "startfloor": 21,
+            "basedifficulty": 40,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                3,
+                2
+            ],
+            "requirements": "crystallordnotkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "throwbo",
+                        "assassin",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "crystalwitch",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03",
+                        "goblintickerengineer"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "throwbo",
+                        "assassin",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "crystalwitch",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "throwbo",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "crystalwitch",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03",
+                        "golem"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "throwbo",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03",
+                        "golem"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        {
+            "name": "core2",
+            "map": "core",
+            "connectivity": 0.15,
+            "zonenumber": 5,
+            "startfloor": 21,
+            "basedifficulty": 44,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                3,
+                2
+            ],
+            "requirements": "crystallordkillednotfire",
+            "floors": [
+                {
+                    "enemies": [
+                        "throwbo",
+                        "assassin",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "crystalwitch",
+                        "ogrefirebomber",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "throwbo",
+                        "assassin",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03",
+                        "golem"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "throwbo",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03",
+                        "golem"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "throwbo",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03",
+                        "golem"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        {
+            "name": "core3",
+            "map": "core",
+            "connectivity": 0.15,
+            "zonenumber": 5,
+            "startfloor": 21,
+            "basedifficulty": 48,
+            "difficultystep": 2,
+            "enemytypeweight": [
+                0,
+                1,
+                3,
+                2
+            ],
+            "requirements": "firelordkilled",
+            "floors": [
+                {
+                    "enemies": [
+                        "throwbo",
+                        "assassin",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "crystalwitch",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03",
+                        "golem"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "throwbo",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03",
+                        "golem"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "throwbo",
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03",
+                        "golem"
+                    ]
+                },
+                {
+                    "enemies": [
+                        "glimmerweed",
+                        "lurkercrystal",
+                        "ogrefirebomber",
+                        "magmawormhead",
+                        "firebat",
+                        "shaman02",
+                        "gremlin",
+                        "gremlinfiery",
+                        "flyranged03",
+                        "golem"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        {
+            "name": "bog",
+            "map": "bog",
+            "connectivity": 0.1,
+            "zonenumber": 5,
+            "startfloor": 21,
+            "basedifficulty": 50,
+            "difficultystep": 6,
+            "enemytypeweight": [
+                0,
+                1,
+                3,
+                2
+            ],
+            "requirements": "enterbog",
+            "floors": [
+                {
+                    "floornumber": 21,
+                    "enemies": [
+                        "bingbong",
+                        "flybloat",
+                        "quilledgolem",
+                        "poisonwormhead",
+                        "goblinpoisonengineer",
+                        "corruptedpilfer",
+                        "shaman03",
+                        "highpriest",
+                        "queenfish"
+                    ]
+                },
+                {
+                    "floornumber": 22,
+                    "enemies": [
+                        "bingbong",
+                        "flybloat",
+                        "quilledgolem",
+                        "poisonwormhead",
+                        "goblinpoisonengineer",
+                        "corruptedpilfer",
+                        "shaman03",
+                        "highpriest",
+                        "queenfish"
+                    ]
+                },
+                {
+                    "floornumber": 23,
+                    "enemies": [
+                        "bingbong",
+                        "flybloat",
+                        "quilledgolem",
+                        "poisonwormhead",
+                        "goblinpoisonengineer",
+                        "corruptedpilfer",
+                        "shaman03",
+                        "highpriest",
+                        "queenfish"
+                    ]
+                },
+                {
+                    "floornumber": 24,
+                    "enemies": [
+                        "bingbong",
+                        "flybloat",
+                        "quilledgolem",
+                        "poisonwormhead",
+                        "goblinpoisonengineer",
+                        "corruptedpilfer",
+                        "shaman03",
+                        "highpriest",
+                        "queenfish"
+                    ]
+                }
+            ],
+            "roomnames": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        }
+    ]
+]
