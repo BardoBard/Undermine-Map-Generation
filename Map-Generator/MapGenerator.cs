@@ -13,6 +13,7 @@ namespace Map_Generator
     {
         private readonly GridControl _gridControl = new GridControl();
         private readonly RoomInformationBox _roomInfoBox = null!;
+        private bool _secondClick = false;
 
         public MapGenerator()
         {
@@ -21,7 +22,7 @@ namespace Map_Generator
 
             _roomInfoBox = new RoomInformationBox(this);
 
-            Program.Start(Path.Combine(PathHandler.UndermineSavePath, @"Save0.json"));
+            // Program.Start(Path.Combine(PathHandler.UndermineSavePath, @"Save0.json"));
 
             // roomInfoBox.Dock = DockStyle.None; 
             _roomInfoBox.Width = 250;
@@ -45,8 +46,11 @@ namespace Map_Generator
 
         private void findMapButton_Click(object sender, System.EventArgs e)
         {
+            if (_secondClick)
+                Application.Restart();
             Program.Start(Path.Combine(PathHandler.UndermineSavePath, @$"Save{saveNumber.Value}.json"));
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
+            _secondClick = true;
         }
     }
 }

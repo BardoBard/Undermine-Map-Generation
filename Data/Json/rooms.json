@@ -552,7 +552,10 @@
     "zonestepchance": -0.0625,
     "roomtype": "special",
     "tags": "tribute_fountain",
-    "name": "fountain"
+    "name": "fountain",
+    "icon":[
+      16
+    ]
   },
   "tubegin": {
     "stage": [

@@ -23,7 +23,8 @@ namespace Map_Generator.Parsing.Json.Enums
         End = 12,
         Fight = 13,
         Enemy = 14,
-        Crawlspace = 15
+        Crawlspace = 15,
+        Fountain = 16,
     }
 
     public static class MapIconExtension
