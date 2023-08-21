@@ -1259,6 +1259,7 @@
                         "weight": 6,
                         "name": "chest",
                         "noexit": 0,
+                        "direction": 4,
                         "door": 6,
                         "recursion": 1
                     },
@@ -1514,6 +1515,7 @@
                     {
                         "tag": "pre_room",
                         "name": "beforecavernentrance",
+                        "branchweight": 0,
                         "icon": 3,
                         "noexit": 12,
                         "autospawn": 2,
@@ -3156,6 +3158,7 @@
                         "tag": "pre_room",
                         "name": "beforedungeonentrance",
                         "icon": 3,
+                        "direction": 0,
                         "autospawn": 6,
                         "door": 1,
                         "requirements": "storymode"
@@ -3626,8 +3629,7 @@
                     },
                     {
                         "tag": "bossroom",
-                        "name": "stonelordroom",
-                        "autospawn": 1
+                        "name": "stonelordroom"
                     }
                 ]
             },
@@ -3935,6 +3937,7 @@
                         "name": "hallentrance",
                         "icon": 3,
                         "door": 1,
+                        "autospawn": 3,
                         "noexit": 13,
                         "requirements": "storymode"
                     },
@@ -5359,6 +5362,8 @@
                         "tag": "pre_room",
                         "name": "beforehallentrance",
                         "icon": 3,
+                        "branchweight": 0,
+                        "autospawn": 2,
                         "door": 1,
                         "noexit": 12,
                         "requirements": "storymode"
@@ -6864,6 +6869,7 @@
                     {
                         "tag": "pre_room",
                         "name": "beforecoreentrance",
+                        "branchweight": 0,
                         "icon": 3,
                         "door": 2,
                         "requirements": "storymode"
