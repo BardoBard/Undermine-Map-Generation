@@ -39,7 +39,7 @@
             // saveNumber
             // 
             this.saveNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveNumber.Location = new System.Drawing.Point(681, 431);
+            this.saveNumber.Location = new System.Drawing.Point(1065, 642);
             this.saveNumber.Maximum = new decimal(new int[] {
             2,
             0,
@@ -53,7 +53,7 @@
             // 
             this.saveNumberLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveNumberLabel.AutoSize = true;
-            this.saveNumberLabel.Location = new System.Drawing.Point(704, 415);
+            this.saveNumberLabel.Location = new System.Drawing.Point(1088, 626);
             this.saveNumberLabel.Name = "saveNumberLabel";
             this.saveNumberLabel.Size = new System.Drawing.Size(72, 13);
             this.saveNumberLabel.TabIndex = 1;
@@ -62,7 +62,7 @@
             // findMapButton
             // 
             this.findMapButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.findMapButton.Location = new System.Drawing.Point(330, 428);
+            this.findMapButton.Location = new System.Drawing.Point(522, 639);
             this.findMapButton.Name = "findMapButton";
             this.findMapButton.Size = new System.Drawing.Size(75, 23);
             this.findMapButton.TabIndex = 2;
@@ -74,7 +74,7 @@
             // 
             this.WhipSeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.WhipSeed.AutoSize = true;
-            this.WhipSeed.Location = new System.Drawing.Point(678, 9);
+            this.WhipSeed.Location = new System.Drawing.Point(1062, 9);
             this.WhipSeed.Name = "WhipSeed";
             this.WhipSeed.Size = new System.Drawing.Size(70, 13);
             this.WhipSeed.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.WhipSeed);
             this.Controls.Add(this.findMapButton);
             this.Controls.Add(this.saveNumberLabel);

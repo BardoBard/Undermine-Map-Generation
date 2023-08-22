@@ -31,5 +31,6 @@ Used for the Undermine speedrunning community.
 - figure out why it doesn't work on the second time
 - pathfinding algorithm
 - beforebogentrance branchweight
-
+- change crawlspace, it's kinda shitty atm, from bool to list
+- fix the layout pls, center it
 - **figure out when sprites are being used?!?!?!?**
