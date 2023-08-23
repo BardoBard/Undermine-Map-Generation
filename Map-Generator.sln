@@ -12,5 +12,6 @@ Global
 		{C2898FA7-E6E9-4B0F-B173-6D48D9FD82EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2898FA7-E6E9-4B0F-B173-6D48D9FD82EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2898FA7-E6E9-4B0F-B173-6D48D9FD82EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2898FA7-E6E9-4B0F-B173-6D48D9FD82EC}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
