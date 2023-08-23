@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -51,6 +52,11 @@ namespace Map_Generator
             Program.Start(Path.Combine(PathHandler.UndermineSavePath, @$"Save{saveNumber.Value}.json"));
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
             _secondClick = true;
+        }
+
+        private void IssueButton_Click(object sender, System.EventArgs e)
+        {
+            Process.Start("https://github.com/BardoBard/Undermine-Map-Generation/issues");
         }
     }
 }

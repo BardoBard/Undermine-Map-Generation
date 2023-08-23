@@ -218,7 +218,7 @@ public static class Save
     public static bool secretshop => peasant2_unlocked && (dibble_upgrade_count < 4) && storymode;
     public static bool dibblesstoreroom => (!peasant2_unlocked && !whip_enabled && storymode);
     public static bool dungeonlibrary => (!(collector_book > 0) && !whip_enabled && storymode);
-    public static bool priestessentrance => (!(priestess_met > 0) && !whip_enabled && storymode);
+    public static bool priestessentrance => (priestess_met == 0 && !whip_enabled && storymode);
     public static bool kurtz => (storymode && (!discoveredHungrySpirit.hasBeenDiscovered || !peasant4_unlocked));
     public static bool storynotwhip => (!whip_enabled && storymode);
     public static bool masterskey => priestess_met > 0 && !masters_key && !whip_enabled && storymode;

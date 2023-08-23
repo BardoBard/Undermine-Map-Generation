@@ -24,21 +24,13 @@ Used for the Undermine speedrunning community.
 
 - dynamically update floor number and zone number (also requirements)
 
-- halls 4 assassin check max (for all assassins tbh)
 - look at all the doors from encounters, they might not all be correct
-- add enemies in json, not sure what I was thinking
 - no need to do some dumb shit with floornumber == 4 && ishidden, just rename the maps
 - noexit check
 - fix branchweight for encounters if possible
 - figure out why it doesn't work on the second time
-- fix click information
-- get json from data instead of appdata
 - pathfinding algorithm
-
-- **figure out when rooms bug rooms happen, dungeon 1 hoody is one example**
+- beforebogentrance branchweight
+- change crawlspace, it's kinda shitty atm, from bool to list
+- fix the layout pls, center it
 - **figure out when sprites are being used?!?!?!?**
-
-
-- CornerBridge branchweight?
-- mine torches branchweight?
-- mine hazardheavy branchweight?

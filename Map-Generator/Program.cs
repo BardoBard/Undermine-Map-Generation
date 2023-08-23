@@ -258,7 +258,7 @@ namespace Map_Generator
 
             AddCrawlSpace(ZoneData.Crawlspace);
 
-            if (MapType.GetMap() == MapType.MapName.dungeon && !Save.priestessrescued)
+            if (MapType.GetMap() == MapType.MapName.dungeon && Save.priestessentrance)
                 AddCrawlSpace(ZoneData.PriestessCrawlSpace);
         }
 

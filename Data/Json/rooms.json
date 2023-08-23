@@ -402,6 +402,7 @@
     ],
     "roomtype": "special",
     "tags": "pre_room",
+    "direction": 1,
     "encounter": true,
     "name": "prechamber",
     "branchweight": 1,
@@ -859,7 +860,7 @@
       "large"
     ],
     "roomtype": "secret",
-    "direction": 2,
+    "direction": 4,
     "name": "secreteast",
     "icon": [
       6
@@ -903,7 +904,7 @@
     ],
     "roomtype": "secret",
     "chance": 0.5,
-    "direction": 2,
+    "direction": 4,
     "name": "maybesecreteast",
     "icon": [
       6

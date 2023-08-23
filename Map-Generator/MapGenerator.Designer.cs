@@ -29,17 +29,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapGenerator));
             this.saveNumber = new System.Windows.Forms.NumericUpDown();
             this.saveNumberLabel = new System.Windows.Forms.Label();
             this.findMapButton = new System.Windows.Forms.Button();
             this.WhipSeed = new System.Windows.Forms.Label();
+            this.IssueButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.saveNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // saveNumber
             // 
             this.saveNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveNumber.Location = new System.Drawing.Point(681, 431);
+            this.saveNumber.Location = new System.Drawing.Point(1065, 642);
             this.saveNumber.Maximum = new decimal(new int[] {
             2,
             0,
@@ -53,7 +55,7 @@
             // 
             this.saveNumberLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveNumberLabel.AutoSize = true;
-            this.saveNumberLabel.Location = new System.Drawing.Point(704, 415);
+            this.saveNumberLabel.Location = new System.Drawing.Point(1088, 626);
             this.saveNumberLabel.Name = "saveNumberLabel";
             this.saveNumberLabel.Size = new System.Drawing.Size(72, 13);
             this.saveNumberLabel.TabIndex = 1;
@@ -62,7 +64,7 @@
             // findMapButton
             // 
             this.findMapButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.findMapButton.Location = new System.Drawing.Point(330, 428);
+            this.findMapButton.Location = new System.Drawing.Point(522, 639);
             this.findMapButton.Name = "findMapButton";
             this.findMapButton.Size = new System.Drawing.Size(75, 23);
             this.findMapButton.TabIndex = 2;
@@ -74,21 +76,35 @@
             // 
             this.WhipSeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.WhipSeed.AutoSize = true;
-            this.WhipSeed.Location = new System.Drawing.Point(678, 9);
+            this.WhipSeed.Location = new System.Drawing.Point(1062, 9);
             this.WhipSeed.Name = "WhipSeed";
             this.WhipSeed.Size = new System.Drawing.Size(70, 13);
             this.WhipSeed.TabIndex = 3;
             this.WhipSeed.Text = "WHIP Seed: ";
             // 
+            // IssueButton
+            // 
+            this.IssueButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.IssueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IssueButton.Location = new System.Drawing.Point(3, 638);
+            this.IssueButton.Name = "IssueButton";
+            this.IssueButton.Size = new System.Drawing.Size(75, 23);
+            this.IssueButton.TabIndex = 5;
+            this.IssueButton.Text = "Issues?";
+            this.IssueButton.UseVisualStyleBackColor = true;
+            this.IssueButton.Click += new System.EventHandler(this.IssueButton_Click);
+            // 
             // MapGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.IssueButton);
             this.Controls.Add(this.WhipSeed);
             this.Controls.Add(this.findMapButton);
             this.Controls.Add(this.saveNumberLabel);
             this.Controls.Add(this.saveNumber);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MapGenerator";
             this.Text = "MapGenerator";
             ((System.ComponentModel.ISupportInitialize)(this.saveNumber)).EndInit();
@@ -103,5 +119,6 @@
         private System.Windows.Forms.Label saveNumberLabel;
         private System.Windows.Forms.Button findMapButton;
         private System.Windows.Forms.Label WhipSeed;
+        private System.Windows.Forms.Button IssueButton;
     }
 }
