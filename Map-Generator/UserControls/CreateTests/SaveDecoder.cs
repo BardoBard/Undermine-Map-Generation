@@ -18,9 +18,9 @@ namespace Map_Generator.UserControls.CreateTests
 
         public static void WriteSaveData()
         {
-            var outputPath = PathHandler.TestsPath;
+            var outputPath =  Path.Combine(PathHandler.TestsPath, MapType.GetMapName()) + "/" + "test.json";
             var outputString = JsonConvert.SerializeObject(SaveData, Formatting.Indented);
-            File.WriteAllText(outputPath + "test.json", outputString);
+            PathHandler.WriteAllToFile(outputPath, outputString);
         }
 
         public class SaveDatas

@@ -26,6 +26,10 @@ namespace Map_Generator.Parsing.Json.Classes
             {
                 if (encounter == null) continue;
                 encounter.Door = (encounter.Door == Door.None ? Default.Door : encounter.Door);
+                encounter.Difficulty ??= Default.Difficulty;
+                encounter.Sequence = encounter.Sequence.Any() ? encounter.Sequence : Default.Sequence;
+                encounter.AutoSpawn ??= Default.AutoSpawn;
+                encounter.WeightedDoors ??= Default.WeightedDoors;
             }
         }
     }
@@ -51,7 +55,7 @@ namespace Map_Generator.Parsing.Json.Classes
         public bool Skip { get; set; }
         [JsonProperty("tag")] public string? Tag;
         [JsonProperty("name")] public string? Name;
-        [JsonProperty("weighteddoor")] public List<WeightedDoor?>? WeightedDoors { get; set; }
+        [JsonProperty("weighteddoor")] public List<WeightedDoor>? WeightedDoors { get; set; }
         [JsonProperty("requirements")] public string? Requirement { get; set; }
         [JsonProperty("enemies")] private List<string>? enemies { get; set; } = null;
         private List<Enemy>? Enemies => enemies?.Select(Enemy.GetEnemy).ToList();
@@ -214,7 +218,7 @@ namespace Map_Generator.Parsing.Json.Classes
         public float[] Difficulty { get; set; }
         public List<string> Sequence { get; set; } = new();
         [JsonProperty("requirements")] public string? Requirement { get; set; }
-        [JsonProperty("weighteddoor")] public List<Encounter.WeightedDoor?>? WeightedDoors { get; set; }
+        [JsonProperty("weighteddoor")] public List<Encounter.WeightedDoor>? WeightedDoors { get; set; }
         [JsonProperty("door")] public Door Door { get; set; }
 
         [JsonProperty("autospawn")] public int AutoSpawn = 0;

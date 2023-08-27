@@ -62,17 +62,17 @@ namespace Map_Generator
                     //if the encounter has a weight, get a random encounter based on the weight
                     if (JsonDecoder.Encounters[zone][roomSize][room.RoomTypeTag].HasWeight())
                     {
-                        if (Rand.GetWeightedElement(encounters, out Encounter mainRoomEncounter))
+                        if (Rand.GetWeightedElement(encounters!, out Encounter mainRoomEncounter))
                             room.Encounter = mainRoomEncounter;
                     }
                     //else search for the encounter with the same tag as the room
                     else
                     {
+#if DEBUG
                         if (!JsonDecoder.Encounters[zone][room.Stages.Count > 1 ? roomSize : room.Stages.First()][
                                 room.RoomTypeTag].Rooms.Exists(encounter => encounter?.Tag == room.Tag))
-                            throw new InvalidOperationException("room has unable to find " +
-                                                                room.Tag); //TODO: remove this for production
-
+                            throw new InvalidOperationException("room has unable to find " + room.Tag);
+#endif
                         room.Encounter = encounters.Find(encounter =>
                             encounter?.Tag == room.Tag &&
                             (encounter?.Requirement == null || Save.Check(encounter.Requirement)));
@@ -179,6 +179,8 @@ namespace Map_Generator
             }
         }
 
+        public static MapGeneratorForm Form = null!;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -187,10 +189,9 @@ namespace Map_Generator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Form = new MapGeneratorForm();
             Application.Run(Form);
         }
-
-        public static MapGeneratorForm Form = new MapGeneratorForm();
 
         public static ZoneData Zonedata = null!;
 

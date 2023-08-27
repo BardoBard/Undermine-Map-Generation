@@ -62,7 +62,7 @@ namespace Map_Generator.Parsing.Json.Classes
                 (int)(Encounter is { Branchweight: { } }
                     ? Encounter.Branchweight
                     : this._weight);
-            set => this._weight = value; //TODO: this isn't nessesary I think
+            set => this._weight = value; //TODO: this isn't necessary I think
         }
 
         [JsonProperty("doorcost")] public int? DoorCost { get; set; }
@@ -94,15 +94,8 @@ namespace Map_Generator.Parsing.Json.Classes
             if (this.Encounter == null)
                 return;
 
-            var defaultEncounter = JsonDecoder.Encounters[mapNameEncounter][name2][RoomTypeTag].Default;
-
-            if (Rand.GetWeightedElement(
-                    this.Encounter.WeightedDoors ?? defaultEncounter.WeightedDoors, out var door))
+            if (Rand.GetWeightedElement(Encounter.WeightedDoors, out var door))
                 this.Encounter.Door = door.Door;
-
-
-            this.Encounter.Difficulty ??= defaultEncounter.Difficulty;
-            this.Encounter.AutoSpawn ??= defaultEncounter.AutoSpawn;
 
             this.Encounter.DetermineEnemies(data); //not scoped randomness
             this.Encounter.Seen = true;
@@ -110,11 +103,12 @@ namespace Map_Generator.Parsing.Json.Classes
 
         public bool CheckEncounter(Encounter? encounter, RoomType? previousRoom)
         {
-// #if !DEBUG
-//             return (previousRoom?.Encounter != null && previousRoom.Encounter.AllowNeighbor(encounter)) &&
-//                    (encounter.Requirement != null && Save.Check(encounter.Requirement)) &&
-//                    (!encounter.Seen);
-// #else
+#if !DEBUG
+            return encounter != null && (previousRoom?.Encounter == null
+                ? (encounter.Requirement == null || Save.Check(encounter.Requirement)) && !encounter.Seen
+                : previousRoom.Encounter.AllowNeighbor(encounter) &&
+                  ((encounter.Requirement == null || Save.Check(encounter.Requirement)) && !encounter.Seen));
+#else
             if (encounter == null)
             {
                 BardLog.Log("null during check...");
@@ -154,7 +148,7 @@ namespace Map_Generator.Parsing.Json.Classes
             }
 
             return true;
-// #endif
+#endif
         }
 
         public bool IsValidNeighbor(RoomType neighbor, Direction direction)

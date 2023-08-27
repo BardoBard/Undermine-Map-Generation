@@ -19,6 +19,7 @@ public class PathHandler
 
     //savedata
     public static readonly string UndermineSavePath = Path.Combine(_underminePath, @"Saves\");
+    public static string SavePath(int saveNumber) => Path.Combine(UndermineSavePath, @$"Save{saveNumber}.json");
 
     public static readonly string DataPath = Path.Combine(_basePath, @"Data\");
     
@@ -68,5 +69,12 @@ public class PathHandler
                 --backwards, out result)) return false;
 
         return !string.IsNullOrEmpty(result);
+    }
+
+    public static void WriteAllToFile(string path, string outputString)
+    {
+        FileInfo file = new FileInfo(path);
+        file.Directory?.Create();
+        File.WriteAllText(file.FullName, outputString);
     }
 }

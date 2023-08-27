@@ -1,35 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 
-namespace Map_Generator.Undermine;
-
-public static class ListExtensions
+namespace Map_Generator.Undermine
 {
-    public static void Shuffle<T>(this IList<T> list)
+    public static class ListExtensions
     {
-        int count = list.Count;
-        while (count > 1)
+        public static void Shuffle<T>(this IList<T> list)
         {
-            int index = Rand.Range(0, count--);
-            (list[index], list[count]) = (list[count], list[index]);
+            int count = list.Count;
+            while (count > 1)
+            {
+                int index = Rand.Range(0, count--);
+                (list[index], list[count]) = (list[count], list[index]);
+            }
         }
-    }
 
-    public static void Shuffle<T>(this IList<T> list, int seed)
-    {
-        System.Random random = new System.Random(seed);
-        int count = list.Count;
-        while (count > 1)
+        public static void Shuffle<T>(this IList<T> list, int seed)
         {
-            int index = random.Next(0, count--);
-            (list[index], list[count]) = (list[count], list[index]);
+            System.Random random = new System.Random(seed);
+            int count = list.Count;
+            while (count > 1)
+            {
+                int index = random.Next(0, count--);
+                (list[index], list[count]) = (list[count], list[index]);
+            }
         }
-    }
 
-    public static void CopyTo<T>(this List<T> list, List<T> destination)
-    {
-        destination.Clear();
-        destination.AddRange(list);
+        public static void CopyTo<T>(this List<T> list, List<T> destination)
+        {
+            destination.Clear();
+            destination.AddRange(list);
+        }
     }
 }

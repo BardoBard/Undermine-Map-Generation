@@ -9,18 +9,18 @@ public static class RoomsDecoder
 {
     public static void WriteRooms()
     {
-        var outputPath = PathHandler.TestsPath;
+        var outputPath = PathHandler.TestsPath + MapType.GetMapName() + "/" + "test2.json";
 
         var outputString = JsonConvert.SerializeObject(Program.PositionedRooms, new JsonSerializerSettings
         {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             Formatting = Formatting.Indented
         });
-        File.WriteAllText(outputPath + "test2.json", outputString);
+        PathHandler.WriteAllToFile(outputPath, outputString);
     }
 
     public static void LoadRooms(int saveNumber)
     {
-        Program.Start(Path.Combine(PathHandler.UndermineSavePath, @$"Save{saveNumber}.json"));
+        Program.Start(PathHandler.SavePath(saveNumber));
     }
 }

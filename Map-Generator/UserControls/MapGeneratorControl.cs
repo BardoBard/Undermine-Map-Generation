@@ -46,7 +46,7 @@ namespace Map_Generator.UserControls
         {
             if (_secondClick)
                 Application.Restart();
-            Program.Start(Path.Combine(PathHandler.UndermineSavePath, @$"Save{saveNumber.Value}.json"));
+            PathHandler.SavePath((int)saveNumber.Value);
             GridControl.InitializeGridSquares(Program.PositionedRooms);
             _secondClick = true;
         }

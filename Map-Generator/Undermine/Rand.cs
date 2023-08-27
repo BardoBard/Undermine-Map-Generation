@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using Map_Generator.Parsing.Json.Interfaces;
@@ -45,24 +46,24 @@ namespace Map_Generator.Undermine
         public const int MinSeed = 0;
 
         public const int MaxSeed = 99999999;
-        private static readonly Dictionary<StateType, List<uint>> seeds = new();
-        private static readonly Stack<StateType> stateStack = new();
+        private static readonly Dictionary<StateType, List<uint>> _seeds = new();
+        private static readonly Stack<StateType> _stateStack = new();
 
 
         public static uint NextUInt()
         {
             StateType currentScope = GetCurrentScope();
 
-            uint x = seeds[currentScope][0];
+            uint x = _seeds[currentScope][0];
             x ^= x << 11;
             x ^= x >> 8;
 
-            uint y = seeds[currentScope][3];
+            uint y = _seeds[currentScope][3];
             y ^= y >> 19;
             y = x ^ y;
 
-            seeds[currentScope].RemoveAt(0);
-            seeds[currentScope].Add(y);
+            _seeds[currentScope].RemoveAt(0);
+            _seeds[currentScope].Add(y);
 
             return y;
         }
@@ -71,7 +72,7 @@ namespace Map_Generator.Undermine
         {
             StateType currentScope = GetCurrentScope();
 
-            var Seeds = new Dictionary<StateType, List<uint>>(seeds);
+            var Seeds = new Dictionary<StateType, List<uint>>(_seeds);
             uint x = Seeds[currentScope][0];
             x ^= x << 11;
             x ^= x >> 8;
@@ -110,22 +111,22 @@ namespace Map_Generator.Undermine
 
         public static void Initialize(uint initialSeed)
         {
-            seeds.Clear();
-            stateStack.Clear();
+            _seeds.Clear();
+            _stateStack.Clear();
 
             foreach (StateType scope in Enum.GetValues(typeof(StateType)))
             {
-                seeds[scope] = new List<uint>
+                _seeds[scope] = new List<uint>
                 {
                     initialSeed,
                     initialSeed * 1812433253 + 1
                 };
-                seeds[scope].Add(seeds[scope][1] * 1812433253 + 1);
-                seeds[scope].Add(seeds[scope][2] * 1812433253 + 1);
+                _seeds[scope].Add(_seeds[scope][1] * 1812433253 + 1);
+                _seeds[scope].Add(_seeds[scope][2] * 1812433253 + 1);
             }
         }
 
-        public static bool GetWeightedElement<T>(ICollection<T?>? elements, out T result, bool skip = true)
+        public static bool GetWeightedElement<T>(ICollection<T>? elements, out T result, bool skip = true)
             where T : class, IWeight
         {
             //TODO: refactor this entire method
@@ -173,15 +174,15 @@ namespace Map_Generator.Undermine
             return Unity.Mathf.Clamp(seed, MinSeed, MaxSeed);
         }
 
-        private static void EnterScope(StateType scope) => stateStack.Push(scope);
+        private static void EnterScope(StateType scope) => _stateStack.Push(scope);
 
         private static void ExitScope()
         {
-            if (stateStack.Count > 0)
-                stateStack.Pop();
+            if (_stateStack.Count > 0)
+                _stateStack.Pop();
         }
 
-        private static StateType GetCurrentScope() => stateStack.Count > 0 ? stateStack.Peek() : StateType.Default;
+        private static StateType GetCurrentScope() => _stateStack.Count > 0 ? _stateStack.Peek() : StateType.Default;
 
 
         public class Scope : IDisposable
