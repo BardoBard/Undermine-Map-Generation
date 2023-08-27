@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Map_Generator.Json;
 using Map_Generator.Parsing.Json.Classes;
 using Newtonsoft.Json.Linq;
 
@@ -297,8 +296,7 @@ public static class Save
 
     public static void Initialize(string saveJsonFile)
     {
-        var path = saveJsonFile;
-        var json = File.ReadAllText(path);
+        var json = File.ReadAllText(saveJsonFile);
         var jsonObject = JObject.Parse(json);
         ParseUpgradeString(jsonObject["upgradeString"]);
         ParseAutoSaveData(jsonObject["autoSaveData"]);

@@ -1,27 +1,24 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using Map_Generator.Parsing;
-using Map_Generator.Parsing.Json.Classes;
-using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Undermine;
 
-namespace Map_Generator
+namespace Map_Generator.UserControls
 {
-    public partial class MapGenerator : Form
+    public partial class MapGeneratorControl : UserControl
     {
-        private readonly GridControl _gridControl = new GridControl();
+        public readonly GridControl GridControl = new GridControl();
         private readonly RoomInformationBox _roomInfoBox = null!;
         private bool _secondClick = false;
 
-        public MapGenerator()
+        public MapGeneratorControl()
         {
             InitializeComponent();
             WhipSeed.Text = $@"Whip Seed: {Whip.CurrentWhipSeed}";
 
-            _roomInfoBox = new RoomInformationBox(this);
+            _roomInfoBox = new RoomInformationBox();
 
             // Program.Start(Path.Combine(PathHandler.UndermineSavePath, @"Save0.json"));
 
@@ -31,15 +28,15 @@ namespace Map_Generator
             _roomInfoBox.Location = new Point(0, 50);
             Controls.Add(_roomInfoBox);
 
-            _gridControl.MouseClick += GridControl_MouseClick;
-            _gridControl.Dock = DockStyle.Fill;
-            Controls.Add(_gridControl);
-            _gridControl.InitializeGridSquares(Program.PositionedRooms);
+            GridControl.MouseClick += GridControl_MouseClick;
+            GridControl.Dock = DockStyle.Fill;
+            Controls.Add(GridControl);
+            GridControl.InitializeGridSquares(Program.PositionedRooms);
         }
 
         private void GridControl_MouseClick(object sender, MouseEventArgs e)
         {
-            var square = _gridControl.ClickedSquare(e);
+            var square = GridControl.ClickedSquare(e);
             _roomInfoBox.Room = square?.Room;
             _roomInfoBox.Invalidate();
         }
@@ -50,7 +47,7 @@ namespace Map_Generator
             if (_secondClick)
                 Application.Restart();
             Program.Start(Path.Combine(PathHandler.UndermineSavePath, @$"Save{saveNumber.Value}.json"));
-            _gridControl.InitializeGridSquares(Program.PositionedRooms);
+            GridControl.InitializeGridSquares(Program.PositionedRooms);
             _secondClick = true;
         }
 

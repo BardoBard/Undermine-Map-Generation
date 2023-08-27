@@ -8,19 +8,22 @@ namespace Map_Generator.Parsing;
 public class PathHandler
 {
     private static readonly string
-        BasePath = Directory.GetParent(FindDirectory(Application.StartupPath, "Data", 3))?.FullName ??
+        _basePath = Directory.GetParent(FindDirectory(Application.StartupPath, "Data", 3))?.FullName ??
                    throw new Exception("Could not find base path");
 
-    private static readonly string LocalLowPath =
+    private static readonly string _localLowPath =
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
 
-    private static readonly string UnderminePath = LocalLowPath + @"\Thorium Entertainment\UnderMine\";
+    private static readonly string _underminePath = _localLowPath + @"\Thorium Entertainment\UnderMine\";
 
 
     //savedata
-    public static readonly string UndermineSavePath = Path.Combine(UnderminePath, @"Saves\");
+    public static readonly string UndermineSavePath = Path.Combine(_underminePath, @"Saves\");
 
-    public static readonly string DataPath = Path.Combine(BasePath, @"Data\");
+    public static readonly string DataPath = Path.Combine(_basePath, @"Data\");
+    
+    //tests
+    public static readonly string TestsPath = Path.Combine(_basePath, @"Tests\");
 
     //json
     public static readonly string JsonPath = Path.Combine(DataPath, @"Json\");

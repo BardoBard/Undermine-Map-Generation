@@ -5,6 +5,7 @@ using System.Windows.Forms.VisualStyles;
 using Map_Generator.Math;
 using Map_Generator.Parsing.Json.Classes;
 using Map_Generator.Parsing.Json.Enums;
+using Map_Generator.UserControls;
 
 namespace Map_Generator;
 

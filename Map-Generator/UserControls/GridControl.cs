@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Map_Generator.Math;
-using Map_Generator.Parsing;
 using Map_Generator.Parsing.Json.Classes;
 using Map_Generator.Parsing.Json.Enums;
 
-namespace Map_Generator
+namespace Map_Generator.UserControls
 {
     public sealed class GridControl : Control
     {

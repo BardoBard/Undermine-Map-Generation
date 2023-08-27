@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using Map_Generator.Json;
 using Map_Generator.Math;
 using Map_Generator.Parsing;
+using Map_Generator.Parsing.Json;
 using Map_Generator.Parsing.Json.Classes;
 using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Undermine;
@@ -17,7 +17,7 @@ namespace Map_Generator
         /// <summary>
         /// list of room with result of algorithm
         /// </summary>
-        private static readonly List<RoomType> Rooms = new();
+        public static readonly List<RoomType> Rooms = new();
 
         public static void GetRooms(RoomType[][] batches)
         {
@@ -187,8 +187,10 @@ namespace Map_Generator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MapGenerator());
+            Application.Run(Form);
         }
+
+        public static MapGeneratorForm Form = new MapGeneratorForm();
 
         public static ZoneData Zonedata = null!;
 
@@ -207,7 +209,7 @@ namespace Map_Generator
 
             Zonedata = ZoneData.GetZoneData();
 
-            RoomType[][] batches = level.Rooms.Select(room => room.Select(GetRoom ).ToArray())
+            RoomType[][] batches = level.Rooms.Select(room => room.Select(GetRoom).ToArray())
                 .ToArray()
                 .Concat(level.RoomsMulti.Select(roomName => new[] { GetRoom(roomName) })).ToArray();
 

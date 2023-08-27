@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
     <ApplicationIcon>../Data/Images/Icons/EvilIcon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Testing|AnyCPU' ">
+    <OutputPath>bin\Testing\</OutputPath>
+    <DefineConstants>TESTING</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -45,6 +51,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,19 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MapGenerator.cs">
+    <Compile Include="BardLog.cs" />
+    <Compile Include="MapGeneratorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MapGenerator.Designer.cs">
-      <DependentUpon>MapGenerator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BardLog.cs" />
-    <Compile Include="GridControl.cs">
-      <DependentUpon>MapGenerator.cs</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GridSquare.cs">
-      <DependentUpon>GridControl.cs</DependentUpon>
+    <Compile Include="MapGeneratorForm.Designer.cs">
+      <DependentUpon>MapGeneratorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MapType.cs" />
     <Compile Include="Math\Vector2Int.cs" />
@@ -87,23 +87,50 @@
     <Compile Include="Parsing\PathHandler.cs" />
     <Compile Include="Parsing\Save.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="RoomInformationBox.cs">
-      <DependentUpon>MapGenerator.cs</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Undermine\Extensions.cs" />
     <Compile Include="Undermine\ListExtensions.cs" />
     <Compile Include="Undermine\Rand.cs" />
     <Compile Include="Undermine\WHIP.cs" />
     <Compile Include="Unity\Mathf.cs" />
+    <Compile Include="UserControls\CreateTests\CreateTests.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CreateTests\CreateTests.Designer.cs">
+      <DependentUpon>CreateTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CreateTests\RoomsDecoder.cs" />
+    <Compile Include="UserControls\CreateTests\SaveDecoder.cs" />
+    <Compile Include="UserControls\GridControl.cs">
+      <DependentUpon>MapGeneratorControl.cs</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\GridSquare.cs">
+      <DependentUpon>GridControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MapGeneratorControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\MapGeneratorControl.Designer.cs">
+      <DependentUpon>MapGeneratorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RoomInformationBox.cs">
+      <DependentUpon>MapGeneratorControl.cs</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MapGenerator.resx">
-      <DependentUpon>MapGenerator.cs</DependentUpon>
+    <EmbeddedResource Include="MapGeneratorForm.resx">
+      <DependentUpon>MapGeneratorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\CreateTests\CreateTests.resx">
+      <DependentUpon>CreateTests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\MapGeneratorControl.resx">
+      <DependentUpon>MapGeneratorControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

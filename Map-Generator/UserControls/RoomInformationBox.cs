@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Forms;
 using Map_Generator.Math;
 using Map_Generator.Parsing.Json.Classes;
 using Map_Generator.Parsing.Json.Enums;
 
-namespace Map_Generator
+namespace Map_Generator.UserControls
 {
     public sealed class RoomInformationBox : Panel
     {
-        private readonly Form _form;
         public RoomType? Room { get; set; } = null;
         private int _textOffset = 40;
         private int _rowSize = 30;
         private const int GapSize = 5;
 
-        public RoomInformationBox(Form form)
+        public RoomInformationBox()
         {
-            this._form = form;
             DoubleBuffered = true;
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
         }
@@ -67,7 +64,7 @@ namespace Map_Generator
 
         private void Draw(Graphics g, Image? image, string text, Vector2Int position)
         {
-            if (image != null && position.y < this._form.Height)
+            if (image != null && position.y < 800) //TODO: fix this
             {
                 float aspectRatio = (float)image.Width / image.Height;
                 g.DrawImage(image, new Rectangle(position.x, position.y, (int)(aspectRatio * _rowSize), _rowSize));

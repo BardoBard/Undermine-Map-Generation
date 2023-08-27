@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using Map_Generator.Json;
 using Map_Generator.Math;
 using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Parsing.Json.Interfaces;
 using Map_Generator.Undermine;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Map_Generator.Parsing.Json.Classes
 {
@@ -85,10 +81,10 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonIgnore] public bool CanReload { get; set; }
         [JsonIgnore] public bool Secluded { get; set; }
         [JsonIgnore] public Vector2Int Position { get; set; } = Vector2Int.Zero;
-
         [JsonIgnore] public Dictionary<Direction, RoomType> Neighbors { get; } = new();
         [JsonIgnore] public Dictionary<Direction, RoomType> Branches { get; set; } = new();
         [JsonIgnore] public List<Item> SetPieces { get; set; } = new();
+
         [JsonIgnore] public List<Item> Extras { get; set; } = new();
 
         [JsonProperty("ishidden")] public bool IsHidden { get; set; } = false;
@@ -114,6 +110,11 @@ namespace Map_Generator.Parsing.Json.Classes
 
         public bool CheckEncounter(Encounter? encounter, RoomType? previousRoom)
         {
+// #if !DEBUG
+//             return (previousRoom?.Encounter != null && previousRoom.Encounter.AllowNeighbor(encounter)) &&
+//                    (encounter.Requirement != null && Save.Check(encounter.Requirement)) &&
+//                    (!encounter.Seen);
+// #else
             if (encounter == null)
             {
                 BardLog.Log("null during check...");
@@ -153,6 +154,7 @@ namespace Map_Generator.Parsing.Json.Classes
             }
 
             return true;
+// #endif
         }
 
         public bool IsValidNeighbor(RoomType neighbor, Direction direction)
