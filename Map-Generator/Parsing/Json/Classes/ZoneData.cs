@@ -144,7 +144,7 @@ namespace Map_Generator.Parsing.Json.Classes
     public class Floor
     {
         [JsonProperty("override")] public Override Override { get; set; } = new();
-        [JsonProperty("enemies")] private List<string> enemies { get; set; }
+        [JsonProperty("enemies")] private List<string> enemies { get; set; } = new();
         public List<Enemy> Enemies => enemies.Select(Enemy.GetEnemy).ToList();
     }
 }

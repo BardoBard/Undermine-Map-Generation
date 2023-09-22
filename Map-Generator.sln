@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Map-Generator", "Map-Generator\Map-Generator.csproj", "{C2898FA7-E6E9-4B0F-B173-6D48D9FD82EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{D29364E1-ADE4-4208-964B-D18F21C6C462}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{C2898FA7-E6E9-4B0F-B173-6D48D9FD82EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2898FA7-E6E9-4B0F-B173-6D48D9FD82EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2898FA7-E6E9-4B0F-B173-6D48D9FD82EC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D29364E1-ADE4-4208-964B-D18F21C6C462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D29364E1-ADE4-4208-964B-D18F21C6C462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D29364E1-ADE4-4208-964B-D18F21C6C462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D29364E1-ADE4-4208-964B-D18F21C6C462}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -66,8 +66,10 @@ public static class BardLog
 
     [Conditional("DEBUG")]
     public static void Log(string str, params object?[] args) => Log(str, null, args);
+
     [Conditional("DEBUG")]
     public static void Log(string str) => Log(str, new object?[] { });
+
     [Conditional("DEBUG")]
     public static void Log<T>(T t, Action<string>? outputMethod = null) where T : IComparable =>
         Log(t.ToString(), outputMethod);

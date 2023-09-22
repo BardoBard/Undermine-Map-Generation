@@ -16,6 +16,7 @@ public static class ListExtensions
         }
     }
 
+    [Obsolete("Not used")]
     public static void Shuffle<T>(this IList<T> list, int seed)
     {
         System.Random random = new System.Random(seed);
@@ -27,7 +28,7 @@ public static class ListExtensions
         }
     }
 
-    public static void CopyTo<T>(this List<T> list, List<T> destination)
+    public static void CopyTo<T>(this IEnumerable<T> list, List<T> destination)
     {
         destination.Clear();
         destination.AddRange(list);

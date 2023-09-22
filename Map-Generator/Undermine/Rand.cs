@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Forms;
 using Map_Generator.Parsing.Json.Interfaces;
@@ -48,6 +49,8 @@ namespace Map_Generator.Undermine
         private static readonly Dictionary<StateType, List<uint>> seeds = new();
         private static readonly Stack<StateType> stateStack = new();
 
+        public static Dictionary<StateType, ReadOnlyCollection<uint>> Seeds =>
+            seeds.ToDictionary(kv => kv.Key, kv => kv.Value.AsReadOnly());
 
         public static uint NextUInt()
         {
@@ -80,38 +83,58 @@ namespace Map_Generator.Undermine
             y ^= y >> 19;
             y = x ^ y;
 
-            Seeds[currentScope].RemoveAt(0);
-            Seeds[currentScope].Add(y);
-
             return y;
         }
 
         public static float RangeFloat(uint min = 0, uint max = 1)
         {
-            float range = max - min;
+            if (min > max)
+                throw new ArgumentOutOfRangeException(nameof(min), "min must be less than or equal to max");
+
             float value = (float)(1 - NextUInt() << 9) / 0xFFFFFFFF;
-            return range * value + min;
+            return (max - min) * value + min;
         }
 
         public static float Value() => 1 - RangeFloat();
+        public static float PeekValue() => 1 - (1 - NextUIntWatch() << 9) / 0xFFFFFFFF;
+
 
         public static int RangeInclusive(uint min, uint max) => Range(min, max + 1);
 
         public static int RangeInclusive(int min, int max) => Range(min, max + 1);
 
-        public static int Range(uint min, uint max) => (int)(NextUInt() % (max - min) + min);
+        public static int Range(uint min, uint max)
+        {
+            if (min >= max)
+                throw new ArgumentOutOfRangeException(nameof(min), "min must be less than to max");
 
-        public static int Range(int min, int max) => (int)(NextUInt() % (max - min) + min);
+            return (int)(NextUInt() % (max - min) + min);
+        }
 
-        public static bool Chance(float chance) =>
-            chance == 1.0f || //chance can be 1.0f due to the nature of the data that I'm working with
-            (chance != 0.0f && chance > Value());
+        public static int Range(int min, int max)
+        {
+            if (min >= max)
+                throw new ArgumentOutOfRangeException(nameof(min), "min must be less than to max");
+
+            return (int)(NextUInt() % (max - min) + min);
+        }
+
+        public static bool Chance(float chance)
+        {
+            if (chance is < 0f or > 1f)
+                throw new ArgumentOutOfRangeException(nameof(chance), "chance must be between 0f and 1f");
+            
+            return chance == 1.0f || //chance can be 1.0f due to the nature of the data that I'm working with
+                   (chance != 0.0f && chance > Value());
+        }
 
 
         public static void Initialize(uint initialSeed)
         {
             seeds.Clear();
             stateStack.Clear();
+
+            initialSeed = (uint)ClampSeed((int)initialSeed);
 
             foreach (StateType scope in Enum.GetValues(typeof(StateType)))
             {
@@ -181,7 +204,7 @@ namespace Map_Generator.Undermine
                 stateStack.Pop();
         }
 
-        private static StateType GetCurrentScope() => stateStack.Count > 0 ? stateStack.Peek() : StateType.Default;
+        public static StateType GetCurrentScope() => stateStack.Count > 0 ? stateStack.Peek() : StateType.Default;
 
 
         public class Scope : IDisposable
