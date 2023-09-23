@@ -70,7 +70,7 @@ namespace Map_Generator.Undermine
             return y;
         }
 
-        public static uint NextUIntWatch()
+        public static uint PeekNextUInt()
         {
             StateType currentScope = GetCurrentScope();
 
@@ -96,7 +96,7 @@ namespace Map_Generator.Undermine
         }
 
         public static float Value() => 1 - RangeFloat();
-        public static float PeekValue() => 1 - (1 - NextUIntWatch() << 9) / 0xFFFFFFFF;
+        public static float PeekValue() => 1 - (float)(1 - PeekNextUInt() << 9) / 0xFFFFFFFF;
 
 
         public static int RangeInclusive(uint min, uint max) => Range(min, max + 1);
