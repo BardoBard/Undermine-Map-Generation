@@ -166,7 +166,7 @@ namespace Map_Generator
                     previousRoom.Branches[roomName.Direction] = room;
 
 
-                BardLog.Log(Rand.Value(), BardLog.LogToFileAndConsole);
+                BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
 
                 if (room.Encounter != null)
                     BardLog.Log("room: {0} encounter name: {1}_{2}_{3} door: {4}, chance: {5}", room.Name, name2,
@@ -207,7 +207,7 @@ namespace Map_Generator
 
             Zonedata = ZoneData.GetZoneData();
 
-            RoomType[][] batches = level.Rooms.Select(room => room.Select(GetRoom ).ToArray())
+            RoomType[][] batches = level.Rooms.Select(room => room.Select(GetRoom).ToArray())
                 .ToArray()
                 .Concat(level.RoomsMulti.Select(roomName => new[] { GetRoom(roomName) })).ToArray();
 
@@ -220,10 +220,10 @@ namespace Map_Generator
             BardLog.Log("found zonedata: {0}, with requirement: {1}", Zonedata.Name, Zonedata.Requirements);
 
             GetRooms(batches);
-            BardLog.Log(Rand.Value(), BardLog.LogToFileAndConsole);
+            BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
             BardLog.Log("starting get room mapping");
             GetRoomMapping();
-            BardLog.Log(Rand.Value(), BardLog.LogToFileAndConsole);
+            BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
 
             BardLog.Log("setpieces");
             if (Zonedata.SetPieces != null)
@@ -233,7 +233,7 @@ namespace Map_Generator
                 }
 
 
-            BardLog.Log(Rand.Value(), BardLog.LogToFileAndConsole);
+            BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
             BardLog.Log("");
             BardLog.Log("extras");
 
@@ -243,7 +243,7 @@ namespace Map_Generator
                     PlaceExtras(extra, AutoSpawnType.Extras);
                 }
 
-            BardLog.Log(Rand.Value(), BardLog.LogToFileAndConsole);
+            BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
             BardLog.Log("");
 
             BardLog.Log("resources");
@@ -253,7 +253,7 @@ namespace Map_Generator
                     PlaceExtras(extra, AutoSpawnType.Extras);
                 }
 
-            BardLog.Log(Rand.Value(), BardLog.LogToFileAndConsole);
+            BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
             BardLog.Log("");
 
             AddCrawlSpace(ZoneData.Crawlspace);
@@ -426,7 +426,7 @@ namespace Map_Generator
                 PositionedRooms.Add(startingRoom);
                 for (int j = 1; j < Rooms.Count && SetRoomPosition(Rooms[j]); j++)
                 {
-                    BardLog.Log(Rand.Value(), BardLog.LogToFileAndConsole);
+                    BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
                     PositionedRooms.Add(Rooms[j]);
                 }
 
@@ -440,7 +440,7 @@ namespace Map_Generator
                         mPositionedRoom.Weight);
                 }
 
-                BardLog.Log(Rand.Value(), BardLog.LogToFileAndConsole);
+                BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
                 if (PositionedRooms.Count == Rooms.Count)
                 {
                     break;

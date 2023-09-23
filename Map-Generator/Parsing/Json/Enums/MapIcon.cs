@@ -47,7 +47,7 @@ namespace Map_Generator.Parsing.Json.Enums
             if (mapIcon == MapIcon.None) return null;
 
             string iconFileName = mapIcon.ToString() + ".png";
-            string iconFilePath = Path.Combine(PathHandler.MapPath, iconFileName);
+            string iconFilePath = Path.Combine(PathHandler.MapDir, iconFileName);
 
             if (!File.Exists(iconFilePath))
                 throw new FileNotFoundException($"Could not find icon file: {iconFilePath}");

@@ -1,0 +1,60 @@
+name: Build & Test
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+            nuget-
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+
+      - name: Cache NUnit Console Runner
+        uses: actions/cache@v2
+        with:
+          path: C:/ProgramData/chocolatey/lib/nunit-console-runner
+          key: nunit-console-${{ runner.os }}
+          restore-keys: |
+            nunit-console-
+
+      - name: Install NUnit Console
+        run: |
+          choco install nunit-console-runner
+
+      - name: Restore Packages
+        run: nuget restore Map-Generator.sln
+
+      - name: Build solution Debug
+        run: msbuild Map-Generator.sln -t:rebuild -property:Configuration=Debug
+
+      - name: Build solution Release
+        run: msbuild Map-Generator.sln -t:rebuild -property:Configuration=Release
+
+      - name: Run NUnit Tests (Debug)
+        run: |
+          C:\ProgramData\chocolatey\lib\nunit-console-runner\tools\nunit3-console.exe Tests\bin\Debug\Tests.dll
+
+      - name: Run NUnit Tests (Release)
+        run: |
+          C:\ProgramData\chocolatey\lib\nunit-console-runner\tools\nunit3-console.exe Tests\bin\Release\Tests.dll

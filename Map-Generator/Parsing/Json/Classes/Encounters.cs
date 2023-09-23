@@ -14,7 +14,7 @@ namespace Map_Generator.Parsing.Json.Classes
         public object Clone() => (Encounters)this.MemberwiseClone(); //TODO: change this?
 
         public Default Default { get; set; } = new();
-        public List<Encounter?> Rooms { get; set; }
+        public List<Encounter?> Rooms { get; set; } = new();
 
         public bool HasWeight() //TODO: change this to a variable
         {
@@ -33,13 +33,6 @@ namespace Map_Generator.Parsing.Json.Classes
 
     public class Encounter : IWeight
     {
-        public Encounter DeepClone()
-        {
-            string serializedObject = JsonConvert.SerializeObject(this);
-            return JsonConvert.DeserializeObject<Encounter>(serializedObject) ??
-                   throw new InvalidOperationException("failed to do a deep copy");
-        }
-
         public class WeightedDoor : IWeight
         {
             [JsonProperty("weight")] public int Weight { get; set; }
@@ -74,14 +67,11 @@ namespace Map_Generator.Parsing.Json.Classes
 
         public bool AllowNeighbor(Encounter neighbor)
         {
-            if (((NoExit & Direction.North) == 0 && (neighbor.NoExit & Direction.South) == 0) ||
-                ((NoExit & Direction.South) == 0 && (neighbor.NoExit & Direction.North) == 0) ||
-                ((NoExit & Direction.East) == 0 && (neighbor.NoExit & Direction.West) == 0)) return true;
-
-            if ((NoExit & Direction.West) == 0)
-                return (neighbor.NoExit & Direction.East) == 0;
-
-            return false;
+            //TODO: just return true? because this just checks if one of the two encounters has Direction.All
+            return ((NoExit & Direction.North) == 0 && (neighbor.NoExit & Direction.South) == 0) ||
+                   ((NoExit & Direction.South) == 0 && (neighbor.NoExit & Direction.North) == 0) ||
+                   ((NoExit & Direction.East) == 0 && (neighbor.NoExit & Direction.West) == 0) ||
+                   (NoExit & Direction.West) == 0 && (neighbor.NoExit & Direction.East) == 0;
         }
 
         public bool AllowNeighbor(Direction direction)

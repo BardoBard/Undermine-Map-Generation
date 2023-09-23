@@ -17,6 +17,7 @@ Used for the Undermine speedrunning community.
 ### Packages
 
 - newtonsoft.json v13.0.3, net472
+- (Testing) NUnit.3.5.0
 
 ## todo list
 
