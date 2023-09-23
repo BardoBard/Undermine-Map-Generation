@@ -58,7 +58,7 @@ namespace Map_Generator.Parsing
 
 
         //game data
-        public static bool storymode { get; set; } = true;
+        public static bool storymode => true;
 
         public static int Seed { get; set; }
         public static Guid Zone { get; set; }
