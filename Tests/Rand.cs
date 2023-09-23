@@ -112,6 +112,64 @@ namespace Tests
         }
 
         [Test]
+        public void NextUint3()
+        {
+            const uint seed = 87654321u;
+            const uint expected = 468106955u;
+            Map_Generator.Undermine.Rand.Initialize(seed);
+            
+            uint actual = 0;
+            for (var i = 0; i < 10000; i++)
+                actual = Map_Generator.Undermine.Rand.NextUInt();
+            
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void PeekNextUInt()
+        {
+            const uint seed = 12398746u;
+            const uint expected = 3228673587u;
+            Map_Generator.Undermine.Rand.Initialize(seed);
+
+            Map_Generator.Undermine.Rand.NextUInt();
+            Map_Generator.Undermine.Rand.PeekNextUInt();
+            Map_Generator.Undermine.Rand.NextUInt();
+            Map_Generator.Undermine.Rand.PeekNextUInt();
+            Map_Generator.Undermine.Rand.NextUInt();
+            Map_Generator.Undermine.Rand.PeekNextUInt();
+
+            uint actual = Map_Generator.Undermine.Rand.PeekNextUInt();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void PeekNextUInt2()
+        {
+            const uint seed = 87654321u;
+            const uint expected = 2250309519u;
+            Map_Generator.Undermine.Rand.Initialize(seed);
+
+            var actual = Map_Generator.Undermine.Rand.PeekNextUInt();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void PeekNextUInt3()
+        {
+            const uint seed = 870921u;
+            const uint expected = 2092189256u;
+            Map_Generator.Undermine.Rand.Initialize(seed);
+
+            Map_Generator.Undermine.Rand.NextUInt();
+            Map_Generator.Undermine.Rand.NextUInt();
+            Map_Generator.Undermine.Rand.PeekNextUInt();
+            Map_Generator.Undermine.Rand.PeekNextUInt();
+            var actual = Map_Generator.Undermine.Rand.NextUInt();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void RangeFloat()
         {
             const uint seed = 567123u;
@@ -178,11 +236,92 @@ namespace Tests
         [Test]
         public void Value4()
         {
-            const uint seed = 12398746;
+            const uint seed = 12398746u;
             const float expected = 0.0239715576171875f;
 
             Map_Generator.Undermine.Rand.Initialize(seed);
             var actual = Map_Generator.Undermine.Rand.Value();
+            Assert.AreEqual(expected, actual, float.Epsilon);
+        }
+
+        [Test]
+        public void Value5()
+        {
+            const uint seed = 12398746u;
+            const float expected = 0.33404195308685303f;
+            const uint max = 1_000_000;
+            Map_Generator.Undermine.Rand.Initialize(seed);
+
+            float actual = 0;
+            for (int i = 0; i < max; i++)
+                actual = Map_Generator.Undermine.Rand.Value();
+
+
+            Assert.AreEqual(expected, actual, float.Epsilon);
+        }
+
+        [Test]
+        public void PeekValue()
+        {
+            const uint seed = 12398746u;
+            const float expected = 0.88788437843322754f;
+            Map_Generator.Undermine.Rand.Initialize(seed);
+
+            Map_Generator.Undermine.Rand.Value();
+            Map_Generator.Undermine.Rand.PeekValue();
+            Map_Generator.Undermine.Rand.Value();
+            Map_Generator.Undermine.Rand.PeekValue();
+            Map_Generator.Undermine.Rand.Value();
+            Map_Generator.Undermine.Rand.PeekValue();
+            float actual = Map_Generator.Undermine.Rand.PeekValue();
+
+
+            Assert.AreEqual(expected, actual, float.Epsilon);
+        }
+
+        [Test]
+        public void PeekValue2()
+        {
+            const uint seed = 461234u;
+            const float expected = 0.48189878463745117f;
+            Map_Generator.Undermine.Rand.Initialize(seed);
+
+            for (int i = 0; i < 5; i++)
+            {
+                Map_Generator.Undermine.Rand.Value();
+                Map_Generator.Undermine.Rand.PeekValue();
+                Map_Generator.Undermine.Rand.Value();
+                Map_Generator.Undermine.Rand.PeekValue();
+                Map_Generator.Undermine.Rand.Value();
+                Map_Generator.Undermine.Rand.PeekValue();
+            }
+
+            float actual = Map_Generator.Undermine.Rand.PeekValue();
+
+
+            Assert.AreEqual(expected, actual, float.Epsilon);
+        }
+
+        [Test]
+        public void PeekValue3()
+        {
+            const uint seed = 4234u;
+            const float expected = 0.038502693176269531f;
+            Map_Generator.Undermine.Rand.Initialize(seed);
+
+            for (int i = 0; i < 5; i++)
+            {
+                Map_Generator.Undermine.Rand.Value();
+                Map_Generator.Undermine.Rand.PeekValue();
+                Map_Generator.Undermine.Rand.Value();
+                Map_Generator.Undermine.Rand.PeekValue();
+                Map_Generator.Undermine.Rand.Value();
+                Map_Generator.Undermine.Rand.PeekValue();
+            }
+
+            float actual = Map_Generator.Undermine.Rand.Value();
+
+
             Assert.AreEqual(expected, actual, float.Epsilon);
         }
 
