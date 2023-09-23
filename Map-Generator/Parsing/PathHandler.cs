@@ -7,30 +7,37 @@ namespace Map_Generator.Parsing
 {
     public static class PathHandler
     {
-        private static readonly string
-            BasePath = Directory.GetParent(FindDirectory(Application.StartupPath, "Data", 3))?.FullName ??
+        public static readonly string
+            BaseDir = Directory.GetParent(FindDirectory(Application.StartupPath, "Data", 5))?.FullName ??
                        throw new Exception("Could not find base path");
 
-        private static readonly string LocalLowPath =
+        private static readonly string _localLowPath =
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
 
-        private static readonly string UnderminePath = LocalLowPath + @"\Thorium Entertainment\UnderMine\";
+        private static readonly string _undermineDir = _localLowPath + @"\Thorium Entertainment\UnderMine\";
 
 
         //savedata
-        public static readonly string UndermineSavePath = Path.Combine(UnderminePath, @"Saves\");
+        public static readonly string UndermineSaveDir = Path.Combine(_undermineDir, @"Saves\");
 
-        public static readonly string DataPath = Path.Combine(BasePath, @"Data\");
+        public static readonly string DataDir = Path.Combine(BaseDir, @"Data\");
 
         //json
-        public static readonly string JsonPath = Path.Combine(DataPath, @"Json\");
+        public static readonly string JsonDir = Path.Combine(DataDir, @"Json\");
 
         //images
-        public static readonly string ImagesPath = Path.Combine(DataPath, @"Images\");
-        public static readonly string MapPath = Path.Combine(ImagesPath, @"Maps\");
-        public static readonly string EnemyPath = Path.Combine(ImagesPath, @"Enemies\");
-        public static readonly string ItemPath = Path.Combine(ImagesPath, @"Items\");
-        public static readonly string DoorPath = Path.Combine(ImagesPath, @"Doors\");
+        public static readonly string ImagesDir = Path.Combine(DataDir, @"Images\");
+        public static readonly string MapDir = Path.Combine(ImagesDir, @"Maps\");
+        public static readonly string EnemyDir = Path.Combine(ImagesDir, @"Enemies\");
+        public static readonly string ItemDir = Path.Combine(ImagesDir, @"Items\");
+        public static readonly string DoorDir = Path.Combine(ImagesDir, @"Doors\");
+        
+        
+        //test
+        public static readonly string TestProjectDir = Path.Combine(BaseDir, @"Tests\");
+        public static readonly string TestsDir = Path.Combine(TestProjectDir, @"Tests\");
+        
+        //rest of tests
 
         public static string FindDirectory(string baseDirectory, string targetDirectory, int backwards)
         {

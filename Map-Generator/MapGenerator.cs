@@ -49,7 +49,7 @@ namespace Map_Generator
         {
             if (_secondClick)
                 Application.Restart();
-            Program.Start(Path.Combine(PathHandler.UndermineSavePath, @$"Save{saveNumber.Value}.json"));
+            Program.Start(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{saveNumber.Value}.json"));
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
             _secondClick = true;
         }

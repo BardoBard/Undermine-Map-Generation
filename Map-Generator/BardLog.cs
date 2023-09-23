@@ -2,30 +2,38 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using Map_Generator.Parsing;
 
 namespace Map_Generator
 {
     public static class BardLog
     {
-        private static readonly string _localLowPath =
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+        private static readonly string _logFileDir = PathHandler.DataDir + @"Logs\";
+        private static readonly string _logFilePath = _logFileDir + "map.log";
+        private static StreamWriter _fs;
 
-        private static readonly string _logFilePath =
-            _localLowPath + @"\Thorium Entertainment\UnderMine\map.log";
-
-        private static StreamWriter _fs = new StreamWriter(_logFilePath, true) { AutoFlush = true };
-        public static Action<string> LogToFile = _fs.WriteLine;
-
-        public static readonly Action<string> LogToFileAndConsole = s =>
-        {
-            _fs.WriteLine(s);
-            Console.WriteLine(s);
-        };
 
         static BardLog()
         {
+            if (!Directory.Exists(_logFileDir))
+                Directory.CreateDirectory(_logFileDir);
+
+            if (!Directory.Exists(_logFilePath))
+                File.Create(_logFilePath).Close();
+            
+            _fs = new StreamWriter(_logFilePath, true) { AutoFlush = true };
+            LogToFile = _fs.WriteLine;
+            LogToFileAndConsole = s =>
+            {
+                _fs.WriteLine(s);
+                Console.WriteLine(s);
+            };
+            
             ClearDebug();
         }
+
+        public static Action<string> LogToFile;
+        public static readonly Action<string> LogToFileAndConsole;
 
         [Conditional("DEBUG")]
         public static void ClearDebug()

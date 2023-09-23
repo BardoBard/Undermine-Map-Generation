@@ -161,7 +161,6 @@ namespace Map_Generator.Undermine
             var elems = elements.Where(element => element is { Skip: false });
             var weights = elems as T[] ?? elems.ToArray();
             int totalWeight = weights.Aggregate(0, (current, element) => current + element.Weight);
-            BardLog.Log("totalweight {0}", totalWeight);
 
             if (totalWeight == 0)
             {

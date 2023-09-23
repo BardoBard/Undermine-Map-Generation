@@ -24,7 +24,7 @@ namespace Map_Generator.Parsing.Json.Enums
             if (door is Door.None or Door.Normal or Door.Secret or Door.Unused or Door.Hidden) return null;
 
             string iconFileName = door.ToString() + ".png";
-            string iconFilePath = Path.Combine(PathHandler.DoorPath, iconFileName);
+            string iconFilePath = Path.Combine(PathHandler.DoorDir, iconFileName);
 
             if (!File.Exists(iconFilePath))
                 throw new FileNotFoundException($"Could not find icon file: {iconFilePath}");
@@ -43,7 +43,7 @@ namespace Map_Generator.Parsing.Json.Enums
             }
 
             string iconFileName = door.ToString() + ".png";
-            string iconFilePath = Path.Combine(PathHandler.DoorPath, iconFileName);
+            string iconFilePath = Path.Combine(PathHandler.DoorDir, iconFileName);
 
             if (!File.Exists(iconFilePath))
                 throw new FileNotFoundException($"Could not find icon file: {iconFilePath}");

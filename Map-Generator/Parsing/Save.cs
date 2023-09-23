@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Map_Generator.Json;
 using Map_Generator.Parsing.Json.Classes;
 using Newtonsoft.Json.Linq;
@@ -37,7 +38,8 @@ namespace Map_Generator.Parsing
         public static Discoverable discovered_wayland_boots { get; set; } =
             new(false, new("1981b4af04434077afafc78691056387"));
 
-        public static Discoverable discoveredRatBond { get; set; } = new(false, new("3776afb876a74e50911b6d3080f0388d"));
+        public static Discoverable discoveredRatBond { get; set; } =
+            new(false, new("3776afb876a74e50911b6d3080f0388d"));
 
         public static Discoverable discoveredHungrySpirit { get; set; } =
             new(false, new("91f466ecbb87497b943eabd77f6e4681"));
@@ -72,15 +74,9 @@ namespace Map_Generator.Parsing
             get { return zone_index + 1; }
         }
 
-        public static int FloorIndex
-        {
-            get { return zone_index; }
-        }
+        public static int FloorIndex => zone_index;
 
-        public static int ZoneIndex
-        {
-            get { return floor_number / 5; }
-        }
+        public static int ZoneIndex => floor_number / 5;
 
 
         public static bool whip_enabled { get; set; }
@@ -295,10 +291,32 @@ namespace Map_Generator.Parsing
             room.IsHidden && Save.FloorNumber == 4 ? MapType.GetNextMapName() : MapType.GetMapName();
         // && !bog_unlocked; //TODO: check this bog (enterBog)
 
+        public static void Reset()
+        {
+            foreach (var property in typeof(Save).GetProperties())
+            {
+                if (!property.CanWrite) continue;
+
+                if (property.PropertyType == typeof(bool))
+                    property.SetValue(null, false);
+                
+                if (property.PropertyType == typeof(int))
+                    property.SetValue(null, 0);
+                
+                if (property.PropertyType == typeof(Guid))
+                    property.SetValue(null, null);
+
+                
+                if (typeof(Discoverable).IsAssignableFrom(property.PropertyType))
+                    ((Discoverable)property.GetValue(null)).hasBeenDiscovered = false;
+                
+            }
+        }
+
         public static void Initialize(string saveJsonFile)
         {
-            var path = saveJsonFile;
-            var json = File.ReadAllText(path);
+            Reset();
+            var json = File.ReadAllText(saveJsonFile);
             var jsonObject = JObject.Parse(json);
             ParseUpgradeString(jsonObject["upgradeString"]);
             ParseAutoSaveData(jsonObject["autoSaveData"]);

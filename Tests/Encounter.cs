@@ -4,150 +4,294 @@ using NUnit.Framework;
 namespace Tests
 {
     [TestFixture]
-    public class Encounter
+    public partial class Encounter
     {
         [Test]
-        public void AllowNeighbor()
-        {   
+        public void AllowNeighbor01()
+        {
             Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
-            {
-                NoExit = Direction.None
-            };
-
-            Map_Generator.Parsing.Json.Classes.Encounter neighbor = new()
             {
                 NoExit = Direction.North
             };
 
-            Assert.IsTrue(encounter.AllowNeighbor(neighbor));
+            //cardinal directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.North));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.East));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.South));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
         }
 
         [Test]
-        public void AllowNeighbor2()
-        {
-            Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
-            {
-                NoExit = Direction.West
-            };
-
-            Map_Generator.Parsing.Json.Classes.Encounter neighbor = new()
-            {
-                NoExit = Direction.None
-            };
-
-            Assert.IsTrue(encounter.AllowNeighbor(neighbor));
-        }
-
-        [Test]
-        public void AllowNeighbor3()
-        {
-            Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
-            {
-                NoExit = Direction.South
-            };
-
-            Map_Generator.Parsing.Json.Classes.Encounter neighbor = new()
-            {
-                NoExit = Direction.None
-            };
-
-            Assert.IsTrue(encounter.AllowNeighbor(neighbor));
-        }
-
-        [Test]
-        public void AllowNeighbor4()
-        {
-            Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
-            {
-                NoExit = Direction.South
-            };
-
-            Map_Generator.Parsing.Json.Classes.Encounter neighbor = new()
-            {
-                NoExit = Direction.West
-            };
-
-            Assert.IsTrue(encounter.AllowNeighbor(neighbor));
-        }
-
-        [Test]
-        public void AllowNeighbor5()
+        public void AllowNeighbor02()
         {
             Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
             {
                 NoExit = Direction.East
             };
 
-            Map_Generator.Parsing.Json.Classes.Encounter neighbor = new()
+            //cardinal directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.North));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.East));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.South));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.SWN));
+        }
+
+        [Test]
+        public void AllowNeighbor03()
+        {
+            Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
             {
                 NoExit = Direction.South
             };
 
-            Assert.IsTrue(encounter.AllowNeighbor(neighbor));
+            //cardinal directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.North));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.East));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.South));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
         }
 
         [Test]
-        public void AllowNeighbor6()
+        public void AllowNeighbor04()
         {
             Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
-            {
-                NoExit = Direction.East
-            };
-
-            Map_Generator.Parsing.Json.Classes.Encounter neighbor = new()
             {
                 NoExit = Direction.West
             };
 
-            Assert.IsTrue(encounter.AllowNeighbor(neighbor));
+            //cardinal directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.North));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.East));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.South));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
         }
 
         [Test]
-        public void AllowNeighbor7()
+        public void AllowNeighbor05()
         {
             Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
             {
-                NoExit = Direction.East
+                NoExit = Direction.NS
             };
 
-            Map_Generator.Parsing.Json.Classes.Encounter neighbor = new()
-            {
-                NoExit = Direction.North
-            };
+            //cardinal directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.North));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.East));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.South));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
 
-            Assert.IsTrue(encounter.AllowNeighbor(neighbor));
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
         }
 
         [Test]
-        public void AllowNeighbor8()
+        public void AllowNeighbor06()
         {
             Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
             {
-                NoExit = Direction.North
+                NoExit = Direction.NW
             };
 
-            Map_Generator.Parsing.Json.Classes.Encounter neighbor = new()
-            {
-                NoExit = Direction.South
-            };
+            //cardinal directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.North));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.East));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.South));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
 
-            Assert.IsTrue(encounter.AllowNeighbor(neighbor));
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
         }
 
         [Test]
-        public void AllowNeighbor9()
+        public void AllowNeighbor07()
         {
             Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
             {
-                NoExit = Direction.North
+                NoExit = Direction.NE
             };
 
-            Map_Generator.Parsing.Json.Classes.Encounter neighbor = new()
+            //cardinal directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.North));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.East));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.South));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
+        }
+
+        [Test]
+        public void AllowNeighbor08()
+        {
+            Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
             {
-                NoExit = Direction.West
+                NoExit = Direction.SE
             };
 
-            Assert.IsTrue(encounter.AllowNeighbor(neighbor));
+            //cardinal directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.North));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.East));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.South));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
+        }
+
+        [Test]
+        public void AllowNeighbor09()
+        {
+            Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
+            {
+                NoExit = Direction.SW
+            };
+
+            //cardinal directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.North));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.East));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.South));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
         }
 
         [Test]
@@ -155,15 +299,31 @@ namespace Tests
         {
             Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
             {
-                NoExit = Direction.None
+                NoExit = Direction.EW
             };
 
-            Map_Generator.Parsing.Json.Classes.Encounter neighbor = new()
-            {
-                NoExit = Direction.None
-            };
+            //cardinal directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.North));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.East));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.South));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
 
-            Assert.IsTrue(encounter.AllowNeighbor(neighbor));
+            //two directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
         }
 
         [Test]
@@ -174,9 +334,154 @@ namespace Tests
                 NoExit = Direction.WNE
             };
 
-            Direction direction = Direction.NS;
+            //cardinal directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.North));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.East));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.South));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
 
-            Assert.IsFalse(encounter.AllowNeighbor(direction));
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
+        }
+
+        [Test]
+        public void AllowNeighbor12()
+        {
+            Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
+            {
+                NoExit = Direction.NES
+            };
+
+            //cardinal directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.North));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.East));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.South));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
+        }
+
+        [Test]
+        public void AllowNeighbor13()
+        {
+            Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
+            {
+                NoExit = Direction.ESW
+            };
+
+            //cardinal directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.North));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.East));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.South));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
+        }
+
+        [Test]
+        public void AllowNeighbor14()
+        {
+            Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
+            {
+                NoExit = Direction.SWN
+            };
+
+            //cardinal directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.North));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.East));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.South));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsFalse(encounter.AllowNeighbor(Direction.SWN));
+        }[Test]
+        public void AllowNeighbor15()
+        {
+            Map_Generator.Parsing.Json.Classes.Encounter encounter = new()
+            {
+                NoExit = Direction.None
+            };
+
+            //cardinal directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.North));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.East));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.South));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.West));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.None));
+
+            //two directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NS));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NW));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NE));
+
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.SE));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.SW));
+
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.EW));
+
+            //three directions
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.WNE));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.NES));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.ESW));
+            Assert.IsTrue(encounter.AllowNeighbor(Direction.SWN));
         }
     }
 }

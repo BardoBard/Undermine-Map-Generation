@@ -9,29 +9,29 @@ namespace Map_Generator.Json
 {
     public static class JsonDecoder
     {
-        private static readonly string MapsData = File.ReadAllText(PathHandler.JsonPath + "maps.json");
+        private static readonly string MapsData = File.ReadAllText(PathHandler.JsonDir + "maps.json");
 
         public static List<Maps> Maps =
             JsonConvert.DeserializeObject<List<Maps>>(MapsData) ?? new List<Maps>();
 
-        private static readonly string RoomData = File.ReadAllText(PathHandler.JsonPath + "rooms.json");
+        private static readonly string RoomData = File.ReadAllText(PathHandler.JsonDir + "rooms.json");
 
         public static  Dictionary<string, RoomType> Rooms =
             JsonConvert.DeserializeObject<Dictionary<string, RoomType>>(RoomData) ?? new Dictionary<string, RoomType>();
 
-        private static readonly string EncounterData = File.ReadAllText(PathHandler.JsonPath + "encounters.json");
+        private static readonly string EncounterData = File.ReadAllText(PathHandler.JsonDir + "encounters.json");
 
         public static  Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>> Encounters =
             JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>>(
                 EncounterData) ?? new Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>();
 
 
-        private static readonly string ZoneDataData = File.ReadAllText(PathHandler.JsonPath + "zonedata.json");
+        private static readonly string ZoneDataData = File.ReadAllText(PathHandler.JsonDir + "zonedata.json");
 
         public static  List<List<ZoneData>> ZoneData =
             JsonConvert.DeserializeObject<List<List<ZoneData>>>(ZoneDataData) ?? new List<List<ZoneData>>();
 
-        private static readonly string EnemiesDataData = File.ReadAllText(PathHandler.JsonPath + "enemies.json");
+        private static readonly string EnemiesDataData = File.ReadAllText(PathHandler.JsonDir + "enemies.json");
 
         public static  Dictionary<string, Enemy> Enemies =
             JsonConvert.DeserializeObject<Dictionary<string, Enemy>>(EnemiesDataData) ?? new Dictionary<string, Enemy>();
