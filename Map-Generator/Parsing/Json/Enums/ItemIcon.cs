@@ -21,7 +21,7 @@ namespace Map_Generator.Parsing.Json.Enums
 
     public static class ItemIconExtension
     {
-        public static Image? GetEnemyImage(this ItemIcon icon)
+        public static Image? GetItemImage(this ItemIcon icon)
         {
             if (icon == ItemIcon.None) return null;
 

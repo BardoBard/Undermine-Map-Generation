@@ -32,7 +32,7 @@ namespace Map_Generator.Parsing.Json.Enums
 
     public static class DirectionExtension
     {
-        public static readonly List<Direction> CardinalDirections = new List<Direction>
+        public static readonly List<Direction> CardinalDirections = new()
         {
             Direction.North,
             Direction.South,
