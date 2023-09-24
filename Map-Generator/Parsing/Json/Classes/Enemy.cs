@@ -1,5 +1,4 @@
-﻿using Map_Generator.Json;
-using Map_Generator.Parsing.Json.Enums;
+﻿using Map_Generator.Parsing.Json.Enums;
 using Newtonsoft.Json;
 
 namespace Map_Generator.Parsing.Json.Classes

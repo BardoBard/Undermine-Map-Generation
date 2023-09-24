@@ -34,6 +34,17 @@ namespace Map_Generator
             Invalidate();
         }
 
+        public void Path(List<RoomType> rooms)
+        {
+            if (rooms.Count == 0)
+                return;
+            
+            foreach (var gridSquare in from gridSquare in GridSquares from room in rooms.Where(room => gridSquare.Room.Equals(room)) select gridSquare)
+            {
+                gridSquare.Color = Color.DarkSlateGray;
+            }
+        }
+
         public GridControl()
         {
             DoubleBuffered = true;

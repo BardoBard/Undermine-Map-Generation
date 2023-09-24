@@ -1,15 +1,15 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace Map_Generator.Parsing
 {
     public static class PathHandler
     {
         public static readonly string
-            BaseDir = Directory.GetParent(FindDirectory(Application.StartupPath, "Data", 5))?.FullName ??
-                       throw new Exception("Could not find base path");
+            BaseDir = Directory.GetParent(FindDirectory(
+                          Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)!,
+                          "Data", 5))?.FullName ??
+                      throw new Exception("Could not find base path");
 
         private static readonly string _localLowPath =
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
@@ -31,12 +31,16 @@ namespace Map_Generator.Parsing
         public static readonly string EnemyDir = Path.Combine(ImagesDir, @"Enemies\");
         public static readonly string ItemDir = Path.Combine(ImagesDir, @"Items\");
         public static readonly string DoorDir = Path.Combine(ImagesDir, @"Doors\");
-        
-        
+
+        //logs
+        public static readonly string LogsDir = Path.Combine(DataDir, @"Logs\");
+
+
         //test
         public static readonly string TestProjectDir = Path.Combine(BaseDir, @"Tests\");
-        public static readonly string TestsDir = Path.Combine(TestProjectDir, @"Tests\");
-        
+        public static readonly string TestDataDir = Path.Combine(TestProjectDir, @"TestData\");
+        public static readonly string GlobalTestsDir = Path.Combine(TestDataDir, @"GlobalTests\");
+
         //rest of tests
 
         public static string FindDirectory(string baseDirectory, string targetDirectory, int backwards)
@@ -45,7 +49,8 @@ namespace Map_Generator.Parsing
             return result;
         }
 
-        public static bool FindDirectory(string? baseDirectory, string targetDirectory, int backwards, out string result)
+        public static bool FindDirectory(string? baseDirectory, string targetDirectory, int backwards,
+            out string result)
         {
             //TODO: thinking about it, everytime it goes backwards it checks every directory again probably fix that, currently it's not a problem
             result = "";
@@ -72,6 +77,12 @@ namespace Map_Generator.Parsing
                     --backwards, out result)) return false;
 
             return !string.IsNullOrEmpty(result);
+        }
+
+        public static string[] GetFiles(string path, string searchPattern,
+            SearchOption searchOption = SearchOption.TopDirectoryOnly)
+        {
+            return Directory.GetFiles(path, searchPattern, searchOption);
         }
     }
 }
