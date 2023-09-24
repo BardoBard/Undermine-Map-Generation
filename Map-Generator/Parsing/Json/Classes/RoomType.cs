@@ -85,7 +85,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonIgnore] public bool Secluded { get; set; }
         [JsonIgnore] public Vector2Int Position { get; set; } = Vector2Int.Zero;
 
-        [JsonIgnore] public Dictionary<Direction, RoomType> Neighbors { get; } = new();
+        [JsonIgnore] public Dictionary<Direction, RoomType> Neighbors { get; set; } = new();
         [JsonIgnore] public Dictionary<Direction, RoomType> Branches { get; set; } = new();
         [JsonIgnore] public List<Item> SetPieces { get; set; } = new();
         [JsonIgnore] public List<Item> Extras { get; set; } = new();

@@ -62,7 +62,7 @@ namespace Map_Generator
             position.y = _rowSize + (GapSize * 2);
 
             foreach (Item? item in Room.Extras)
-                Draw(g, item.ItemIcon.GetEnemyImage(), item.Name, position);
+                Draw(g, item.ItemIcon.GetItemImage(), item.Name, position);
         }
 
         private void Draw(Graphics g, Image? image, string text, Vector2Int position)

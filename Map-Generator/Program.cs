@@ -21,7 +21,7 @@ namespace Map_Generator
 
         public static ZoneData Zonedata = null!;
 
-        public static readonly List<RoomType> PositionedRooms = new(20);
+        public static List<RoomType> PositionedRooms = new(20);
 
         public static void GetRooms(RoomType[][] batches)
         {
@@ -195,7 +195,7 @@ namespace Map_Generator
         }
 
 
-        public static List<RoomType> PathFindingAlgorithm()
+        public static List<RoomType> BreadthFirstSearch()
         {
             var result = new List<RoomType>(10);
 
@@ -208,29 +208,39 @@ namespace Map_Generator
             var queue = new Queue<RoomType>();
             queue.Enqueue(start);
 
+            var cameFrom = new Dictionary<RoomType, RoomType>
+            {
+                [start] = null
+            };
+
             while (queue.Count > 0)
             {
-                RoomType room = queue.Dequeue();
-                if (room == end)
+                RoomType current = queue.Dequeue();
+
+                if (current == end)
                     break;
 
-                foreach (var branch in room.Branches.Values.Where(branch => branch != null).Where(branch => branch.Position != Vector2Int.Zero))
+                foreach (var neighbor in current.Neighbors.Where(neighbor => neighbor.Value != null && !cameFrom.ContainsKey(neighbor.Value)))
                 {
-                    queue.Enqueue(branch);
-                    branch.PreviousRoom = room;
+                    cameFrom[neighbor.Value] = current;
+                    queue.Enqueue(neighbor.Value);
                 }
             }
 
-            //starting from the end go back and add to result
-            RoomType? current = end;
-            while (current != null)
+            //if path is found, add the room to the result list
+            if (cameFrom.ContainsKey(end))
             {
-                result.Add(current);
-                current = current.PreviousRoom;
-            }
+                RoomType? current = end;
+                while (current != null)
+                {
+                    result.Add(current);
+                    current = cameFrom[current];
+                }
 
-            //reverse result
-            result.Reverse();
+                result.Reverse();
+            }
+           
+           
 
             return result;
         }

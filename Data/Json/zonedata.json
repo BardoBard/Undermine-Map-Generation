@@ -4508,6 +4508,147 @@
                 {},
                 {},
                 {}
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "corerockgold01",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corerockgold02",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corewallgold",
+                            "weight": 1
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "corerockthorium01",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corerockthorium02",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corewallthorium",
+                            "weight": 10
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -4593,6 +4734,147 @@
                 {},
                 {},
                 {}
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "corerockgold01",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corerockgold02",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corewallgold",
+                            "weight": 1
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "corerockthorium01",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corerockthorium02",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corewallthorium",
+                            "weight": 10
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -4678,6 +4960,147 @@
                 {},
                 {},
                 {}
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "corerockgold01",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corerockgold02",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corewallgold",
+                            "weight": 1
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "corerockthorium01",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corerockthorium02",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corewallthorium",
+                            "weight": 10
+                        }
+                    ]
+                }
             ]
         },
         {
