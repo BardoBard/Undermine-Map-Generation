@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Map_Generator.Json;
 using Map_Generator.Parsing.Json.Classes;
 using Newtonsoft.Json.Linq;
 
@@ -33,7 +32,7 @@ namespace Map_Generator.Parsing
         //TODO: make a lot of stuff private instead of public
 
         //guid
-        private static readonly Guid TitleScreenGuid = new("219d813ae07049b39d1bf35f1863c2b1");
+        private static Guid TitleScreenGuid => new("219d813ae07049b39d1bf35f1863c2b1");
 
         public static Discoverable discovered_wayland_boots { get; set; } =
             new(false, new("1981b4af04434077afafc78691056387"));
@@ -58,7 +57,7 @@ namespace Map_Generator.Parsing
 
 
         //game data
-        public static bool storymode { get; set; } = true;
+        public static bool storymode => true;
 
         public static int Seed { get; set; }
         public static Guid Zone { get; set; }

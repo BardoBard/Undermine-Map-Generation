@@ -14,7 +14,6 @@ namespace Map_Generator
     {
         private readonly GridControl _gridControl = new GridControl();
         private readonly RoomInformationBox _roomInfoBox = null!;
-        private bool _secondClick = false;
 
         public MapGenerator()
         {
@@ -47,11 +46,10 @@ namespace Map_Generator
 
         private void findMapButton_Click(object sender, System.EventArgs e)
         {
-            if (_secondClick)
-                Application.Restart();
             Program.Start(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{saveNumber.Value}.json"));
+            
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
-            _secondClick = true;
+            _gridControl.Path(Program.PathFindingAlgorithm());
         }
 
         private void IssueButton_Click(object sender, System.EventArgs e)

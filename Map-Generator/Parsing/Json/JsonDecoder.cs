@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using Map_Generator.Parsing;
 using Map_Generator.Parsing.Json.Classes;
 using Newtonsoft.Json;
 
-namespace Map_Generator.Json
+namespace Map_Generator.Parsing.Json
 {
     public static class JsonDecoder
     {
@@ -39,14 +37,14 @@ namespace Map_Generator.Json
         public static void ReadJson()
         {
             Maps.Clear();
-            // Rooms.Clear();
+            Rooms.Clear();
             Encounters.Clear();
             Enemies.Clear();
             ZoneData.Clear();
         
         
             Maps =  JsonConvert.DeserializeObject<List<Maps>>(MapsData) ?? new List<Maps>();
-            // Rooms = JsonConvert.DeserializeObject<Dictionary<string, RoomType>>(RoomData) ?? new Dictionary<string, RoomType>();
+            Rooms = JsonConvert.DeserializeObject<Dictionary<string, RoomType>>(RoomData) ?? new Dictionary<string, RoomType>();
             Encounters = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>>(
                 EncounterData) ?? new Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>();
             Enemies = JsonConvert.DeserializeObject<Dictionary<string, Enemy>>(EnemiesDataData) ?? new Dictionary<string, Enemy>();

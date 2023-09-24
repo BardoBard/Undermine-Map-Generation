@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using Map_Generator.Json;
 using Map_Generator.Math;
 using Map_Generator.Parsing;
+using Map_Generator.Parsing.Json;
 using Map_Generator.Parsing.Json.Classes;
 using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Undermine;
 
 namespace Map_Generator
 {
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// list of room with result of algorithm
         /// </summary>
         private static readonly List<RoomType> Rooms = new();
+
+        public static ZoneData Zonedata = null!;
+
+        public static readonly List<RoomType> PositionedRooms = new(20);
 
         public static void GetRooms(RoomType[][] batches)
         {
@@ -190,14 +194,52 @@ namespace Map_Generator
             Application.Run(new MapGenerator());
         }
 
-        public static ZoneData Zonedata = null!;
 
-        public static readonly List<RoomType> PositionedRooms = new(20);
+        public static List<RoomType> PathFindingAlgorithm()
+        {
+            var result = new List<RoomType>(10);
+
+            //using positioned rooms and neighbors find path from begin to end
+            List<RoomType> rooms = PositionedRooms;
+            RoomType? start = rooms.First(room => room.Position == Vector2Int.Zero);
+            RoomType? end = rooms.First(room => room.Name == "end");
+
+           //pathfinding algorithm
+            var queue = new Queue<RoomType>();
+            queue.Enqueue(start);
+
+            while (queue.Count > 0)
+            {
+                RoomType room = queue.Dequeue();
+                if (room == end)
+                    break;
+
+                foreach (var branch in room.Branches.Values.Where(branch => branch != null).Where(branch => branch.Position != Vector2Int.Zero))
+                {
+                    queue.Enqueue(branch);
+                    branch.PreviousRoom = room;
+                }
+            }
+
+            //starting from the end go back and add to result
+            RoomType? current = end;
+            while (current != null)
+            {
+                result.Add(current);
+                current = current.PreviousRoom;
+            }
+
+            //reverse result
+            result.Reverse();
+
+            return result;
+        }
 
         public static void Start(string saveJsonFile)
         {
-            JsonDecoder.ReadJson();
             ClearAll();
+            BardLog.Open();
+            JsonDecoder.ReadJson();
             Save.Initialize(saveJsonFile);
             Rand.Initialize((uint)(Save.Seed + Save.floor_number));
             var level = JsonDecoder.Maps.First(map =>
@@ -260,6 +302,10 @@ namespace Map_Generator
 
             if (MapType.GetMap() == MapType.MapName.dungeon && Save.priestessentrance)
                 AddCrawlSpace(ZoneData.PriestessCrawlSpace);
+
+            BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
+
+            BardLog.Close();
         }
 
         private static void AddCrawlSpace(ZoneData.CrawlSpace extra)
@@ -391,18 +437,12 @@ namespace Map_Generator
             Extras = 0x10,
             SetPieces = 0x20
         }
-        // private static T GetWeightedItem<T>(List<T> items)
 
         private static void ClearAll()
         {
-            // foreach (var encounter in Rooms.Select(room => room.Encounter).Where(encounter => encounter != null))
-            // {
-            //     encounter.Skip = false;
-            //     encounter.Seen = false;
-            // }
-
             Rooms.Clear();
             PositionedRooms.Clear();
+            Zonedata = null;
         }
 
         private static void GetRoomMapping()
@@ -504,65 +544,6 @@ namespace Map_Generator
                 }
             }
 
-            // foreach (Room room in Rooms)
-            // {
-            //     RequireExt[] componentsInChildren = room.GetComponentsInChildren<RequireExt>(includeInactive: true);
-            //     RequireExt[] array = componentsInChildren;
-            //     foreach (RequireExt requirement in array)
-            //     {
-            //         requirement.SpawnTable.Spawn(
-            //             delegate(Spawner.SpawnData spawnData, out Vector3 position, out Transform parent)
-            //             {
-            //                 Room room6 = null;
-            //                 if (requirement.Location == RequireExt.SpawnLocation.RandomRoom)
-            //                 {
-            //                     List<Room> list = new List<Room>(Rooms);
-            //                     list.Shuffle();
-            //                     foreach (Room item in list)
-            //                     {
-            //                         if ((item.Encounter.AutoSpawn & Encounter.AutoSpawnType.Extras) != 0 &&
-            //                             item != room)
-            //                         {
-            //                             room6 = item;
-            //                             break;
-            //                         }
-            //                     }
-            //                 }
-            //                 else if (requirement.Location == RequireExt.SpawnLocation.SameRoom)
-            //                 {
-            //                     room6 = room;
-            //                 }
-            //
-            //                 Debug.AssertFormat(room6 != null, "No Room found for Requirement [{0}]", requirement);
-            //                 if (room6 != null)
-            //                 {
-            //                     room6.AddExtra(spawnData);
-            //                 }
-            //
-            //                 position = Vector3.zero;
-            //                 parent = null;
-            //                 return false;
-            //             }, delegate(Spawnable spawnable)
-            //             {
-            //                 if (spawnable is Entity)
-            //                 {
-            //                     Entity entity = spawnable as Entity;
-            //                     requirement.Entity.Link = entity;
-            //                     entity.Link = requirement.Entity;
-            //                 }
-            //             }, null);
-            //     }
-            // }
-
-            // foreach (RoomType room11 in Rooms)
-            // {
-            //     room11.LoadDoors();
-            // }
-
-            // foreach (RoomType room12 in Rooms)
-            // {
-            //     yield return room12.Setup();
-            // }
             BardLog.Log("");
         }
 
@@ -729,11 +710,8 @@ namespace Map_Generator
             return num == room.Branches.Count;
         }
 
-        private static RoomType? GetRoom(Vector2Int position)
-        {
-            var x = Rooms.FirstOrDefault(room => room.Position == position);
-            return x;
-        }
+        private static RoomType? GetRoom(Vector2Int position) =>
+            Rooms.FirstOrDefault(room => room.Position == position);
 
         public static Vector2Int GetRoomPosition(Vector2Int position, Direction direction)
         {

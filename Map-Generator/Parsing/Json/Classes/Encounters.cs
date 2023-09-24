@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Map_Generator.Json;
 using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Parsing.Json.Interfaces;
 using Map_Generator.Undermine;
@@ -145,11 +144,15 @@ namespace Map_Generator.Parsing.Json.Classes
             {
                 float totalDifficulty = floorDifficulty + this.Difficulty[1];
                 BardLog.Log("total difficulty: {0}", totalDifficulty);
+                foreach (var enemy in enemies2)
+                    BardLog.Log("enemy: {0}", enemy.Name);
+                
+
                 int[] array = new int[enemies2.Count];
                 for (int i = 0; i < enemies2.Count; i++)
                 {
                     Enemy? enemy = enemies2[i];
-                    float difficulty = enemy.GetDifficulty();
+                    int difficulty = enemy.GetDifficulty();
                     this.RoomEnemies.Add(enemies2[i]);
                     totalDifficulty -= difficulty;
                     array[i]++;

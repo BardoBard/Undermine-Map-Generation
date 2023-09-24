@@ -2,38 +2,57 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using Map_Generator.Parsing;
 
 namespace Map_Generator
 {
     public static class BardLog
     {
-        private static readonly string _logFileDir = PathHandler.DataDir + @"Logs\";
+        private static readonly string _logFileDir = PathHandler.LogsDir;
         private static readonly string _logFilePath = _logFileDir + "map.log";
         private static StreamWriter _fs;
 
 
         static BardLog()
         {
+            Open();
+        }
+
+        [Conditional("DEBUG")]
+        public static void Open()
+        {
+            if (_fs != null)
+                return;
+
             if (!Directory.Exists(_logFileDir))
                 Directory.CreateDirectory(_logFileDir);
 
-            if (!Directory.Exists(_logFilePath))
+            if (!File.Exists(_logFilePath))
                 File.Create(_logFilePath).Close();
-            
-            _fs = new StreamWriter(_logFilePath, true) { AutoFlush = true };
+
+            _fs = new StreamWriter(File.Open(_logFilePath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite),
+                Encoding.UTF8) { AutoFlush = true };
             LogToFile = _fs.WriteLine;
             LogToFileAndConsole = s =>
             {
                 _fs.WriteLine(s);
                 Console.WriteLine(s);
             };
-            
+
             ClearDebug();
         }
 
+        [Conditional("DEBUG")]
+        public static void Close()
+        {
+            _fs.Close();
+            _fs.Dispose();
+            _fs = null;
+        }
+
         public static Action<string> LogToFile;
-        public static readonly Action<string> LogToFileAndConsole;
+        public static Action<string> LogToFileAndConsole;
 
         [Conditional("DEBUG")]
         public static void ClearDebug()
