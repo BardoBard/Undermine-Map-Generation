@@ -53,6 +53,7 @@
         <Compile Include="Extension\ItemIconExtension.cs" />
         <Compile Include="Extension\ListExtensions.cs" />
         <Compile Include="Extension\MapIconExtension.cs" />
+        <Compile Include="Math\Vector2Int.cs" />
         <Compile Include="PathFinding.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Rand.cs" />

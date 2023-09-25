@@ -2,7 +2,8 @@
 
 namespace Map_Generator.Math
 {
-    public class Vector2Int/*<T> where T : IComparable<T>*/ //TODO: check if it's worth having multiple types of Vector2
+    public class Vector2Int /*<T> where T : IComparable<T>*/
+        //TODO: check if it's worth having multiple types of Vector2
     {
         protected bool Equals(Vector2Int other)
         {
@@ -45,17 +46,15 @@ namespace Map_Generator.Math
         }
 
         public static Vector2Int operator +(Vector2Int a, Vector2Int b) => new(a.x + b.x, a.y + b.y);
-        public static Vector2Int operator +(Vector2Int a, int b) => new(a.x + b, a.y + b);
+        public static Vector2Int operator +(Vector2Int a, int n) => new(a.x + n, a.y + n);
         public static Vector2Int operator -(Vector2Int a, Vector2Int b) => new(a.x - b.x, a.y - b.y);
-        public static Vector2Int operator -(Vector2Int a, int b) => new(a.x - b, a.y - b);
-        public static Vector2Int operator *(Vector2Int a, Vector2Int b) => new(a.x * b.x, a.y * b.y);
+        public static Vector2Int operator -(Vector2Int a, int n) => new(a.x - n, a.y - n);
         public static Vector2Int operator *(Vector2Int a, int n) => new(a.x * n, a.y * n);
         public static Vector2Int operator /(Vector2Int a, int n) => new(a.x / n, a.y / n);
-        public static Vector2Int operator /(Vector2Int a, Vector2Int b) => new(a.x / b.x, a.y / a.y);
-    
         public static Vector2Int operator -(Vector2Int a) => new(-a.x, -a.y);
-    
+
         public static bool operator ==(Vector2Int a, Vector2Int b) => a.x == b.x && a.y == b.y;
         public static bool operator !=(Vector2Int a, Vector2Int b) => !(a == b);
+        public override string ToString() => $"({x}, {y})";
     }
 }
