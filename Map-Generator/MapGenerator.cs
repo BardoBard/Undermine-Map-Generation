@@ -1,11 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using Map_Generator.Parsing;
-using Map_Generator.Parsing.Json.Classes;
-using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Undermine;
 
 namespace Map_Generator
@@ -47,7 +46,7 @@ namespace Map_Generator
         private void findMapButton_Click(object sender, System.EventArgs e)
         {
             Program.Start(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{saveNumber.Value}.json"));
-            
+
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
             _gridControl.Path(Program.BreadthFirstSearch());
         }
@@ -55,6 +54,75 @@ namespace Map_Generator
         private void IssueButton_Click(object sender, System.EventArgs e)
         {
             Process.Start("https://github.com/BardoBard/Undermine-Map-Generation/issues");
+        }
+
+        private void CreateTestButton_Click(object sender, System.EventArgs e)
+        {
+            Test();
+            
+            var zoneDataName = Program.Zonedata.Name.Substring(0, Program.Zonedata.Name.Length - 1);
+            int zoneDataNumber =
+                int.Parse(Program.Zonedata.Name.Substring(Program.Zonedata.Name.Length - 1, 1));
+            var floorNumber = Save.FloorNumber;
+            var dir = Path.Combine(PathHandler.GlobalTestsDir, zoneDataName, zoneDataNumber.ToString());
+
+            var fullName = $"{zoneDataName}{zoneDataNumber}-{floorNumber}-{Save.Seed}";
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+            if (File.Exists(Path.Combine(dir, fullName + ".json"))) return;
+
+
+            File.Copy(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{saveNumber.Value}.json"),
+                Path.Combine(dir, fullName + ".json"));
+            File.Copy(Path.Combine(PathHandler.LogsDir, "map.log"), Path.Combine(dir, fullName + ".log"));
+            File.Create(Path.Combine(dir, fullName + ".info")).Close();
+
+            System.Threading.Thread.Sleep(1000);
+            Process.Start(Path.Combine(dir, fullName + ".info"));
+        }
+
+        private void Test()
+        {
+            string extraDir = Path.Combine(PathHandler.UndermineSaveDir, "../");
+            string logDir = PathHandler.LogsDir;
+            string logFilePath = Path.Combine(logDir, "map.log");
+            string extraLogFilePath = Path.Combine(extraDir, "extra.log");
+
+
+            using (StreamReader reader2 =
+                   new StreamReader(File.Open(extraLogFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite),
+                       Encoding.UTF8))
+            {
+                using (StreamReader reader =
+                       new StreamReader(File.Open(logFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite),
+                           Encoding.UTF8))
+                {
+                    if (!File.Exists(logFilePath)) throw new InvalidOperationException();
+                    if (!File.Exists(extraLogFilePath)) throw new InvalidOperationException();
+                    var logFile = File.ReadAllLines(logFilePath);
+                    var extraLogFile = File.ReadAllLines(extraLogFilePath);
+
+                    if (logFile.Length != extraLogFile.Length || logFile.Length == 0 || extraLogFile.Length == 0) throw new InvalidOperationException();
+
+                    foreach (string line in File.ReadLines(logFilePath))
+                    {
+                        string? log = reader.ReadLine();
+                        string? extra = reader2.ReadLine();
+
+                        string logMessage = log?.Substring(0, 6) ?? throw new InvalidOperationException();
+                        string expectedOutput = extra?.Substring(0, 6) ?? throw new InvalidOperationException();
+
+                        if (logMessage != expectedOutput)
+                        {
+                            Console.WriteLine("extra: " + extra);
+                            Console.WriteLine("log: " + log);
+                            Console.WriteLine("log file: " + logFilePath);
+                            Console.WriteLine("extra log file: " + extraLogFilePath);
+                            throw new InvalidOperationException();
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
+using Map_Generator;
 using Map_Generator.Parsing;
-using Map_Generator.Parsing.Json.Enums;
-using Map_Generator.Parsing.Json.Interfaces;
 using NUnit.Framework;
 
 namespace Tests
@@ -18,8 +15,8 @@ namespace Tests
         public void TestAll()
         {
             string globalTestsDir = PathHandler.GlobalTestsDir;
-            const string pattern = "Test*.log";
-            string[] files = PathHandler.GetFiles(globalTestsDir, pattern, SearchOption.TopDirectoryOnly);
+            const string pattern = "*.log";
+            string[] files = PathHandler.GetFiles(globalTestsDir, pattern, SearchOption.AllDirectories);
 
             foreach (string file in files)
             {
@@ -27,15 +24,18 @@ namespace Tests
                 string logFilePath = Path.Combine(logDir, "map.log");
 
                 string fileName = Path.GetFileName(file);
+                string dirName = Path.GetDirectoryName(file) ?? throw new InvalidOperationException();
                 string testName = fileName.Substring(0, fileName.IndexOf('.'));
 
-                string jsonTestPath = Path.Combine(globalTestsDir, testName + ".json");
+                string jsonTestPath = Path.Combine(dirName, testName + ".json");
 
                 //make sure the json file exists
                 Assert.IsTrue(File.Exists(jsonTestPath), testName);
 
-                //start program
-                TestStart(Path.Combine(globalTestsDir, testName + ".json"));
+                //turn off console output
+                BardLog.IsLoggingToConsole = false;
+                TestStart(Path.Combine(dirName, testName + ".json"));
+                BardLog.IsLoggingToConsole = true;
 
                 using (StreamReader reader =
                     new StreamReader(File.Open(logFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite),

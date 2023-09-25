@@ -202,7 +202,7 @@ namespace Map_Generator
             //using positioned rooms and neighbors find path from begin to end
             List<RoomType> rooms = PositionedRooms;
             RoomType? start = rooms.First(room => room.Position == Vector2Int.Zero);
-            RoomType? end = rooms.First(room => room.Name == "end");
+            RoomType? end = rooms.First(room => room.Name is "end" or "nextdown");
 
            //pathfinding algorithm
             var queue = new Queue<RoomType>();
