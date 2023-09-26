@@ -101,8 +101,7 @@ namespace Map_Generator
 
                 queue.Remove(current);
 
-                foreach (var neighbor in current.Neighbors.Where(neighbor =>
-                             neighbor.Value != null && !cameFrom.ContainsKey(neighbor.Value)))
+                foreach (var neighbor in current.Neighbors)
                 {
                     int cost = gScore[current] + HeuristicCostEstimate(current, neighbor.Value);
                     if (!gScore.ContainsKey(neighbor.Value) || cost < gScore[neighbor.Value])
@@ -135,12 +134,12 @@ namespace Map_Generator
         private static int HeuristicCostEstimate(Room start, Room end)
         {
             int weight = start.Position.DistanceTo(end.Position); //distance between the rooms
-            weight -= end.RoomType == RoomType.Treasure ? 5 : 0;
+            weight -= end.RoomType == RoomType.Treasure ? 1 : 0;
             weight += end.RoomType == RoomType.Secret ? 1 : 0;
-
+            weight -= end.Neighbors.Any(neighbor => neighbor.Value?.RoomType == RoomType.Relic) ? 2 : 0;
             if (end.Encounter != null)
             {
-                weight += end.Encounter.RoomEnemies.Sum(enemy => enemy.Difficulty); //weight of the enemies in the room
+                weight += end.Encounter.RoomEnemies.Sum(_ => 1); //weight of the enemies in the room
                 weight += end.Encounter
                     .DifficultyWeight; //weight of the room itself, for example a maze room is more difficult than a normal room
             }
