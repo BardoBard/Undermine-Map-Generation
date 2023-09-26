@@ -56,5 +56,10 @@ namespace Map_Generator.Math
         public static bool operator ==(Vector2Int a, Vector2Int b) => a.x == b.x && a.y == b.y;
         public static bool operator !=(Vector2Int a, Vector2Int b) => !(a == b);
         public override string ToString() => $"({x}, {y})";
+
+        public int DistanceTo(Vector2Int position)
+        {
+            return System.Math.Abs(x - position.x) + System.Math.Abs(y - position.y);
+        }
     }
 }

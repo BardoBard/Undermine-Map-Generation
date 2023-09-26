@@ -79,7 +79,7 @@ namespace Map_Generator.Parsing.Json.Classes
 
 
         [JsonProperty("floors")] public List<Floor> Floors { get; set; }
-        [JsonProperty("roomnames")] public List<Dictionary<string, RoomType>> Rooms { get; set; }
+        [JsonProperty("roomnames")] public List<Dictionary<string, Room>> Rooms { get; set; }
         public interface IAbsolutes
         {
             public int Min { get; set; }

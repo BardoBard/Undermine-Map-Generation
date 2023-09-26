@@ -32,7 +32,7 @@ namespace Map_Generator.Parsing.Json.Enums
             return Image.FromFile(iconFilePath);
         }
 
-        public static Image? GetDoorImage(this Door door, RoomType neighborRoom)
+        public static Image? GetDoorImage(this Door door, Room neighborRoom)
         {
             switch (door)
             {

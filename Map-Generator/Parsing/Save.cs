@@ -84,10 +84,7 @@ namespace Map_Generator.Parsing
         public static int floor_number { get; private set; }
         public static int zone_index { get; set; }
 
-        public static int FloorNumber
-        {
-            get { return zone_index + 1; }
-        }
+        public static int FloorNumber => zone_index + 1;
 
         public static int FloorIndex => zone_index;
 
@@ -311,7 +308,7 @@ namespace Map_Generator.Parsing
         public static bool crystallordkillednotfire => crystallord_defeated &&
                                                        !(firelord_defeated);
 
-        public static string GetZoneName(RoomType room) =>
+        public static string GetZoneName(Room room) =>
             room.IsHidden && Save.FloorNumber == 4 ? MapType.GetNextMapName() : MapType.GetMapName();
         // && !bog_unlocked; //TODO: check this bog (enterBog)
 

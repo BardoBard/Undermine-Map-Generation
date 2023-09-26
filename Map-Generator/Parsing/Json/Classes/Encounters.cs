@@ -40,6 +40,7 @@ namespace Map_Generator.Parsing.Json.Classes
         }
 
         [JsonProperty("weight")] public int Weight { get; set; }
+        [JsonProperty("difficultyweight")] public int DifficultyWeight { get; set; }
         [JsonProperty("branchweight")] public int? Branchweight { get; set; }
         public bool Skip { get; set; }
         [JsonProperty("tag")] public string? Tag;
@@ -47,8 +48,14 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("weighteddoor")] public List<WeightedDoor?>? WeightedDoors { get; set; }
         [JsonProperty("requirements")] public string? Requirement { get; set; }
         [JsonProperty("enemies")] private List<string>? enemies { get; set; } = null;
-        private List<Enemy>? Enemies => enemies?.Select(Enemy.GetEnemy).ToList();
-        public List<Enemy> RoomEnemies { get; private set; } = new List<Enemy>();
+
+        private List<Enemy>? Enemies
+        {
+            get => enemies?.Select(Enemy.GetEnemy).ToList();
+            set { enemies = value?.Select(enemy => enemy.Name).ToList(); }
+        }
+
+        public List<Enemy> RoomEnemies { get; set; } = new();
         [JsonProperty("prohibitedenemies")] public List<string>? ProhibitedEnemies { get; set; }
         [JsonProperty("difficulty")] public float[]? Difficulty { get; set; }
 
@@ -146,7 +153,7 @@ namespace Map_Generator.Parsing.Json.Classes
                 BardLog.Log("total difficulty: {0}", totalDifficulty);
                 foreach (var enemy in enemies2)
                     BardLog.Log("enemy: {0}", enemy.Name);
-                
+
 
                 int[] array = new int[enemies2.Count];
                 for (int i = 0; i < enemies2.Count; i++)

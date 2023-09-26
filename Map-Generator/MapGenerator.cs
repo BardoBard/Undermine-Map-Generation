@@ -28,7 +28,7 @@ namespace Map_Generator
             _roomInfoBox.Height = 500;
             _roomInfoBox.Location = new Point(0, 50);
             Controls.Add(_roomInfoBox);
-
+            
             _gridControl.MouseClick += GridControl_MouseClick;
             _gridControl.Dock = DockStyle.Fill;
             Controls.Add(_gridControl);
@@ -45,10 +45,11 @@ namespace Map_Generator
 
         private void findMapButton_Click(object sender, System.EventArgs e)
         {
-            Program.Start(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{saveNumber.Value}.json"));
+            Program.Start(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
 
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
-            _gridControl.Path(Program.BreadthFirstSearch());
+            FloorNameLabel.Text = $@"{Program.Zonedata.Name}-{Save.FloorNumber}";
+            _gridControl.Path(Program.PositionedRooms.AStarSearch());
         }
 
         private void IssueButton_Click(object sender, System.EventArgs e)
@@ -59,7 +60,7 @@ namespace Map_Generator
         private void CreateTestButton_Click(object sender, System.EventArgs e)
         {
             Test();
-            
+
             var zoneDataName = Program.Zonedata.Name.Substring(0, Program.Zonedata.Name.Length - 1);
             int zoneDataNumber =
                 int.Parse(Program.Zonedata.Name.Substring(Program.Zonedata.Name.Length - 1, 1));
@@ -72,7 +73,7 @@ namespace Map_Generator
             if (File.Exists(Path.Combine(dir, fullName + ".json"))) return;
 
 
-            File.Copy(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{saveNumber.Value}.json"),
+            File.Copy(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"),
                 Path.Combine(dir, fullName + ".json"));
             File.Copy(Path.Combine(PathHandler.LogsDir, "map.log"), Path.Combine(dir, fullName + ".log"));
             File.Create(Path.Combine(dir, fullName + ".info")).Close();
@@ -102,7 +103,8 @@ namespace Map_Generator
                     var logFile = File.ReadAllLines(logFilePath);
                     var extraLogFile = File.ReadAllLines(extraLogFilePath);
 
-                    if (logFile.Length != extraLogFile.Length || logFile.Length == 0 || extraLogFile.Length == 0) throw new InvalidOperationException();
+                    if (logFile.Length != extraLogFile.Length || logFile.Length == 0 || extraLogFile.Length == 0)
+                        throw new InvalidOperationException();
 
                     foreach (string line in File.ReadLines(logFilePath))
                     {
@@ -111,7 +113,7 @@ namespace Map_Generator
 
                         var logMessage = float.Parse(log ?? throw new InvalidOperationException());
                         var expectedOutput = float.Parse(extra ?? throw new InvalidOperationException());
-                        
+
                         if (System.Math.Abs(logMessage - expectedOutput) > 0.0001)
                         {
                             Console.WriteLine("extra: " + extra);

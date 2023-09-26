@@ -12,7 +12,7 @@ namespace Map_Generator
     public sealed class RoomInformationBox : Panel
     {
         private readonly Form _form;
-        public RoomType? Room { get; set; } = null;
+        public Room? Room { get; set; } = null;
         private int _textOffset = 40;
         private int _rowSize = 30;
         private const int GapSize = 5;

@@ -251,7 +251,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "begin",
+                        "roomtype": 1,
+                        "roomtypetag": "begin",
                         "branchweight": 4,
                         "name": "begin",
                         "icon": [
@@ -483,7 +484,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "begin",
+                        "roomtype": 1,
+                        "roomtypetag": "begin",
                         "branchweight": 4,
                         "name": "begin",
                         "icon": [
@@ -729,7 +731,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "begin",
+                        "roomtype": 1,
+                        "roomtypetag": "begin",
                         "branchweight": 4,
                         "name": "begin",
                         "icon": [
@@ -975,7 +978,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "begin",
+                        "roomtype": 1,
+                        "roomtypetag": "begin",
                         "branchweight": 4,
                         "name": "begin",
                         "icon": [
@@ -1262,7 +1266,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "begin",
+                        "roomtype": 1,
+                        "roomtypetag": "begin",
                         "branchweight": 4,
                         "name": "begin",
                         "icon": [
@@ -1520,7 +1525,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -1534,7 +1540,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -1778,7 +1785,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -1792,7 +1800,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2034,7 +2043,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2048,7 +2058,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2293,7 +2304,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2307,7 +2319,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2552,7 +2565,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2566,7 +2580,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [

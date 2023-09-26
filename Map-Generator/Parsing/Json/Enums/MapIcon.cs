@@ -29,7 +29,7 @@ namespace Map_Generator.Parsing.Json.Enums
 
     public static class MapIconExtension
     {
-        public static List<Image> GetMapImage(RoomType room)
+        public static List<Image> GetMapImage(Room room)
         {
             var images = new List<Image?>();
 
@@ -55,7 +55,7 @@ namespace Map_Generator.Parsing.Json.Enums
             return Image.FromFile(iconFilePath);
         }
 
-        public static Color AssignColor(RoomType room)
+        public static Color AssignColor(Room room)
         {
             Color color = room.MapIcons.FirstOrDefault() switch
             {

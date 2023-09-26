@@ -61,6 +61,7 @@ namespace Tests
             var expected = new Vector2Int(expectedX, expectedY);
             Assert.AreEqual(expected, a + b);
         }
+
         [Test]
         [TestCase(0, 0, 0, 0, 0)]
         [TestCase(1, 1, 1, 2, 2)]
@@ -100,7 +101,7 @@ namespace Tests
             var expected = new Vector2Int(expectedX, expectedY);
             Assert.AreEqual(expected, a - b);
         }
-        
+
         [Test]
         [TestCase(0, 0, 0, 0, 0)]
         [TestCase(1, 1, 1, 0, 0)]
@@ -109,8 +110,8 @@ namespace Tests
         [TestCase(1, 0, -1, 2, 1)]
         [TestCase(-1, 0, 0, -1, 0)]
         [TestCase(0, -1, 0, 0, -1)]
-        [TestCase(0, 0, -1,  1, 1)]
-        [TestCase(1000000, 0, -1,  1000001, 1)]
+        [TestCase(0, 0, -1, 1, 1)]
+        [TestCase(1000000, 0, -1, 1000001, 1)]
         [TestCase(0, 1000000, 0, 0, 1000000)]
         [TestCase(53463, 7884, 1236, 52227, 6648)]
         [TestCase(53463, 7884, -1236, 54699, 9120)]
@@ -168,7 +169,7 @@ namespace Tests
 
         [Test]
         [TestCase(0, 0)]
-        [TestCase(0,1)]
+        [TestCase(0, 1)]
         [TestCase(1, 1)]
         [TestCase(-1, 1)]
         [TestCase(1, -1)]
@@ -185,6 +186,7 @@ namespace Tests
             var expected = new Vector2Int(-x1, -y1);
             Assert.AreEqual(expected, -a);
         }
+
         [Test]
         public void StaticValues()
         {
@@ -194,6 +196,38 @@ namespace Tests
             Assert.AreEqual(new Vector2Int(0, -1), Vector2Int.Down);
             Assert.AreEqual(new Vector2Int(-1, 0), Vector2Int.Left);
             Assert.AreEqual(new Vector2Int(1, 0), Vector2Int.Right);
+        }
+
+        [Test]
+        [TestCase(0, 0, 0, 0, 0)]
+        [TestCase(1, 1, 1, 1, 0)]
+        [TestCase(1, 1, 0, 0, 2)]
+        [TestCase(0, 0, 1, 1, 2)]
+        [TestCase(1, 0, 0, 1, 2)]
+        [TestCase(-1, 0, 0, 1, 2)]
+        [TestCase(0, -1, 0, 1, 2)]
+        [TestCase(0, 0, -1, 1, 2)]
+        [TestCase(1000000, 0, 0, 1, 1000001)]
+        [TestCase(0, 1000000, 0, 1, 999999)]
+        [TestCase(53463, 7884, 1236, 423, 59688)]
+        [TestCase(53463, 7884, -1236, 423, 62160)]
+        public void DistanceTo(int x1, int y1, int x2, int y2, int expected)
+        {
+            var a = new Vector2Int(x1, y1);
+            var b = new Vector2Int(x2, y2);
+            Assert.AreEqual(expected, a.DistanceTo(b));
+        }
+
+        [Test]
+        [TestCase(0, 0)]
+        [TestCase(0, 1)]
+        [TestCase(1, 1)]
+        [TestCase(-1, 1)]
+        [TestCase(1, -1)]
+        public void TestToString(int x1, int y1)
+        {
+            var a = new Vector2Int(x1, y1);
+            Assert.AreEqual($@"({x1}, {y1})", a.ToString());
         }
     }
 }

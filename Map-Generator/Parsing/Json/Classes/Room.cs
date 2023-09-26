@@ -16,26 +16,34 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("sprites")] public int Sprites { get; set; } = 0;
     }
 
-    public class RoomType : IWeight
+    public class Room : IWeight
     {
-        public RoomType Clone() => (RoomType)MemberwiseClone();
+        public override string ToString()
+        {
+            return $"Name: {Name}, Type: {RoomType}, Position: {Position}, Chance: {Chance}, Weight: {Weight}," +
+                   $"Direction: {Direction}, Children: {Children}, Branches: {Branches.Count}, Neighbors: {Neighbors.Count}, " +
+                   $"Encounter: {Encounter?.Name}, PreviousRoom: {PreviousRoom?.Name}, CanReload: {CanReload}, " +
+                   $"Secluded: {Secluded}, ExtraEncounters: {ExtraEncounters}, IsHidden: {IsHidden}";
+        }
+        public Room Clone() => (Room)MemberwiseClone();
 
-        public RoomType DeepClone()
+        public Room DeepClone()
         {
             string serializedObject = JsonConvert.SerializeObject(this);
-            return JsonConvert.DeserializeObject<RoomType>(serializedObject) ??
+            return JsonConvert.DeserializeObject<Room>(serializedObject) ??
                    throw new InvalidOperationException("failed to do a deep copy");
         }
 
         [JsonProperty("stage")] public List<string> Stages { get; set; } = null!;
-        [JsonProperty("roomtype")] public string RoomTypeTag { get; set; } = null!;
+        [JsonProperty("roomtypetag")] public string RoomTypeTag { get; set; } = null!;
+        [JsonProperty("roomtype")] public RoomType RoomType { get; set; } = RoomType.None;
         private float chance = 1f;
 
         [JsonProperty("chance")]
         public float Chance
         {
-            get { return chance + StepChance * Save.floor_number + ZoneStepChance * Save.ZoneIndex; }
-            set { chance = value; }
+            get => chance + StepChance * Save.floor_number + ZoneStepChance * Save.ZoneIndex;
+            set => chance = value;
         }
 
         [JsonProperty("stepchance")] public float StepChance { get; set; } = 0;
@@ -80,13 +88,13 @@ namespace Map_Generator.Parsing.Json.Classes
                 : _direction;
 
         [JsonIgnore] public Encounter? Encounter { get; set; }
-        [JsonIgnore] public RoomType? PreviousRoom { get; set; }
+        [JsonIgnore] public Room? PreviousRoom { get; set; }
         [JsonIgnore] public bool CanReload { get; set; }
         [JsonIgnore] public bool Secluded { get; set; }
         [JsonIgnore] public Vector2Int Position { get; set; } = Vector2Int.Zero;
 
-        [JsonIgnore] public Dictionary<Direction, RoomType> Neighbors { get; set; } = new();
-        [JsonIgnore] public Dictionary<Direction, RoomType> Branches { get; set; } = new();
+        [JsonIgnore] public Dictionary<Direction, Room> Neighbors { get; set; } = new();
+        [JsonIgnore] public Dictionary<Direction, Room> Branches { get; set; } = new();
         [JsonIgnore] public List<Item> SetPieces { get; set; } = new();
         [JsonIgnore] public List<Item> Extras { get; set; } = new();
 
@@ -111,7 +119,7 @@ namespace Map_Generator.Parsing.Json.Classes
             this.Encounter.Seen = true;
         }
 
-        public bool CheckEncounter(Encounter? encounter, RoomType? previousRoom)
+        public bool CheckEncounter(Encounter? encounter, Room? previousRoom)
         {
             if (encounter == null)
             {
@@ -154,7 +162,7 @@ namespace Map_Generator.Parsing.Json.Classes
             return true;
         }
 
-        public bool IsValidNeighbor(RoomType neighbor, Direction direction)
+        public bool IsValidNeighbor(Room neighbor, Direction direction)
         {
             if (Encounter == null)
                 throw new Exception($"Unable to validate neighbor for Room [{Name}] without an Encounter!");

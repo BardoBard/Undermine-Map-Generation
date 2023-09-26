@@ -30,32 +30,33 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapGenerator));
-            this.saveNumber = new System.Windows.Forms.NumericUpDown();
-            this.saveNumberLabel = new System.Windows.Forms.Label();
+            this.SaveNumber = new System.Windows.Forms.NumericUpDown();
+            this.SaveNumberLabel = new System.Windows.Forms.Label();
             this.FindMapButton = new System.Windows.Forms.Button();
+            this.FloorNameLabel = new System.Windows.Forms.Label();
             this.WhipSeed = new System.Windows.Forms.Label();
             this.IssueButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.saveNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SaveNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // saveNumber
             // 
-            this.saveNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveNumber.Location = new System.Drawing.Point(1065, 642);
-            this.saveNumber.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
-            this.saveNumber.Name = "saveNumber";
-            this.saveNumber.Size = new System.Drawing.Size(120, 20);
-            this.saveNumber.TabIndex = 0;
+            this.SaveNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveNumber.Location = new System.Drawing.Point(1065, 642);
+            this.SaveNumber.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
+            this.SaveNumber.Name = "SaveNumber";
+            this.SaveNumber.Size = new System.Drawing.Size(120, 20);
+            this.SaveNumber.TabIndex = 0;
             // 
             // saveNumberLabel
             // 
-            this.saveNumberLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveNumberLabel.AutoSize = true;
-            this.saveNumberLabel.Location = new System.Drawing.Point(1088, 626);
-            this.saveNumberLabel.Name = "saveNumberLabel";
-            this.saveNumberLabel.Size = new System.Drawing.Size(72, 13);
-            this.saveNumberLabel.TabIndex = 1;
-            this.saveNumberLabel.Text = "Save Number";
+            this.SaveNumberLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveNumberLabel.AutoSize = true;
+            this.SaveNumberLabel.Location = new System.Drawing.Point(1088, 626);
+            this.SaveNumberLabel.Name = "SaveNumberLabel";
+            this.SaveNumberLabel.Size = new System.Drawing.Size(72, 13);
+            this.SaveNumberLabel.TabIndex = 1;
+            this.SaveNumberLabel.Text = "Save Number";
             // 
             // FindMapButton
             // 
@@ -107,6 +108,16 @@
             this.Controls.Add(this.CreateTestButton);
 #endif
             // 
+            // FloorNameLabel
+            // 
+            this.FloorNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.FloorNameLabel.AutoSize = true;
+            this.FloorNameLabel.Location = new System.Drawing.Point(1184/2, 11);
+            this.FloorNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.FloorNameLabel.Name = "FloorNameLabel";
+            this.FloorNameLabel.Size = new System.Drawing.Size(0, 17);
+            this.FloorNameLabel.TabIndex = 7;
+            // 
             // MapGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,12 +126,13 @@
             this.Controls.Add(this.IssueButton);
             this.Controls.Add(this.WhipSeed);
             this.Controls.Add(this.FindMapButton);
-            this.Controls.Add(this.saveNumberLabel);
-            this.Controls.Add(this.saveNumber);
+            this.Controls.Add(this.FloorNameLabel);
+            this.Controls.Add(this.SaveNumberLabel);
+            this.Controls.Add(this.SaveNumber);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MapGenerator";
             this.Text = "MapGenerator";
-            ((System.ComponentModel.ISupportInitialize)(this.saveNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SaveNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -130,8 +142,9 @@
 #endif
         #endregion
 
-        private System.Windows.Forms.NumericUpDown saveNumber;
-        private System.Windows.Forms.Label saveNumberLabel;
+        private System.Windows.Forms.NumericUpDown SaveNumber;
+        private System.Windows.Forms.Label SaveNumberLabel;
+        private System.Windows.Forms.Label FloorNameLabel;
         private System.Windows.Forms.Button FindMapButton;
         private System.Windows.Forms.Label WhipSeed;
         private System.Windows.Forms.Button IssueButton;

@@ -10,7 +10,7 @@ namespace Map_Generator
 {
     public class GridSquare //maybe make an observer pattern for this
     {
-        public RoomType Room { get; set; }
+        public Room Room { get; set; }
         public Vector2Int GridPosition { get; set; }
         public Color Color { get; set; }
 
@@ -21,7 +21,7 @@ namespace Map_Generator
 
         public Vector2Int DoorPosition(int iconSize) => Center() + Room.Direction.DirectionToVector() * (GridControl.CellSize / 2 + iconSize / 2);
 
-        public GridSquare(RoomType room, Color color, Vector2Int gridPosition)
+        public GridSquare(Room room, Color color, Vector2Int gridPosition)
         {
             Room = room;
             Color = color;

@@ -14,8 +14,8 @@ namespace Map_Generator.Parsing.Json
 
         private static readonly string RoomData = File.ReadAllText(PathHandler.JsonDir + "rooms.json");
 
-        public static  Dictionary<string, RoomType> Rooms =
-            JsonConvert.DeserializeObject<Dictionary<string, RoomType>>(RoomData) ?? new Dictionary<string, RoomType>();
+        public static  Dictionary<string, Room> Rooms =
+            JsonConvert.DeserializeObject<Dictionary<string, Room>>(RoomData) ?? new Dictionary<string, Room>();
 
         private static readonly string EncounterData = File.ReadAllText(PathHandler.JsonDir + "encounters.json");
 
@@ -44,7 +44,7 @@ namespace Map_Generator.Parsing.Json
         
         
             Maps =  JsonConvert.DeserializeObject<List<Maps>>(MapsData) ?? new List<Maps>();
-            Rooms = JsonConvert.DeserializeObject<Dictionary<string, RoomType>>(RoomData) ?? new Dictionary<string, RoomType>();
+            Rooms = JsonConvert.DeserializeObject<Dictionary<string, Room>>(RoomData) ?? new Dictionary<string, Room>();
             Encounters = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>>(
                 EncounterData) ?? new Dictionary<string, Dictionary<string, Dictionary<string, Encounters>>>();
             Enemies = JsonConvert.DeserializeObject<Dictionary<string, Enemy>>(EnemiesDataData) ?? new Dictionary<string, Enemy>();

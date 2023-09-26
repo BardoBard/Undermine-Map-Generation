@@ -17,16 +17,16 @@ namespace Map_Generator
         /// <summary>
         /// list of room with result of algorithm
         /// </summary>
-        private static readonly List<RoomType> Rooms = new();
+        private static readonly List<Room> Rooms = new();
 
         public static ZoneData Zonedata = null!;
 
-        public static List<RoomType> PositionedRooms = new(20);
+        public static List<Room> PositionedRooms = new(20);
 
-        public static void GetRooms(RoomType[][] batches)
+        public static void GetRooms(Room[][] batches)
         {
             BardLog.Log("");
-            foreach (RoomType[] roomNames in batches)
+            foreach (Room[] roomNames in batches)
             {
                 LoadRoomNames(roomNames, null, false, -1);
             }
@@ -39,9 +39,9 @@ namespace Map_Generator
         /// <param name="zone">zone name -> e.g mine</param>
         /// <param name="roomSize">room size -> e.g small/large</param>
         /// <param name="previousRoom"></param>
-        public static RoomType GetEncounter(string roomNames, string zone, string roomSize, RoomType? previousRoom)
+        public static Room GetEncounter(string roomNames, string zone, string roomSize, Room? previousRoom)
         {
-            RoomType room = null!;
+            Room room = null!;
             foreach (var roomName in roomNames.Split(','))
             {
                 room = GetRoom(roomName).DeepClone();
@@ -95,11 +95,11 @@ namespace Map_Generator
             return room ?? throw new InvalidOperationException();
         }
 
-        private static void LoadRoomNames(in RoomType[] roomNames, RoomType? previousRoom, bool sequence,
+        private static void LoadRoomNames(in Room[] roomNames, Room? previousRoom, bool sequence,
             int sequenceRecursionCount)
         {
             BardLog.Log("new roomnames");
-            foreach (RoomType roomName in roomNames)
+            foreach (Room roomName in roomNames)
             {
                 BardLog.Log("room: {0}, tag: {1}, chance: {2}", roomName.Name, roomName.RoomTypeTag,
                     roomName.Chance);
@@ -127,7 +127,7 @@ namespace Map_Generator
                 if (roomName.HasExtraEncounter)
                     Rand.NextUInt();
 
-                RoomType room =
+                Room room =
                     GetEncounter(roomName.Name, MapType.GetMapName(), name2, previousRoom); //scoped randomness
 
                 room.PreviousRoom = previousRoom;
@@ -159,7 +159,7 @@ namespace Map_Generator
 
                 if (sequenceRecursionCount != 0 && room.Encounter.Sequence.Count > 0)
                 {
-                    RoomType[] batch =
+                    Room[] batch =
                         room.Encounter.Sequence.Select(GetRoom).ToArray();
 
                     BardLog.Log("Reloading..");
@@ -194,57 +194,6 @@ namespace Map_Generator
             Application.Run(new MapGenerator());
         }
 
-
-        public static List<RoomType> BreadthFirstSearch()
-        {
-            var result = new List<RoomType>(10);
-
-            //using positioned rooms and neighbors find path from begin to end
-            List<RoomType> rooms = PositionedRooms;
-            RoomType? start = rooms.First(room => room.Position == Vector2Int.Zero);
-            RoomType? end = rooms.First(room => room.Name is "end" or "nextdown");
-
-           //pathfinding algorithm
-            var queue = new Queue<RoomType>();
-            queue.Enqueue(start);
-
-            var cameFrom = new Dictionary<RoomType, RoomType>
-            {
-                [start] = null
-            };
-
-            while (queue.Count > 0)
-            {
-                RoomType current = queue.Dequeue();
-
-                if (current == end)
-                    break;
-
-                foreach (var neighbor in current.Neighbors.Where(neighbor => neighbor.Value != null && !cameFrom.ContainsKey(neighbor.Value)))
-                {
-                    cameFrom[neighbor.Value] = current;
-                    queue.Enqueue(neighbor.Value);
-                }
-            }
-
-            //if path is found, add the room to the result list
-            if (cameFrom.ContainsKey(end))
-            {
-                RoomType? current = end;
-                while (current != null)
-                {
-                    result.Add(current);
-                    current = cameFrom[current];
-                }
-
-                result.Reverse();
-            }
-           
-           
-
-            return result;
-        }
-
         public static void Start(string saveJsonFile)
         {
             ClearAll();
@@ -259,7 +208,7 @@ namespace Map_Generator
 
             Zonedata = ZoneData.GetZoneData();
 
-            RoomType[][] batches = level.Rooms.Select(room => room.Select(GetRoom).ToArray())
+            Room[][] batches = level.Rooms.Select(room => room.Select(GetRoom).ToArray())
                 .ToArray()
                 .Concat(level.RoomsMulti.Select(roomName => new[] { GetRoom(roomName) })).ToArray();
 
@@ -323,9 +272,9 @@ namespace Map_Generator
         {
             Spawn(delegate(Item item)
             {
-                List<RoomType> list = new List<RoomType>(Rooms);
+                List<Room> list = new List<Room>(Rooms);
                 list.Shuffle();
-                foreach (RoomType? room in list.Where(room =>
+                foreach (Room? room in list.Where(room =>
                              room.Encounter != null && ((room.Encounter.AutoSpawn & (int)AutoSpawnType.Extras) != 0)))
                 {
                     BardLog.Log("crawl space: {0}", room.Encounter?.Name);
@@ -337,7 +286,7 @@ namespace Map_Generator
             }, extra);
         }
 
-        private static RoomType GetRoom(string roomName) => Zonedata.Rooms[Save.FloorIndex].ContainsKey(roomName)
+        private static Room GetRoom(string roomName) => Zonedata.Rooms[Save.FloorIndex].ContainsKey(roomName)
             ? Zonedata.Rooms[Save.FloorIndex][roomName]
             : JsonDecoder.Rooms[roomName];
 
@@ -356,7 +305,7 @@ namespace Map_Generator
                         roomType.Encounter.AutoSpawn);
                 }
 
-                foreach (RoomType room in Rooms)
+                foreach (Room room in Rooms)
                 {
                     if ((room.Encounter?.AutoSpawn & (int)mask) != 0)
                     {
@@ -458,7 +407,7 @@ namespace Map_Generator
 
         private static void GetRoomMapping()
         {
-            RoomType startingRoom = Rooms[0] ?? throw new InvalidOperationException("starting room is null");
+            Room startingRoom = Rooms[0] ?? throw new InvalidOperationException("starting room is null");
             foreach (var room in Rooms)
             {
                 BardLog.Log("room name: {0}, direction: {1}, door: {2}, ", room.Encounter?.Name, room.Direction,
@@ -468,7 +417,7 @@ namespace Map_Generator
             int i = 0;
             while (i < 10)
             {
-                foreach (RoomType room in Rooms)
+                foreach (Room room in Rooms)
                 {
                     room.Neighbors.Clear();
                 }
@@ -498,7 +447,7 @@ namespace Map_Generator
                 }
 
                 BardLog.Log("Layout failed, trying again!");
-                foreach (RoomType room2 in Rooms)
+                foreach (Room room2 in Rooms)
                 {
                     // room2.ReloadEncounter();
                     throw new Exception("reload encounter");
@@ -509,7 +458,7 @@ namespace Map_Generator
                 i = num;
             }
 
-            foreach (RoomType room10 in Rooms)
+            foreach (Room room10 in Rooms)
             {
                 if (room10.Encounter == null) continue;
 
@@ -517,7 +466,7 @@ namespace Map_Generator
                 {
                     foreach (Direction kCardinalDirection2 in DirectionExtension.CardinalDirections)
                     {
-                        RoomType? room4 = GetRoom(GetRoomPosition(room10.Position, kCardinalDirection2));
+                        Room? room4 = GetRoom(GetRoomPosition(room10.Position, kCardinalDirection2));
 
                         if (room4 == null || !room10.IsValidNeighbor(room4, kCardinalDirection2))
                             continue;
@@ -537,7 +486,7 @@ namespace Map_Generator
 
                 foreach (Direction kCardinalDirection3 in DirectionExtension.CardinalDirections)
                 {
-                    RoomType? room5 = GetRoom(GetRoomPosition(room10.Position, kCardinalDirection3));
+                    Room? room5 = GetRoom(GetRoomPosition(room10.Position, kCardinalDirection3));
 
                     if (room5 == null || room5.Encounter.Door != Door.Normal) continue;
 
@@ -558,7 +507,7 @@ namespace Map_Generator
             BardLog.Log("");
         }
 
-        private static bool SetRoomPosition(RoomType room)
+        private static bool SetRoomPosition(Room room)
         {
             List<Direction> list = new List<Direction>(DirectionExtension.CardinalDirections);
             Direction direction = Direction.None;
@@ -607,7 +556,7 @@ namespace Map_Generator
             }
             else //previous room is null
             {
-                List<RoomType> list2 = new List<RoomType>(PositionedRooms);
+                List<Room> list2 = new List<Room>(PositionedRooms);
 
                 if (room.Encounter is { Door: Door.None or Door.Hidden })
                 {
@@ -617,7 +566,7 @@ namespace Map_Generator
                         BardLog.Log("name: {0}, weight: {1}", room3.Encounter.Name, room3.Weight);
                     }
 
-                    foreach (RoomType item2 in list2)
+                    foreach (Room item2 in list2)
                     {
                         room.Position = item2.Position;
                         list.Shuffle();
@@ -650,7 +599,7 @@ namespace Map_Generator
 
                     while (direction == Direction.None && list2.Count > 0)
                     {
-                        if (!Rand.GetWeightedElement(list2!, out RoomType result, false))
+                        if (!Rand.GetWeightedElement(list2!, out Room result, false))
                             continue;
 
                         room.Position = result.Position;
@@ -673,7 +622,7 @@ namespace Map_Generator
             if (room.Encounter is { Door: Door.None or Door.Hidden }) return true;
 
             Direction direction2 = direction.Opposite();
-            RoomType? room2 = GetRoom(GetRoomPosition(room.Position, direction2));
+            Room? room2 = GetRoom(GetRoomPosition(room.Position, direction2));
 
             if (room2 == null) return true;
 
@@ -683,7 +632,7 @@ namespace Map_Generator
             return true;
         }
 
-        public static bool CanMove(RoomType room, Direction direction, Vector2Int position)
+        public static bool CanMove(Room room, Direction direction, Vector2Int position)
         {
             BardLog.Log("({0},{1}), direction: {2}", position.x, position.y, direction.ToString());
             if (room.PreviousRoom != null && !room.PreviousRoom.IsValidNeighbor(room, direction))
@@ -693,7 +642,7 @@ namespace Map_Generator
             }
 
             position = GetRoomPosition(position, direction);
-            RoomType? room2 = GetRoom(position);
+            Room? room2 = GetRoom(position);
             if (room2 != null)
             {
                 BardLog.Log("room already exists");
@@ -701,7 +650,7 @@ namespace Map_Generator
             }
 
             int num = 0;
-            foreach (KeyValuePair<Direction, RoomType> branch in room.Branches)
+            foreach (KeyValuePair<Direction, Room> branch in room.Branches)
             {
                 if (branch.Key != Direction.None)
                 {
@@ -721,7 +670,7 @@ namespace Map_Generator
             return num == room.Branches.Count;
         }
 
-        private static RoomType? GetRoom(Vector2Int position) =>
+        private static Room? GetRoom(Vector2Int position) =>
             Rooms.FirstOrDefault(room => room.Position == position);
 
         public static Vector2Int GetRoomPosition(Vector2Int position, Direction direction)
