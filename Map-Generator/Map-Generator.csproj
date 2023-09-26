@@ -77,17 +77,19 @@
     <Compile Include="Parsing\Json\Classes\Encounters.cs" />
     <Compile Include="Parsing\Json\Classes\Enemy.cs" />
     <Compile Include="Parsing\Json\Classes\Maps.cs" />
-    <Compile Include="Parsing\Json\Classes\RoomType.cs" />
+    <Compile Include="Parsing\Json\Classes\Room.cs" />
     <Compile Include="Parsing\Json\Classes\ZoneData.cs" />
     <Compile Include="Parsing\Json\Enums\Direction.cs" />
     <Compile Include="Parsing\Json\Enums\Door.cs" />
     <Compile Include="Parsing\Json\Enums\EnemyIcon.cs" />
     <Compile Include="Parsing\Json\Enums\ItemIcon.cs" />
     <Compile Include="Parsing\Json\Enums\MapIcon.cs" />
+    <Compile Include="Parsing\Json\Enums\RoomType.cs" />
     <Compile Include="Parsing\Json\Interfaces\IWeight.cs" />
     <Compile Include="Parsing\Json\JsonDecoder.cs" />
     <Compile Include="Parsing\PathHandler.cs" />
     <Compile Include="Parsing\Save.cs" />
+    <Compile Include="PathFinding.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="RoomInformationBox.cs">
       <DependentUpon>MapGenerator.cs</DependentUpon>

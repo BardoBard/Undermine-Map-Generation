@@ -1,19 +1,19 @@
 [
     [
         {
-            "name": "minetutorial",
+            "name": "mine1",
             "map": "mine",
             "connectivity": 0.15,
             "zonenumber": 1,
             "startfloor": 1,
-            "basedifficulty": 2,
-            "difficultystep": 3,
+            "basedifficulty": 3,
+            "difficultystep": 2,
             "enemytypeweight": [
                 0,
                 1,
                 2
             ],
-            "requirements": "firstdelve",
+            "requirements": "tutorialcomplete",
             "extras": [
                 {
                     "override": [
@@ -193,231 +193,6 @@
             ],
             "floors": [
                 {
-                    "override": {
-                        "map": "minetutorial",
-                        "connectivity": 0
-                    },
-                    "enemies": []
-                },
-                {
-                    "enemies": [
-                        "ratbasic",
-                        "jumperwater",
-                        "flyranged"
-                    ]
-                },
-                {
-                    "override": {
-                        "connectivity": 0
-                    },
-                    "enemies": [
-                        "ratbasic",
-                        "flyranged",
-                        "jumperwater",
-                        "ratnest"
-                    ]
-                },
-                {
-                    "override": {
-                        "difficulty": 10,
-                        "enemytypeweight": [
-                            0,
-                            1,
-                            2,
-                            1
-                        ]
-                    },
-                    "enemies": [
-                        "ratbasic",
-                        "flyranged",
-                        "flyranged02",
-                        "jumperwater",
-                        "jumperoil",
-                        "ratnest",
-                        "lurkerbasic",
-                        "rattough",
-                        "bobo",
-                        "spiderbasic"
-                    ]
-                }
-            ],
-            "roomnames": [
-                {},
-                {},
-                {},
-                {
-                    "begin": {
-                        "stage": [
-                            "small"
-                        ],
-                        "roomtype": "begin",
-                        "branchweight": 4,
-                        "name": "begin",
-                        "icon": [
-                            1
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "name": "mine1",
-            "map": "mine",
-            "connectivity": 0.15,
-            "zonenumber": 1,
-            "startfloor": 1,
-            "basedifficulty": 3,
-            "difficultystep": 2,
-            "enemytypeweight": [
-                0,
-                1,
-                2
-            ],
-            "requirements": "tutorialcomplete",
-            "extras": [
-                {
-                    "min": 10,
-                    "max": 12,
-                    "100percent": false,
-                    "items": [
-                        {
-                            "weight": 1,
-                            "name": "skeletonspawner",
-                            "icon": 8
-                        },
-                        {
-                            "weight": 3,
-                            "name": "crate01",
-                            "icon": 3
-                        },
-                        {
-                            "weight": 2,
-                            "name": "crate02",
-                            "icon": 4
-                        },
-                        {
-                            "weight": 3,
-                            "name": "barrel01",
-                            "icon": 1
-                        },
-                        {
-                            "weight": 6,
-                            "name": "crate01",
-                            "icon": 3
-                        },
-                        {
-                            "weight": 5,
-                            "name": "crate02",
-                            "icon": 4
-                        },
-                        {
-                            "weight": 5,
-                            "name": "barrel01",
-                            "icon": 1
-                        },
-                        {
-                            "weight": 4,
-                            "name": "plant01",
-                            "icon": 7
-                        },
-                        {
-                            "weight": 4,
-                            "name": "plant02"
-                        },
-                        {
-                            "weight": 1,
-                            "name": "barrelexploding01",
-                            "icon": 2
-                        }
-                    ]
-                },
-                {
-                    "min": 1,
-                    "max": 1,
-                    "100percent": true,
-                    "items": [
-                        {
-                            "weight": 5,
-                            "name": "pilfergolden"
-                        }
-                    ]
-                },
-                {
-                    "min": 1,
-                    "max": 1,
-                    "100percent": true,
-                    "items": [
-                        {
-                            "weight": 10,
-                            "name": "crystalfire"
-                        },
-                        {
-                            "weight": 10,
-                            "name": "crystallightning"
-                        },
-                        {
-                            "weight": 10,
-                            "name": "crystalpoison"
-                        }
-                    ]
-                },
-                {
-                    "min": 0,
-                    "max": 1,
-                    "100percent": false,
-                    "items": [
-                        {
-                            "weight": 1,
-                            "name": "treasurehuntx",
-                            "requirement": "treasurehuntx"
-                        }
-                    ]
-                }
-            ],
-            "resources": [
-                {
-                    "min": 7,
-                    "max": 7,
-                    "100percent": false,
-                    "items": [
-                        {
-                            "weight": 3,
-                            "name": "rockgold01",
-                            "icon": 5
-                        },
-                        {
-                            "weight": 3,
-                            "name": "rockgold02",
-                            "icon": 5
-                        },
-                        {
-                            "weight": 3,
-                            "name": "rockgold03",
-                            "icon": 5
-                        },
-                        {
-                            "weight": 4,
-                            "name": "orewall",
-                            "icon": 6
-                        }
-                    ]
-                }
-            ],
-            "setpieces": [
-                {
-                    "min": 1,
-                    "max": 1,
-                    "100percent": true,
-                    "items": [
-                        {
-                            "weight": 30,
-                            "name": "itemcageminesetpiece"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                {
                     "enemies": [
                         "ratbasic",
                         "jumperwater",
@@ -476,7 +251,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "begin",
+                        "roomtype": 1,
+                        "roomtypetag": "begin",
                         "branchweight": 4,
                         "name": "begin",
                         "icon": [
@@ -708,7 +484,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "begin",
+                        "roomtype": 1,
+                        "roomtypetag": "begin",
                         "branchweight": 4,
                         "name": "begin",
                         "icon": [
@@ -954,7 +731,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "begin",
+                        "roomtype": 1,
+                        "roomtypetag": "begin",
                         "branchweight": 4,
                         "name": "begin",
                         "icon": [
@@ -1200,7 +978,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "begin",
+                        "roomtype": 1,
+                        "roomtypetag": "begin",
                         "branchweight": 4,
                         "name": "begin",
                         "icon": [
@@ -1487,7 +1266,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "begin",
+                        "roomtype": 1,
+                        "roomtypetag": "begin",
                         "branchweight": 4,
                         "name": "begin",
                         "icon": [
@@ -1745,7 +1525,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -1759,7 +1540,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2003,7 +1785,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2017,7 +1800,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2259,7 +2043,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2273,7 +2058,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2518,7 +2304,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2532,7 +2319,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2777,7 +2565,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -2791,7 +2580,8 @@
                         "stage": [
                             "small"
                         ],
-                        "roomtype": "altar",
+                        "roomtype": 5,
+                        "roomtypetag": "altar",
                         "branchweight": 0,
                         "name": "altar",
                         "icon": [
@@ -4508,6 +4298,147 @@
                 {},
                 {},
                 {}
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "corerockgold01",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corerockgold02",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corewallgold",
+                            "weight": 1
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "corerockthorium01",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corerockthorium02",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corewallthorium",
+                            "weight": 10
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -4593,6 +4524,147 @@
                 {},
                 {},
                 {}
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "corerockgold01",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corerockgold02",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corewallgold",
+                            "weight": 1
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "corerockthorium01",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corerockthorium02",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corewallthorium",
+                            "weight": 10
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -4678,10 +4750,151 @@
                 {},
                 {},
                 {}
+            ],
+            "setpieces": [
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "ItemCageHallSetPiece",
+                            "weight": 30
+                        }
+                    ]
+                }
+            ],
+            "extras": [
+                {
+                    "min": 10,
+                    "max": 12,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "weight": 1,
+                            "name": "skeletonspawner",
+                            "icon": 8
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable01"
+                        },
+                        {
+                            "weight": 6,
+                            "name": "corebreakable02"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable03"
+                        },
+                        {
+                            "weight": 4,
+                            "name": "corebreakable04"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant01"
+                        },
+                        {
+                            "weight": 2,
+                            "name": "coreplant02"
+                        },
+                        {
+                            "weight": 1,
+                            "name": "barrelexploding01"
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "pilfergolden",
+                            "weight": 5
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "weight": 10,
+                            "name": "crystalfire"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystallightning"
+                        },
+                        {
+                            "weight": 10,
+                            "name": "crystalpoison"
+                        }
+                    ]
+                }
+            ],
+            "resources": [
+                {
+                    "min": 8,
+                    "max": 8,
+                    "100percent": false,
+                    "items": [
+                        {
+                            "name": "corerockgold01",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corerockgold02",
+                            "weight": 3
+                        },
+                        {
+                            "name": "corewallgold",
+                            "weight": 1
+                        }
+                    ]
+                },
+                {
+                    "min": 1,
+                    "max": 1,
+                    "100percent": true,
+                    "items": [
+                        {
+                            "name": "corerockthorium01",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corerockthorium02",
+                            "weight": 10
+                        },
+                        {
+                            "name": "corewallthorium",
+                            "weight": 10
+                        }
+                    ]
+                }
             ]
         },
         {
-            "name": "bog",
+            "name": "bog1",
             "map": "bog",
             "connectivity": 0.1,
             "zonenumber": 5,

@@ -16,6 +16,7 @@ namespace Map_Generator
 
         static BardLog()
         {
+            IsLoggingToConsole = true;
             Open();
         }
 
@@ -34,10 +35,15 @@ namespace Map_Generator
             _fs = new StreamWriter(File.Open(_logFilePath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite),
                 Encoding.UTF8) { AutoFlush = true };
             LogToFile = _fs.WriteLine;
+            LogToConsole = s =>
+            {
+                if (IsLoggingToConsole)
+                    Console.WriteLine(s);
+            };
             LogToFileAndConsole = s =>
             {
                 _fs.WriteLine(s);
-                Console.WriteLine(s);
+                LogToConsole(s);
             };
 
             ClearDebug();
@@ -51,6 +57,8 @@ namespace Map_Generator
             _fs = null;
         }
 
+        public static bool IsLoggingToConsole { get; set; }
+        public static Action<string> LogToConsole;
         public static Action<string> LogToFile;
         public static Action<string> LogToFileAndConsole;
 
@@ -86,7 +94,7 @@ namespace Map_Generator
         [Conditional("DEBUG")]
         public static void Log(string? str, Action<string>? outputMethod = null, params object?[] args)
         {
-            outputMethod ??= Console.WriteLine;
+            outputMethod ??= LogToConsole;
             string message = string.Format(str ?? string.Empty, args);
             outputMethod.Invoke(message);
         }

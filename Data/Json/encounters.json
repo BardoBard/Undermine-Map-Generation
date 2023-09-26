@@ -7214,6 +7214,7 @@
                         "tag": "end",
                         "name": "end",
                         "autospawn": 19,
+                        "door": 1,
                         "icon": 3
                     },
                     {
@@ -8527,6 +8528,7 @@
                         "tag": "end",
                         "autospawn": 19,
                         "name": "end",
+                        "door": 1,
                         "icon": 3
                     },
                     {
@@ -8776,6 +8778,7 @@
                     },
                     {
                         "tag": "end",
+                        "door": 1,
                         "name": "end",
                         "icon": 3
                     },

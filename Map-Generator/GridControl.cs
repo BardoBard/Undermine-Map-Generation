@@ -22,7 +22,7 @@ namespace Map_Generator
 
         public Vector2Int GridOffset { get; set; } = Vector2Int.Zero;
 
-        public void InitializeGridSquares(List<RoomType> roomTypes)
+        public void InitializeGridSquares(List<Room> roomTypes)
         {
             GridSquares = roomTypes.Select(room =>
                 new GridSquare(
@@ -34,7 +34,7 @@ namespace Map_Generator
             Invalidate();
         }
 
-        public void Path(List<RoomType> rooms)
+        public void Path(List<Room> rooms)
         {
             if (rooms.Count == 0)
                 return;

@@ -3,20 +3,10 @@
     "stage": [
       "small"
     ],
-    "roomtype": "begin",
+    "roomtype": 1,
+    "roomtypetag": "begin",
     "branchweight": 1,
     "name": "begin",
-    "icon": [
-      1
-    ]
-  },
-  "beginend": {
-    "stage": [
-      "small"
-    ],
-    "roomtype": "begin",
-    "branchweight": 4,
-    "name": "beginend",
     "icon": [
       1
     ]
@@ -25,7 +15,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 2,
+    "roomtypetag": "special",
     "tags": "end",
     "branchweight": 1,
     "name": "end",
@@ -37,7 +28,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "normal",
+    "roomtype": 3,
+    "roomtypetag": "normal",
     "branchweight": 4,
     "name": "normalsmall"
   },
@@ -45,7 +37,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "normal",
+    "roomtype": 3,
+    "roomtypetag": "normal",
     "branchweight": 4,
     "name": "normallarge"
   },
@@ -53,7 +46,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "normal",
+    "roomtype": 3,
+    "roomtypetag": "normal",
     "branchweight": 0,
     "name": "normallargeaftermimicfight"
   },
@@ -62,7 +56,8 @@
       "small",
       "large"
     ],
-    "roomtype": "normal",
+    "roomtype": 3,
+    "roomtypetag": "normal",
     "branchweight": 4,
     "name": "normal"
   },
@@ -70,7 +65,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "easy",
+    "roomtype": 3,
+    "roomtypetag": "easy",
     "branchweight": 4,
     "name": "easy"
   },
@@ -78,7 +74,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "relic",
+    "roomtype": 4,
+    "roomtypetag": "relic",
     "name": "relic",
     "icon": [
       3
@@ -89,7 +86,8 @@
       "small",
       "large"
     ],
-    "roomtype": "relic",
+    "roomtype": 4,
+    "roomtypetag": "relic",
     "name": "relicchance",
     "icon": [
       3
@@ -99,7 +97,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "relic_unlocked",
+    "roomtype": 4,
+    "roomtypetag": "relic_unlocked",
     "branchweight": 1,
     "name": "relicunlocked",
     "icon": [
@@ -110,7 +109,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "relic",
+    "roomtype": 4,
+    "roomtypetag": "relic",
     "doorcost": 2,
     "name": "relicextracost",
     "icon": [
@@ -121,7 +121,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "altar",
+    "roomtype": 5,
+    "roomtypetag": "altar",
     "branchweight": 1,
     "name": "altar",
     "icon": [
@@ -132,7 +133,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "altar_guacamole",
+    "roomtype": 5,
+    "roomtypetag": "altar_guacamole",
     "name": "guacamole",
     "icon": [
       7
@@ -142,7 +144,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "altar_guacamole",
+    "roomtype": 5,
+    "roomtypetag": "altar_guacamole",
     "requirements": "relicguacamole",
     "name": "guacamolealt",
     "icon": [
@@ -153,7 +156,8 @@
     "stage": [
       "extra"
     ],
-    "roomtype": "blackrabbit",
+    "roomtype": 6,
+    "roomtypetag": "blackrabbit",
     "tags": "black_rabbit",
     "chance": 0.5,
     "name": "blackrabbit",
@@ -165,7 +169,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 7,
+    "roomtypetag": "special",
     "tags": "hoodie_entrance",
     "direction": 1,
     "name": "hoodieentrance",
@@ -178,8 +183,9 @@
     "stage": [
       "extra"
     ],
+    "roomtype": 8,
     "encounter": true,
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "hoody",
     "name": "hoody",
     "icon": [
@@ -191,7 +197,8 @@
       "small",
       "large"
     ],
-    "roomtype": "secret",
+    "roomtype": 9,
+    "roomtypetag": "secret",
     "name": "secret",
     "icon": [
       6
@@ -202,7 +209,8 @@
       "small",
       "large"
     ],
-    "roomtype": "secret",
+    "roomtype": 9,
+    "roomtypetag": "secret",
     "chance": 0.5,
     "requirements": "adventurers_hat",
     "name": "secretchance",
@@ -215,7 +223,8 @@
       "small",
       "large"
     ],
-    "roomtype": "secret",
+    "roomtype": 9,
+    "roomtypetag": "secret",
     "chance": 0.25,
     "requirements": "reliccircinus",
     "name": "circinus",
@@ -228,7 +237,8 @@
       "small",
       "large"
     ],
-    "roomtype": "treasure",
+    "roomtype": 10,
+    "roomtypetag": "treasure",
     "branchweight": 1,
     "name": "treasure",
     "icon": [
@@ -240,7 +250,8 @@
       "small",
       "large"
     ],
-    "roomtype": "treasure",
+    "roomtype": 10,
+    "roomtypetag": "treasure",
     "chance": 0.5,
     "requirements": "relicadventurerswhip",
     "name": "treasurechance",
@@ -252,7 +263,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "treasurebasic",
+    "roomtype": 10,
+    "roomtypetag": "treasurebasic",
     "branchweight": 1,
     "name": "treasurebasic",
     "icon": [
@@ -264,7 +276,8 @@
       "small",
       "large"
     ],
-    "roomtype": "treasurebasic",
+    "roomtype": 10,
+    "roomtypetag": "treasurebasic",
     "chance": 0.5,
     "requirements": "relicadventurerswhip",
     "name": "treasurebasicchance",
@@ -277,13 +290,14 @@
       "small",
       "large"
     ],
+    "roomtype": 11,
     "extrainformation": {
       "hall": {
         "sprites": 4
       }
     },
     "ishidden": true,
-    "roomtype": "hidden",
+    "roomtypetag": "hidden",
     "name": "hidden"
   },
   "royalroad0": {
@@ -292,7 +306,7 @@
     ],
     "chance": -5,
     "stepchance": 0.25,
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "royal_road_0",
     "name": "royalroad0",
     "icon": [
@@ -303,7 +317,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "royal_road_1",
     "direction": 2,
     "name": "royalroad1",
@@ -315,7 +329,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "royal_road_2",
     "direction": 1,
     "name": "royalroad2",
@@ -327,7 +341,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "royal_road_3",
     "direction": 8,
     "name": "royalroad3",
@@ -339,7 +353,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "royal_road_4",
     "direction": 1,
     "name": "royalroad4",
@@ -351,7 +365,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "queen_room",
     "direction": 1,
     "name": "queenroom"
@@ -360,7 +374,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtype": 12,
+    "roomtypetag": "special",
     "tags": "down_boss",
     "branchweight": 1,
     "name": "endboss",
@@ -372,7 +387,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 12,
+    "roomtypetag": "special",
     "tags": "end_boss",
     "name": "endbosssmall",
     "icon": [
@@ -383,7 +399,8 @@
     "stage": [
       "extra"
     ],
-    "roomtype": "special",
+    "roomtype": 13,
+    "roomtypetag": "special",
     "tags": "bossroom",
     "encounter": true,
     "name": "bossroom",
@@ -400,7 +417,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtype": 14,
+    "roomtypetag": "special",
     "tags": "pre_room",
     "direction": 1,
     "encounter": true,
@@ -422,7 +440,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 15,
+    "roomtypetag": "special",
     "tags": "next_entrance",
     "direction": 1,
     "name": "nextdown",
@@ -439,7 +458,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtype": 14,
+    "roomtypetag": "special",
     "tags": "pre_bog",
     "direction": 1,
     "name": "bogprechamber",
@@ -452,7 +472,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 15,
+    "roomtypetag": "special",
     "tags": "next_entrance_bog",
     "direction": 1,
     "name": "bogdown",
@@ -464,7 +485,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtype": 14,
+    "roomtypetag": "special",
     "tags": "pre_bog",
     "name": "bogprechamberbug"
   },
@@ -472,7 +494,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 15,
+    "roomtypetag": "special",
     "tags": "next_entrance_bog",
     "name": "bogdownbug"
   },
@@ -480,7 +503,8 @@
     "stage": [
       "extra"
     ],
-    "roomtype": "shop",
+    "roomtype": 16,
+    "roomtypetag": "shop",
     "branchweight": 1,
     "name": "shop",
     "icon": [
@@ -491,7 +515,8 @@
     "stage": [
       "extra"
     ],
-    "roomtype": "shop",
+    "roomtype": 16,
+    "roomtypetag": "shop",
     "branchweight": 1,
     "doorcost": 2,
     "name": "shopextracost",
@@ -503,7 +528,8 @@
     "stage": [
       "extra"
     ],
-    "roomtype": "special",
+    "roomtype": 17,
+    "roomtypetag": "special",
     "tags": "market_baby",
     "name": "marketbaby"
   },
@@ -511,7 +537,8 @@
     "stage": [
       "extra"
     ],
-    "roomtype": "special",
+    "roomtype": 17,
+    "roomtypetag": "special",
     "tags": "market_baby",
     "direction": 2,
     "name": "marketbabyeast"
@@ -520,7 +547,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtype": 18,
+    "roomtypetag": "special",
     "chance": 0,
     "stepchance": 0.0625,
     "zonestepchance": -0.0625,
@@ -534,10 +562,11 @@
     "stage": [
       "large"
     ],
+    "roomtype": 18,
     "chance": -0.25,
     "stepchance": 0.0625,
     "zonestepchance": -0.0625,
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "relic_altar",
     "name": "relicaltarlastfloors",
     "icon": [
@@ -548,13 +577,14 @@
     "stage": [
       "small"
     ],
+    "roomtype": 19,
     "chance": 0,
     "stepchance": 0.0625,
     "zonestepchance": -0.0625,
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "tribute_fountain",
     "name": "fountain",
-    "icon":[
+    "icon": [
       16
     ]
   },
@@ -562,7 +592,7 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "begin_tutorial",
     "branchweight": 1,
     "name": "tubegin"
@@ -571,7 +601,7 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "tutorial_jump",
     "direction": 2,
     "branchweight": 1,
@@ -581,7 +611,7 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "tutorial_attack",
     "direction": 2,
     "branchweight": 1,
@@ -591,7 +621,7 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "tutorial_bomb",
     "direction": 4,
     "branchweight": 1,
@@ -601,7 +631,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "tutorial_throw",
     "direction": 1,
     "branchweight": 1,
@@ -611,7 +641,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "tutorial_pilfer",
     "direction": 4,
     "branchweight": 1,
@@ -621,7 +651,7 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "tutorial_relic",
     "direction": 1,
     "branchweight": 1,
@@ -631,7 +661,7 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "end_tutorial",
     "direction": 1,
     "branchweight": 1,
@@ -644,7 +674,7 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "tutorial_secret",
     "direction": 1,
     "branchweight": 1,
@@ -658,7 +688,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 3,
+    "roomtypetag": "special",
     "tags": "dodsoncageencounter",
     "branchweight": 4,
     "icon": [
@@ -670,7 +701,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtype": 20,
+    "roomtypetag": "special",
     "tags": "rockmimicencounter",
     "icon": [
       11
@@ -680,7 +712,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 3,
+    "roomtypetag": "special",
     "tags": "waylandshophallway",
     "name": "waylandshophallway"
   },
@@ -688,7 +721,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 3,
+    "roomtypetag": "special",
     "tags": "waylandshop",
     "direction": 1,
     "name": "waylandshop",
@@ -700,9 +734,10 @@
     "stage": [
       "large"
     ],
+    "roomtype": 3,
     "chance": 0.1,
     "stepchance": 0.2,
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "mushroom_apprentice",
     "branchweight": 1,
     "name": "mushroomapprentice",
@@ -715,9 +750,10 @@
       "small",
       "large"
     ],
+    "roomtype": 3,
     "chance": 0.4,
     "stepchance": 0.1,
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "mushroom",
     "name": "mushroom",
     "icon": [
@@ -728,7 +764,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 6,
+    "roomtypetag": "special",
     "tags": "black_rabbit_first",
     "branchweight": 1,
     "name": "blackrabbitfirst",
@@ -740,7 +777,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtype": 3,
+    "roomtypetag": "special",
     "tags": "dibble",
     "direction": 1,
     "name": "dibble",
@@ -752,7 +790,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 3,
+    "roomtypetag": "special",
     "tags": "store_room",
     "direction": 1,
     "name": "storeroom",
@@ -764,7 +803,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtype": 3,
+    "roomtypetag": "special",
     "tags": "masters_key",
     "name": "masterskey",
     "icon": [
@@ -775,7 +815,7 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "priestess",
     "branchweight": 0,
     "name": "priestess",
@@ -787,7 +827,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "priestesshall1",
     "direction": 1,
     "branchweight": 1,
@@ -797,7 +837,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "priestesshall2",
     "direction": 1,
     "name": "priestesshall2"
@@ -806,7 +846,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "priestesshall3",
     "direction": 1,
     "name": "priestesshall3"
@@ -815,7 +855,7 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtypetag": "special",
     "tags": "priestess_main",
     "direction": 1,
     "branchweight": 1,
@@ -825,7 +865,8 @@
     "stage": [
       "large"
     ],
-    "roomtype": "special",
+    "roomtype": 3,
+    "roomtypetag": "special",
     "tags": "hall_library_combat_arena",
     "branchweight": 1,
     "name": "librarycombat",
@@ -837,7 +878,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 3,
+    "roomtypetag": "special",
     "tags": "hall_library",
     "direction": 1,
     "name": "library",
@@ -849,7 +891,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 11,
+    "roomtypetag": "special",
     "tags": "hall_hidden_three_chests",
     "direction": 2,
     "name": "threechests"
@@ -859,7 +902,8 @@
       "small",
       "large"
     ],
-    "roomtype": "secret",
+    "roomtype": 9,
+    "roomtypetag": "secret",
     "direction": 4,
     "name": "secreteast",
     "icon": [
@@ -870,7 +914,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 11,
+    "roomtypetag": "special",
     "tags": "hidden_hallway",
     "direction": 1,
     "ishidden": true,
@@ -880,7 +925,8 @@
     "stage": [
       "small"
     ],
-    "roomtype": "special",
+    "roomtype": 11,
+    "roomtypetag": "special",
     "tags": "hidden_campsite",
     "direction": 1,
     "name": "hiddencampsite"
@@ -890,7 +936,8 @@
       "small",
       "large"
     ],
-    "roomtype": "secret",
+    "roomtype": 9,
+    "roomtypetag": "secret",
     "direction": 8,
     "name": "secretwest",
     "icon": [
@@ -902,7 +949,8 @@
       "small",
       "large"
     ],
-    "roomtype": "secret",
+    "roomtype": 9,
+    "roomtypetag": "secret",
     "chance": 0.5,
     "direction": 4,
     "name": "maybesecreteast",

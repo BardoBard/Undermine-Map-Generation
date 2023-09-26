@@ -10,37 +10,11 @@ namespace Tests
     public class Rand
     {
         [Test]
-        public void Initialize()
+        [TestCase(123456u, new[] { 123456u, 848462657u, 1590858150u, 479153279u })]
+        [TestCase(999999999u, new[] { 99999999u, 2858630044u, 3310420109u, 2988158114u })]
+        [TestCase(0u, new[] { 0u, 1u, 1812433254u, 1900727103u })]
+        public void Initialize(uint seed, Array expected)
         {
-            const uint seed = 123456u;
-            var expected = new List<uint>() { 123456u, 848462657u, 1590858150u, 479153279u };
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            var result = Map_Generator.Undermine.Rand.Seeds[Map_Generator.Undermine.Rand.StateType.Default];
-
-            //result
-            Assert.AreEqual(expected, result);
-        }
-
-        [Test]
-        public void Initialize2()
-        {
-            const uint seed = 999999999u;
-            var expected = new List<uint>() { 99999999u, 2858630044u, 3310420109u, 2988158114u };
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            var result = Map_Generator.Undermine.Rand.Seeds[Map_Generator.Undermine.Rand.StateType.Default];
-
-            //result
-            Assert.AreEqual(expected, result);
-        }
-
-        [Test]
-        public void Initialize3()
-        {
-            const uint seed = 0u;
-            var expected = new List<uint>() { 0, 1u, 1812433254u, 1900727103u };
-
             Map_Generator.Undermine.Rand.Initialize(seed);
             var result = Map_Generator.Undermine.Rand.Seeds[Map_Generator.Undermine.Rand.StateType.Default];
 
@@ -92,44 +66,44 @@ namespace Tests
 
 
         [Test]
-        public void NextUint()
+        [TestCase(123456u,328449612u)]
+        [TestCase(87654321u,2250309519u)]
+        [TestCase(9345u,2940916796u)]
+        [TestCase(4278345u,3684289151u)]
+        [TestCase(8234u,2540998805u)]
+        [TestCase(845235u,1035656343u)]
+        [TestCase(23467u,466276756u)]
+        [TestCase(85634252u,3618699448u)]
+        public void NextUint(uint seed,uint expected)
         {
-            const uint seed = 123456u;
-            const uint expected = 328449612u;
             Map_Generator.Undermine.Rand.Initialize(seed);
             var actual = Map_Generator.Undermine.Rand.NextUInt();
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void NextUint2()
+        [TestCase(87654321u,468106955u, 10000u)]
+        [TestCase(634637u,2155268432u, 12345u)]
+        [TestCase(90646u,2849628341u, 2u)]
+        [TestCase(86823234u,3475001881u, 753u)]
+        public void NextUintLoop(uint seed,uint expected, uint max)
         {
-            const uint seed = 87654321u;
-            const uint expected = 2250309519u;
             Map_Generator.Undermine.Rand.Initialize(seed);
-            var actual = Map_Generator.Undermine.Rand.NextUInt();
-            Assert.AreEqual(expected, actual);
-        }
 
-        [Test]
-        public void NextUint3()
-        {
-            const uint seed = 87654321u;
-            const uint expected = 468106955u;
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            
             uint actual = 0;
-            for (var i = 0; i < 10000; i++)
+            for (var i = 0; i < max; i++)
                 actual = Map_Generator.Undermine.Rand.NextUInt();
-            
+
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void PeekNextUInt()
+        [TestCase(12398746u, 3228673587u)]
+        [TestCase(18746u, 2367945926u)]
+        [TestCase(6762u, 3206317567u)]
+        [TestCase(987u, 2475376425u)]
+        public void PeekNextUInt(uint seed, uint expected)
         {
-            const uint seed = 12398746u;
-            const uint expected = 3228673587u;
             Map_Generator.Undermine.Rand.Initialize(seed);
 
             Map_Generator.Undermine.Rand.NextUInt();
@@ -144,10 +118,13 @@ namespace Tests
         }
 
         [Test]
-        public void PeekNextUInt2()
+        [TestCase(87654321u, 2250309519u)]
+        [TestCase(457234u, 1129168036u)]
+        [TestCase(862345u, 1453339741u)]
+        [TestCase(2341u, 993600154u)]
+        [TestCase(8242u, 3978126312u)]
+        public void PeekNextUInt2(uint seed, uint expected)
         {
-            const uint seed = 87654321u;
-            const uint expected = 2250309519u;
             Map_Generator.Undermine.Rand.Initialize(seed);
 
             var actual = Map_Generator.Undermine.Rand.PeekNextUInt();
@@ -155,39 +132,19 @@ namespace Tests
         }
 
         [Test]
-        public void PeekNextUInt3()
+        [TestCase(123456u, 0u, 250u, 211.43881225585938f)]
+        [TestCase(123456u, 0u, 100u, 84.575523376464844f)]
+        [TestCase(54353u, 654u, 4567u, 2046.8533935546875f)]
+        [TestCase(23482u, 123u, 456u, 167.31465148925781f)]
+        [TestCase(756354u, 2u, 7u, 2.9482026100158691f)]
+        [TestCase(12356774u, 4u, 12u, 10.12775993347168f)]
+        [TestCase(512893u, 0u, 1u, 0.21798837184906006f)]
+        [TestCase(7345u, 0u, 0u, 0)]
+        [TestCase(567123u, 7u, 29u, 24.6774712f)]
+        public void RangeFloat(uint seed, uint min, uint max, float expected)
         {
-            const uint seed = 870921u;
-            const uint expected = 2092189256u;
             Map_Generator.Undermine.Rand.Initialize(seed);
-
-            Map_Generator.Undermine.Rand.NextUInt();
-            Map_Generator.Undermine.Rand.NextUInt();
-            Map_Generator.Undermine.Rand.PeekNextUInt();
-            Map_Generator.Undermine.Rand.PeekNextUInt();
-            var actual = Map_Generator.Undermine.Rand.NextUInt();
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void RangeFloat()
-        {
-            const uint seed = 567123u;
-            const float expected = 0.803521395f;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            var actual = Map_Generator.Undermine.Rand.RangeFloat(0, 1); //0,1 is default
-            Assert.AreEqual(expected, actual, float.Epsilon);
-        }
-
-        [Test]
-        public void RangeFloat2()
-        {
-            const uint seed = 567123u;
-            const float expected = 24.6774712f;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            var actual = Map_Generator.Undermine.Rand.RangeFloat(7, 29);
+            var actual = Map_Generator.Undermine.Rand.RangeFloat(min, max); //0,1 is default
             Assert.AreEqual(expected, actual, float.Epsilon);
         }
 
@@ -201,55 +158,24 @@ namespace Tests
         }
 
         [Test]
-        public void Value()
+        [TestCase(567123u, 0.19647860527038574f)]
+        [TestCase(12398746u, 0.0239715576171875f)]
+        [TestCase(4234u, 0.26319098472595215f)]
+        [TestCase(87654321u, 0.25779891014099121f)]
+        [TestCase(6475234u, 0.93906128406524658f)]
+        [TestCase(645678234u, 0.98971831798553467f)]
+        public void Value(uint seed, float expected)
         {
-            const uint seed = 567123u;
-            const float expected = 0.19647860527038574f;
-
             Map_Generator.Undermine.Rand.Initialize(seed);
             var actual = Map_Generator.Undermine.Rand.Value();
             Assert.AreEqual(expected, actual, float.Epsilon);
         }
 
         [Test]
-        public void Value2()
+        [TestCase(12398746u, 0.33404195308685303f, 1_000_000u)]
+        [TestCase(4234u, 0.95212173461914063f, 1_000_000u)]
+        public void ValueLoop(uint seed, float expected, uint max)
         {
-            const uint seed = 12345678u;
-            const float expected = 0.85980749130249023f;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            var actual = Map_Generator.Undermine.Rand.Value();
-            Assert.AreEqual(expected, actual, float.Epsilon);
-        }
-
-        [Test]
-        public void Value3()
-        {
-            const uint seed = 87654321u;
-            const float expected = 0.25779891014099121f;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            var actual = Map_Generator.Undermine.Rand.Value();
-            Assert.AreEqual(expected, actual, float.Epsilon);
-        }
-
-        [Test]
-        public void Value4()
-        {
-            const uint seed = 12398746u;
-            const float expected = 0.0239715576171875f;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            var actual = Map_Generator.Undermine.Rand.Value();
-            Assert.AreEqual(expected, actual, float.Epsilon);
-        }
-
-        [Test]
-        public void Value5()
-        {
-            const uint seed = 12398746u;
-            const float expected = 0.33404195308685303f;
-            const uint max = 1_000_000;
             Map_Generator.Undermine.Rand.Initialize(seed);
 
             float actual = 0;
@@ -261,10 +187,11 @@ namespace Tests
         }
 
         [Test]
-        public void PeekValue()
+        [TestCase(12398746u, 0.88788437843322754f)]
+        [TestCase(4234u, 0.60884082317352295f)]
+        [TestCase(87654321u, 0.50034165382385254f)]
+        public void PeekValue(uint seed, float expected)
         {
-            const uint seed = 12398746u;
-            const float expected = 0.88788437843322754f;
             Map_Generator.Undermine.Rand.Initialize(seed);
 
             Map_Generator.Undermine.Rand.Value();
@@ -280,190 +207,53 @@ namespace Tests
         }
 
         [Test]
-        public void PeekValue2()
+        [TestCase(12398746u, 2u, 7u, 7)]
+        [TestCase(4234u, 2u, 7u, 7)]
+        [TestCase(87654321u, 2u, 7u, 5)]
+        [TestCase(87654321u, 0u, 2u, 0)]
+        [TestCase(87654321u, 0u, 0u, 0)]
+        [TestCase(8761u, 0u, 1u, 0)]
+        [TestCase(874321u, 0u, 3u, 0)]
+        [TestCase(8654321u, 60u, 423u, 108)]
+        [TestCase(87321u, 60u, 423u, 192)]
+        public void RangeInclusiveUint(uint seed, uint min, uint max, int expected)
         {
-            const uint seed = 461234u;
-            const float expected = 0.48189878463745117f;
-            Map_Generator.Undermine.Rand.Initialize(seed);
-
-            for (int i = 0; i < 5; i++)
-            {
-                Map_Generator.Undermine.Rand.Value();
-                Map_Generator.Undermine.Rand.PeekValue();
-                Map_Generator.Undermine.Rand.Value();
-                Map_Generator.Undermine.Rand.PeekValue();
-                Map_Generator.Undermine.Rand.Value();
-                Map_Generator.Undermine.Rand.PeekValue();
-            }
-
-            float actual = Map_Generator.Undermine.Rand.PeekValue();
-
-
-            Assert.AreEqual(expected, actual, float.Epsilon);
-        }
-
-        [Test]
-        public void PeekValue3()
-        {
-            const uint seed = 4234u;
-            const float expected = 0.038502693176269531f;
-            Map_Generator.Undermine.Rand.Initialize(seed);
-
-            for (int i = 0; i < 5; i++)
-            {
-                Map_Generator.Undermine.Rand.Value();
-                Map_Generator.Undermine.Rand.PeekValue();
-                Map_Generator.Undermine.Rand.Value();
-                Map_Generator.Undermine.Rand.PeekValue();
-                Map_Generator.Undermine.Rand.Value();
-                Map_Generator.Undermine.Rand.PeekValue();
-            }
-
-            float actual = Map_Generator.Undermine.Rand.Value();
-
-
-            Assert.AreEqual(expected, actual, float.Epsilon);
-        }
-
-        [Test]
-        public void RangeInclusiveUint()
-        {
-            const uint seed = 567123u;
-            const uint min = 5;
-            const uint max = 7;
-
-            const int expected = 5;
-
             Map_Generator.Undermine.Rand.Initialize(seed);
             int actual = Map_Generator.Undermine.Rand.RangeInclusive(min, max);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void RangeInclusiveUint2()
+        [TestCase(12398746u, 2, 7, 7)]
+        [TestCase(4234u, 2, 7, 7)]
+        [TestCase(87654321u, 2, 7, 5)]
+        [TestCase(87654321u, 0, 2, 0)]
+        [TestCase(87654321u, 0, 0, 0)]
+        [TestCase(8761u, 0, 1, 0)]
+        [TestCase(874321u, 0, 3, 0)]
+        [TestCase(8654321u, 60, 423, 108)]
+        [TestCase(87321u, 60, 423, 192)]
+        public void RangeInclusiveInt(uint seed, int min, int max, int expected)
         {
-            const uint seed = 5954643u;
-            const uint min = 2;
-            const uint max = 8;
-
-            const int expected = 2;
-
             Map_Generator.Undermine.Rand.Initialize(seed);
             int actual = Map_Generator.Undermine.Rand.RangeInclusive(min, max);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void RangeInclusiveUint3()
+        [TestCase(1234u, 0u, 103u, 88)]
+        [TestCase(588672u, 11u, 12u, 11)]
+        [TestCase(86783426u, 1u, 8u, 1)]
+        [TestCase(4231u, 0u, 1u, 0)]
+        public void RangUint(uint seed, uint min, uint max, int expected)
         {
-            const uint seed = 7123u;
-            const uint min = 1;
-            const uint max = 9;
-
-            const int expected = 6;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            int actual = Map_Generator.Undermine.Rand.RangeInclusive(min, max);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void RangeInclusiveInt()
-        {
-            const uint seed = 567123u;
-            const int min = 5;
-            const int max = 7;
-
-            const int expected = 5;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            int actual = Map_Generator.Undermine.Rand.RangeInclusive(min, max);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void RangeInclusiveInt2()
-        {
-            const uint seed = 5954643u;
-            const int min = 2;
-            const int max = 8;
-
-            const int expected = 2;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            int actual = Map_Generator.Undermine.Rand.RangeInclusive(min, max);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void RangeInclusiveInt3()
-        {
-            const uint seed = 7123u;
-            const int min = 1;
-            const int max = 9;
-
-            const int expected = 6;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            int actual = Map_Generator.Undermine.Rand.RangeInclusive(min, max);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void RangUint()
-        {
-            const uint seed = 1234u;
-            const uint min = 0;
-            const uint max = 103;
-
-            const int expected = 88;
-
             Map_Generator.Undermine.Rand.Initialize(seed);
             int actual = Map_Generator.Undermine.Rand.Range(min, max);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void RangUint2()
-        {
-            const uint seed = 588672u;
-            const uint min = 12;
-            const uint max = 12;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            Assert.Throws<ArgumentOutOfRangeException>(() => Map_Generator.Undermine.Rand.Range(min, max));
-        }
-
-        [Test]
-        public void RangUint3()
-        {
-            const uint seed = 86783426u;
-            const uint min = 1;
-            const uint max = 8;
-
-            const int expected = 1;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            int actual = Map_Generator.Undermine.Rand.Range(min, max);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void RangUint4()
-        {
-            const uint seed = 4231u;
-            const uint min = 0;
-            const uint max = 1;
-
-            const int expected = 0;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            int actual = Map_Generator.Undermine.Rand.Range(min, max);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void RangeUint5()
+        public void RangeUintThrows()
         {
             const uint seed = 4231u;
             const uint min = 1;
@@ -474,60 +264,19 @@ namespace Tests
         }
 
         [Test]
-        public void RangeInt()
+        [TestCase(1234u, 0, 103, 88)]
+        [TestCase(588672u, 11, 12, 11)]
+        [TestCase(86783426u, 1, 8, 1)]
+        [TestCase(4231u, 0, 1, 0)]
+        public void RangeInt(uint seed, int min, int max, int expected)
         {
-            const uint seed = 1234u;
-            const int min = 0;
-            const int max = 103;
-
-            const int expected = 88;
-
             Map_Generator.Undermine.Rand.Initialize(seed);
             int actual = Map_Generator.Undermine.Rand.Range(min, max);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void RangeInt2()
-        {
-            const uint seed = 588672u;
-            const int min = 12;
-            const int max = 12;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            Assert.Throws<ArgumentOutOfRangeException>(() => Map_Generator.Undermine.Rand.Range(min, max));
-        }
-
-        [Test]
-        public void RangeInt3()
-        {
-            const uint seed = 86783426u;
-            const int min = 1;
-            const int max = 8;
-
-            const int expected = 1;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            int actual = Map_Generator.Undermine.Rand.Range(min, max);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void RangeInt4()
-        {
-            const uint seed = 4231u;
-            const int min = 0;
-            const int max = 1;
-
-            const int expected = 0;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            int actual = Map_Generator.Undermine.Rand.Range(min, max);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void RangeInt5()
+        public void RangeIntThrows()
         {
             const uint seed = 4231u;
             const int min = 1;
@@ -538,65 +287,28 @@ namespace Tests
         }
 
         [Test]
-        public void Chance()
+        [TestCase(1234u, 0.5f, false)]
+        [TestCase(588672u, 0.5f, false)]
+        [TestCase(86783426u, 0.5f, false)]
+        [TestCase(7654221u, 0.5f, false)]
+        [TestCase(4231u, 0.0f, false)]
+        [TestCase(4231u, 1.0f, true)]
+        [TestCase(4231u, 0.2f, true)]
+        public void Chance(uint seed, float chance, bool expected)
         {
-            const uint seed = 1234u;
-            const float chance = 0.5f;
-
             Map_Generator.Undermine.Rand.Initialize(seed);
             var actual = Map_Generator.Undermine.Rand.Chance(chance);
-            Assert.IsFalse(actual);
+            Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-        public void Chance2()
-        {
-            const uint seed = 7654221u;
-            const float chance = 0.2f;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            var actual = Map_Generator.Undermine.Rand.Chance(chance);
-            Assert.IsFalse(actual);
-        }
 
         [Test]
-        public void Chance3()
+        [TestCase(221u, 2.0f)]
+        [TestCase(221u, 7.0f)]
+        [TestCase(1234u, -7.0f)]
+        [TestCase(1234u, -7.0f)]
+        public void ChanceThrows(uint seed, float chance)
         {
-            const uint seed = 7922251u;
-            const float chance = 0.6f;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            var actual = Map_Generator.Undermine.Rand.Chance(chance);
-            Assert.IsFalse(actual);
-        }
-
-        [Test]
-        public void Chance4()
-        {
-            const uint seed = 221u;
-            const float chance = 1.0f;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            var actual = Map_Generator.Undermine.Rand.Chance(chance);
-            Assert.IsTrue(actual);
-        }
-
-        [Test]
-        public void Chance5()
-        {
-            const uint seed = 221u;
-            const float chance = 2.0f;
-
-            Map_Generator.Undermine.Rand.Initialize(seed);
-            Assert.Throws<ArgumentOutOfRangeException>(() => Map_Generator.Undermine.Rand.Chance(chance));
-        }
-
-        [Test]
-        public void Chance6()
-        {
-            const uint seed = 221u;
-            const float chance = -1.0f;
-
             Map_Generator.Undermine.Rand.Initialize(seed);
             Assert.Throws<ArgumentOutOfRangeException>(() => Map_Generator.Undermine.Rand.Chance(chance));
         }

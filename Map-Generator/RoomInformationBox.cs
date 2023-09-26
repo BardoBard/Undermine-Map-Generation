@@ -12,7 +12,7 @@ namespace Map_Generator
     public sealed class RoomInformationBox : Panel
     {
         private readonly Form _form;
-        public RoomType? Room { get; set; } = null;
+        public Room? Room { get; set; } = null;
         private int _textOffset = 40;
         private int _rowSize = 30;
         private const int GapSize = 5;
@@ -62,7 +62,7 @@ namespace Map_Generator
             position.y = _rowSize + (GapSize * 2);
 
             foreach (Item? item in Room.Extras)
-                Draw(g, item.ItemIcon.GetEnemyImage(), item.Name, position);
+                Draw(g, item.ItemIcon.GetItemImage(), item.Name, position);
         }
 
         private void Draw(Graphics g, Image? image, string text, Vector2Int position)

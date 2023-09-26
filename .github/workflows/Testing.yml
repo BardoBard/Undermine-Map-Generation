@@ -40,7 +40,10 @@ jobs:
 
       - name: Install NUnit Console
         run: |
-          choco install nunit-console-runner
+          $error.clear()
+          try { C:\ProgramData\chocolatey\lib\nunit-console-runner\tools\nunit3-console.exe --version }
+          catch { "not found" }
+          if ($error) { choco install nunit-console-runner }
 
       - name: Restore Packages
         run: nuget restore Map-Generator.sln

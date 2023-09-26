@@ -29,8 +29,7 @@ Used for the Undermine speedrunning community.
 - no need to do some dumb shit with floornumber == 4 && ishidden, just rename the maps
 - noexit check
 - fix branchweight for encounters if possible
-- figure out why it doesn't work on the second time
-- pathfinding algorithm
+- A-Star (better pathfind algorithm)
 - beforebogentrance branchweight
 - change crawlspace, it's kinda shitty atm, from bool to list
 - fix the layout pls, center it

@@ -1,0 +1,14 @@
+/packages/
+
+/Tests/bin/
+/Tests/obj/
+
+/Map-Generator/bin/
+/Map-Generator/obj/
+
+
+/Data/Logs/
+
+.idea
+.vs
+Map-Generator.sln.DotSettings.user

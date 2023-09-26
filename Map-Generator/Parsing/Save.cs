@@ -27,6 +27,18 @@ namespace Map_Generator.Parsing
         }
     }
 
+    public class Killed
+    {
+        public bool hasBeenKilled { get; set; }
+        public Guid guid { get; set; }
+
+        public Killed(bool hasBeenKilled, Guid guid)
+        {
+            this.hasBeenKilled = hasBeenKilled;
+            this.guid = guid;
+        }
+    }
+
     public static class Save
     {
         //TODO: make a lot of stuff private instead of public
@@ -45,6 +57,10 @@ namespace Map_Generator.Parsing
 
         public static Discoverable foundPartyPopcornPotion { get; set; } =
             new(false, new("27497c3cdd91494ba066eb45ee59d528"));
+
+        //killed
+        public static Killed rockmimicKilled { get; set; } =
+            new(false, new("95b2cfbce05f4e759a0180f571262c96"));
 
         //status effects
         public static Relic hexDesolation { get; set; } = new(false, new("aaf06aa35fa4482cabfba81e687bfef4"));
@@ -68,10 +84,7 @@ namespace Map_Generator.Parsing
         public static int floor_number { get; private set; }
         public static int zone_index { get; set; }
 
-        public static int FloorNumber
-        {
-            get { return zone_index + 1; }
-        }
+        public static int FloorNumber => zone_index + 1;
 
         public static int FloorIndex => zone_index;
 
@@ -140,7 +153,11 @@ namespace Map_Generator.Parsing
         public static int priestess_met { get; set; }
         public static bool prisoner_key { get; set; }
         public static int retaliation { get; set; }
-        public static bool rockmimic_defeated { get; set; }
+        public static int rockmimic_defeated { get; set; }
+
+        public static bool rockmimic_defeated_total =>
+            rockmimic_defeated > 1 || (rockmimic_defeated == 1 && !rockmimicKilled.hasBeenKilled);
+
         public static bool sandworm_defeated { get; set; }
         public static int sandworm_revived { get; set; }
         public static bool shadowlord_defeated { get; set; }
@@ -180,8 +197,13 @@ namespace Map_Generator.Parsing
         public static bool mushroompurple => (!mushroom_purple && apprentice_met > 0 && !whip_enabled && storymode);
         public static bool mushroomgreen => (!mushroom_green && apprentice_met > 0 && !whip_enabled && storymode);
         public static bool blackrabbitfirst => (!black_rabbit_met && !whip_enabled && storymode);
-        public static bool hoodieminel => (rockmimic_defeated && !hoodie_met_mine && (floor_number == 1) && storymode);
-        public static bool hoodiemineu => (rockmimic_defeated && hoodie_met_mine && (floor_number == 1) && storymode);
+
+        public static bool hoodieminel =>
+            (rockmimic_defeated_total && !hoodie_met_mine && (floor_number == 1) && storymode);
+
+        public static bool hoodiemineu =>
+            (rockmimic_defeated_total && hoodie_met_mine && (floor_number == 1) && storymode);
+
         public static bool hoodiedungeonl => (!hoodie_met_dungeon && (floor_number == 6) && storymode);
         public static bool hoodiedungeonu => (hoodie_met_dungeon && (floor_number == 6) && storymode);
         public static bool hoodiehalll => (!hoodie_met_hall && (floor_number == 11) && storymode);
@@ -231,12 +253,12 @@ namespace Map_Generator.Parsing
         public static bool tutorialincomplete => !tutorial_complete;
         public static bool firstdelve => delve_count <= 1;
 
-        public static bool tutorialcomplete => !rockmimic_defeated &&
+        public static bool tutorialcomplete => !rockmimic_defeated_total &&
                                                !(sandworm_defeated) &&
                                                !(stonelord_defeated) &&
                                                !(shadowlord_defeated);
 
-        public static bool mimickilled => (rockmimic_defeated &&
+        public static bool mimickilled => ((rockmimic_defeated_total) &&
                                            !(sandworm_defeated) &&
                                            !(stonelord_defeated) &&
                                            !(shadowlord_defeated));
@@ -286,7 +308,7 @@ namespace Map_Generator.Parsing
         public static bool crystallordkillednotfire => crystallord_defeated &&
                                                        !(firelord_defeated);
 
-        public static string GetZoneName(RoomType room) =>
+        public static string GetZoneName(Room room) =>
             room.IsHidden && Save.FloorNumber == 4 ? MapType.GetNextMapName() : MapType.GetMapName();
         // && !bog_unlocked; //TODO: check this bog (enterBog)
 
@@ -298,17 +320,19 @@ namespace Map_Generator.Parsing
 
                 if (property.PropertyType == typeof(bool))
                     property.SetValue(null, false);
-                
+
                 if (property.PropertyType == typeof(int))
                     property.SetValue(null, 0);
-                
+
                 if (property.PropertyType == typeof(Guid))
                     property.SetValue(null, null);
 
-                
+
                 if (typeof(Discoverable).IsAssignableFrom(property.PropertyType))
                     ((Discoverable)property.GetValue(null)).hasBeenDiscovered = false;
-                
+
+                if (typeof(Killed).IsAssignableFrom(property.PropertyType))
+                    ((Killed)property.GetValue(null)).hasBeenKilled = false;
             }
         }
 
@@ -381,6 +405,8 @@ namespace Map_Generator.Parsing
                     discoverable.hasBeenDiscovered = true;
                 }
             }
+
+            ParseKillHistory(input["killHistory"]);
         }
 
         private static void ParseDiscovered(JToken? input)
@@ -399,6 +425,26 @@ namespace Map_Generator.Parsing
                                                                                 "something went wrong while parsing discovered")))
                         continue;
                     discoverable.hasBeenDiscovered = true;
+                }
+            }
+        }
+
+        private static void ParseKillHistory(JToken? input)
+        {
+            List<string?> guidStrings = (input ?? throw new ArgumentNullException(nameof(input)))
+                .Select(token => token.Value<string>()).ToList();
+            foreach (string? guidString in guidStrings)
+            {
+                foreach (var property in typeof(Save).GetProperties())
+                {
+                    if (property.PropertyType != typeof(Killed)) continue;
+
+                    if (typeof(Save).GetProperty(property.Name)?.GetValue(typeof(Killed)) is not Killed
+                            killed || killed.guid != Guid.Parse(guidString ??
+                                                                throw new InvalidOperationException(
+                                                                    "something went wrong while parsing Killed")))
+                        continue;
+                    killed.hasBeenKilled = true;
                 }
             }
         }
