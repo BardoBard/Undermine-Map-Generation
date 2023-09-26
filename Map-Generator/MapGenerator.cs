@@ -109,10 +109,10 @@ namespace Map_Generator
                         string? log = reader.ReadLine();
                         string? extra = reader2.ReadLine();
 
-                        string logMessage = log?.Substring(0, 6) ?? throw new InvalidOperationException();
-                        string expectedOutput = extra?.Substring(0, 6) ?? throw new InvalidOperationException();
-
-                        if (logMessage != expectedOutput)
+                        var logMessage = float.Parse(log ?? throw new InvalidOperationException());
+                        var expectedOutput = float.Parse(extra ?? throw new InvalidOperationException());
+                        
+                        if (System.Math.Abs(logMessage - expectedOutput) > 0.0001)
                         {
                             Console.WriteLine("extra: " + extra);
                             Console.WriteLine("log: " + log);

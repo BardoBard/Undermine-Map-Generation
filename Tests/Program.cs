@@ -38,10 +38,9 @@ namespace Tests
                 BardLog.IsLoggingToConsole = true;
 
                 using (StreamReader reader =
-                    new StreamReader(File.Open(logFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite),
-                        Encoding.UTF8))
+                       new StreamReader(File.Open(logFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite),
+                           Encoding.UTF8))
                 {
-                    
                     //make sure the log file exists
                     Assert.IsTrue(File.Exists(logFilePath), testName);
                     Assert.AreEqual(new FileInfo(file).Length, new FileInfo(logFilePath).Length, testName);
@@ -50,8 +49,8 @@ namespace Tests
                     {
                         string? log = reader.ReadLine();
 
-                        string logMessage = log?.Substring(0, 7) ?? throw new InvalidOperationException();
-                        string expectedOutput = line.Substring(0, 7);
+                        string logMessage = log ?? throw new InvalidOperationException();
+                        string expectedOutput = line ?? throw new InvalidOperationException();
 
                         //make sure the log file matches the expected output
                         Assert.AreEqual(expectedOutput, logMessage, testName);
