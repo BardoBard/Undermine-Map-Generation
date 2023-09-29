@@ -14,7 +14,8 @@ namespace Map_Generator
             var result = new List<Room>(10);
 
             Room? start = rooms.First(room => room.Position == Vector2Int.Zero);
-            Room? end = rooms.First(room => room.Name is "end" or "nextdown");
+            Room? end = rooms.First(room => room.RoomType is RoomType.End or RoomType.NextDown ||
+                                            (Save.FloorNumber == 4 && MapType.GetMap() == MapType.MapName.core));
 
             //pathfinding algorithm
             var queue = new Queue<Room>();
@@ -136,10 +137,10 @@ namespace Map_Generator
             int weight = start.Position.DistanceTo(end.Position); //distance between the rooms
             weight -= end.RoomType == RoomType.Treasure ? 1 : 0;
             weight += end.RoomType == RoomType.Secret ? 1 : 0;
-            weight -= end.Neighbors.Any(neighbor => neighbor.Value?.RoomType == RoomType.Relic) ? 2 : 0;
+            weight -= end.Neighbors.Any(neighbor => neighbor.Value?.RoomType == RoomType.Relic) ? 3 : 0;
             if (end.Encounter != null)
             {
-                weight += end.Encounter.RoomEnemies.Sum(_ => 1); //weight of the enemies in the room
+                weight += end.Encounter.RoomEnemies.Sum(enemy => (int)System.Math.Ceiling((enemy.Health?.CalculateHealth() ?? 0f) / 100f)); //weight of the enemies in the room
                 weight += end.Encounter
                     .DifficultyWeight; //weight of the room itself, for example a maze room is more difficult than a normal room
             }

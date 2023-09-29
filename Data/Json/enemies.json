@@ -5,7 +5,19 @@
         "rougedifficulty": 5,
         "max": 1,
         "type": 1,
-        "icon": 1
+        "icon": 1,
+        "health": {
+            "hp": 280,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "bat": {
         "name": "bat",
@@ -13,7 +25,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 1,
-        "icon": 2
+        "icon": 2,
+        "health": {
+            "hp": 68,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "bingbong": {
         "name": "bingbong",
@@ -21,7 +45,19 @@
         "rougedifficulty": 6,
         "max": 3,
         "type": 3,
-        "icon": 3
+        "icon": 3,
+        "health": {
+            "hp": 745,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "bishfish": {
         "name": "bishfish",
@@ -29,7 +65,19 @@
         "rougedifficulty": 3,
         "max": 3,
         "type": 1,
-        "icon": 4
+        "icon": 4,
+        "health": {
+            "hp": 55,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "bobo": {
         "name": "bobo",
@@ -37,14 +85,38 @@
         "rougedifficulty": 5,
         "max": 1,
         "type": 3,
-        "icon": 5
+        "icon": 5,
+        "health": {
+            "hp": 260,
+            "hptier": 4,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "buglightning": {
         "name": "buglightning",
         "difficulty": 3,
         "rougedifficulty": 3,
         "type": 1,
-        "icon": 6
+        "icon": 6,
+        "health": {
+            "hp": 150,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "cauldron": {
         "name": "cauldron",
@@ -52,7 +124,19 @@
         "rougedifficulty": 3,
         "canbesolo": true,
         "type": 3,
-        "icon": 7
+        "icon": 7,
+        "health": {
+            "hp": 60,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "churchbell": {
         "name": "churchbell",
@@ -60,7 +144,19 @@
         "rougedifficulty": 3,
         "max": 2,
         "type": 4,
-        "icon": 8
+        "icon": 8,
+        "health": {
+            "hp": 200,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "corruptedpilfer": {
         "name": "corruptedpilfer",
@@ -68,7 +164,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 3,
-        "icon": 9
+        "icon": 9,
+        "health": {
+            "hp": 850,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "corruptedpilferboss": {
         "name": "corruptedpilferboss",
@@ -76,7 +184,8 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 3,
-        "icon": 10
+        "icon": 10,
+        "health": {}
     },
     "crossbowman": {
         "name": "crossbowman",
@@ -84,7 +193,19 @@
         "rougedifficulty": 5,
         "max": 2,
         "type": 2,
-        "icon": 11
+        "icon": 11,
+        "health": {
+            "hp": 250,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "crystalant": {
         "name": "crystalant",
@@ -92,7 +213,19 @@
         "rougedifficulty": 5,
         "canbesolo": true,
         "type": 1,
-        "icon": 12
+        "icon": 12,
+        "health": {
+            "hp": 465,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "crystalfly": {
         "name": "crystalfly",
@@ -100,7 +233,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 2,
-        "icon": 13
+        "icon": 13,
+        "health": {
+            "hp": 146,
+            "hptier": 0,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "crystalspider": {
         "name": "crystalspider",
@@ -108,7 +253,19 @@
         "rougedifficulty": 3,
         "canbesolo": true,
         "type": 1,
-        "icon": 14
+        "icon": 14,
+        "health": {
+            "hp": 175,
+            "hptier": 0,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "crystalwitch": {
         "name": "crystalwitch",
@@ -116,7 +273,19 @@
         "rougedifficulty": 5,
         "max": 2,
         "type": 2,
-        "icon": 15
+        "icon": 15,
+        "health": {
+            "hp": 460,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "cursedjar": {
         "name": "cursedjar",
@@ -124,7 +293,19 @@
         "rougedifficulty": 3,
         "canbesolo": true,
         "type": 4,
-        "icon": 16
+        "icon": 16,
+        "health": {
+            "hp": 175,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "cursedjarwisp": {
         "name": "cursedjarwisp",
@@ -132,7 +313,10 @@
         "rougedifficulty": 1,
         "canbesolo": true,
         "type": 4,
-        "icon": 17
+        "icon": 17,
+        "health": {
+            "hp": 1
+        }
     },
     "firebat": {
         "name": "firebat",
@@ -140,7 +324,19 @@
         "rougedifficulty": 4,
         "max": 2,
         "type": 1,
-        "icon": 18
+        "icon": 18,
+        "health": {
+            "hp": 325,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "firewitch": {
         "name": "firewitch",
@@ -148,7 +344,19 @@
         "rougedifficulty": 5,
         "max": 1,
         "type": 2,
-        "icon": 19
+        "icon": 19,
+        "health": {
+            "hp": 154,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "flybloat": {
         "name": "flybloat",
@@ -156,7 +364,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 2,
-        "icon": 20
+        "icon": 20,
+        "health": {
+            "hp": 375,
+            "hptier": 0,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "flyranged": {
         "name": "flyranged",
@@ -165,7 +385,19 @@
         "canbesolo": true,
         "type": 2,
         "max": 7,
-        "icon": 21
+        "icon": 21,
+        "health": {
+            "hp": 5,
+            "hptier": 0,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "flyranged02": {
         "name": "flyranged02",
@@ -173,7 +405,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 2,
-        "icon": 22
+        "icon": 22,
+        "health": {
+            "hp": 34,
+            "hptier": 0,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "flyranged03": {
         "name": "flyranged03",
@@ -181,7 +425,19 @@
         "rougedifficulty": 5,
         "canbesolo": true,
         "type": 2,
-        "icon": 23
+        "icon": 23,
+        "health": {
+            "hp": 195,
+            "hptier": 0,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "footman": {
         "name": "footman",
@@ -189,7 +445,19 @@
         "rougedifficulty": 6,
         "max": 2,
         "type": 1,
-        "icon": 24
+        "icon": 24,
+        "health": {
+            "hp": 280,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "gargoyle": {
         "name": "gargoyle",
@@ -197,7 +465,19 @@
         "rougedifficulty": 6,
         "max": 2,
         "type": 2,
-        "icon": 25
+        "icon": 25,
+        "health": {
+            "hp": 280,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "gargoylestatue": {
         "name": "gargoylestatue",
@@ -205,7 +485,19 @@
         "rougedifficulty": 6,
         "max": 2,
         "type": 2,
-        "icon": 25
+        "icon": 25,
+        "health": {
+            "hp": 280,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "glimmerweed": {
         "name": "glimmerweed",
@@ -214,7 +506,19 @@
         "max": 3,
         "canbesolo": true,
         "type": 6,
-        "icon": 27
+        "icon": 27,
+        "health": {
+            "hp": 325,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "goblinengineer": {
         "name": "goblinengineer",
@@ -222,7 +526,19 @@
         "rougedifficulty": 4,
         "max": 2,
         "type": 4,
-        "icon": 28
+        "icon": 28,
+        "health": {
+            "hp": 155,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "goblinpoisonengineer": {
         "name": "goblinpoisonengineer",
@@ -230,7 +546,19 @@
         "rougedifficulty": 5,
         "max": 2,
         "type": 4,
-        "icon": 29
+        "icon": 29,
+        "health": {
+            "hp": 700,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "goblintickerengineer": {
         "name": "goblintickerengineer",
@@ -238,7 +566,19 @@
         "rougedifficulty": 6,
         "max": 2,
         "type": 4,
-        "icon": 30
+        "icon": 30,
+        "health": {
+            "hp": 420,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "golem": {
         "name": "golem",
@@ -247,7 +587,19 @@
         "max": 1,
         "canbesolo": true,
         "type": 1,
-        "icon": 31
+        "icon": 31,
+        "health": {
+            "hp": 1000,
+            "hptier": 4,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "gremlin": {
         "name": "gremlin",
@@ -255,7 +607,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 1,
-        "icon": 32
+        "icon": 32,
+        "health": {
+            "hp": 600,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "gremlinfiery": {
         "name": "gremlinfiery",
@@ -263,7 +627,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 2,
-        "icon": 33
+        "icon": 33,
+        "health": {
+            "hp": 550,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "highpriest": {
         "name": "highpriest",
@@ -271,14 +647,38 @@
         "rougedifficulty": 6,
         "max": 2,
         "type": 6,
-        "icon": 34
+        "icon": 34,
+        "health": {
+            "hp": 825,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "hobbledoll": {
         "name": "hobbledoll",
         "difficulty": 0,
         "rougedifficulty": 2,
         "type": 0,
-        "icon": 35
+        "icon": 35,
+        "health": {
+            "hp": 200,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "jumperfire": {
         "name": "jumperfire",
@@ -286,7 +686,19 @@
         "rougedifficulty": 3,
         "canbesolo": true,
         "type": 3,
-        "icon": 36
+        "icon": 36,
+        "health": {
+            "hp": 60,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "jumperfirelarge": {
         "name": "jumperfirelarge",
@@ -294,7 +706,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 3,
-        "icon": 37
+        "icon": 37,
+        "health": {
+            "hp": 140,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "jumperoil": {
         "name": "jumperoil",
@@ -302,7 +726,19 @@
         "rougedifficulty": 3,
         "canbesolo": true,
         "type": 3,
-        "icon": 38
+        "icon": 38,
+        "health": {
+            "hp": 60,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "jumperoillarge": {
         "name": "jumperoillarge",
@@ -310,7 +746,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 3,
-        "icon": 39
+        "icon": 39,
+        "health": {
+            "hp": 140,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "jumperwater": {
         "name": "jumperwater",
@@ -318,7 +766,19 @@
         "rougedifficulty": 3,
         "canbesolo": true,
         "type": 3,
-        "icon": 40
+        "icon": 40,
+        "health": {
+            "hp": 60,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "jumperwaterlarge": {
         "name": "jumperwaterlarge",
@@ -326,7 +786,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 3,
-        "icon": 41
+        "icon": 41,
+        "health": {
+            "hp": 140,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "lurkerbasic": {
         "name": "lurkerbasic",
@@ -334,7 +806,19 @@
         "rougedifficulty": 4,
         "max": 3,
         "type": 2,
-        "icon": 42
+        "icon": 42,
+        "health": {
+            "hp": 108,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "lurkercrypt": {
         "name": "lurkercrypt",
@@ -342,7 +826,19 @@
         "rougedifficulty": 4,
         "max": 1,
         "type": 2,
-        "icon": 43
+        "icon": 43,
+        "health": {
+            "hp": 300,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "lurkercrystal": {
         "name": "lurkercrystal",
@@ -350,7 +846,19 @@
         "rougedifficulty": 5,
         "max": 2,
         "type": 2,
-        "icon": 44
+        "icon": 44,
+        "health": {
+            "hp": 480,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "magmawormhead": {
         "name": "magmawormhead",
@@ -358,7 +866,19 @@
         "rougedifficulty": 5,
         "canbesolo": true,
         "type": 2,
-        "icon": 45
+        "icon": 45,
+        "health": {
+            "hp": 650,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "mimicchest": {
         "name": "mimicchest",
@@ -366,7 +886,19 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 3,
-        "icon": 46
+        "icon": 46,
+        "health": {
+            "hp": 150,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "mimicrarechest": {
         "name": "mimicrarechest",
@@ -374,7 +906,19 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 3,
-        "icon": 46
+        "icon": 46,
+        "health": {
+            "hp": 150,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "mimicresourcechest": {
         "name": "mimicresourcechest",
@@ -382,7 +926,19 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 3,
-        "icon": 46
+        "icon": 46,
+        "health": {
+            "hp": 150,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "minicchest": {
         "name": "minicchest",
@@ -390,7 +946,19 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 3,
-        "icon": 46
+        "icon": 46,
+        "health": {
+            "hp": 75,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "necromancer": {
         "name": "necromancer",
@@ -398,14 +966,38 @@
         "rougedifficulty": 7,
         "max": 1,
         "type": 6,
-        "icon": 50
+        "icon": 50,
+        "health": {
+            "hp": 320,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "nemesis": {
         "name": "nemesis",
         "difficulty": 10,
         "rougedifficulty": 10,
         "type": 1,
-        "icon": 51
+        "icon": 51,
+        "health": {
+            "hp": 100,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "ogreannihilator": {
         "name": "ogreannihilator",
@@ -413,7 +1005,19 @@
         "rougedifficulty": 9,
         "max": 2,
         "type": 2,
-        "icon": 52
+        "icon": 52,
+        "health": {
+            "hp": 580,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "ogrebombardier": {
         "name": "ogrebombardier",
@@ -421,7 +1025,19 @@
         "rougedifficulty": 6,
         "max": 2,
         "type": 2,
-        "icon": 53
+        "icon": 53,
+        "health": {
+            "hp": 290,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "ogrefirebomber": {
         "name": "ogrefirebomber",
@@ -429,7 +1045,19 @@
         "rougedifficulty": 6,
         "max": 2,
         "type": 2,
-        "icon": 54
+        "icon": 54,
+        "health": {
+            "hp": 720,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "pilferbasic": {
         "name": "pilferbasic",
@@ -437,7 +1065,10 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 0,
-        "icon": 55
+        "icon": 55,
+        "health": {
+            "hp": 1
+        }
     },
     "pilferbomb": {
         "name": "pilferbomb",
@@ -445,7 +1076,19 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 0,
-        "icon": 56
+        "icon": 56,
+        "health": {
+            "hp": 1,
+            "hptier": 0,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 0,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 1,
+            "hexdamagescalefactor": 2
+        }
     },
     "pilfercrafting": {
         "name": "pilfercrafting",
@@ -453,7 +1096,8 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 0,
-        "icon": 0
+        "icon": 0,
+        "health": {}
     },
     "pilferfat": {
         "name": "pilferfat",
@@ -461,7 +1105,10 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 0,
-        "icon": 58
+        "icon": 58,
+        "health": {
+            "hp": 6
+        }
     },
     "pilfergolden": {
         "name": "pilfergolden",
@@ -469,7 +1116,10 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 0,
-        "icon": 59
+        "icon": 59,
+        "health": {
+            "hp": 10
+        }
     },
     "pilferhunter": {
         "name": "pilferhunter",
@@ -477,7 +1127,10 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 0,
-        "icon": 60
+        "icon": 60,
+        "health": {
+            "hp": 1
+        }
     },
     "poisonwormhead": {
         "name": "poisonwormhead",
@@ -486,7 +1139,19 @@
         "max": 2,
         "canbesolo": true,
         "type": 2,
-        "icon": 61
+        "icon": 61,
+        "health": {
+            "hp": 850,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "practisedummy": {
         "name": "practisedummy",
@@ -494,7 +1159,8 @@
         "rougedifficulty": 0,
         "canbesolo": true,
         "type": 0,
-        "icon": 0
+        "icon": 0,
+        "health": {}
     },
     "priest": {
         "name": "priest",
@@ -502,7 +1168,19 @@
         "rougedifficulty": 4,
         "max": 2,
         "type": 6,
-        "icon": 63
+        "icon": 63,
+        "health": {
+            "hp": 130,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "priestinnerfire": {
         "name": "priestinnerfire",
@@ -510,7 +1188,19 @@
         "rougedifficulty": 4,
         "max": 1,
         "type": 6,
-        "icon": 64
+        "icon": 64,
+        "health": {
+            "hp": 130,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "queenfish": {
         "name": "queenfish",
@@ -518,7 +1208,19 @@
         "rougedifficulty": 6,
         "canbesolo": true,
         "type": 2,
-        "icon": 65
+        "icon": 65,
+        "health": {
+            "hp": 675,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "quilledgolem": {
         "name": "quilledgolem",
@@ -526,7 +1228,19 @@
         "rougedifficulty": 8,
         "canbesolo": true,
         "type": 1,
-        "icon": 66
+        "icon": 66,
+        "health": {
+            "hp": 1500,
+            "hptier": 4,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "ratbasic": {
         "name": "ratbasic",
@@ -534,7 +1248,19 @@
         "rougedifficulty": 2,
         "canbesolo": true,
         "type": 1,
-        "icon": 67
+        "icon": 67,
+        "health": {
+            "hp": 42,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "ratexploding": {
         "name": "ratexploding",
@@ -542,7 +1268,19 @@
         "rougedifficulty": 2,
         "canbesolo": true,
         "type": 3,
-        "icon": 68
+        "icon": 68,
+        "health": {
+            "hp": 1,
+            "hptier": 0,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "ratlarge": {
         "name": "ratlarge",
@@ -550,14 +1288,38 @@
         "rougedifficulty": 3,
         "canbesolo": true,
         "type": 1,
-        "icon": 69
+        "icon": 69,
+        "health": {
+            "hp": 104,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "ratnest": {
         "name": "ratnest",
         "difficulty": 3,
         "rougedifficulty": 3,
         "type": 4,
-        "icon": 70
+        "icon": 70,
+        "health": {
+            "hp": 60,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "rattough": {
         "name": "rattough",
@@ -565,7 +1327,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 1,
-        "icon": 71
+        "icon": 71,
+        "health": {
+            "hp": 118,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "rookfish": {
         "name": "rookfish",
@@ -573,7 +1347,19 @@
         "rougedifficulty": 3,
         "max": 3,
         "type": 2,
-        "icon": 72
+        "icon": 72,
+        "health": {
+            "hp": 55,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "sandwormlarva": {
         "name": "sandwormlarva",
@@ -581,14 +1367,27 @@
         "rougedifficulty": 1,
         "canbesolo": true,
         "type": 1,
-        "icon": 73
+        "icon": 73,
+        "health": {}
     },
     "scaletunnel": {
         "name": "scaletunnel",
         "difficulty": 18,
         "rougedifficulty": 8,
         "type": 4,
-        "icon": 74
+        "icon": 74,
+        "health": {
+            "hp": 380,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "shaman": {
         "name": "shaman",
@@ -596,7 +1395,19 @@
         "rougedifficulty": 5,
         "max": 2,
         "type": 5,
-        "icon": 75
+        "icon": 75,
+        "health": {
+            "hp": 160,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "shaman02": {
         "name": "shaman02",
@@ -604,7 +1415,19 @@
         "rougedifficulty": 5,
         "max": 2,
         "type": 6,
-        "icon": 76
+        "icon": 76,
+        "health": {
+            "hp": 450,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "shaman03": {
         "name": "shaman03",
@@ -612,7 +1435,19 @@
         "rougedifficulty": 5,
         "max": 2,
         "type": 5,
-        "icon": 77
+        "icon": 77,
+        "health": {
+            "hp": 860,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "skeletonenemycrimson": {
         "name": "skeletonenemycrimson",
@@ -620,7 +1455,19 @@
         "rougedifficulty": 6,
         "canbesolo": true,
         "type": 3,
-        "icon": 78
+        "icon": 78,
+        "health": {
+            "hp": 275,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "skeletonenemynorm": {
         "name": "skeletonenemynorm",
@@ -628,7 +1475,19 @@
         "rougedifficulty": 4,
         "canbesolo": true,
         "type": 3,
-        "icon": 79
+        "icon": 79,
+        "health": {
+            "hp": 225,
+            "hptier": 2,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "spiderbasic": {
         "name": "spiderbasic",
@@ -636,7 +1495,19 @@
         "rougedifficulty": 1,
         "canbesolo": true,
         "type": 1,
-        "icon": 80
+        "icon": 80,
+        "health": {
+            "hp": 16,
+            "hptier": 0,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "spiderwolf": {
         "name": "spiderwolf",
@@ -644,7 +1515,19 @@
         "rougedifficulty": 2,
         "canbesolo": true,
         "type": 1,
-        "icon": 81
+        "icon": 81,
+        "health": {
+            "hp": 64,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "throwbo": {
         "name": "throwbo",
@@ -652,7 +1535,19 @@
         "rougedifficulty": 7,
         "max": 1,
         "type": 3,
-        "icon": 82
+        "icon": 82,
+        "health": {
+            "hp": 400,
+            "hptier": 4,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "ticker": {
         "name": "ticker",
@@ -660,7 +1555,19 @@
         "rougedifficulty": 3,
         "canbesolo": true,
         "type": 2,
-        "icon": 0
+        "icon": 0,
+        "health": {
+            "hp": 40,
+            "hptier": 0,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "trollbombardier": {
         "name": "trollbombardier",
@@ -668,13 +1575,37 @@
         "rougedifficulty": 6,
         "max": 2,
         "type": 2,
-        "icon": 84
+        "icon": 84,
+        "health": {
+            "hp": 565,
+            "hptier": 3,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     },
     "voodoodoll": {
         "name": "voodoodoll",
         "difficulty": 0,
         "rougedifficulty": 2,
         "type": 0,
-        "icon": 85
+        "icon": 85,
+        "health": {
+            "hp": 210,
+            "hptier": 1,
+            "requirement": "summon_count_check",
+            "hpscalefactor": 0.05,
+            "damagescalefactor": 0.05,
+            "roguemodehpscalefactor": 1,
+            "roguemodedamagescalefactor": 1,
+            "hexupgrade": "dreadful_fog",
+            "hexhpscalefactor": 2,
+            "hexdamagescalefactor": 2
+        }
     }
 }
