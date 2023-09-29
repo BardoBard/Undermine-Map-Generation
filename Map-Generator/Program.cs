@@ -257,33 +257,39 @@ namespace Map_Generator
             BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
             BardLog.Log("");
 
-            AddCrawlSpace(ZoneData.Crawlspace);
+            AddCrawlSpaces();
 
-            if (MapType.GetMap() == MapType.MapName.dungeon && Save.priestessentrance)
-                AddCrawlSpace(ZoneData.PriestessCrawlSpace);
-            //dungeon 2-2
 
             BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
 
             BardLog.Close();
         }
 
-        private static void AddCrawlSpace(ZoneData.CrawlSpace extra)
+        private static void AddCrawlSpaces()
         {
-            Spawn(delegate(Item item)
+            foreach (var room in Rooms.Where(room => room.Crawlspace != null))
             {
-                List<Room> list = new List<Room>(Rooms);
-                list.Shuffle();
-                foreach (Room? room in list.Where(room =>
-                             room.Encounter != null && ((room.Encounter.AutoSpawn & (int)AutoSpawnType.Extras) != 0)))
+                Spawn(delegate(Item item)
                 {
-                    BardLog.Log("crawl space: {0}", room.Encounter?.Name);
-                    room.Extras.Add(item);
-                    Debug.Assert(room.Encounter != null, "room.Encounter != null");
-                    room.Encounter!.HasCrawlSpace = true;
-                    return;
-                }
-            }, extra);
+                    List<Room> list = new List<Room>(Rooms);
+                    list.Shuffle();
+                    foreach (Room? room1 in list.Where(room1 =>
+                                 room1.RoomType != RoomType.Hidden && room1.Encounter != null &&
+                                 ((room1.Encounter.AutoSpawn & (int)AutoSpawnType.Extras) != 0)))
+                    {
+                        BardLog.Log("crawl space: {0}", room1.Encounter?.Name);
+                        room1.Extras.Add(new Item()
+                        {
+                            Name = $"{room.Encounter?.Name}-{item.Name}",
+                            Weight = item.Weight,
+                            AdjustedWeight = item.AdjustedWeight,
+                            Requirement = item.Requirement
+                        });
+                        room1.Encounter!.HasCrawlSpace = true;
+                        return;
+                    }
+                }, room.Crawlspace!);
+            }
         }
 
         private static Room GetRoom(string roomName) => Zonedata.Rooms[Save.FloorIndex].ContainsKey(roomName)

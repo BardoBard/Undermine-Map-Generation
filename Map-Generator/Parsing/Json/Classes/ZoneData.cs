@@ -56,23 +56,6 @@ namespace Map_Generator.Parsing.Json.Classes
             }
         };
 
-        public static readonly CrawlSpace PriestessCrawlSpace = new()
-        {
-            Min = 1,
-            Max = 1,
-            Percent100 = false,
-            Items = new List<Item>
-            {
-                new()
-                {
-                    Name = "Priestess Crawl Space",
-                    Requirement = null,
-                    Weight = 1,
-                    AdjustedWeight = 0
-                }
-            }
-        };
-
         [JsonProperty("extras")] public List<Extra>? Extras { get; set; }
         [JsonProperty("resources")] public List<Resource>? Resources { get; set; }
         [JsonProperty("setpieces")] public List<SetPiece>? SetPieces { get; set; }

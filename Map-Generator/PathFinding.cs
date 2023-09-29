@@ -137,12 +137,13 @@ namespace Map_Generator
             int weight = start.Position.DistanceTo(end.Position); //distance between the rooms
             weight -= end.RoomType == RoomType.Treasure ? 1 : 0;
             weight += end.RoomType == RoomType.Secret ? 1 : 0;
-            weight -= end.Neighbors.Any(neighbor => neighbor.Value?.RoomType == RoomType.Relic) ? 3 : 0;
+            weight -= end.Neighbors.Any(neighbor => neighbor.Value?.RoomType == RoomType.Relic) ? 1 : 0;
             if (end.Encounter != null)
             {
-                weight += end.Encounter.RoomEnemies.Sum(enemy => (int)System.Math.Ceiling((enemy.Health?.CalculateHealth() ?? 0f) / 100f)); //weight of the enemies in the room
+                weight += (int)System.Math.Ceiling(end.Encounter.RoomEnemies.Sum(enemy => (enemy.Health?.CalculateHealth() ?? 1f) / 150f)); //weight of the enemies in the room
                 weight += end.Encounter
                     .DifficultyWeight; //weight of the room itself, for example a maze room is more difficult than a normal room
+                weight += end.Encounter.Door == Door.Locked ? 2 : 0;
             }
 
             return weight;

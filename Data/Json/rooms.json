@@ -291,6 +291,7 @@
       "large"
     ],
     "roomtype": 11,
+    "crawlspace": true,
     "extrainformation": {
       "hall": {
         "sprites": 4
@@ -815,6 +816,7 @@
     "stage": [
       "small"
     ],
+    "crawlspace": true,
     "roomtypetag": "special",
     "tags": "priestess",
     "branchweight": 0,
@@ -893,6 +895,7 @@
     ],
     "roomtype": 11,
     "roomtypetag": "special",
+    "crawlspace": true,
     "tags": "hall_hidden_three_chests",
     "direction": 2,
     "name": "threechests"
@@ -915,6 +918,7 @@
       "small"
     ],
     "roomtype": 11,
+    "crawlspace": true,
     "roomtypetag": "special",
     "tags": "hidden_hallway",
     "direction": 1,
@@ -926,6 +930,7 @@
       "small"
     ],
     "roomtype": 11,
+    "crawlspace": true,
     "roomtypetag": "special",
     "tags": "hidden_campsite",
     "direction": 1,

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
 using Map_Generator.Math;
 using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Parsing.Json.Interfaces;
 using Map_Generator.Undermine;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Map_Generator.Parsing.Json.Classes
 {
@@ -25,6 +22,7 @@ namespace Map_Generator.Parsing.Json.Classes
                    $"Encounter: {Encounter?.Name}, PreviousRoom: {PreviousRoom?.Name}, CanReload: {CanReload}, " +
                    $"Secluded: {Secluded}, ExtraEncounters: {ExtraEncounters}, IsHidden: {IsHidden}";
         }
+
         public Room Clone() => (Room)MemberwiseClone();
 
         public Room DeepClone()
@@ -37,6 +35,10 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("stage")] public List<string> Stages { get; set; } = null!;
         [JsonProperty("roomtypetag")] public string RoomTypeTag { get; set; } = null!;
         [JsonProperty("roomtype")] public RoomType RoomType { get; set; } = RoomType.None;
+       
+        [JsonProperty("crawlspace")] private bool crawlspace = false;
+        [JsonIgnore] public ZoneData.CrawlSpace? Crawlspace => crawlspace ? ZoneData.Crawlspace : null;
+
         private float chance = 1f;
 
         [JsonProperty("chance")]

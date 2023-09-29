@@ -71,14 +71,11 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("door")] public Door Door { get; set; } = Door.None;
         [JsonProperty("autospawn")] public int? AutoSpawn { get; set; }
 
-        public bool AllowNeighbor(Encounter neighbor)
-        {
-            //TODO: just return true? because this just checks if one of the two encounters has Direction.All
-            return ((NoExit & Direction.North) == 0 && (neighbor.NoExit & Direction.South) == 0) ||
-                   ((NoExit & Direction.South) == 0 && (neighbor.NoExit & Direction.North) == 0) ||
-                   ((NoExit & Direction.East) == 0 && (neighbor.NoExit & Direction.West) == 0) ||
-                   (NoExit & Direction.West) == 0 && (neighbor.NoExit & Direction.East) == 0;
-        }
+        public bool AllowNeighbor(Encounter neighbor) =>
+            ((NoExit & Direction.North) == 0 && (neighbor.NoExit & Direction.South) == 0) ||
+            ((NoExit & Direction.South) == 0 && (neighbor.NoExit & Direction.North) == 0) ||
+            ((NoExit & Direction.East) == 0 && (neighbor.NoExit & Direction.West) == 0) ||
+            (NoExit & Direction.West) == 0 && (neighbor.NoExit & Direction.East) == 0;
 
         public bool AllowNeighbor(Direction direction)
         {
