@@ -61,6 +61,7 @@
             "special": {
                 "rooms": [
                     {
+                        "subfloor": 69,
                         "tag": "hoody",
                         "name": "sleepyhoodyroom",
                         "door": 7
@@ -1560,6 +1561,7 @@
                         "name": "sandroom"
                     },
                     {
+                        "subfloor": 69,
                         "tag": "hoody",
                         "name": "sleepyhoodyroom",
                         "door": 7
@@ -2633,23 +2635,25 @@
                 "default": {
                     "icon": 5,
                     "door": 5,
-                    "autospawn": 7,
-                    "requirements": "relicguacamole"
+                    "autospawn": 7
                 },
                 "rooms": [
                     {
                         "weight": 2,
                         "name": "torches",
+                        "requirements": "relicguacamole",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 2,
+                        "requirements": "relicguacamole",
                         "name": "statues",
                         "noexit": 0,
                         "door": 1
                     },
                     {
+                        "requirements": "relicguacamole",
                         "weight": 2,
                         "name": "bridges"
                     },
@@ -3619,6 +3623,7 @@
             "special": {
                 "rooms": [
                     {
+                        "subfloor": 69,
                         "tag": "hoody",
                         "name": "sleepyhoodyroom",
                         "door": 7
@@ -5504,6 +5509,7 @@
                 "rooms": [
                     {
                         "tag": "hoody",
+                        "subfloor": 69,
                         "name": "sleepyhoodyroom",
                         "door": 7
                     },

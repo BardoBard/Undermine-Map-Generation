@@ -35,25 +35,26 @@ namespace Map_Generator
         /// <summary>
         /// gets the encounter for the room
         /// </summary>
-        /// <param name="roomNames"></param>
-        /// <param name="zone">zone name -> e.g mine</param>
-        /// <param name="roomSize">room size -> e.g small/large</param>
+        /// <param name="roomName"></param>
         /// <param name="previousRoom"></param>
-        public static Room GetEncounter(string roomNames, string zone, string roomSize, Room? previousRoom)
+        /// <param name="roomSize">room size -> e.g small/large</param>
+        public static Room GetEncounter(Room roomName, Room? previousRoom, string? roomSize = null)
         {
-            Room room = null!;
-            foreach (var roomName in roomNames.Split(','))
+            if (roomSize == null)
             {
-                room = GetRoom(roomName).DeepClone();
-                zone = Save.GetZoneName(room);
+                if (roomName.Encounter == null)
+                    throw new InvalidOperationException("room size and encounter is null");
+                roomSize = roomName.Encounter.CurrentStage;
+            } //TODO: refactor
+
+            Room room = null!;
+            foreach (var name in roomName.Name.Split(','))
+            {
+                room = GetRoom(name).DeepClone();
+                string zone = Save.GetZoneName(room);
                 //using scope to make sure the random is not affected by other randoms
                 using (new Rand.Scope(Rand.StateType.Default))
                 {
-                    var defaultRequirement =
-                        JsonDecoder.Encounters[zone][roomSize][room.RoomTypeTag].Default.Requirement;
-                    if (defaultRequirement != null && !Save.Check(defaultRequirement))
-                        continue;
-
                     //filter encounters and put it into a list
                     List<Encounter?> encounters =
                         JsonDecoder.Encounters[zone][room.Stages.Count > 1 ? roomSize : room.Stages.First()][
@@ -87,10 +88,11 @@ namespace Map_Generator
 
                     if (room.Encounter != null)
                         break;
-                    // BardLog.Log("encounter is null"); //TODO: add multiple extra encounters
                 }
             }
 
+            if (room.Encounter != null)
+                room.Encounter!.CurrentStage = roomSize; //TODO: refactor (remove this)
 
             return room ?? throw new InvalidOperationException();
         }
@@ -128,11 +130,11 @@ namespace Map_Generator
                     Rand.NextUInt();
 
                 Room room =
-                    GetEncounter(roomName.Name, MapType.GetMapName(), name2, previousRoom); //scoped randomness
+                    GetEncounter(roomName, previousRoom, name2); //scoped randomness
 
                 room.PreviousRoom = previousRoom;
 
-                room.Initialize(Zonedata, MapType.GetMapName(), name2);
+                room.Initialize(Zonedata);
 
                 if (room.Encounter?.RoomEnemies != null)
                 {
@@ -196,10 +198,12 @@ namespace Map_Generator
 
         public static void Start(string saveJsonFile)
         {
-            ClearAll();
-            BardLog.Open();
-            JsonDecoder.ReadJson();
             Save.Initialize(saveJsonFile);
+            JsonDecoder.ReadJson();
+            BardLog.Open();
+            ClearAll();
+            ResetAll();
+
             Rand.Initialize((uint)(Save.Seed + Save.floor_number));
             var level = JsonDecoder.Maps.First(map =>
                     map.Name == MapType.GetMapName() && (map.Requirement == null || Save.Check(map.Requirement)))
@@ -211,12 +215,6 @@ namespace Map_Generator
             Room[][] batches = level.Rooms.Select(room => room.Select(GetRoom).ToArray())
                 .ToArray()
                 .Concat(level.RoomsMulti.Select(roomName => new[] { GetRoom(roomName) })).ToArray();
-
-            foreach (var encounter in from encountersValue in JsonDecoder.Encounters.Values
-                     from encounters in encountersValue.Values
-                     from encounter in encounters
-                     select encounter)
-                encounter.Value.Initialize();
 
             BardLog.Log("found zonedata: {0}, with requirement: {1}", Zonedata.Name, Zonedata.Requirements);
 
@@ -404,25 +402,35 @@ namespace Map_Generator
             SetPieces = 0x20
         }
 
+        private static void ResetAll()
+        {
+            foreach (var encounter in from encountersValue in JsonDecoder.Encounters.Values
+                     from encounters in encountersValue.Values
+                     from encounter in encounters
+                     select encounter)
+                encounter.Value.Initialize();
+        }
+
         private static void ClearAll()
         {
+            ResetAll();
             Rooms.Clear();
             PositionedRooms.Clear();
-            Zonedata = null;
+            Zonedata = null; //TODO: remove this potentially
         }
 
         private static void GetRoomMapping()
         {
-            Room startingRoom = Rooms[0] ?? throw new InvalidOperationException("starting room is null");
-            foreach (var room in Rooms)
-            {
-                BardLog.Log("room name: {0}, direction: {1}, door: {2}, ", room.Encounter?.Name, room.Direction,
-                    room.Encounter.Door);
-            }
-
             int i = 0;
             while (i < 10)
             {
+                Room startingRoom = Rooms[0] ?? throw new InvalidOperationException("starting room is null");
+                foreach (var room in Rooms)
+                {
+                    BardLog.Log("room name: {0}, direction: {1}, door: {2}, ", room.Encounter?.Name, room.Direction,
+                        room.Encounter.Door);
+                }
+
                 foreach (Room room in Rooms)
                 {
                     room.Neighbors.Clear();
@@ -452,12 +460,16 @@ namespace Map_Generator
                     break;
                 }
 
-                BardLog.Log("Layout failed, trying again!");
-                foreach (Room room2 in Rooms)
+                BardLog.Log("layout failed, trying again!");
+                ResetAll();
+                foreach (var room2 in Rooms)
                 {
-                    // room2.ReloadEncounter();
-                    throw new Exception("reload encounter");
-                    // room2.Position = Vector2Int.Zero;
+                    room2.Encounter?.RoomEnemies.Clear();
+
+                    room2.Encounter = room2.ReloadEncounter(Zonedata);
+                    room2.Position = Vector2Int.Zero;
+
+                    BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
                 }
 
                 int num = i + 1;
@@ -602,6 +614,9 @@ namespace Map_Generator
                         room.Encounter.Door, room.Position.x, room.Position.y);
 
                     list2.RemoveAll(roomType => roomType.Weight == 0);
+
+                    BardLog.Log("list size: {0}", list2.Count);
+                    BardLog.Log("total weight: {0}", list2.Sum(roomType => roomType.Weight));
 
                     while (direction == Direction.None && list2.Count > 0)
                     {

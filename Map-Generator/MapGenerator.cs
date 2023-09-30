@@ -117,7 +117,7 @@ namespace Map_Generator
                         if (System.Math.Abs(logMessage - expectedOutput) > 0.0001)
                         {
                             Console.WriteLine("extra: " + extra);
-                            Console.WriteLine("log: " + log);
+                            Console.WriteLine("map: " + log);
                             Console.WriteLine("log file: " + logFilePath);
                             Console.WriteLine("extra log file: " + extraLogFilePath);
                             throw new InvalidOperationException();

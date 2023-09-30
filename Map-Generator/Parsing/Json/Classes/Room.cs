@@ -102,20 +102,13 @@ namespace Map_Generator.Parsing.Json.Classes
 
         [JsonProperty("ishidden")] public bool IsHidden { get; set; } = false;
 
-        public void Initialize(ZoneData data, string mapNameEncounter, string name2)
+        public void Initialize(ZoneData data)
         {
             if (this.Encounter == null)
                 return;
-
-            var defaultEncounter = JsonDecoder.Encounters[mapNameEncounter][name2][RoomTypeTag].Default;
-
-            if (Rand.GetWeightedElement(
-                    this.Encounter.WeightedDoors ?? defaultEncounter.WeightedDoors, out var door))
+            
+            if (Rand.GetWeightedElement(this.Encounter.WeightedDoors, out var door))
                 this.Encounter.Door = door.Door;
-
-
-            this.Encounter.Difficulty ??= defaultEncounter.Difficulty;
-            this.Encounter.AutoSpawn ??= defaultEncounter.AutoSpawn;
 
             this.Encounter.DetermineEnemies(data); //not scoped randomness
             this.Encounter.Seen = true;
@@ -191,5 +184,33 @@ namespace Map_Generator.Parsing.Json.Classes
         }
 
         [JsonIgnore] public bool Skip { get; set; }
+
+        public Encounter? ReloadEncounter(ZoneData zoneData)
+        {
+            if (!CanReload)
+            {
+                BardLog.Log("can't reload: {0}", Name);
+                return this.Encounter;
+            }
+            
+            int? subFloor = 0;
+            if (Encounter != null)
+            {
+                subFloor = Encounter.SubFloor;
+            }
+
+            Room room = Program.GetEncounter(this, this.PreviousRoom);
+                
+            //set this object to room
+                
+            if (room.Encounter != null)
+            {
+                room.Encounter.SubFloor = subFloor;
+                room.Initialize(zoneData);
+            }
+
+            return room.Encounter;
+
+        }
     }
 }
