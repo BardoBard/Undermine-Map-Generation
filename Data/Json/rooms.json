@@ -462,7 +462,6 @@
     "roomtype": 14,
     "roomtypetag": "special",
     "tags": "pre_bog",
-    "direction": 1,
     "name": "bogprechamber",
     "encounter": true,
     "icon": [
@@ -476,7 +475,6 @@
     "roomtype": 15,
     "roomtypetag": "special",
     "tags": "next_entrance_bog",
-    "direction": 1,
     "name": "bogdown",
     "icon": [
       12

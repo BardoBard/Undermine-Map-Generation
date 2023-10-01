@@ -2083,7 +2083,7 @@
                 2,
                 1
             ],
-            "requirements": "shadowlordkilled",
+            "requirements": "shadowlordkilledbug",
             "floors": [
                 {
                     "enemies": [
@@ -2344,7 +2344,7 @@
                 2,
                 1
             ],
-            "requirements": "crystallordkilled",
+            "requirements": "crystallordkilledbug",
             "floors": [
                 {
                     "enemies": [
@@ -3121,7 +3121,7 @@
                 2,
                 1
             ],
-            "requirements": "shadowlordkilled",
+            "requirements": "shadowlordkilledbug",
             "floors": [
                 {
                     "enemies": [
@@ -3383,7 +3383,7 @@
                 2,
                 1
             ],
-            "requirements": "crystallordkilled",
+            "requirements": "crystallordkilledbug",
             "floors": [
                 {
                     "enemies": [

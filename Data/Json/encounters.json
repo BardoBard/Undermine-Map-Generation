@@ -5787,13 +5787,15 @@
                         "tag": "next_entrance",
                         "name": "coreentrance",
                         "icon": 3,
-                        "door": 2,
+                        "door": 1,
+                        "noexit": 13,
                         "requirements": "storymode"
                     },
                     {
                         "tag": "next_entrance_bog",
                         "name": "bogentrance",
                         "icon": 3,
+                        "noexit": 13,
                         "door": 2,
                         "requirements": "storymode"
                     }
@@ -6877,14 +6879,17 @@
                         "name": "beforecoreentrance",
                         "branchweight": 0,
                         "icon": 3,
-                        "door": 2,
+                        "noexit": 12,
+                        "door": 1,
                         "requirements": "storymode"
                     },
                     {
                         "tag": "pre_bog",
                         "name": "beforebogentrance",
                         "icon": 3,
-                        "door": 2,
+                        "branchweight": 0,
+                        "noexit": 12,
+                        "door": 1,
                         "requirements": "storymode"
                     }
                 ]

@@ -70,7 +70,7 @@ namespace Map_Generator
             Room? start = rooms.First(room => room.Position == Vector2Int.Zero);
             Room? end = rooms.First(room =>
                 room.RoomType is RoomType.End or RoomType.NextDown ||
-                (Save.FloorNumber == 4 && MapType.GetMap() == MapType.MapName.core));
+                (Save.FloorNumber == 4 && MapType.GetMap() == MapType.MapName.core && room.RoomType == RoomType.EndBoss));
 
             //pathfinding algorithm
             var queue = new List<Room>
