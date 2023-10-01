@@ -14,6 +14,9 @@ specific parameters.
 
 Used for the Undermine speedrunning community.
 
+## Download
+Download [here](https://github.com/BardoBard/Undermine-Map-Generation/releases/latest), download and extract the zip file and run the executable.
+
 ### Packages
 
 - newtonsoft.json v13.0.3, net472
