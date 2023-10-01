@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Map_Generator.Parsing;
@@ -43,13 +44,28 @@ namespace Map_Generator
         }
 
 
-        private void findMapButton_Click(object sender, System.EventArgs e)
+        private void FindMapButton_Click(object sender, System.EventArgs e)
         {
             Program.Start(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
 
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
             FloorNameLabel.Text = $@"{Program.Zonedata.Name}-{Save.FloorNumber}";
-            _gridControl.Path(Program.PositionedRooms.AStarSearch());
+            _gridControl.Path(Program.PositionedRooms.AStarSearch(Heuristic()));
+        }
+        private PathFinding.Heuristic Heuristic()
+        {
+            if (SimpleAStarRadio.Checked)
+                return PathFinding.SimpleHeuristics;
+            if (AdvancedAStarRadio.Checked)
+                return PathFinding.AdvancedHeuristics;
+            
+            return PathFinding.SimpleHeuristics;
+        }
+
+        private void AStarRadio_Click(object sender, EventArgs e)
+        {
+            if (!Program.PositionedRooms.Any()) return;
+            _gridControl.Path(Program.PositionedRooms.AStarSearch(Heuristic()));
         }
 
         private void IssueButton_Click(object sender, System.EventArgs e)
@@ -117,7 +133,7 @@ namespace Map_Generator
                         if (System.Math.Abs(logMessage - expectedOutput) > 0.0001)
                         {
                             Console.WriteLine("extra: " + extra);
-                            Console.WriteLine("log: " + log);
+                            Console.WriteLine("map: " + log);
                             Console.WriteLine("log file: " + logFilePath);
                             Console.WriteLine("extra log file: " + extraLogFilePath);
                             throw new InvalidOperationException();
@@ -126,5 +142,6 @@ namespace Map_Generator
                 }
             }
         }
+
     }
 }

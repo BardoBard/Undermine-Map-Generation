@@ -22,10 +22,21 @@ namespace Map_Generator.Parsing.Json.Classes
 
         public void Initialize()
         {
-            foreach (var encounter in Rooms)
+            foreach (var encounter in Rooms.Where(encounter => encounter != null))
             {
-                if (encounter == null) continue;
-                encounter.Door = (encounter.Door == Door.None ? Default.Door : encounter.Door);
+                encounter!.Door = encounter.Door == Door.None ? Default.Door : encounter.Door;
+                encounter.Skip = false;
+                encounter.Seen = false;
+                encounter.Difficulty ??= Default.Difficulty;
+                encounter.AutoSpawn ??= Default.AutoSpawn;
+                encounter.WeightedDoors ??= Default.WeightedDoors;
+                encounter.WeightedDoors?.ForEach(x =>
+                {
+                    if (x != null)
+                        x.Skip = false;
+                });
+                encounter.Requirement ??= Default.Requirement;
+                encounter.SubFloor ??= Default.SubFloor;
             }
         }
     }
@@ -39,6 +50,7 @@ namespace Map_Generator.Parsing.Json.Classes
             [JsonProperty("door")] public Door Door { get; set; }
         }
 
+        [JsonIgnore] public string? CurrentStage { get; set; } = null; //TODO: refactor
         [JsonProperty("weight")] public int Weight { get; set; }
         [JsonProperty("difficultyweight")] public int DifficultyWeight { get; set; }
         [JsonProperty("branchweight")] public int? Branchweight { get; set; }
@@ -63,7 +75,7 @@ namespace Map_Generator.Parsing.Json.Classes
         public Direction Direction { get; set; } = Direction.Undetermined;
 
         [JsonProperty("noexit")] public Direction NoExit { get; set; } = 0;
-        [JsonIgnore] public int SubFloor { get; set; }
+        [JsonProperty("subfloor")] public int? SubFloor { get; set; }
         [JsonProperty("recursion")] public int SequenceRecursionCount { get; set; } = -1;
         [JsonProperty("sequence")] public List<string> Sequence { get; set; } = new();
         [JsonIgnore] public bool Seen { get; set; } = false;
@@ -97,7 +109,6 @@ namespace Map_Generator.Parsing.Json.Classes
 
             int floorNumber = Save.FloorIndex;
 
-            data.Initialize(); //TODO: check, maybe earlier or not needed
             Override? floorOverride = data.Floors[floorNumber].Override;
             float floorDifficulty =
                 floorOverride.Difficulty ??
@@ -147,6 +158,7 @@ namespace Map_Generator.Parsing.Json.Classes
             if (enemies2.Count > 0)
             {
                 float totalDifficulty = floorDifficulty + this.Difficulty[1];
+                BardLog.Log("Initializing encounter: {0}, difficulty {1}", this.Name, this.Difficulty[1]);
                 BardLog.Log("total difficulty: {0}", totalDifficulty);
                 foreach (var enemy in enemies2)
                     BardLog.Log("enemy: {0}", enemy.Name);
@@ -216,6 +228,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("door")] public Door Door { get; set; }
 
         [JsonProperty("autospawn")] public int AutoSpawn = 0;
+        [JsonProperty("subfloor")] public int SubFloor = 0;
 
         public Default()
         {

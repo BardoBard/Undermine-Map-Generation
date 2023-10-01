@@ -143,7 +143,7 @@ namespace Tests
                 end
             };
             var breadthFirstSearch = Map_Generator.Program.PositionedRooms.BreadthFirstSearch();
-            var aStar = Map_Generator.Program.PositionedRooms.AStarSearch();
+            var aStar = Map_Generator.Program.PositionedRooms.AStarSearch(Map_Generator.PathFinding.AdvancedHeuristics);
             Assert.AreEqual(new List<Room>()
             {
                 begin,
@@ -387,7 +387,7 @@ namespace Tests
                 end
             };
             var breadthFirstSearch = Map_Generator.Program.PositionedRooms.BreadthFirstSearch();
-            var aStar = Map_Generator.Program.PositionedRooms.AStarSearch();
+            var aStar = Map_Generator.Program.PositionedRooms.AStarSearch(Map_Generator.PathFinding.AdvancedHeuristics);
 
             Assert.AreEqual(new List<Room>()
             {

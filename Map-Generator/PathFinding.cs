@@ -58,19 +58,21 @@ namespace Map_Generator
             return result;
         }
 
+        public delegate int Heuristic(Room start, Room end);
         /// <summary>
         /// a star algorithm that takes into account the distance between rooms other heuristics
         /// </summary>
         /// <param name="rooms">rooms</param>
+        /// <param name="heuristicCostEstimate">heuristics</param>
         /// <returns>path</returns>
-        public static List<Room> AStarSearch(this List<Room> rooms)
+        public static List<Room> AStarSearch(this List<Room> rooms, Heuristic heuristicCostEstimate)
         {
             var result = new List<Room>(10);
 
             Room? start = rooms.First(room => room.Position == Vector2Int.Zero);
             Room? end = rooms.First(room =>
                 room.RoomType is RoomType.End or RoomType.NextDown ||
-                (Save.FloorNumber == 4 && MapType.GetMap() == MapType.MapName.core));
+                (Save.FloorNumber == 4 && MapType.GetMap() == MapType.MapName.core && room.RoomType == RoomType.EndBoss));
 
             //pathfinding algorithm
             var queue = new List<Room>
@@ -90,7 +92,7 @@ namespace Map_Generator
 
             var fScore = new Dictionary<Room, int>
             {
-                [start] = HeuristicCostEstimate(start, end)
+                [start] = heuristicCostEstimate.Invoke(start, end)
             };
 
             while (queue.Count > 0)
@@ -104,12 +106,12 @@ namespace Map_Generator
 
                 foreach (var neighbor in current.Neighbors)
                 {
-                    int cost = gScore[current] + HeuristicCostEstimate(current, neighbor.Value);
+                    int cost = gScore[current] + heuristicCostEstimate.Invoke(current, neighbor.Value);
                     if (!gScore.ContainsKey(neighbor.Value) || cost < gScore[neighbor.Value])
                     {
                         cameFrom[neighbor.Value] = current;
                         gScore[neighbor.Value] = cost;
-                        fScore[neighbor.Value] = gScore[neighbor.Value] + HeuristicCostEstimate(neighbor.Value, end);
+                        fScore[neighbor.Value] = gScore[neighbor.Value] + heuristicCostEstimate.Invoke(neighbor.Value, end);
                         if (!queue.Contains(neighbor.Value))
                             queue.Add(neighbor.Value);
                     }
@@ -132,7 +134,9 @@ namespace Map_Generator
             return result;
         }
 
-        private static int HeuristicCostEstimate(Room start, Room end)
+        public static int SimpleHeuristics(Room start, Room end) => start.Position.DistanceTo(end.Position);
+
+        public static int AdvancedHeuristics(Room start, Room end)
         {
             int weight = start.Position.DistanceTo(end.Position); //distance between the rooms
             weight -= end.RoomType == RoomType.Treasure ? 1 : 0;

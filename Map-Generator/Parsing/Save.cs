@@ -295,12 +295,16 @@ namespace Map_Generator.Parsing
 
         public static bool shadowlordkilled => (shadowlord_defeated)
                                                && !(crystallord_defeated);
+        public static bool shadowlordkilledbug => ((shadowlord_defeated)
+                                                   && !(crystallord_defeated))
+                                                  || crystallordkilled && FloorIndex > 0;
 
         public static bool shadowlordnotkilled => !(shadowlord_defeated)
                                                   && !(crystallord_defeated);
 
         public static bool crystallordnotkilled => (!(crystallord_defeated) &&
                                                     !(firelord_defeated));
+        public static bool crystallordkilledbug => (crystallord_defeated) && FloorIndex == 0;
 
         public static bool firelordkilled => firelord_defeated;
         // && !bog_unlocked; //TODO: check this bog (enterBog)

@@ -1553,9 +1553,9 @@
         "name": "ticker",
         "difficulty": 5,
         "rougedifficulty": 3,
+        "icon": 83,
         "canbesolo": true,
         "type": 2,
-        "icon": 0,
         "health": {
             "hp": 40,
             "hptier": 0,
