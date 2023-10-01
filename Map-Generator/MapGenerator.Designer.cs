@@ -130,6 +130,7 @@
             // 
             // SimpleAStarRadio
             // 
+            this.SimpleAStarRadio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SimpleAStarRadio.AutoSize = true;
             this.SimpleAStarRadio.Checked = true;
             this.SimpleAStarRadio.Location = new System.Drawing.Point(1055, 81);
@@ -143,6 +144,7 @@
             // 
             // AdvancedAStarRadio
             // 
+            this.AdvancedAStarRadio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AdvancedAStarRadio.AutoSize = true;
             this.AdvancedAStarRadio.Location = new System.Drawing.Point(1055, 104);
             this.AdvancedAStarRadio.Name = "AdvancedAStarRadio";
@@ -154,7 +156,7 @@
             // 
             // FindFastMapButton
             // 
-            this.FindFastMapButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.FindFastMapButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.FindFastMapButton.Location = new System.Drawing.Point(1065, 127);
             this.FindFastMapButton.Name = "FindFastMapButton";
             this.FindFastMapButton.Size = new System.Drawing.Size(107, 23);
