@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Map_Generator.Parsing.Json.Classes;
 using Newtonsoft.Json.Linq;
 
@@ -70,6 +69,7 @@ namespace Map_Generator.Parsing
             new(false, new("0e7e31f44491456bb5f6268f2c2686c2"));
 
         public static Relic relicGuacamole { get; set; } = new(false, new("80242154d4284cc6aab221292cb0ae93"));
+        public static bool dreadful_fog => false; //TODO: hex
 
 
         //game data
@@ -172,7 +172,9 @@ namespace Map_Generator.Parsing
         public static int start_blessing { get; set; }
         public static int statue_defeated { get; set; }
         public static bool stonelord_defeated { get; set; }
-        public static int summon_count { get; set; }
+        public static bool dreaful_fog { get; set; }
+        public static int summon_count { get; set; } = 0;
+        public static bool summon_count_check => summon_count > 0;
         public static int talking_gem_count { get; set; }
         public static int tavern_key { get; set; }
         public static int tavern_opened { get; set; }
@@ -293,12 +295,16 @@ namespace Map_Generator.Parsing
 
         public static bool shadowlordkilled => (shadowlord_defeated)
                                                && !(crystallord_defeated);
+        public static bool shadowlordkilledbug => ((shadowlord_defeated)
+                                                   && !(crystallord_defeated))
+                                                  || crystallordkilled && FloorIndex > 0;
 
         public static bool shadowlordnotkilled => !(shadowlord_defeated)
                                                   && !(crystallord_defeated);
 
         public static bool crystallordnotkilled => (!(crystallord_defeated) &&
                                                     !(firelord_defeated));
+        public static bool crystallordkilledbug => (crystallord_defeated) && FloorIndex == 0;
 
         public static bool firelordkilled => firelord_defeated;
         // && !bog_unlocked; //TODO: check this bog (enterBog)

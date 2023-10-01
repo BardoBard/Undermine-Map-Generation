@@ -20,12 +20,37 @@ namespace Map_Generator.Parsing.Json.Classes
             return !Rooms.Exists(encounter => encounter.Weight == 0);
         }
 
-        public void Initialize()
+        public void Initialize(string roomSize)
         {
-            foreach (var encounter in Rooms)
+            foreach (var encounter in Rooms.Where(encounter => encounter != null))
             {
-                if (encounter == null) continue;
-                encounter.Door = (encounter.Door == Door.None ? Default.Door : encounter.Door);
+                encounter!.AutoSpawn ??= Default.AutoSpawn;
+                encounter.WeightedDoors ??= Default.WeightedDoors;
+                encounter.SubFloor ??= Default.SubFloor;
+                encounter.OriginalSubFloor = encounter.SubFloor;
+                encounter.Requirement ??= Default.Requirement;
+                encounter.Sequence = encounter.Sequence.Count > 0 ? encounter.Sequence : Default.Sequence;
+                encounter.CurrentStage = roomSize;
+                encounter.Door = encounter.Door == Door.None ? Default.Door : encounter.Door;
+
+            }
+        }
+
+        public void Reset()
+        {
+            foreach (var encounter in Rooms.Where(encounter => encounter != null))
+            {
+                encounter!.HasCrawlSpace = false;
+                encounter.Skip = false;
+                encounter.Seen = false;
+                encounter.Difficulty ??= Default.Difficulty;
+                encounter.WeightedDoors?.ForEach(door =>
+                {
+                    if (door != null)
+                        door.Skip = false;
+                });
+                encounter.SubFloor = encounter.OriginalSubFloor;
+                encounter.RoomEnemies.Clear();
             }
         }
     }
@@ -39,6 +64,7 @@ namespace Map_Generator.Parsing.Json.Classes
             [JsonProperty("door")] public Door Door { get; set; }
         }
 
+        [JsonIgnore] public string? CurrentStage { get; set; } = null; //TODO: refactor
         [JsonProperty("weight")] public int Weight { get; set; }
         [JsonProperty("difficultyweight")] public int DifficultyWeight { get; set; }
         [JsonProperty("branchweight")] public int? Branchweight { get; set; }
@@ -63,7 +89,8 @@ namespace Map_Generator.Parsing.Json.Classes
         public Direction Direction { get; set; } = Direction.Undetermined;
 
         [JsonProperty("noexit")] public Direction NoExit { get; set; } = 0;
-        [JsonIgnore] public int SubFloor { get; set; }
+        [JsonIgnore] public int? OriginalSubFloor { get; set; }
+        [JsonProperty("subfloor")] public int? SubFloor { get; set; }
         [JsonProperty("recursion")] public int SequenceRecursionCount { get; set; } = -1;
         [JsonProperty("sequence")] public List<string> Sequence { get; set; } = new();
         [JsonIgnore] public bool Seen { get; set; } = false;
@@ -71,14 +98,11 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("door")] public Door Door { get; set; } = Door.None;
         [JsonProperty("autospawn")] public int? AutoSpawn { get; set; }
 
-        public bool AllowNeighbor(Encounter neighbor)
-        {
-            //TODO: just return true? because this just checks if one of the two encounters has Direction.All
-            return ((NoExit & Direction.North) == 0 && (neighbor.NoExit & Direction.South) == 0) ||
-                   ((NoExit & Direction.South) == 0 && (neighbor.NoExit & Direction.North) == 0) ||
-                   ((NoExit & Direction.East) == 0 && (neighbor.NoExit & Direction.West) == 0) ||
-                   (NoExit & Direction.West) == 0 && (neighbor.NoExit & Direction.East) == 0;
-        }
+        public bool AllowNeighbor(Encounter neighbor) =>
+            ((NoExit & Direction.North) == 0 && (neighbor.NoExit & Direction.South) == 0) ||
+            ((NoExit & Direction.South) == 0 && (neighbor.NoExit & Direction.North) == 0) ||
+            ((NoExit & Direction.East) == 0 && (neighbor.NoExit & Direction.West) == 0) ||
+            (NoExit & Direction.West) == 0 && (neighbor.NoExit & Direction.East) == 0;
 
         public bool AllowNeighbor(Direction direction)
         {
@@ -100,7 +124,6 @@ namespace Map_Generator.Parsing.Json.Classes
 
             int floorNumber = Save.FloorIndex;
 
-            data.Initialize(); //TODO: check, maybe earlier or not needed
             Override? floorOverride = data.Floors[floorNumber].Override;
             float floorDifficulty =
                 floorOverride.Difficulty ??
@@ -150,6 +173,7 @@ namespace Map_Generator.Parsing.Json.Classes
             if (enemies2.Count > 0)
             {
                 float totalDifficulty = floorDifficulty + this.Difficulty[1];
+                BardLog.Log("Initializing encounter: {0}, difficulty {1}", this.Name, this.Difficulty[1]);
                 BardLog.Log("total difficulty: {0}", totalDifficulty);
                 foreach (var enemy in enemies2)
                     BardLog.Log("enemy: {0}", enemy.Name);
@@ -219,6 +243,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("door")] public Door Door { get; set; }
 
         [JsonProperty("autospawn")] public int AutoSpawn = 0;
+        [JsonProperty("subfloor")] public int SubFloor = 0;
 
         public Default()
         {

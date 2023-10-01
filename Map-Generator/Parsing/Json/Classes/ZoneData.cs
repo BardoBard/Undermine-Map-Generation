@@ -39,7 +39,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("requirements")] public string Requirements { get; set; }
 
         //rest
-        [JsonIgnore] public static readonly CrawlSpace Crawlspace = new()
+        [JsonIgnore] public static CrawlSpace Crawlspace => new()
         {
             Min = 1,
             Max = 1,
@@ -49,23 +49,6 @@ namespace Map_Generator.Parsing.Json.Classes
                 new()
                 {
                     Name = "Crawl Space",
-                    Requirement = null,
-                    Weight = 1,
-                    AdjustedWeight = 0
-                }
-            }
-        };
-
-        public static readonly CrawlSpace PriestessCrawlSpace = new()
-        {
-            Min = 1,
-            Max = 1,
-            Percent100 = false,
-            Items = new List<Item>
-            {
-                new()
-                {
-                    Name = "Priestess Crawl Space",
                     Requirement = null,
                     Weight = 1,
                     AdjustedWeight = 0

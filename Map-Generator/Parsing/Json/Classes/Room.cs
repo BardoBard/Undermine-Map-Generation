@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
 using Map_Generator.Math;
 using Map_Generator.Parsing.Json.Enums;
 using Map_Generator.Parsing.Json.Interfaces;
 using Map_Generator.Undermine;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Map_Generator.Parsing.Json.Classes
 {
@@ -25,6 +22,7 @@ namespace Map_Generator.Parsing.Json.Classes
                    $"Encounter: {Encounter?.Name}, PreviousRoom: {PreviousRoom?.Name}, CanReload: {CanReload}, " +
                    $"Secluded: {Secluded}, ExtraEncounters: {ExtraEncounters}, IsHidden: {IsHidden}";
         }
+
         public Room Clone() => (Room)MemberwiseClone();
 
         public Room DeepClone()
@@ -37,6 +35,10 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("stage")] public List<string> Stages { get; set; } = null!;
         [JsonProperty("roomtypetag")] public string RoomTypeTag { get; set; } = null!;
         [JsonProperty("roomtype")] public RoomType RoomType { get; set; } = RoomType.None;
+       
+        [JsonProperty("crawlspace")] private bool crawlspace = false;
+        [JsonIgnore] public ZoneData.CrawlSpace? Crawlspace => crawlspace ? ZoneData.Crawlspace : null;
+
         private float chance = 1f;
 
         [JsonProperty("chance")]
@@ -53,8 +55,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("encounter")] public bool HasExtraEncounter { get; set; } = false;
         [JsonProperty("icon")] private List<MapIcon>? _mapIcons { get; set; }
 
-        [JsonIgnore]
-        public List<MapIcon> MapIcons => _mapIcons ?? new List<MapIcon> { MapIcon.None }; //TODO: change this
+        [JsonIgnore] public List<MapIcon> MapIcons => _mapIcons ?? new List<MapIcon> { MapIcon.None }; //TODO: change this
 
         [JsonProperty("extrainformation")]
         public Dictionary<string, ExtraInformation> ExtraInformations { get; set; } = new();
@@ -100,20 +101,13 @@ namespace Map_Generator.Parsing.Json.Classes
 
         [JsonProperty("ishidden")] public bool IsHidden { get; set; } = false;
 
-        public void Initialize(ZoneData data, string mapNameEncounter, string name2)
+        public void Initialize(ZoneData data)
         {
             if (this.Encounter == null)
                 return;
-
-            var defaultEncounter = JsonDecoder.Encounters[mapNameEncounter][name2][RoomTypeTag].Default;
-
-            if (Rand.GetWeightedElement(
-                    this.Encounter.WeightedDoors ?? defaultEncounter.WeightedDoors, out var door))
+            
+            if (Rand.GetWeightedElement(this.Encounter.WeightedDoors, out var door))
                 this.Encounter.Door = door.Door;
-
-
-            this.Encounter.Difficulty ??= defaultEncounter.Difficulty;
-            this.Encounter.AutoSpawn ??= defaultEncounter.AutoSpawn;
 
             this.Encounter.DetermineEnemies(data); //not scoped randomness
             this.Encounter.Seen = true;
@@ -189,5 +183,33 @@ namespace Map_Generator.Parsing.Json.Classes
         }
 
         [JsonIgnore] public bool Skip { get; set; }
+
+        public Encounter? ReloadEncounter(ZoneData zoneData)
+        {
+            if (!CanReload)
+            {
+                BardLog.Log("can't reload: {0}, subfloor: {1}", Name, Encounter?.SubFloor);
+                return this.Encounter;
+            }
+            
+            int? subFloor = 0;
+            if (Encounter != null)
+            {
+                subFloor = Encounter.SubFloor;
+            }
+
+            Room room = Program.GetEncounter(this, this.PreviousRoom);
+                
+            //set this object to room
+                
+            if (room.Encounter != null)
+            {
+                room.Encounter.SubFloor = subFloor;
+                room.Initialize(zoneData);
+            }
+
+            return room.Encounter;
+
+        }
     }
 }

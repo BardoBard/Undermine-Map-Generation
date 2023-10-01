@@ -61,6 +61,7 @@
             "special": {
                 "rooms": [
                     {
+                        "subfloor": 69,
                         "tag": "hoody",
                         "name": "sleepyhoodyroom",
                         "door": 7
@@ -75,6 +76,7 @@
                     },
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "shadowroom"
                     }
                 ]
@@ -1557,9 +1559,11 @@
                     },
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "sandroom"
                     },
                     {
+                        "subfloor": 69,
                         "tag": "hoody",
                         "name": "sleepyhoodyroom",
                         "door": 7
@@ -2633,23 +2637,25 @@
                 "default": {
                     "icon": 5,
                     "door": 5,
-                    "autospawn": 7,
-                    "requirements": "relicguacamole"
+                    "autospawn": 7
                 },
                 "rooms": [
                     {
                         "weight": 2,
                         "name": "torches",
+                        "requirements": "relicguacamole",
                         "noexit": 0,
                         "door": 1
                     },
                     {
                         "weight": 2,
+                        "requirements": "relicguacamole",
                         "name": "statues",
                         "noexit": 0,
                         "door": 1
                     },
                     {
+                        "requirements": "relicguacamole",
                         "weight": 2,
                         "name": "bridges"
                     },
@@ -3619,6 +3625,7 @@
             "special": {
                 "rooms": [
                     {
+                        "subfloor": 69,
                         "tag": "hoody",
                         "name": "sleepyhoodyroom",
                         "door": 7
@@ -3629,6 +3636,7 @@
                     },
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "stonelordroom"
                     }
                 ]
@@ -5338,7 +5346,7 @@
                         "noexit": 13,
                         "requirements": "masterskey",
                         "autospawn": 6,
-                        "door": 4
+                        "door": 5
                     },
                     {
                         "tag": "down_boss",
@@ -5504,6 +5512,7 @@
                 "rooms": [
                     {
                         "tag": "hoody",
+                        "subfloor": 69,
                         "name": "sleepyhoodyroom",
                         "door": 7
                     },
@@ -5517,6 +5526,7 @@
                     },
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "crystalroom"
                     }
                 ]
@@ -5781,13 +5791,15 @@
                         "tag": "next_entrance",
                         "name": "coreentrance",
                         "icon": 3,
-                        "door": 2,
+                        "door": 1,
+                        "noexit": 13,
                         "requirements": "storymode"
                     },
                     {
                         "tag": "next_entrance_bog",
                         "name": "bogentrance",
                         "icon": 3,
+                        "noexit": 13,
                         "door": 2,
                         "requirements": "storymode"
                     }
@@ -6871,14 +6883,17 @@
                         "name": "beforecoreentrance",
                         "branchweight": 0,
                         "icon": 3,
-                        "door": 2,
+                        "noexit": 12,
+                        "door": 1,
                         "requirements": "storymode"
                     },
                     {
                         "tag": "pre_bog",
                         "name": "beforebogentrance",
                         "icon": 3,
-                        "door": 2,
+                        "branchweight": 0,
+                        "noexit": 12,
+                        "door": 1,
                         "requirements": "storymode"
                     }
                 ]
@@ -6911,6 +6926,7 @@
                 "rooms": [
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "fireroom",
                         "type": 0
                     },
@@ -8567,6 +8583,7 @@
                 "rooms": [
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "plunderroom"
                     },
                     {

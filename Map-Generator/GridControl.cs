@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Map_Generator.Math;
-using Map_Generator.Parsing;
 using Map_Generator.Parsing.Json.Classes;
 using Map_Generator.Parsing.Json.Enums;
 
@@ -13,7 +11,7 @@ namespace Map_Generator
 {
     public sealed class GridControl : Control
     {
-        public List<GridSquare> GridSquares { get; private set; } = new List<GridSquare>();
+        public List<GridSquare> GridSquares { get; private set; } = new();
         public static int CellSize = 40;
         public static int GapSize = 10;
         public int IconSize = 30;
@@ -36,13 +34,22 @@ namespace Map_Generator
 
         public void Path(List<Room> rooms)
         {
-            if (rooms.Count == 0)
+            if (!rooms.Any())
                 return;
-            
-            foreach (var gridSquare in from gridSquare in GridSquares from room in rooms.Where(room => gridSquare.Room.Equals(room)) select gridSquare)
+
+            foreach (var gridSquare in GridSquares)
             {
+                if (!rooms.Contains(gridSquare.Room))
+                {
+                    gridSquare.Color = MapIconExtension.AssignColor(gridSquare.Room);
+                    continue;
+                }
+
                 gridSquare.Color = Color.DarkSlateGray;
+                
             }
+
+            Invalidate();
         }
 
         public GridControl()

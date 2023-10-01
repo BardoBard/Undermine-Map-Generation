@@ -291,6 +291,7 @@
       "large"
     ],
     "roomtype": 11,
+    "crawlspace": true,
     "extrainformation": {
       "hall": {
         "sprites": 4
@@ -461,7 +462,6 @@
     "roomtype": 14,
     "roomtypetag": "special",
     "tags": "pre_bog",
-    "direction": 1,
     "name": "bogprechamber",
     "encounter": true,
     "icon": [
@@ -475,7 +475,6 @@
     "roomtype": 15,
     "roomtypetag": "special",
     "tags": "next_entrance_bog",
-    "direction": 1,
     "name": "bogdown",
     "icon": [
       12
@@ -815,6 +814,7 @@
     "stage": [
       "small"
     ],
+    "crawlspace": true,
     "roomtypetag": "special",
     "tags": "priestess",
     "branchweight": 0,
@@ -893,6 +893,7 @@
     ],
     "roomtype": 11,
     "roomtypetag": "special",
+    "crawlspace": true,
     "tags": "hall_hidden_three_chests",
     "direction": 2,
     "name": "threechests"
@@ -915,6 +916,7 @@
       "small"
     ],
     "roomtype": 11,
+    "crawlspace": true,
     "roomtypetag": "special",
     "tags": "hidden_hallway",
     "direction": 1,
@@ -926,6 +928,7 @@
       "small"
     ],
     "roomtype": 11,
+    "crawlspace": true,
     "roomtypetag": "special",
     "tags": "hidden_campsite",
     "direction": 1,
