@@ -20,23 +20,37 @@ namespace Map_Generator.Parsing.Json.Classes
             return !Rooms.Exists(encounter => encounter.Weight == 0);
         }
 
-        public void Initialize()
+        public void Initialize(string roomSize)
         {
             foreach (var encounter in Rooms.Where(encounter => encounter != null))
             {
-                encounter!.Door = encounter.Door == Door.None ? Default.Door : encounter.Door;
+                encounter!.AutoSpawn ??= Default.AutoSpawn;
+                encounter.WeightedDoors ??= Default.WeightedDoors;
+                encounter.SubFloor ??= Default.SubFloor;
+                encounter.OriginalSubFloor = encounter.SubFloor;
+                encounter.Requirement ??= Default.Requirement;
+                encounter.Sequence = encounter.Sequence.Count > 0 ? encounter.Sequence : Default.Sequence;
+                encounter.CurrentStage = roomSize;
+                encounter.Door = encounter.Door == Door.None ? Default.Door : encounter.Door;
+
+            }
+        }
+
+        public void Reset()
+        {
+            foreach (var encounter in Rooms.Where(encounter => encounter != null))
+            {
+                encounter!.HasCrawlSpace = false;
                 encounter.Skip = false;
                 encounter.Seen = false;
                 encounter.Difficulty ??= Default.Difficulty;
-                encounter.AutoSpawn ??= Default.AutoSpawn;
-                encounter.WeightedDoors ??= Default.WeightedDoors;
-                encounter.WeightedDoors?.ForEach(x =>
+                encounter.WeightedDoors?.ForEach(door =>
                 {
-                    if (x != null)
-                        x.Skip = false;
+                    if (door != null)
+                        door.Skip = false;
                 });
-                encounter.Requirement ??= Default.Requirement;
-                encounter.SubFloor ??= Default.SubFloor;
+                encounter.SubFloor = encounter.OriginalSubFloor;
+                encounter.RoomEnemies.Clear();
             }
         }
     }
@@ -75,6 +89,7 @@ namespace Map_Generator.Parsing.Json.Classes
         public Direction Direction { get; set; } = Direction.Undetermined;
 
         [JsonProperty("noexit")] public Direction NoExit { get; set; } = 0;
+        [JsonIgnore] public int? OriginalSubFloor { get; set; }
         [JsonProperty("subfloor")] public int? SubFloor { get; set; }
         [JsonProperty("recursion")] public int SequenceRecursionCount { get; set; } = -1;
         [JsonProperty("sequence")] public List<string> Sequence { get; set; } = new();

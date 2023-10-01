@@ -39,7 +39,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("requirements")] public string Requirements { get; set; }
 
         //rest
-        [JsonIgnore] public static readonly CrawlSpace Crawlspace = new()
+        [JsonIgnore] public static CrawlSpace Crawlspace => new()
         {
             Min = 1,
             Max = 1,
