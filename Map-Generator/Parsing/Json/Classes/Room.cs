@@ -189,7 +189,7 @@ namespace Map_Generator.Parsing.Json.Classes
         {
             if (!CanReload)
             {
-                BardLog.Log("can't reload: {0}", Name);
+                BardLog.Log("can't reload: {0}, subfloor: {1}", Name, Encounter?.SubFloor);
                 return this.Encounter;
             }
             

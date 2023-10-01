@@ -76,6 +76,7 @@
                     },
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "shadowroom"
                     }
                 ]
@@ -1558,6 +1559,7 @@
                     },
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "sandroom"
                     },
                     {
@@ -3634,6 +3636,7 @@
                     },
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "stonelordroom"
                     }
                 ]
@@ -5343,7 +5346,7 @@
                         "noexit": 13,
                         "requirements": "masterskey",
                         "autospawn": 6,
-                        "door": 4
+                        "door": 5
                     },
                     {
                         "tag": "down_boss",
@@ -5523,6 +5526,7 @@
                     },
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "crystalroom"
                     }
                 ]
@@ -6922,6 +6926,7 @@
                 "rooms": [
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "fireroom",
                         "type": 0
                     },
@@ -8578,6 +8583,7 @@
                 "rooms": [
                     {
                         "tag": "bossroom",
+                        "subfloor": 2,
                         "name": "plunderroom"
                     },
                     {
