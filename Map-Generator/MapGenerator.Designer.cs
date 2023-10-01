@@ -36,7 +36,9 @@
             this.FloorNameLabel = new System.Windows.Forms.Label();
             this.WhipSeed = new System.Windows.Forms.Label();
             this.IssueButton = new System.Windows.Forms.Button();
+#if DEBUG
             this.CreateTestButton = new System.Windows.Forms.Button();
+#endif
             this.SimpleAStarRadio = new System.Windows.Forms.RadioButton();
             this.AdvancedAStarRadio = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.SaveNumber)).BeginInit();
@@ -108,6 +110,7 @@
             this.IssueButton.Text = "Issues?";
             this.IssueButton.UseVisualStyleBackColor = true;
             this.IssueButton.Click += new System.EventHandler(this.IssueButton_Click);
+#if DEBUG
             // 
             // CreateTestButton
             // 
@@ -120,6 +123,8 @@
             this.CreateTestButton.Text = "Create Test";
             this.CreateTestButton.UseVisualStyleBackColor = true;
             this.CreateTestButton.Click += new System.EventHandler(this.CreateTestButton_Click);
+            this.Controls.Add(this.CreateTestButton);
+#endif
             // 
             // SimpleAStarRadio
             // 
@@ -152,7 +157,6 @@
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.AdvancedAStarRadio);
             this.Controls.Add(this.SimpleAStarRadio);
-            this.Controls.Add(this.CreateTestButton);
             this.Controls.Add(this.IssueButton);
             this.Controls.Add(this.WhipSeed);
             this.Controls.Add(this.FindMapButton);
