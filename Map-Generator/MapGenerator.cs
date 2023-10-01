@@ -57,15 +57,15 @@ namespace Map_Generator
             var count = int.MaxValue;
             var result = Program.PositionedRooms;
             var seed = Save.Seed;
-            for (int i = 0; i < 2000; i++)
+            for (; Save.Seed < seed + 2000; ++Save.Seed)
             {
-                ++Save.Seed;
                 Program.Start();
                 var count2 = Program.PositionedRooms.AStarSearch(Heuristic()).Count;
-                if (count2 >= count) continue;
+                if (count2 > count) continue;
                 
                 count = count2;
                 result = new List<Room>(Program.PositionedRooms);
+                if (count == 2) break;
             }
 
             Program.PositionedRooms = result;
