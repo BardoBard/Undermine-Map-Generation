@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -6,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Map_Generator.Parsing;
+using Map_Generator.Parsing.Json.Classes;
 using Map_Generator.Undermine;
 
 namespace Map_Generator
 {
     public partial class MapGenerator : Form
     {
-        private readonly GridControl _gridControl = new GridControl();
+        private readonly GridControl _gridControl = new();
         private readonly RoomInformationBox _roomInfoBox = null!;
 
         public MapGenerator()
@@ -29,11 +31,12 @@ namespace Map_Generator
             _roomInfoBox.Height = 500;
             _roomInfoBox.Location = new Point(0, 50);
             Controls.Add(_roomInfoBox);
-            
+
             _gridControl.MouseClick += GridControl_MouseClick;
             _gridControl.Dock = DockStyle.Fill;
             Controls.Add(_gridControl);
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
+            Program.Initialize(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
         }
 
         private void GridControl_MouseClick(object sender, MouseEventArgs e)
@@ -44,21 +47,52 @@ namespace Map_Generator
         }
 
 
+        private void SaveNumber_ValueChanged(object sender, System.EventArgs e)
+        {
+            Program.Initialize(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
+        }
+
+        private void FindFastMapButton_Click(object sender, System.EventArgs e)
+        {
+            var count = int.MaxValue;
+            var result = Program.PositionedRooms;
+            var seed = Save.Seed;
+            for (int i = 0; i < 2000; i++)
+            {
+                ++Save.Seed;
+                Program.Start();
+                var count2 = Program.PositionedRooms.AStarSearch(Heuristic()).Count;
+                if (count2 >= count) continue;
+                
+                count = count2;
+                result = new List<Room>(Program.PositionedRooms);
+            }
+
+            Program.PositionedRooms = result;
+            ShowMap();
+            Save.Seed = seed;
+        }
+
         private void FindMapButton_Click(object sender, System.EventArgs e)
         {
-            Program.Start(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
-
-            _gridControl.InitializeGridSquares(Program.PositionedRooms);
-            FloorNameLabel.Text = $@"{Program.Zonedata.Name}-{Save.FloorNumber}";
-            _gridControl.Path(Program.PositionedRooms.AStarSearch(Heuristic()));
+            Program.Start();
+            ShowMap();
         }
+
+        private void ShowMap()
+        {
+            _gridControl.InitializeGridSquares(Program.PositionedRooms);
+            _gridControl.Path(Program.PositionedRooms.AStarSearch(Heuristic()));
+            FloorNameLabel.Text = $@"{Program.Zonedata.Name}-{Save.FloorNumber} (seed: {Save.Seed})";
+        }
+
         private PathFinding.Heuristic Heuristic()
         {
             if (SimpleAStarRadio.Checked)
                 return PathFinding.SimpleHeuristics;
             if (AdvancedAStarRadio.Checked)
                 return PathFinding.AdvancedHeuristics;
-            
+
             return PathFinding.SimpleHeuristics;
         }
 
@@ -142,6 +176,5 @@ namespace Map_Generator
                 }
             }
         }
-
     }
 }

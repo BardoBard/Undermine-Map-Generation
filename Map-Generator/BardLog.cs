@@ -34,7 +34,10 @@ namespace Map_Generator
 
             _fs = new StreamWriter(File.Open(_logFilePath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite),
                 Encoding.UTF8) { AutoFlush = true };
-            LogToFile = _fs.WriteLine;
+            LogToFile = s =>
+            {
+                _fs.WriteLine(s);
+            };
             LogToConsole = s =>
             {
                 if (IsLoggingToConsole)
@@ -95,7 +98,7 @@ namespace Map_Generator
         public static void Log(string? str, Action<string>? outputMethod = null, params object?[] args)
         {
             outputMethod ??= LogToConsole;
-            string message = string.Format(str ?? string.Empty, args);
+            string message = args.Length == 0 ? str ?? string.Empty : string.Format(str ?? string.Empty, args);
             outputMethod.Invoke(message);
         }
 

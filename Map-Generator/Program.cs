@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using Map_Generator.Math;
@@ -129,8 +128,7 @@ namespace Map_Generator
                 if (roomName.HasExtraEncounter)
                     Rand.NextUInt();
 
-                Room room =
-                    GetEncounter(roomName, previousRoom, name2); //scoped randomness
+                Room room = GetEncounter(roomName, previousRoom, name2); //scoped randomness
 
                 room.PreviousRoom = previousRoom;
 
@@ -156,16 +154,12 @@ namespace Map_Generator
                     room.Encounter.SubFloor = previousRoom.Encounter.SubFloor;
                 }
 
-                room.Encounter.Sequence.AddRange(
-                    JsonDecoder.Encounters[MapType.GetMapName()][name2][room.RoomTypeTag].Default.Sequence);
-
                 if (sequenceRecursionCount != 0 && room.Encounter.Sequence.Count > 0)
                 {
-                    Room[] batch =
-                        room.Encounter.Sequence.Select(GetRoom).ToArray();
+                    Room[] batch = room.Encounter.Sequence.Select(GetRoom).ToArray();
 
                     BardLog.Log("Reloading..");
-                    LoadRoomNames(batch, room, sequence: true, --room.Encounter.SequenceRecursionCount);
+                    LoadRoomNames(batch, room, sequence: true, room.Encounter.SequenceRecursionCount - 1);
                 }
 
                 if (previousRoom != null)
@@ -196,14 +190,17 @@ namespace Map_Generator
             Application.Run(new MapGenerator());
         }
 
-        public static void Start(string saveJsonFile)
+        public static void Initialize(string saveJsonFile)
         {
-            Save.Initialize(saveJsonFile);
             JsonDecoder.ReadJson();
+            Save.Initialize(saveJsonFile);
+            InitializeAll();
+        }
+
+        public static void Start()
+        {
             BardLog.Open();
             ClearAll();
-            ResetAll();
-
             Rand.Initialize((uint)(Save.Seed + Save.floor_number));
             var level = JsonDecoder.Maps.First(map =>
                     map.Name == MapType.GetMapName() && (map.Requirement == null || Save.Check(map.Requirement)))
@@ -230,7 +227,6 @@ namespace Map_Generator
                 {
                     PlaceExtras(setPiece, AutoSpawnType.SetPieces);
                 }
-
 
             BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
             BardLog.Log("");
@@ -408,7 +404,35 @@ namespace Map_Generator
                      from encounters in encountersValue.Values
                      from encounter in encounters
                      select encounter)
-                encounter.Value.Initialize();
+                encounter.Value.Reset();
+            foreach (var room in Rooms)
+            {
+                room.Crawlspace?.Items.Clear();
+                room.SetPieces.ForEach(room1 =>
+                {
+                    room1.Skip = false;
+                    room1.AdjustedWeight = 0;
+                });
+                room.Extras.ForEach(room1 =>
+                {
+                    room1.Skip = false;
+                    room1.AdjustedWeight = 0;
+                });
+            }
+        }
+
+        private static void InitializeAll()
+        {
+            foreach (var encounterDictionary in JsonDecoder.Encounters)
+            {
+                foreach (var encounter1 in encounterDictionary.Value)
+                {
+                    foreach (var encounter in encounter1.Value)
+                    {
+                        encounter.Value.Initialize(encounter1.Key);
+                    }
+                }
+            }
         }
 
         private static void ClearAll()

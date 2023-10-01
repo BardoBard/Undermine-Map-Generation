@@ -61,7 +61,8 @@ namespace Tests
 
         public void TestStart(string testName)
         {
-            Map_Generator.Program.Start(testName);
+            Map_Generator.Program.Initialize(testName);
+            Map_Generator.Program.Start();
         }
 #endif
     }

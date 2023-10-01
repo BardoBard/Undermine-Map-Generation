@@ -55,8 +55,7 @@ namespace Map_Generator.Parsing.Json.Classes
         [JsonProperty("encounter")] public bool HasExtraEncounter { get; set; } = false;
         [JsonProperty("icon")] private List<MapIcon>? _mapIcons { get; set; }
 
-        [JsonIgnore]
-        public List<MapIcon> MapIcons => _mapIcons ?? new List<MapIcon> { MapIcon.None }; //TODO: change this
+        [JsonIgnore] public List<MapIcon> MapIcons => _mapIcons ?? new List<MapIcon> { MapIcon.None }; //TODO: change this
 
         [JsonProperty("extrainformation")]
         public Dictionary<string, ExtraInformation> ExtraInformations { get; set; } = new();

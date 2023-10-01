@@ -41,6 +41,7 @@
 #endif
             this.SimpleAStarRadio = new System.Windows.Forms.RadioButton();
             this.AdvancedAStarRadio = new System.Windows.Forms.RadioButton();
+            this.FindFastMapButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SaveNumber)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +57,7 @@
             this.SaveNumber.Name = "SaveNumber";
             this.SaveNumber.Size = new System.Drawing.Size(120, 20);
             this.SaveNumber.TabIndex = 0;
+            this.SaveNumber.ValueChanged += new System.EventHandler(this.SaveNumber_ValueChanged);
             // 
             // SaveNumberLabel
             // 
@@ -150,11 +152,23 @@
             this.AdvancedAStarRadio.UseVisualStyleBackColor = true;
             this.AdvancedAStarRadio.Click += new System.EventHandler(this.AStarRadio_Click);
             // 
+            // FindFastMapButton
+            // 
+            this.FindFastMapButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.FindFastMapButton.Location = new System.Drawing.Point(1065, 127);
+            this.FindFastMapButton.Name = "FindFastMapButton";
+            this.FindFastMapButton.Size = new System.Drawing.Size(107, 23);
+            this.FindFastMapButton.TabIndex = 10;
+            this.FindFastMapButton.Text = "Find Fast Map";
+            this.FindFastMapButton.UseVisualStyleBackColor = true;
+            this.FindFastMapButton.Click += new System.EventHandler(this.FindFastMapButton_Click);
+            // 
             // MapGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.FindFastMapButton);
             this.Controls.Add(this.AdvancedAStarRadio);
             this.Controls.Add(this.SimpleAStarRadio);
             this.Controls.Add(this.IssueButton);
@@ -185,5 +199,6 @@
         private System.Windows.Forms.Button IssueButton;
         private System.Windows.Forms.RadioButton SimpleAStarRadio;
         private System.Windows.Forms.RadioButton AdvancedAStarRadio;
+        private System.Windows.Forms.Button FindFastMapButton;
     }
 }
