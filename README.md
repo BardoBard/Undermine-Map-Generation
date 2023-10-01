@@ -15,7 +15,7 @@ specific parameters.
 Used for the Undermine speedrunning community.
 
 ## Download
-Download [here](https://github.com/BardoBard/Undermine-Map-Generation/releases/latest), download and extract the zip file and run the executable.
+Download [here](https://github.com/BardoBard/Undermine-Map-Generation/releases/latest), extract the zip file and run the executable.
 
 ### Packages
 
