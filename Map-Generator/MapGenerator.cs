@@ -56,8 +56,10 @@ namespace Map_Generator
         {
             var count = int.MaxValue;
             var result = Program.PositionedRooms;
-            var seed = Save.Seed;
-            for (; Save.Seed < seed + 2000; ++Save.Seed)
+            var originalSeed = Save.Seed;
+            var newSeed = Save.Seed;
+            var max = Save.Seed + 2000;
+            for (; Save.Seed < max; ++Save.Seed)
             {
                 Program.Start();
                 var count2 = Program.PositionedRooms.AStarSearch(Heuristic()).Count;
@@ -65,12 +67,14 @@ namespace Map_Generator
                 
                 count = count2;
                 result = new List<Room>(Program.PositionedRooms);
+                newSeed = Save.Seed;
                 if (count == 2) break;
             }
 
+            Save.Seed = newSeed;
             Program.PositionedRooms = result;
             ShowMap();
-            Save.Seed = seed;
+            Save.Seed = originalSeed;
         }
 
         private void FindMapButton_Click(object sender, System.EventArgs e)
