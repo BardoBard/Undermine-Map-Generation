@@ -14,6 +14,7 @@ namespace Map_Generator
 {
     public partial class MapGenerator : Form
     {
+        private FileSystemWatcher watcher = new FileSystemWatcher();
         private readonly GridControl _gridControl = new();
         private readonly RoomInformationBox _roomInfoBox = null!;
 
@@ -36,6 +37,12 @@ namespace Map_Generator
             _gridControl.Dock = DockStyle.Fill;
             Controls.Add(_gridControl);
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
+
+            watcher.Path = PathHandler.UndermineSaveDir;
+            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName;
+            watcher.Filter = @$"Save{SaveNumber.Value}.json";
+            watcher.Changed += (sender, args) => { ShowMap(); };
+            watcher.EnableRaisingEvents = true;
             Program.Initialize(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
         }
 
@@ -46,10 +53,9 @@ namespace Map_Generator
             _roomInfoBox.Invalidate();
         }
 
-
         private void SaveNumber_ValueChanged(object sender, System.EventArgs e)
         {
-            Program.Initialize(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
+            watcher.Filter = @$"Save{SaveNumber.Value}.json";
         }
 
         private void FindFastMapButton_Click(object sender, System.EventArgs e)
@@ -64,7 +70,7 @@ namespace Map_Generator
                 Program.Start();
                 var count2 = Program.PositionedRooms.AStarSearch(Heuristic()).Count;
                 if (count2 > count) continue;
-                
+
                 count = count2;
                 result = new List<Room>(Program.PositionedRooms);
                 newSeed = Save.Seed;
@@ -79,15 +85,15 @@ namespace Map_Generator
 
         private void FindMapButton_Click(object sender, System.EventArgs e)
         {
-            Program.Start();
             ShowMap();
         }
 
         private void ShowMap()
         {
+            Program.Start();
+            Program.Initialize(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
             _gridControl.Path(Program.PositionedRooms.AStarSearch(Heuristic()));
-            FloorNameLabel.Text = $@"{Program.Zonedata.Name}-{Save.FloorNumber} (seed: {Save.Seed})";
         }
 
         private PathFinding.Heuristic Heuristic()
