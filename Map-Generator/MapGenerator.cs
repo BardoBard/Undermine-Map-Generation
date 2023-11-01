@@ -41,11 +41,7 @@ namespace Map_Generator
             watcher.Path = PathHandler.UndermineSaveDir;
             watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName;
             watcher.Filter = @$"Save{SaveNumber.Value}.json";
-            watcher.Changed += (sender, args) =>
-            {
-                ShowMap();
-                FloorNameLabel.Text = $@"{Program.Zonedata.Name}-{Save.FloorNumber} (seed: {Save.Seed})";
-            };
+            watcher.Changed += (sender, args) => { ShowMap(); };
             watcher.EnableRaisingEvents = true;
             Program.Initialize(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
         }
@@ -84,14 +80,12 @@ namespace Map_Generator
             Save.Seed = newSeed;
             Program.PositionedRooms = result;
             ShowMap();
-            FloorNameLabel.Text = $@"{Program.Zonedata.Name}-{Save.FloorNumber} (seed: {Save.Seed})";
             Save.Seed = originalSeed;
         }
 
         private void FindMapButton_Click(object sender, System.EventArgs e)
         {
             ShowMap();
-            FloorNameLabel.Text = $@"{Program.Zonedata.Name}-{Save.FloorNumber} (seed: {Save.Seed})";
         }
 
         private void ShowMap()
