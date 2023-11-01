@@ -5,16 +5,6 @@ namespace Map_Generator.Parsing
 {
     public static class PathHandler
     {
-        public static void watch(string path, string file, Action call)
-        {
-            FileSystemWatcher watcher = new FileSystemWatcher();
-            watcher.Path = path;
-            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName;
-            watcher.Filter = "*.json";
-            watcher.Changed += (sender, args) => call();
-            watcher.EnableRaisingEvents = true;
-        }
-
         public static readonly string
             BaseDir = Directory.GetParent(FindDirectory(
                           Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)!,
