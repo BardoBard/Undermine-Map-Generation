@@ -6,6 +6,9 @@
 ╚██████╔╝██║ ╚████║██████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██████╗      ██║ ╚═╝ ██║ ██║  ██║ ██║
  ╚════╝  ╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═════╝      ╚═╝     ╚═╝ ╚═╝  ╚═╝ ╚═╝
 ```
+
+![build workflow](https://github.com/Bardobard/Undermine-Map-Generation/actions/workflows/Testing.yml/badge.svg)
+
 ## Undermine Map Generator
 
 This is a map generator for the game Undermine. It is written in C# desktop application.
@@ -15,7 +18,9 @@ specific parameters.
 Used for the Undermine speedrunning community.
 
 ## Download
-Download [here](https://github.com/BardoBard/Undermine-Map-Generation/releases/latest), extract the zip file and run the executable.
+
+Download [here](https://github.com/BardoBard/Undermine-Map-Generation/releases/latest), extract the zip file and run the
+executable.
 
 ### Packages
 

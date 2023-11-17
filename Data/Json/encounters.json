@@ -460,7 +460,7 @@
                         "autospawn": 31,
                         "name": "cursedrelics",
                         "noexit": 0,
-                        "door": 4
+                        "door": 5
                     },
                     {
                         "weight": 2,
@@ -1147,7 +1147,7 @@
                     {
                         "weight": 3,
                         "name": "cursedrelics",
-                        "door": 4,
+                        "door": 5,
                         "noexit": 0
                     },
                     {
@@ -2467,7 +2467,7 @@
                     {
                         "weight": 1,
                         "name": "cursedrelics",
-                        "door": 4,
+                        "door": 5,
                         "noexit": 0
                     },
                     {
@@ -5939,7 +5939,7 @@
                         "weight": 1,
                         "name": "cursedrelics",
                         "noexit": 0,
-                        "door": 4
+                        "door": 5
                     }
                 ]
             },
@@ -6569,7 +6569,7 @@
                     {
                         "weight": 1,
                         "name": "cursedrelics",
-                        "door": 4,
+                        "door": 5,
                         "autospawn": 23,
                         "noexit": 0
                     },
@@ -7380,7 +7380,7 @@
                         "autospawn": 31,
                         "name": "cursedrelics",
                         "noexit": 0,
-                        "door": 4
+                        "door": 5
                     },
                     {
                         "weight": 3,
@@ -8292,7 +8292,7 @@
                         "autospawn": 7,
                         "name": "cursedrelics",
                         "noexit": 0,
-                        "door": 4
+                        "door": 5
                     },
                     {
                         "weight": 4,
