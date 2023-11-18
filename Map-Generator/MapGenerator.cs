@@ -60,6 +60,7 @@ namespace Map_Generator
 
         private void FindFastMapButton_Click(object sender, System.EventArgs e)
         {
+            Program.Initialize(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
             var count = int.MaxValue;
             var result = Program.PositionedRooms;
             var originalSeed = Save.Seed;
@@ -79,7 +80,9 @@ namespace Map_Generator
 
             Save.Seed = newSeed;
             Program.PositionedRooms = result;
-            ShowMap();
+            Program.Start();
+            _gridControl.InitializeGridSquares(Program.PositionedRooms);
+            _gridControl.Path(Program.PositionedRooms.AStarSearch(Heuristic()));
             Save.Seed = originalSeed;
         }
 
