@@ -26,12 +26,12 @@ namespace Map_Generator.Math
             }
         }
 
-        public static readonly Vector2Int Zero = new(0, 0);
-        public static readonly Vector2Int One = new(1, 1);
-        public static readonly Vector2Int Up = new(0, 1);
-        public static readonly Vector2Int Down = new(0, -1);
-        public static readonly Vector2Int Left = new(-1, 0);
-        public static readonly Vector2Int Right = new(1, 0);
+        public static Vector2Int Zero => new(0, 0);
+        public static Vector2Int One => new(1, 1);
+        public static Vector2Int Up => new(0, 1);
+        public static Vector2Int Down => new(0, -1);
+        public static Vector2Int Left => new(-1, 0);
+        public static Vector2Int Right => new(1, 0);
         public int x = 0;
         public int y = 0;
 
