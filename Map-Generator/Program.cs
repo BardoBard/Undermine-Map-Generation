@@ -72,11 +72,12 @@ namespace Map_Generator
                     //else search for the encounter with the same tag as the room
                     else
                     {
+#if DEBUG
                         if (!JsonDecoder.Encounters[zone][room.Stages.Count > 1 ? roomSize : room.Stages.First()][
                                 room.RoomTypeTag].Rooms.Exists(encounter => encounter?.Tag == room.Tag))
                             throw new InvalidOperationException("room has unable to find " +
                                                                 room.Tag); //TODO: remove this for production
-
+#endif
                         room.Encounter = encounters.Find(encounter =>
                             encounter?.Tag == room.Tag &&
                             (encounter?.Requirement == null || Save.Check(encounter.Requirement)));
@@ -148,6 +149,13 @@ namespace Map_Generator
 
                 Rooms.Add(room);
 
+                if (room.Encounter != null)
+                    BardLog.Log("room: {0} encounter name: {1}_{2}_{3} door: {4}, chance: {5}", room.Name, name2,
+                        room.RoomTypeTag,
+                        room.Encounter.Name,
+                        room.Encounter.Door.ToString(),
+                        room.Chance);
+                
                 if (sequence)
                 {
                     room.Secluded = true;
@@ -159,7 +167,7 @@ namespace Map_Generator
                     Room[] batch = room.Encounter.Sequence.Select(GetRoom).ToArray();
 
                     BardLog.Log("Reloading..");
-                    LoadRoomNames(batch, room, sequence: true, room.Encounter.SequenceRecursionCount - 1);
+                    LoadRoomNames(batch, room, true, room.Encounter.SequenceRecursionCount - 1);
                 }
 
                 if (previousRoom != null)
@@ -168,12 +176,6 @@ namespace Map_Generator
 
                 BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
 
-                if (room.Encounter != null)
-                    BardLog.Log("room: {0} encounter name: {1}_{2}_{3} door: {4}, chance: {5}", room.Name, name2,
-                        room.RoomTypeTag,
-                        room.Encounter.Name,
-                        room.Encounter.Door.ToString(),
-                        room.Chance);
                 previousRoom = room;
                 BardLog.Log("");
             }
@@ -252,7 +254,6 @@ namespace Map_Generator
             BardLog.Log("");
 
             AddCrawlSpaces();
-
 
             BardLog.Log(Rand.PeekValue(), BardLog.LogToFileAndConsole);
 
@@ -551,7 +552,7 @@ namespace Map_Generator
 
         private static bool SetRoomPosition(Room room)
         {
-            List<Direction> list = new List<Direction>(DirectionExtension.CardinalDirections);
+            List<Direction> cardinalDirections = new List<Direction>(DirectionExtension.CardinalDirections);
             Direction direction = Direction.None;
             if (room.PreviousRoom != null)
             {
@@ -580,13 +581,13 @@ namespace Map_Generator
                 }
                 else //direction is none
                 {
-                    list.Shuffle();
-                    foreach (var direction1 in list)
+                    cardinalDirections.Shuffle();
+                    foreach (var direction1 in cardinalDirections)
                     {
                         BardLog.Log("direction: {0}", direction1.ToString());
                     }
 
-                    foreach (var item in list.Where(item => CanMove(room, item, room.Position)))
+                    foreach (var item in cardinalDirections.Where(item => CanMove(room, item, room.Position)))
                     {
                         direction = item;
                         room.Move(direction);
@@ -598,24 +599,24 @@ namespace Map_Generator
             }
             else //previous room is null
             {
-                List<Room> list2 = new List<Room>(PositionedRooms);
+                List<Room> positionedRooms = new List<Room>(PositionedRooms);
 
                 if (room.Encounter is { Door: Door.None or Door.Hidden })
                 {
-                    list2.Shuffle();
-                    foreach (var room3 in list2)
+                    positionedRooms.Shuffle();
+                    foreach (var room3 in positionedRooms)
                     {
                         BardLog.Log("name: {0}, weight: {1}", room3.Encounter.Name, room3.Weight);
                     }
 
-                    foreach (Room item2 in list2)
+                    foreach (Room item2 in positionedRooms)
                     {
                         room.Position = item2.Position;
-                        list.Shuffle();
+                        cardinalDirections.Shuffle();
 
                         BardLog.Log("room name: {0} ({2},{3}), door: {1}, ", room.Encounter.Name,
                             room.Encounter.Door, room.Position.x, room.Position.y);
-                        foreach (var item3 in list.Where(item3 => CanMove(room, item3, room.Position)))
+                        foreach (var item3 in cardinalDirections.Where(item3 => CanMove(room, item3, room.Position)))
                         {
                             direction = item3;
                             room.Move(direction);
@@ -629,7 +630,7 @@ namespace Map_Generator
                 else //door is not none or hidden
                 {
                     BardLog.Log("door type is not none or hidden");
-                    foreach (var room3 in list2)
+                    foreach (var room3 in positionedRooms)
                     {
                         BardLog.Log("name: {0}, weight: {1}", room3.Encounter.Name, room3.Weight);
                     }
@@ -637,19 +638,19 @@ namespace Map_Generator
                     BardLog.Log("room name: {0} ({2},{3}), door: {1}, ", room.Encounter.Name,
                         room.Encounter.Door, room.Position.x, room.Position.y);
 
-                    list2.RemoveAll(roomType => roomType.Weight == 0);
+                    positionedRooms.RemoveAll(roomType => roomType.Weight == 0);
 
-                    BardLog.Log("list size: {0}", list2.Count);
-                    BardLog.Log("total weight: {0}", list2.Sum(roomType => roomType.Weight));
+                    BardLog.Log("list size: {0}", positionedRooms.Count);
+                    BardLog.Log("total weight: {0}", positionedRooms.Sum(roomType => roomType.Weight));
 
-                    while (direction == Direction.None && list2.Count > 0)
+                    while (direction == Direction.None && positionedRooms.Count > 0)
                     {
-                        if (!Rand.GetWeightedElement(list2!, out Room result, false))
+                        if (!Rand.GetWeightedElement(positionedRooms!, out Room result, false))
                             continue;
 
                         room.Position = result.Position;
-                        list.Shuffle();
-                        foreach (Direction item4 in list.Where(item4 =>
+                        cardinalDirections.Shuffle();
+                        foreach (Direction item4 in cardinalDirections.Where(item4 =>
                                      result.IsValidNeighbor(room, item4) && CanMove(room, item4, room.Position)))
                         {
                             direction = item4;
@@ -657,7 +658,7 @@ namespace Map_Generator
                             break;
                         }
 
-                        list2.Remove(result);
+                        positionedRooms.Remove(result);
                     }
                 }
             }

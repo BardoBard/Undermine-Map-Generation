@@ -5962,11 +5962,11 @@
                     {
                         "weight": 3,
                         "name": "smallroomchest",
-                        "noexit": 13,
+                        "noexit": 0,
                         "recursion": 1
                     },
                     {
-                        "weight": 2,
+                        "weight": 3,
                         "name": "spikesacrifice",
                         "noexit": 0
                     },
@@ -6059,7 +6059,7 @@
                         "recursion": 1
                     },
                     {
-                        "weight": 2,
+                        "weight": 3,
                         "name": "bard",
                         "requirements": "notbardmet",
                         "autospawn": 5,
@@ -6515,6 +6515,11 @@
                     {
                         "weight": 1,
                         "name": "nightmarescenario",
+                        "enemies":[
+                            "crystalfly",
+                            "crystalant",
+                            "glimmerweed"
+                        ],
                         "difficulty": [
                             1,
                             -6

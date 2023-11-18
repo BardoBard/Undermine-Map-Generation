@@ -893,9 +893,9 @@
     ],
     "roomtype": 11,
     "roomtypetag": "special",
-    "crawlspace": true,
     "tags": "hall_hidden_three_chests",
-    "direction": 2,
+    "direction": 4,
+    "ishidden": true,
     "name": "threechests"
   },
   "secreteast": {

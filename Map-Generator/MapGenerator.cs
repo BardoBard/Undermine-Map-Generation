@@ -90,8 +90,8 @@ namespace Map_Generator
 
         private void ShowMap()
         {
-            Program.Start();
             Program.Initialize(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
+            Program.Start();
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
             _gridControl.Path(Program.PositionedRooms.AStarSearch(Heuristic()));
         }
