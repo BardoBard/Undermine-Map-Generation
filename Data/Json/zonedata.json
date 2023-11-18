@@ -4034,8 +4034,8 @@
             "floors": [
                 {
                     "enemies": [
-                        "assassin",
                         "throwbo",
+                        "assassin",
                         "glimmerweed",
                         "trollbombardier",
                         "churchbell",

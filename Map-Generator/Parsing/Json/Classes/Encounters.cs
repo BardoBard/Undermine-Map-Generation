@@ -57,6 +57,11 @@ namespace Map_Generator.Parsing.Json.Classes
 
     public class Encounter : IWeight
     {
+        //tostring for debugging
+        public override string ToString()
+        {
+            return $"Name: {Name}, Weight: {Weight}";
+        }
         public class WeightedDoor : IWeight
         {
             [JsonProperty("weight")] public int Weight { get; set; }

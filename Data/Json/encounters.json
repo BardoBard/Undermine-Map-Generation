@@ -460,7 +460,7 @@
                         "autospawn": 31,
                         "name": "cursedrelics",
                         "noexit": 0,
-                        "door": 4
+                        "door": 5
                     },
                     {
                         "weight": 2,
@@ -1147,7 +1147,7 @@
                     {
                         "weight": 3,
                         "name": "cursedrelics",
-                        "door": 4,
+                        "door": 5,
                         "noexit": 0
                     },
                     {
@@ -2467,7 +2467,7 @@
                     {
                         "weight": 1,
                         "name": "cursedrelics",
-                        "door": 4,
+                        "door": 5,
                         "noexit": 0
                     },
                     {
@@ -3878,6 +3878,14 @@
             },
             "special": {
                 "rooms": [
+                    {
+                        "tag": "hall_hidden_three_chests",
+                        "name": "threechests",
+                        "noexit": 7,
+                        "autospawn": 7,
+                        "subfloor": 1,
+                        "requirements": "storymode"
+                    },
                     {
                         "tag": "dungeon_entrance",
                         "name": "entrance",
@@ -5939,7 +5947,7 @@
                         "weight": 1,
                         "name": "cursedrelics",
                         "noexit": 0,
-                        "door": 4
+                        "door": 5
                     }
                 ]
             },
@@ -5962,11 +5970,11 @@
                     {
                         "weight": 3,
                         "name": "smallroomchest",
-                        "noexit": 13,
+                        "noexit": 0,
                         "recursion": 1
                     },
                     {
-                        "weight": 2,
+                        "weight": 3,
                         "name": "spikesacrifice",
                         "noexit": 0
                     },
@@ -6059,7 +6067,7 @@
                         "recursion": 1
                     },
                     {
-                        "weight": 2,
+                        "weight": 3,
                         "name": "bard",
                         "requirements": "notbardmet",
                         "autospawn": 5,
@@ -6515,6 +6523,11 @@
                     {
                         "weight": 1,
                         "name": "nightmarescenario",
+                        "enemies":[
+                            "crystalfly",
+                            "crystalant",
+                            "glimmerweed"
+                        ],
                         "difficulty": [
                             1,
                             -6
@@ -6569,7 +6582,7 @@
                     {
                         "weight": 1,
                         "name": "cursedrelics",
-                        "door": 4,
+                        "door": 5,
                         "autospawn": 23,
                         "noexit": 0
                     },
@@ -7380,7 +7393,7 @@
                         "autospawn": 31,
                         "name": "cursedrelics",
                         "noexit": 0,
-                        "door": 4
+                        "door": 5
                     },
                     {
                         "weight": 3,
@@ -8292,7 +8305,7 @@
                         "autospawn": 7,
                         "name": "cursedrelics",
                         "noexit": 0,
-                        "door": 4
+                        "door": 5
                     },
                     {
                         "weight": 4,
