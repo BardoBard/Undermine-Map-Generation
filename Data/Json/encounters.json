@@ -3879,6 +3879,14 @@
             "special": {
                 "rooms": [
                     {
+                        "tag": "hall_hidden_three_chests",
+                        "name": "threechests",
+                        "noexit": 7,
+                        "autospawn": 7,
+                        "subfloor": 1,
+                        "requirements": "storymode"
+                    },
+                    {
                         "tag": "dungeon_entrance",
                         "name": "entrance",
                         "icon": 3,
