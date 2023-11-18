@@ -83,6 +83,7 @@ namespace Map_Generator
             Program.Start();
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
             _gridControl.Path(Program.PositionedRooms.AStarSearch(Heuristic()));
+            this.FloorNameLabel.Text = @$"{MapType.GetMapName()}-{Save.FloorNumber} Seed: {Save.Seed}";
             Save.Seed = originalSeed;
         }
 
