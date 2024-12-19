@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Map_Generator.Math;
@@ -194,6 +195,11 @@ namespace Map_Generator
 
         public static void Initialize(string saveJsonFile)
         {
+            if (!File.Exists(saveJsonFile))
+            {
+                MessageBox.Show(saveJsonFile + " doesn't exist.");
+                return;
+            }
             JsonDecoder.ReadJson();
             Save.Initialize(saveJsonFile);
             InitializeAll();

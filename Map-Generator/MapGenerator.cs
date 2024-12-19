@@ -24,10 +24,6 @@ namespace Map_Generator
             WhipSeed.Text = $@"Whip Seed: {Whip.CurrentWhipSeed}";
 
             _roomInfoBox = new RoomInformationBox(this);
-
-            // Program.Start(Path.Combine(PathHandler.UndermineSavePath, @"Save0.json"));
-
-            // roomInfoBox.Dock = DockStyle.None; 
             _roomInfoBox.Width = 250;
             _roomInfoBox.Height = 500;
             _roomInfoBox.Location = new Point(0, 50);
@@ -43,7 +39,6 @@ namespace Map_Generator
             watcher.Filter = @$"Save{SaveNumber.Value}.json";
             watcher.Changed += (sender, args) => { ShowMap(); };
             watcher.EnableRaisingEvents = true;
-            Program.Initialize(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
         }
 
         private void GridControl_MouseClick(object sender, MouseEventArgs e)
@@ -94,7 +89,15 @@ namespace Map_Generator
 
         private void ShowMap()
         {
-            Program.Initialize(Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json"));
+            string saveJsonFile = Path.Combine(PathHandler.UndermineSaveDir, @$"Save{SaveNumber.Value}.json");
+            if (!File.Exists(saveJsonFile))
+            {
+                MessageBox.Show(saveJsonFile + " doesn't exist.");
+                return;
+            }
+
+            
+            Program.Initialize(saveJsonFile);
             Program.Start();
             _gridControl.InitializeGridSquares(Program.PositionedRooms);
             _gridControl.Path(Program.PositionedRooms.AStarSearch(Heuristic()));
